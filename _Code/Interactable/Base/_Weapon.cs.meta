@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9705b2139b756044787db8c5b2de2d26
+timeCreated: 1495673260
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - verticalmovechild: {instanceID: 0}
+  - m_Cannon_Projectile: {fileID: 100000, guid: 1cbda689bb465ea49b41a3db35577a6d,
+      type: 2}
+  - m_Missile_Projectile: {instanceID: 0}
+  - m_MiniGun_Projectile: {instanceID: 0}
+  - target: {instanceID: 0}
+  executionOrder: -8
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
