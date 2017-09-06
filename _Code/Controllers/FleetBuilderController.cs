@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using simple;
 
+/// <summary>
+/// This class is the default class to control a team of ships in the game, 1 per team.
+/// </summary>
 public class FleetBuilderController : MonoBehaviour {
     public int limit;
     public int countthrough;

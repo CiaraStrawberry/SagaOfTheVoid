@@ -7,81 +7,130 @@ using TrueSync;
 using simple;
 using UnityEngine.SceneManagement;
 
-
+/// <summary>
+/// This is the main Game controller, it controlls everything inside the game and allows the ships to know what to shoot at and what to not shoot at.
+/// </summary>
 public class UnitMovementcommandcontroller : TrueSyncBehaviour {
-    // TODO: reorganise variables
+    
+    // this is the the channel the local photon voice is on.
     public PlayerPrefabVoiceControlScript.VoiceChannel curchannel;
+    // the team of the local player.
     public _Ship.eShipColor team;
+    // this is all ships inside the blue team.
     [SerializeField]
     private GameObject[] Blue = new GameObject[5];
+    // this is all ships inside the Green team.
     [SerializeField]
     private GameObject[] Green = new GameObject[5];
+    // this is all ships inside the Grey team.
     [SerializeField]
     private GameObject[] Grey  = new GameObject[5];
+    // this is all ships inside the Red team.
     [SerializeField]
     private GameObject[] Red  = new GameObject[5];
+    // this is all ships inside the White team.
     [SerializeField]
     private GameObject[] White = new GameObject[5];
+    // this is all ships inside the Yellow team.
     [SerializeField]
     private GameObject[] Yellow = new GameObject[5];
+    // this is all the ships the blue team can target.
     [SerializeField]
     private TSTransform[] BlueTargets = new TSTransform[0];
+    // this is all the ships the Green team can target.
     [SerializeField]
     private TSTransform[] GreenTargets = new TSTransform[0];
+    // this is all the ships the Grey team can target.
     [SerializeField]
     private TSTransform[] GreyTargets = new TSTransform[0];
+    // this is all the ships the Red team can target.
     [SerializeField]
     private TSTransform[] RedTargets = new TSTransform[0];
+    // this is all the ships the White team can target.
     [SerializeField]
     private TSTransform[] WhiteTargets = new TSTransform[0];
+    // this is all the ships the Yellow team can target.
     [SerializeField]
     private TSTransform[] YellowTargets = new TSTransform[0];
-    public bool output;
+    // this is all the ships in the game
     public List<GameObject> all_ships = new List<GameObject>();
+    // this is all the ships in the game referenced by their _Ship class.
     public List<_Ship> all_shipsScript = new List<_Ship>();
+    // time passed since the start of the match.
     private FP timepassed;
+    // time til the end of the match.
     public  FP Timeleft = 600;
+    // the current match gamemode.
     public CrossLevelVariableHolder.gamemode Gamemode;
+    // the current match crosslevelvariableholder singleton.
     public CrossLevelVariableHolder crosslevelholder;
+    // the Photonview attached to this gameobject.
     public PhotonView phopview;
+    // the panel that the player sees if team 1 wins.
     public GameObject Team1victory;
+    // the panel that the player sees if team 2 wins.
     public GameObject Team2Victory;
+    // the ships on the field that belong to team 1 and are capitals.
     private List<GameObject> Team1Capitals = new List<GameObject>();
+    // the ships on the field that belong to team 2 and are capitals.
     private List<GameObject> Team2Capitals = new List<GameObject>();
+    // the scenery for map1.
     public GameObject map1area;
+    // the scenery for map2.
     public GameObject map2area;
+    // the scenery for map 3
     public GameObject map3area;
+    // the world object parented to all objects that are ships.
     [SerializeField]
     private GameObject Objectsholder;
+    // the local players money.
     [SerializeField]
     private int money = 1500;
+    // the gameobject that appears when things are still loading.
     public GameObject Loading;
+    // the tutorial controller.
     private TutorialTextControlScript tutcontrol;
-    public GameObject[] tutorialIcons;
+    // the local music source.
     AudioSource audiosource;
+    // a list of player checks to see if each one is ready.
     List<playerisreadychecker> players = new List<playerisreadychecker>();
+    // is the game running?
     public bool running;
+    // a networked random number to allow deterministic randoms that change each match.
     public int randomnumber;
+    // all ships addressed by their _ship components.
     public List<_Ship> allshipsscript = new List<_Ship>();
+    // all ships addressed by their gameobjects.
     public List<GameObject> allshipsgams = new List<GameObject>();
+    // all AI controllers.
     public List<AIController> aicontrollers = new List<AIController>();
+    // all TStransforms.
     public TSTransform[] allshipststransform = new TSTransform[0];
+    // the money increase rate for the local player.
     public int moneyincreaserate = 30;
+    // has the simulation started?
     public bool started;
+    // has someone already won?
     public bool isalreadywon;
+    // the local component used for saving data to the harddrive.
     private IOComponent FleetBuilder;
+    // is the victory resulting in everyone leaving the match?
     public bool endall;
+    // if the game has ended, have i won?
     bool victorytest;
+    // the UI element that tells the player the host has left.
     public GameObject hostlefticon;
+    // is the simulation (independant of the game) running?
     private bool simrunning;
-    public GameObject debug;
 
+    /// <summary>
+    /// Initialise everything, set all to defaults.
+    /// </summary>
     void Awake () {
         crosslevelholder = GameObject.Find("CrossLevelVariables").GetComponent<CrossLevelVariableHolder>();
         if(crosslevelholder.tutorial == true) tutcontrol = GameObject.Find("TutorialPanelHolder").GetComponent<TutorialTextControlScript>();
         team = crosslevelholder.findspawnteam(PhotonNetwork.player.ID);      
         Gamemode = crosslevelholder.Gamemode;
-        //Setup Voice Channel
         if (SceneManager.GetActiveScene().name != "mptest")  curchannel = PlayerPrefabVoiceControlScript.VoiceChannel.All;
         else
         {
@@ -91,15 +140,14 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         map1area.SetActive(false);
         map2area.SetActive(false);
         map3area.SetActive(false);
-        // Sets all scenery to not render, then enables the one selected in the lobby
         if (crosslevelholder.map == CrossLevelVariableHolder.mapcon.map1) map1area.SetActive(true);
         if (crosslevelholder.map == CrossLevelVariableHolder.mapcon.map2) map2area.SetActive(true);
         if (crosslevelholder.map == CrossLevelVariableHolder.mapcon.map3) map3area.SetActive(true);
-
-       
     }
   
-    // Start Function, Just Sets EveryThning up.
+    /// <summary>
+    /// More initialisation, set everything up based on player preferance.
+    /// </summary>
     void Start ()
     {
         //initialize
@@ -126,11 +174,17 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         foreach (GameObject tutorial in tutorialIcons) tutorial.SetActive(false);
     }
 
-    // This function is called across the network to allow the AI to use an actually random number, but one which is the same across all clients.
+    /// <summary>
+    /// This function is called across the network to allow the AI to use an actually random number, but one which is the same across all clients.
+    /// </summary>
+    /// <param name="randomnum"> the random number to use</param>
     [PunRPC] 
     void setrandomnumberforthismatch (int randomnum)  {   randomnumber = randomnum;    }
   
-    // This function is called once the simulation starts running, it doesnt use the synced start call because my simulation ignores it and starts the simulation itself, why i wrote it like this is beyond me.
+    /// <summary>
+    /// This function is called once the simulation starts running, it doesnt use the synced start call because my simulation ignores it and starts the simulation itself.
+    /// this was written like this due to sync issues.
+    /// </summary>
     public void StartMain ()
     {
         InputRelay.relay.running = true;
@@ -142,7 +196,10 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         OneSecond();
     }
 
-    // this is a one second wait function that is designed to allow call all other 1 second repeating functions in a deterministic and ordered way.
+    /// <summary>
+    /// this is a one second wait function that is designed to allow call all other 1 second repeating functions in a deterministic and ordered way.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator waaait()
     {
         while (true)
@@ -164,18 +221,29 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         }
 
     }
-    // returns local player money.
+
+    /// <summary>
+    /// returns local player money.
+    /// </summary>
+    /// <returns></returns>
     public int getmoney () {   return money;  }
    
-
-    // allows you to give the player more money and checks it is not going over the money cap.
+    /// <summary>
+    /// allows you to give the player more money and checks it is not going over the money cap.
+    /// </summary>
+    /// <param name="amount"></param>
     public void addmoney (int amount)    { if((money < 7000)) money += amount;    }
 
-    // takes money away from the player, the check if the player has enough money needs to be before this is called.
+    /// <summary>
+    /// takes money away from the player, the check if the player has enough money needs to be before this is called.
+    /// </summary>
+    /// <param name="amount"></param>
     public void takemoney (int amount) { money -= amount; }
    
        
-    // this function checks if the gamecontroller is aware of all current ships or any current ships have been destroyed.
+    /// <summary>
+    /// this function checks if the gamecontroller is aware of all current ships or any current ships have been destroyed.
+    /// </summary>
     void checkallships ()
     {
         foreach (Transform t in Objectsholder.transform)
@@ -199,13 +267,22 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
 
     }
 
-    // returns alliesoutcustom but with the local players team
+    /// <summary>
+    /// returns alliesoutcustom but with the local players team
+    /// </summary>
+    /// <returns></returns>
     public List<TSTransform> alliesout ()   {  return  alliesoutcustom(team); }
  
-    // don't know why that is there, cant risk breaking it.
+    /// <summary>
+    /// don't know why that is there, cant risk breaking it.
+    /// </summary>
     public override void OnSyncedStart()   {   InputRelay = GameObject.Find("TrueSyncManager").GetComponent<RelayController>();   }
  
-    // effectively allows you to add to an array of TStransform[] in the same manner as a list, this was needed as lists were randomly removing themselfs from memory.
+    /// <summary>
+    /// effectively allows you to add to an array of TStransform[] in the same manner as a list, this was needed as lists were randomly removing themselfs from memory.
+    /// </summary>
+    /// <param name="inputarray">the array to add things to</param>
+    /// <param name="addition">thing thing to add to arrays</param>
     void addtoarrayTSTransfrom(ref TSTransform[] inputarray, TSTransform addition)
     {
         List<TSTransform> output = inputarray.ToList();
@@ -213,7 +290,11 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         inputarray = output.ToArray();
     }
 
-    // effectively allows you to add to an array of TStransform[] in the same manner as a list, this was needed as lists as lists were randomly removing themselfs from memory.
+    /// <summary>
+    /// effectively allows you to add to an array of TStransform[] in the same manner as a list, this was needed as lists as lists were randomly removing themselfs from memory.
+    /// </summary>
+    /// <param name="inputarray">the array to remove things to</param>
+    /// <param name="addition">thing thing to remove to arrays</param>
     void RemovefromTStransform(ref TSTransform[] inputarray, TSTransform addition)
     {
         List<TSTransform> output = inputarray.ToList();
@@ -221,8 +302,12 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         inputarray = output.ToArray();
     }
 
-    // TODO: investigate weather this function breaks the "CapitalShip" Gamemode.
-    // returns the allied ships based on the currentg gamemode.
+    /// <summary>
+    /// TODO: investigate weather this function breaks the "CapitalShip" Gamemode.
+    /// returns the allied ships based on the currentg gamemode.
+    /// </summary>
+    /// <param name="control">team of which ships are allied to</param>
+    /// <returns>allied ships</returns>
     public List<TSTransform> alliesoutcustom(_Ship.eShipColor control)
     {
         List<TSTransform> output = new List<TSTransform>();
@@ -250,11 +335,14 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
                 case _Ship.eShipColor.Yellow:  output = combinearrays(new List<GameObject>[] { Yellow.ToList() }).ToList<TSTransform>(); break;  
             }
         }
-
         return output;
     }
 
-    // returns teammembers based on shipcolor enum
+    /// <summary>
+    /// returns teammember ships based on shipcolor enum.
+    /// </summary>
+    /// <param name="control"></param>
+    /// <returns></returns>
     public List<GameObject> teammembersout (_Ship.eShipColor control)
     {
         List<GameObject> output = new List<GameObject>();
@@ -270,29 +358,35 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         return output;
     }
 
-    // checks if any ships need to be added to the custom lists
-    // TODO: see if this does the same thing as check all ships
+    /// <summary>
+    /// checks if any ships need to be added to the custom lists
+    /// TODO: see if this does the same thing as check all ships
+    /// </summary>
     public void resetships ()
     {
-            foreach (Transform t in GameObject.Find("Objects").transform)
+        foreach (Transform t in GameObject.Find("Objects").transform)
+        {
+            if (checkelidgable(t))
             {
-                if (checkelidgable(t))
+                switch (t.GetComponent<_Ship>().ShipColor)
                 {
-                    switch (t.GetComponent<_Ship>().ShipColor)
-                    {
-                        case _Ship.eShipColor.Blue:    if(Blue.Contains(t.gameObject) == false)  addtoarray(ref Blue,t.gameObject); break;
-                        case _Ship.eShipColor.Green:  if (Green.Contains(t.gameObject) == false) addtoarray(ref Green, t.gameObject); break;
-                        case _Ship.eShipColor.Grey:  if (Grey.Contains(t.gameObject) == false) addtoarray(ref Grey, t.gameObject); break;
-                        case _Ship.eShipColor.Red:  if (Red.Contains(t.gameObject) == false) addtoarray(ref Red, t.gameObject); break;
-                        case _Ship.eShipColor.White:  if (White.Contains(t.gameObject) == false) addtoarray(ref White, t.gameObject); break;
-                        case _Ship.eShipColor.Yellow:   if (Yellow.Contains(t.gameObject) == false) addtoarray(ref Yellow, t.gameObject); break;     
-                    }
-               
-              }
+                    case _Ship.eShipColor.Blue: if (Blue.Contains(t.gameObject) == false) addtoarray(ref Blue, t.gameObject); break;
+                    case _Ship.eShipColor.Green: if (Green.Contains(t.gameObject) == false) addtoarray(ref Green, t.gameObject); break;
+                    case _Ship.eShipColor.Grey: if (Grey.Contains(t.gameObject) == false) addtoarray(ref Grey, t.gameObject); break;
+                    case _Ship.eShipColor.Red: if (Red.Contains(t.gameObject) == false) addtoarray(ref Red, t.gameObject); break;
+                    case _Ship.eShipColor.White: if (White.Contains(t.gameObject) == false) addtoarray(ref White, t.gameObject); break;
+                    case _Ship.eShipColor.Yellow: if (Yellow.Contains(t.gameObject) == false) addtoarray(ref Yellow, t.gameObject); break;
+                }
+
+            }
         }
     }
 
-    // allows you to add to a Gameobject[] array in the same way as you would a list.
+    /// <summary>
+    /// allows you to add to a Gameobject[] array in the same way as you would a list.
+    /// </summary>
+    /// <param name="inputarray">array to add to</param>
+    /// <param name="addition">thing to add to array</param>
     void addtoarray (ref GameObject[] inputarray, GameObject addition)
     {
         List<GameObject> output = inputarray.ToList();
@@ -300,10 +394,18 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         inputarray = output.ToArray();
     }
 
-    // allows you to remove from a Gameobject[] array in the same way as you would a list.
+    /// <summary>
+    /// allows you to remove from a Gameobject[] array in the same way as you would a list.
+    /// </summary>
+    /// <param name="inputarray">array to remove toparam>
+    /// <param name="addition">thing to remove to array</param>
     void Removefromarray(ref GameObject[] inputarray, GameObject addition) { inputarray = inputarray.Where(val => val != addition).ToArray();   }
    
-    // gets the TStransform components from every gameobject in multiple lists, then returns one big array containing them all.
+    /// <summary>
+    /// gets the TStransform components from every gameobject in multiple lists, then returns one big array containing them all.
+    /// </summary>
+    /// <param name="input">the list of gameobject[] arrays</param>
+    /// <returns></returns>
     TSTransform[] combinearrays(List<GameObject>[] input)
     {
        List<TSTransform> temptargets = new List<TSTransform>();
@@ -311,12 +413,16 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
        return temptargets.ToArray();
     }
 
-    // checks if all players have entered game and are ready.
+    /// <summary>
+    /// checks if all players have entered game and are ready via their classes.
+    /// </summary>
+    /// <param name="playerview"></param>
     public void playerready ( int playerview) {    foreach (playerisreadychecker player in players) if (player.playerid == playerview) player.isready = true;   }
    
     
- 
-    // derministic repeating function inside the gamecontroller
+    /// <summary>
+    /// derministic repeating function inside the gamecontroller
+    /// </summary>
     public void OneSecond ()
     {
         // checks if anything is destroyed.
@@ -462,8 +568,10 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         }  
     }
 
-
-    // checks if any gameobjects are destroyed or null
+    /// <summary>
+    /// checks if any gameobjects are destroyed or null
+    /// </summary>
+    /// <param name="input"></param>
     void removenullentities (ref GameObject[] input)
     {
         GameObject temprem = null;
@@ -471,7 +579,11 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         Removefromarray(ref input, temprem);
     }
 
-    // concats lists, here because an array call looks way cleaner then concating several lists.
+    /// <summary>
+    /// concats lists, here because an array call looks way cleaner then concating several lists.
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     GameObject[] concatarraylist(List<GameObject>[] input)
     {
         List<GameObject> output = new List<GameObject>();
@@ -479,7 +591,11 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         return output.ToArray();
     }
 
-    // the client function recieved to inform you that the game is over, there to ensure that even if determinism breaks, the scenes every one is in do not.
+    /// <summary>
+    ///  the client function recieved to inform you that the game is over, there to ensure that even if determinism breaks, the scenes every one is in do not.
+    /// </summary>
+    /// <param name="teamin">the team that won</param>
+    /// <param name="customstring">custom message to give to the player about winning</param>
     [PunRPC]
     void teamfreeforallwon(string teamin,bool customstring)
     {
@@ -498,7 +614,11 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         }
     }
 
-    //uses the position of teams inside the crosslevelvariableholder to get the starting ship color.
+    /// <summary>
+    /// uses the position of teams inside the crosslevelvariableholder to get the starting ship color.
+    /// </summary>
+    /// <param name="input">spawnposition</param>
+    /// <returns></returns>
     public static _Ship.eShipColor findspawnteam(int input)
     {
         _Ship.eShipColor output = _Ship.eShipColor.Green;
@@ -511,7 +631,11 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         return output;
     }
 
-    // returns the position of the player inside the teams from shipcolor.
+    /// <summary>
+    /// returns the position of the player inside the teams from shipcolor.
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     public static int findspawnteamreverse(_Ship.eShipColor input)
     {
         int output = 1;
@@ -524,7 +648,9 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         return output;
     }
 
-    // Updates the progression tracker to update when you win a match.
+    /// <summary>
+    /// Updates the progression tracker to update when you win a match.
+    /// </summary>
     void VictoryCampaign ()
     {
         if (crosslevelholder.campaignlevel != null)
@@ -541,7 +667,10 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         }
     }
 
-    // Sent from the master to say that team 1 (green, blue and white) have won.
+    /// <summary>
+    /// Sent from the master to say that team 1 (green, blue and white) have won.
+    /// </summary>
+    /// <param name="endallin">quit for everyone?</param>
     [PunRPC]
     public void team1won (bool endallin)
     {
@@ -562,8 +691,11 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         if (endallin == true) endall = true;
     }
 
-    //TODO: combine these functions and only seperate the stuff that is actually different.
-    // Sent from the master to say that team 2 (yellow,grey,red) have won.
+    /// <summary>
+    ///TODO: combine these functions and only seperate the stuff that is actually different.
+    /// Sent from the master to say that team 2 (yellow,grey,red) have won.
+    /// </summary>
+    /// <param name="endallin">quit for everyone?</param>
     [PunRPC]
     public void team2won (bool endallin)
     {
@@ -586,7 +718,9 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         }
     }
 
-    // A RPC to inform everyone the host left, might actually not be nessercary since photon transfers master clients fine.
+    /// <summary>
+    /// A RPC to inform everyone the host left, might actually not be nessercary since photon transfers master clients fine.
+    /// </summary>
     [PunRPC]
     public void HostLeft ()
     {
@@ -607,8 +741,12 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         endall = true;
     }
  
-    //returns the capitalship of the specified team.
-    //returns null if gamemode isnt capitalship.
+    /// <summary>
+    ///returns the capitalship of the specified team.
+    ///returns null if gamemode isnt capitalship.
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     GameObject getcapitalofteam (_Ship.eShipColor  input)
     {
         GameObject output = null;
@@ -623,7 +761,11 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         return output;
     }
 
-    // checks if specified team still has ships left.
+    /// <summary>
+    /// checks if specified team still has ships left.
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     public bool checkiffactiondead (_Ship.eShipColor input)
     {
         bool output = false;
@@ -638,10 +780,12 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         return output;
     }
 
-    // the end of the 5 second wait after the game ends to allow the victory screen to popup, this function changes levels
+    /// <summary>
+    /// the end of the 5 second wait after the game ends to allow the victory screen to popup, this function changes levels.
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator wait ()
     {
-
         if (GameObject.Find("ResizeObj")) GameObject.Find("ResizeObj").GetComponent<Resizescript>().forcereturntonormal();
         yield return new WaitForSeconds(5);
         bool test = PhotonNetwork.offlineMode;
@@ -671,7 +815,10 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         else PhotonNetwork.LoadLevel(1);
     }
 
-    // gets the unit cap based on the number of teams.
+    /// <summary>
+    /// gets the unit cap based on the number of teams.
+    /// </summary>
+    /// <returns></returns>
     public static int getmaxshipnumbers ()
     {
         int output = 0;
@@ -681,7 +828,12 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         return output;
     }
 
-    // gets the team of the specified shipcolor.
+    /// <summary>
+    /// gets the team of the specified shipcolor.
+    /// </summary>
+    /// <param name="teamin"></param>
+    /// <param name="inputgamemode"></param>
+    /// <returns></returns>
     public static int getteam (_Ship.eShipColor teamin, CrossLevelVariableHolder.gamemode inputgamemode)
     {
         int output = 0;
@@ -702,7 +854,9 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         return output;
     }
 
-    // checks if any ships are in visible view distance.
+    /// <summary>
+    /// checks if any ships are in visible view distance.
+    /// </summary>
     public void fogcheck()
     {
         List<TSTransform> allies = alliesout();
@@ -714,7 +868,10 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         }
     }
 
-    // gets the amount of time left this match.
+    /// <summary>
+    /// gets the amount of time left this match.
+    /// </summary>
+    /// <returns></returns>
     public string gettimeleft()
     {
         float minutes = Mathf.Floor(Timeleft.AsFloat() / 60);
@@ -725,8 +882,12 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         return output;
     }
 
-    // returns any of the ""Targets arrays based on ship color.
-    // Probably should have setup a shipColor Class that stores all this stuff.
+    /// <summary>
+    /// returns any of the ""Targets arrays based on ship color.
+    /// Probably should have setup a shipColor Class that stores all this stuff.
+    /// </summary>
+    /// <param name="control"></param>
+    /// <returns></returns>
     public  List<TSTransform> targetsout (_Ship.eShipColor control)
     {
         List<TSTransform> output = new List<TSTransform>();
@@ -742,18 +903,26 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         return output;
     }
 
-    // function that checks if the object under "objects" parent isnt the engine and working holders
+    /// <summary>
+    /// function that checks if the object under "objects" parent isnt the engine and working holders
+    /// </summary>
+    /// <param name="t"></param>
+    /// <returns></returns>
 	bool checkelidgable (Transform t)
     {
         if (t.name != "Engines" && t.name != "Working")   return true;      
         else return false;
     }
 
-    // runs the simulation, bit pointless since everyone does that once they load in anyway.
+    /// <summary>
+    /// runs the simulation, bit pointless since everyone does that once they load in anyway.
+    /// </summary>
     [PunRPC]
     public void runsim() { TrueSyncManager.RunSimulation(); }
 
-    // Just the Update(),
+    /// <summary>
+    /// Run the Update checking if everything is working and everyone is ready.
+    /// </summary>
     void Update () {
         timepassed += Time.deltaTime;
        
@@ -779,7 +948,13 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         }
     }
 
-    // spawns a networked ship deterministically using a gameobject to spawn, its position, team and viewid
+    /// <summary>
+    /// spawns a networked ship deterministically using a gameobject to spawn, its position, team and viewid
+    /// </summary>
+    /// <param name="spawnobj">the object to spawn</param>
+    /// <param name="startpos">the object to spawns position</param>
+    /// <param name="spawnori">the object to spawns team</param>
+    /// <param name="viewidin">the object to spawns viewID</param>
     private void SpawnShipInput (GameObject spawnobj,TSVector startpos, int spawnori,int viewidin)
     {
         if (crosslevelholder.tutorial == true) tutcontrol.MoveToNext(TutorialTextControlScript.tutorialstateinput.RightMenuShipBuy);
@@ -794,10 +969,20 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         spawned.GetComponent<_Ship>().StartMain();
     }
 
-    // takes the input of a ship to spawn using basic datatypes, then converts them to data for SpawnShipInput() to use.
+    /// <summary>
+    /// takes the input of a ship to spawn using basic datatypes, then converts them to data for SpawnShipInput() to use.
+    /// </summary>
+    /// <param name="spawner">the ship to spawns number</param>
+    /// <param name="startpos">the ships to spawns position</param>
+    /// <param name="spawnori">the ship to spawns team</param>
+    /// <param name="viewidin">the ship to spawns viewID</param>
     public void spawnship (int spawner,TSVector startpos, int spawnori, int viewidin){ if (running) SpawnShipInput(getshipbynumber(spawner), startpos, spawnori, viewidin); }
 
-    // gets the Reference prefab gameobject
+    /// <summary>
+    /// gets the Reference prefab gameobject
+    /// </summary>
+    /// <param name="i">the ships number</param>
+    /// <returns>the prefab to spawn</returns>
     public GameObject getshipbynumber(int i)
     {
         GameObject output = null;
@@ -820,6 +1005,7 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         return output;
     }
 
+    // this variable list is all the different prefab ships you can spawn.
     public GameObject Scout;
     public GameObject Fighter;
     public GameObject Bomber;
@@ -835,27 +1021,24 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
     public GameObject FlagShip;
     public RelayController InputRelay;
 
-    // GameController acts as relay to the input relay to send a spawn ship input.
+    /// <summary>
+    /// GameController acts as relay to the input relay to send a spawn ship input.
+    /// </summary>
+    /// <param name="a">ship num</param>
+    /// <param name="b">ship pos</param>
+    /// <param name="c">ship team</param>
+    /// <param name="d">ship viewID</param>
     public void ordershipspawn(int a,TSVector b,int c, int d)
     {
         if (InputRelay == null) InputRelay = GameObject.Find("TrueSyncManager").GetComponent<RelayController>();
         if (InputRelay != null) InputRelay.ordershipspawn(a,b,c,d);
     }
     
-    //class containing stuff relating to wether the player is ready.
-    public class playerisreadychecker  {
-        public string name;
-        public bool isready;
-        public int playerid;
-        public playerisreadychecker (string namein, bool isreadyin, int playeridin)
-        {
-            name = namein;
-            isready = isreadyin;
-            playerid = playeridin;
-        }
-    }
-
-    // Sets the transmit mode for a client, arguably this could have been equally achieved with the photon channels feature but thats what i get for not reading into the documentation enough.
+    /// <summary>
+    /// Sets the transmit mode for a client, arguably this could have been equally achieved with the photon channels feature but thats what i get for not reading into the documentation enough.
+    /// </summary>
+    /// <param name="channeltarget"></param>
+    /// <param name="playertarget"></param>
     [PunRPC]
     public void SetTransmittmode(int channeltarget, int playertarget)
     {
@@ -873,10 +1056,30 @@ public class UnitMovementcommandcontroller : TrueSyncBehaviour {
         }
     }
 
-    // Provides a relay for setting up the transmit mode.
+    /// <summary>
+    ///  Provides a relay for setting up the transmit mode.
+    /// </summary>
+    /// <param name="input">voice channel target</param>
+    /// <param name="playertarget">player to change voice channel for</param>
     public void switchvoice(PlayerPrefabVoiceControlScript.VoiceChannel input,int playertarget)
     {
         curchannel = input;
         phopview.RPC("SetTransmittmode", PhotonTargets.All, (int)input, playertarget);
     }
+
+    /// <summary>
+    /// class containing stuff relating to wether the player is ready.
+    /// </summary>
+    public class playerisreadychecker  {
+        public string name;
+        public bool isready;
+        public int playerid;
+        public playerisreadychecker (string namein, bool isreadyin, int playeridin)
+        {
+            name = namein;
+            isready = isreadyin;
+            playerid = playeridin;
+        }
+    }
+
 }

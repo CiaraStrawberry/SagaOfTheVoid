@@ -3,22 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using TrueSync;
 
+
+/// <summary>
+/// Turns an attached linerender into a trail renderer that works in local space.
+/// This script is probably the second most worked on in the entire program. I had to write my own trail renderer that works exclusively in world space.
+/// It was shockingly hard.
+/// </summary>
 public class LineRenderController : TrueSyncBehaviour
 {
+    // the linerenderer to manipulate.
     private LineRenderer linerender;
+    // the vertex positions of the linerenderer.
     public Vector3[] Positions;
+    // the world parent containing all relevant objects to the script.
     GameObject WorldParent;
+    // the number of vertexes.
     public int size = 36;
+    // the time between the vertex points updating.
     public float timebetween = 0.06f;
+    // the root world gameobject.
     GameObject WorldBase;
+    // the scale of the missile last frame.
     Vector3 lastscale;
-    // Use this for initialization
+    // Has the game started yet?
     public bool started;
+    // is this a missile trail?
     public bool missile = false;
+    // the Position of the missile last frame.
     public Vector3 lastposition;
-    public Vector3[] positionsrealtive;
+    // the Ship referance that the missile came from.
     public CustomPathfinding parent;
-    public GameObject linetargetend;
+    // badly named variable that counts updates since the start to allow functions to call after a set number of updates.
+    int i;
+    // counting int to allow functions to call every few frames. it is cosmetic so it doesnt matter that much if it desyncs.
+    int skip;
+    // does the same thing as above. I dont know why i have 3 variables that do the same thing.
+    int skipthisrun;
+    // did the last frame skip?
+    private bool lastskip;
+
+    /// <summary>
+    /// initialise the trail.
+    /// </summary>
 	public void Start () {
         if (missile == true)
         {
@@ -28,10 +54,7 @@ public class LineRenderController : TrueSyncBehaviour
             lineRenderer.endColor = Color.white;
         }
         i = 0;
-        if(missile == false)
-        {
-            parent = transform.parent.parent.GetComponent<CustomPathfinding>();
-        }
+        if(missile == false) parent = transform.parent.parent.GetComponent<CustomPathfinding>();
         Positions = new Vector3[size];
         positionsrealtive = new Vector3[size];
         transform.localPosition = transform.localPosition + new Vector3(0,0,-5);
@@ -40,24 +63,21 @@ public class LineRenderController : TrueSyncBehaviour
         WorldBase = GameObject.Find("WorldScaleBase");
         linerender.startWidth = 1;
         linerender.endWidth = 0;
-       linerender.positionCount = Positions.Length;
+        linerender.positionCount = Positions.Length;
         for (int i = 0; i < Positions.Length; i++) Positions[i] = WorldParent.transform.InverseTransformPoint(transform.position);
         for (int i = 0; i < Positions.Length; i++)  linerender.SetPosition(i, WorldParent.transform.TransformPoint(Positions[i]));
         linerender.startWidth = WorldBase.transform.localScale.x / 38000;
         Rep();
       
     }
-    int i;
-	// Update is called once per frame
+   
+	/// <summary>
+    /// Updates the function b
+    /// </summary>
 	void Update () {
         if (i == 0 && missile) Start();
         i++;
-     //   if (WorldBase.transform.localScale != lastscale) Rep();
-     //   lastscale = WorldBase.transform.localScale;
-       if(missile  == true)
-        {
-            OnSyncedUpdate();
-        }
+        if(missile  == true) OnSyncedUpdate();
         if(started == false)
         {
             linerender.startWidth = WorldBase.transform.localScale.x / 35000;
@@ -66,16 +86,25 @@ public class LineRenderController : TrueSyncBehaviour
 	}
 
  
-    int skip;
+   /// <summary>
+   /// Uses determinism to update if no a missile.
+   /// </summary>
     public override void OnSyncedUpdate()
     {
         if (missile == true) OnSyncedUpdatspec();
     }
-    int skipthisrun;
+  
+    /// <summary>
+    /// skips every few updates in a really strange pattern.
+    /// </summary>
     void skipthisrunadd ()
     {
         if (skipthisrun < 5) skipthisrun++;
     }
+
+    /// <summary>
+    /// skips updates.
+    /// </summary>
     void skipthisrunremove()
     {
         if (skipthisrun > 0)
@@ -84,6 +113,10 @@ public class LineRenderController : TrueSyncBehaviour
             skipthisrun--;
         }
     }
+
+    /// <summary>
+    /// The actual code that updates the line based on its position to the parent gameobject.
+    /// </summary>
     public void OnSyncedUpdatspec()
     {
         if (parent == null || parent.timepassedsincespawn > 180)
@@ -111,7 +144,6 @@ public class LineRenderController : TrueSyncBehaviour
                     skip++;
                     if (skip == 3)
                     {
-
                         lastskip = false;
                         skip = 0;
                         Rep();
@@ -127,19 +159,13 @@ public class LineRenderController : TrueSyncBehaviour
         else if(missile == false)
         {
             if (linerender == null && this != null) Start();
-            else
-            {
-                for (int i = 0; i < size; i++)
-                {
-                //    linerender.SetPosition(i, transform.position);
-                    linerender.SetPosition(i, Vector3.Lerp(transform.position, linetargetend.transform.position,((float)i/size)));
-                }
-              //  linerender.SetPosition(size - 1, linetargetend.transform.position);
-            }
-
+            else  for (int i = 0; i < size; i++)   linerender.SetPosition(i, Vector3.Lerp(transform.position, linetargetend.transform.position,((float)i/size)));
         }
     }
-    private bool lastskip;
+  
+    /// <summary>
+    /// The thing that updates once a second to update relevant data.
+    /// </summary>
    void Rep()
     {
         if(this != null)

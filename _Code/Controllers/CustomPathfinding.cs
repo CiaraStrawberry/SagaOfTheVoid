@@ -4,34 +4,66 @@ using UnityEngine;
 using TrueSync;
 using System.Linq;
 
+/// <summary>
+/// This class attaches to every ship and acts as a simlated agent to move around the world.
+/// </summary>
 public class CustomPathfinding : TrueSyncBehaviour {
+
+    // the current target Position for this ship.
     [SerializeField]
     public TSVector Target;
+    // The current Root Gameobject for everything in the world.
     public GameObject World;
+    // the turnspeed determined by the connected _ship class.
     public FP turnspeed;
+    // the current speed of this ship determined by the _ship class.
     [AddTracking]
     public FP speed = 0;
+    // the maxspeed of this ship determined by the _ship class.
     public FP maxspeed;
+    // the acceleration of this ship determined by the _ship class
     public int acceleration;
+    // the _ship class to draw relevant data about the ship from.
     public _Ship shipscript;
+    // is the ship idle?
     public bool moving = true;
+    //is the ship accelerating?
     private bool accelerating;
+    // the distance until the ship starts to decellerate.
     private int mindecdistance = 300;
+    // the distance between the current ship and its movement target.
     [SerializeField]
     private FP distancetotarget;
+    // the target for movement in local space.
     public TSVector localtarget;
+    // the photontransformview assosiated with this gameobject.
     private PhotonTransformView transformview;
-    public bool currentlymoving;
+    // the TSTransform class assosiated with this gameobject.
     public TSTransform transformts;
+    // has the game started?
     public bool started;
-    public float debug;
-    public GameObject debuggam;
+    // the game controller.
     public UnitMovementcommandcontroller unitcom;
+    // the ships last position, so it can reset if flying outside the map.
     public Vector3 Lastpos;
+    // the distance to the ships last position.
     public Vector3 thisposdif;
+    // the position of every mesh gameobject connected to this one.
     public List<Vector3> startmeshpos = new List<Vector3>();
-    //public eHullType Debug;
-    // Use this for initialization
+    // time until the ship is pushed away from the nearest ship, only turns every now and then for performance reasons.
+    int waitforpushaway;
+    // time passed since the ship has spawned.
+    public float timepassedsincespawn;
+    // The last direction toworods the closest gameobject to this gameobject.
+    private TSQuaternion lastquaternion;
+    // the closest gameobject to the gameobject.
+    public TSTransform Closestoverall;
+    // a list of all ships to chache.
+    public List<TSTransform> allshipstemp = new List<TSTransform>();
+
+    /// <summary>
+    /// The initialisation function, transfers variables from the _shipscript and initialises everything else.
+    /// </summary>
     public void Start()
     {
         World = GameObject.Find("World");
@@ -55,10 +87,11 @@ public class CustomPathfinding : TrueSyncBehaviour {
         }
     }
 
-    
-
-
-    // asign move order
+    /// <summary>
+    /// Update the Ships current movement target.
+    /// </summary>
+    /// <param name="targetin"> the target position in worldspace</param>
+    /// <param name="localtargetin"> the target positin in local space.</param>
 	public void assigntarget (TSVector targetin,TSVector localtargetin)
     {
         Target = targetin;
@@ -66,20 +99,16 @@ public class CustomPathfinding : TrueSyncBehaviour {
         Accelerate();
     }
 
-    int waitforpushaway;
-    public float timepassedsincespawn;
-    public float debugtest;
-    // Update is called once per frame
+   /// <summary>
+   /// Deterministic update function that, well , deterministically updates everything.
+   /// </summary>
     public void SpecUpdate()
     {
         timepassedsincespawn++;
-
         if (turnspeed < shipscript.MaxAngularSpeed) turnspeed = turnspeed + 0.003;
         else turnspeed = shipscript.MaxAngularSpeed;
         thisposdif = Lastpos - transform.position;
         Lastpos = transform.position;
-       // Debug.DrawLine(transform.position, Target.ToVector());
-
         if(timepassedsincespawn <= 180)
         {
             int i= 0;
@@ -91,13 +120,10 @@ public class CustomPathfinding : TrueSyncBehaviour {
                 ship.transform.localPosition = starttrans;
                 i++;
             }
-
         }
-
         if (shipscript && timepassedsincespawn > 180)
         {
             distancetotarget = TSVector.Distance(transformts.position, localtarget);
-
             if (started == false)
             {
                 maxspeed = shipscript.MaxSpeed * 30;
@@ -122,13 +148,9 @@ public class CustomPathfinding : TrueSyncBehaviour {
                         if (accelerating == true && speed < maxspeed) speed += acceleration;
                         else if (speed > maxspeed) accelerating = false;
                     }
-
                     if (speed > maxspeed) speed = maxspeed;
-
                     if (shipscript.HullType == eHullType.Light || shipscript.HullType == eHullType.Corvette) speed = maxspeed;
-
                     if (Target != new TSVector(0, 0, 0) && moving == true && distancetotarget > 150) Look(Target);
-
                     if ((Target != new TSVector(0, 0, 0) && moving == true) || shipscript.HullType == eHullType.Light || shipscript.HullType == eHullType.Corvette)    Move(speed); 
                 }
                 else if (shipscript.HullType != eHullType.Light && shipscript.HullType != eHullType.Corvette && speed > 0) Move(speed);
@@ -138,9 +160,7 @@ public class CustomPathfinding : TrueSyncBehaviour {
             }
         }
         else  shipscript = GetComponent<_Ship>();
-
         waitforpushaway++;
-
         if ((Closestoverall && shipscript.HullType != eHullType.Light && shipscript.HullType != eHullType.Corvette) && TSVector.Distance(Closestoverall.position, transformts.position) < 300 && Closestoverall.shipscript.HullType != eHullType.Light && Closestoverall.shipscript.HullType != eHullType.Corvette)
         {
             TSVector forwards = transformts.position - Closestoverall.position;
@@ -156,11 +176,11 @@ public class CustomPathfinding : TrueSyncBehaviour {
         }
     }
 
-    private TSQuaternion lastquaternion;
 
-    public TSTransform Closestoverall;
-
-    // turn ship towords target
+    /// <summary>
+    /// Turn the ship to look at a target.
+    /// </summary>
+    /// <param name="targetin"></param>
     void Look (TSVector targetin)
     {
         TSVector targetDir = localtarget - transformts.position;
@@ -170,13 +190,11 @@ public class CustomPathfinding : TrueSyncBehaviour {
         lastquaternion = outputrot;
     }
 
-    // is the target infront of ship.
-    bool isInFront(TSVector targetpos)
-    {
-        return TSVector.Dot(transformts.forward, targetpos) > 0;
-    }
-
-    // is the target infront of ship.
+    /// <summary>
+    /// is the target infront of ship.
+    /// </summary>
+    /// <param name="targetpos">the target to check with</param>
+    /// <returns></returns>
     bool FrontTest()
     {
         TSVector fwd = transformts.forward;
@@ -185,11 +203,13 @@ public class CustomPathfinding : TrueSyncBehaviour {
         FP ang = TSMath.Acos(TSVector.Dot(fwd, vec)) * Mathf.Rad2Deg;
         if (ang <= 45.0f)
             return true;
-
         return false;
     }
 
-    // move ship forwards
+   /// <summary>
+   /// Move the ship forwards by amount speedin
+   /// </summary>
+   /// <param name="speedin">the speed at which to move the ship forwards.</param>
     void Move (FP speedin)
     {
         if (FrontTest() == true || shipscript.HullType == eHullType.Light)
@@ -204,26 +224,28 @@ public class CustomPathfinding : TrueSyncBehaviour {
     }
 
     
-    public List<TSTransform> allshipstemp = new List<TSTransform>();
-
-    // start speeding up, for smoooth movement.
+   
+    /// <summary>
+    /// start speeding up, for smoooth movement.
+    /// </summary>
     void Accelerate ()  { accelerating = true;    }
 
-    // get closest ship to ensure nothing collides.
+    /// <summary>
+    ///  get closest ship to ensure nothing collides.
+    /// </summary>
+    /// <returns>Returns the TSTransform class attached to the closest ship</returns>
     TSTransform getclosesttarget()
     {
         if (unitcom)
         {
             List<TSTransform> output = new List<TSTransform>();
             
-          
             if (unitcom.allshipststransform.Length != 0) {
                 output = unitcom.allshipststransform .ToList();
                 allshipstemp = output;
             }
             else output = allshipstemp;
             if(output.Contains(transformts)) output.Remove(transformts);
-            
            
             if (output.Count != 0)
             {

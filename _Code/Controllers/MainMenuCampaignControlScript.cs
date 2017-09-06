@@ -3,28 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using simple;
 
+
+/// <summary>
+/// This script contains the data relevant to the campaign and allows the user to change it.
+/// </summary>
 public class MainMenuCampaignControlScript : MonoBehaviour {
+
+    // The classes to draw the campaign level data from.
     public static mapcontainer[] maps = new mapcontainer[8];
+    // the number of lists of maps the player has cycled through.
     int countthrough;
+    // the textmeshes containing the names of the campaign levels.
     public TextMesh[] bts = new TextMesh[4];
+    // if the player completes a level, it fills out a tick, this is the tick.
     public TextMesh[] completedicons = new TextMesh[4];
+    // the images used to show what the campaign levels are like.
     public GameObject[] panels = new GameObject[8];
+    // the saving component used to keep player progress.
     private IOComponent FleetBuilder;
+    // the number of campaign levels the player has completed.
     public int completedthrough;
- //   public TextMesh shipstxt;
-  //  private CrossLevelVariableHolder crossvar;    // Use this for initialization
-    void Start () {
-        PhotonNetwork.Disconnect();
-        PhotonNetwork.offlineMode = true;
-        Populatemaps();
-        loadshipstotext(0); 
-    }
-   public enum eMissionObjective {
+
+    // a list of player objects for the levels to use.
+    public enum eMissionObjective {
         Destroyall,
         Survive,
         killTarget,
     }
 
+    // allows me to disable the players abilities to call in ships at lower levels to force them to learn their strengths and weaknesses.
     public enum eshipsavailable {
         fighers,
         frigates,
@@ -32,11 +39,31 @@ public class MainMenuCampaignControlScript : MonoBehaviour {
     }
 
 
+
+    /// <summary>
+    /// Initialises the networking to be offline.
+    /// </summary>
+    void Start () {
+        PhotonNetwork.Disconnect();
+        PhotonNetwork.offlineMode = true;
+        Populatemaps();
+        loadshipstotext(0); 
+    }
+
+
+  
+    /// <summary>
+    /// signals that the player has been disconnected successfully.
+    /// </summary>
     public void OnDisconnectedFromPhoton ()
     {
         PhotonNetwork.offlineMode = true;
         Debug.Log("offlinemode activated");
     }
+
+    /// <summary>
+    /// fills out the map containers with the data about each level.
+    /// </summary>
 	void Populatemaps ()
     {
         maps[0] = new mapcontainer("Basic Training",    new int[] { 1, 1, 1,1 },                CrossLevelVariableHolder.mapcon.map1, CrossLevelVariableHolder.skyboxcon.skybox3, 0, 2000 ,eMissionObjective.Destroyall, "Practice your skills \nagainst drones in \npreperation for \ndefense of the  \nempire."                                                       , eshipsavailable.fighers );    // Scount x 4
@@ -47,11 +74,13 @@ public class MainMenuCampaignControlScript : MonoBehaviour {
         maps[5] = new mapcontainer("All out war",       new int[] { 3,3,3,2,2,2,11,9 },         CrossLevelVariableHolder.mapcon.map2, CrossLevelVariableHolder.skyboxcon.skybox4, 5, 8000, eMissionObjective.Destroyall, "The rebels have \nlaunched an all out \nassault on the \nCapital. \n\nDestroy one of their \nen-route fleets."                                , eshipsavailable.frigates);    // Bomber x 3, Fighter x 3, Destroyer x 1, Support x 1
         maps[6] = new mapcontainer("Final Assault",     new int[] { 11,11,0 },                  CrossLevelVariableHolder.mapcon.map3, CrossLevelVariableHolder.skyboxcon.skybox3, 6, 6000, eMissionObjective.Survive,    "The Imperial palace \nis under siege! \n\nyou need to survive \nagainst the rebel \nfleets!", eshipsavailable.all     );    // Destroyer x 2, Flack Frigate x 4, Fighters x 3
         maps[7] = new mapcontainer("Last Hope",         new int[] { 12,11,11,3,3,3,3,3,2,2,13 },CrossLevelVariableHolder.mapcon.map1, CrossLevelVariableHolder.skyboxcon.skybox4, 7,12000, eMissionObjective.killTarget, "The rebel flagship is \nexposed. \n\nstrike now and \nend the rebellion."                                                                     , eshipsavailable.all     );    // Capital x 1, Destroyer x 2, Bomber x 6, fighter x 2
-     //   crossvar = GameObject.Find("CrossLevelVariables").GetComponent<CrossLevelVariableHolder>();
         GetCompleted();
         updatedisplay();
     }
-	// Update is called once per frame
+
+	/// <summary>
+    /// allows the player to interact with the level via the keyboard.
+    /// </summary>
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Alpha1)) loadcampaignactual(0);
         if (Input.GetKeyDown(KeyCode.Alpha2)) loadcampaignactual(1);
@@ -65,6 +94,9 @@ public class MainMenuCampaignControlScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.LeftArrow)) last();
     }
 
+    /// <summary>
+    /// gets the current player progress through the levels.
+    /// </summary>
     void GetCompleted ()
     {
         FleetBuilder = IORoot.findIO("fleet1");
@@ -73,6 +105,9 @@ public class MainMenuCampaignControlScript : MonoBehaviour {
         Debug.Log(completedthrough);
     }
 
+    /// <summary>
+    /// updates the display to show the data about each campaign level it contains ✓.
+    /// </summary>
     void updatedisplay ()
     {
         foreach (GameObject gam in panels) if(gam && gam.gameObject != null) gam.SetActive(false);
@@ -87,19 +122,35 @@ public class MainMenuCampaignControlScript : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// moves the level display to the next page.
+    /// </summary>
     public void next()
     {
         if(countthrough < 1) countthrough++;
         updatedisplay();
     }
+
+
+    /// <summary>
+    /// moves the level display to the last page.
+    /// </summary>
     public void last ()
     {
         if (countthrough > 0) countthrough--;
         updatedisplay();
     }
 
+    /// <summary>
+    /// checks if the player is ready for that mission and if so starts it.
+    /// </summary>
+    /// <param name="map">which map the player is attempting to start.</param>
     void loadcampaign (int map) { if (completedicons[map].text != "x") loadcampaignactual(map); }
    
+    /// <summary>
+    /// Loads up the lobby level and starts boot up progress to begin the mission.
+    /// </summary>
+    /// <param name="map">the selected map.</param>
     void loadcampaignactual (int map)
     {
           MainMenuValueHolder valhol = GameObject.Find("MainMenuHolder").GetComponent<MainMenuValueHolder>();
@@ -107,6 +158,8 @@ public class MainMenuCampaignControlScript : MonoBehaviour {
           valhol.selectedcampaign = maps[map + (countthrough * 4)];
           GameObject.Find("Controllers").GetComponent<GalaxyController>().findagame();
     }
+
+    // these functions all allow the player to see what is in the levels and select them.
 
     public void Button1() {  loadcampaign(0); }
    
@@ -127,10 +180,39 @@ public class MainMenuCampaignControlScript : MonoBehaviour {
     void loadshipstotext (int map)
     {
         mapcontainer mapcon = maps[map + (countthrough * 4)];
-     //   shipstxt.text = "";
-  //      foreach(int i in mapcon.ships)  shipstxt.text =  shipstxt.text + "\n" + getshipnamebynumber(i);
     }
 
+    /// <summary>
+    /// The function that allows the player to see what ships are inside a level via a list of ints.
+    /// </summary>
+    /// <param name="i">the ship designation by int</param>
+    /// <returns>the ship designation by name</returns>
+    public static string getshipnamebynumber(int i)
+    {
+        string output = null;
+        switch (i)
+        {
+            case 0: output = "+Reinforcements"; break;
+            case 1: output = "Scout"; break;
+            case 2: output = "Fighter"; break;
+            case 3: output = "Bomber"; break;
+            case 4: output = "AttackCraft"; break;
+            case 5: output = "MissileFrigate"; break;
+            case 6: output = "FlackFrigate"; break;
+            case 7: output = "CannonFriage"; break;
+            case 8: output = "LazerFrigate"; break;
+            case 9: output = "SupportFrigate"; break;
+            case 10: output = "RepairFrigate"; break;
+            case 11: output = "Destroyer"; break;
+            case 12: output = "Capital"; break;
+            case 13: output = "FlagShip"; break;
+        }
+        return output;
+    }
+
+    /// <summary>
+    /// the class containing the data relevant to its level.
+    /// </summary>
     public class mapcontainer {
         public string name;
         public int[] ships;
@@ -154,26 +236,5 @@ public class MainMenuCampaignControlScript : MonoBehaviour {
             shipsavaiable = shipsavaialbein;
         }
     }
-    public static string getshipnamebynumber(int i)
-    {
-        string output = null;
-        switch (i)
-        {
-            case 0: output = "+Reinforcements"; break;
-            case 1: output = "Scout"; break;
-            case 2: output = "Fighter"; break;
-            case 3: output = "Bomber"; break;
-            case 4: output = "AttackCraft"; break;
-            case 5: output = "MissileFrigate"; break;
-            case 6: output = "FlackFrigate"; break;
-            case 7: output = "CannonFriage"; break;
-            case 8: output = "LazerFrigate"; break;
-            case 9: output = "SupportFrigate"; break;
-            case 10: output = "RepairFrigate"; break;
-            case 11: output = "Destroyer"; break;
-            case 12: output = "Capital"; break;
-            case 13: output = "FlagShip"; break;
-        }
-        return output;
-    }
+   
 }

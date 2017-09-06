@@ -3,31 +3,77 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
 
+/// <summary>
+/// This class acts as a singleton to hold the variables needed to be stored across levels relevant to the player.
+/// </summary>
 public class CrossLevelVariableHolder : MonoBehaviour {
-    public int fleet = 1;
+
+    // the instance of the gamemode enum kept there to track the current gamemode if in skirmish or multiplayer.
     public gamemode Gamemode;
+    // the currently asigned music track.
     public AudioClip musicmain;
+    // the first music track to potentially use should have just used an array tbh.
     public AudioClip music1;
+    // the second music track to potentially use.
     public AudioClip music2;
+    // the third music track to potentially use.
     public AudioClip music3;
-    //private List<int> team1 = new List<int>();
-   // private List<int> team2 = new List<int>();
-    public VRTK_SDKSetup SDKLOADEDCURRENTLY;
+    // the currently asigned map enum.
     public mapcon map;
+    // the currently asign skybox enum.
     public skyboxcon skybox;
+    // the check if the current level is the tutorial.
     public bool tutorial;
-    public bool TestArea;
+    // the check if the level is currently loading.
     public bool loading;
+    // the currently asigned bot difficulty enum
     public BotDifficultyhol botdifficulty;
+    // the skyboxes to choose from.
     public Material[] skyboxes = new Material[3];
+    // the bool to remeber if this is current inside a campaign mission
     public bool campaign;
+    // If the last mission was passed, if so set the level after it, or if it was failed, if so set the same level.
     public bool campaignnextlevelset;
+    // if we are doing a campaign mission, this describes which one, DO NOT CALL IF CAMPAIGN IS FALSE.
     public MainMenuCampaignControlScript.mapcontainer campaignlevel;
+    // the bool if there are bots on this multiplayer match.
+    public bool bots;
+
+    // the enum containing the bot difficulty.
     public enum BotDifficultyhol {
         easy,
         medium,
         hard
     }
+
+    // the gamemode holder enum
+    public enum gamemode {
+        TeamDeathMatch,
+        FreeForAll,
+        CapitalShip
+    }
+
+    // the current scenery container.
+    public enum mapcon {
+        map1,
+        map2,
+        map3
+    }
+
+    // the current skybox contaier
+    public enum skyboxcon {
+        skybox1,
+        skybox2,
+        skybox3,
+        skybox4,
+        skybox5
+    }
+
+    /// <summary>
+    /// The skybox material currently in use.
+    /// </summary>
+    /// <param name="input"> the skybox enum relevant</param>
+    /// <returns>returns a material to set the skybox as.</returns>
     public Material getskybox (skyboxcon input)
     {
         Material output = skyboxes[0];
@@ -40,37 +86,28 @@ public class CrossLevelVariableHolder : MonoBehaviour {
         }
         return output;
     }
-    public enum gamemode {
-        TeamDeathMatch,
-        FreeForAll,
-        CapitalShip
-    }
-    public enum mapcon {
-        map1,
-        map2,
-        map3
-    }
-    public enum skyboxcon {
-        skybox1,
-        skybox2,
-        skybox3,
-        skybox4,
-        skybox5
-    }
 
-
-    public bool bots;
-    // Use this for initialization
+   /// <summary>
+   /// enforce singleton pattern.
+   /// </summary>
     void Awake()
     {
         if (FindObjectsOfType(GetType()).Length > 1) Destroy(gameObject);
     }
-   void Start() {
+
+    /// <summary>
+    /// Initialise the script.
+    /// </summary>
+    void Start() {
       DontDestroyOnLoad(this.gameObject);
       bots = true;
       Gamemode = gamemode.TeamDeathMatch;
     }
 
+    /// <summary>
+    /// Returns a random music track to use.
+    /// </summary>
+    /// <returns> Returns the music track in question</returns>
     public AudioClip getmusic()
     {
         AudioClip output = music1;
@@ -80,6 +117,12 @@ public class CrossLevelVariableHolder : MonoBehaviour {
         if (a > 0.66f) output = music3;
         return output;
     }
+
+    /// <summary>
+    /// Asign the current player to a team at the start of a match, this uses a rooms custom properties to ensure continuaty across the entire program.
+    /// </summary>
+    /// <param name="ownerID">The PhotonID to add to the customproperties</param>
+    /// <param name="team">the team to add the PhotonID to.</param>
     public void AsignTeam(int ownerID, int team)
     {
         List<int> team1 = LobbyScreenController.getteam1();
@@ -102,10 +145,14 @@ public class CrossLevelVariableHolder : MonoBehaviour {
         LobbyScreenController.setteam2(team2);
     }
     
+    /// <summary>
+    /// Asign the current player to a team after the match starts.
+    /// </summary>
+    /// <param name="thingtoadd">The players PhotonID</param>
+    /// <param name="teamkey">The team to add the PhotonID too.</param>
     public void addtoteam(int thingtoadd,string teamkey)
     {
         List<int> templist = LobbyScreenController.getteaminput(teamkey);
-      //  Debug.Log(templist.Count);
         int maxplayerstemp = PhotonNetwork.room.MaxPlayers;
         if (maxplayerstemp == 4 && (string)PhotonNetwork.room.CustomProperties["3v3"] == "Yes") maxplayerstemp = 6;
         int maxplayersperteam = maxplayerstemp / 2;
@@ -114,9 +161,14 @@ public class CrossLevelVariableHolder : MonoBehaviour {
             if (templist.Contains(thingtoadd) == false) templist.Add(thingtoadd);
         }
         else Debug.Log("ERROR: TEAM FULL");
-
         LobbyScreenController.setteaminput(templist, teamkey);
     }
+
+    /// <summary>
+    /// Removes the team in the event of a player leaving.
+    /// </summary>
+    /// <param name="thingtoadd">The left players PhotonID.</param>
+    /// <param name="teamkey">The left players Team</param>
     public void removetoteam(int thingtoadd, string teamkey)
     {
         List<int> templist = LobbyScreenController.getteaminput(teamkey);
@@ -135,6 +187,11 @@ public class CrossLevelVariableHolder : MonoBehaviour {
         }
         else return 1;
     }
+
+    /// <summary>
+    /// Adds bots to the teams in the custom properties.
+    /// </summary>
+    /// <returns>returns a full list of players and bots</returns>
     public List<int> team1wbots ()
     {
         List<int> output = LobbyScreenController.getteam1();
@@ -147,6 +204,11 @@ public class CrossLevelVariableHolder : MonoBehaviour {
         LobbyScreenController.setteam1(output);
         return output;
     }
+
+    /// <summary>
+    /// Adds bots to the teams in the custom properties.
+    /// </summary>
+    /// <returns>returns a full list of players and bots</returns>
     public List<int> team2wbots()
     {
         List<int> output = LobbyScreenController.getteam2();
@@ -159,6 +221,12 @@ public class CrossLevelVariableHolder : MonoBehaviour {
         LobbyScreenController.setteam2(output);
         return output;
     }
+
+    /// <summary>
+    /// find the spawn position (with an int) from the starting position of the player.
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns>returns the spawn position to spawn into</returns>
     public int findspawnpos (int input)
     {
         int output = 0;
@@ -167,6 +235,12 @@ public class CrossLevelVariableHolder : MonoBehaviour {
         if (LobbyScreenController.getteam2().Contains(input)) output = 4 + LobbyScreenController.getteam2().IndexOf(input);
         return output;
     }
+
+    /// <summary>
+    /// Finds the spawn team from its spawn position.
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     public  _Ship.eShipColor findspawnteam (int input)
     {
         int inside = findspawnpos(input);
@@ -179,9 +253,13 @@ public class CrossLevelVariableHolder : MonoBehaviour {
         if (inside == 6) output = _Ship.eShipColor.Red;
         return output;
     }
+
+    /// <summary>
+    /// Remove all bots from the team lists and make those entities null.
+    /// </summary>
     public void wipebots()
     {
-        LobbyScreenController.setteam1(new List<int>());
-            LobbyScreenController.setteam2(new List<int>());
+         LobbyScreenController.setteam1(new List<int>());
+         LobbyScreenController.setteam2(new List<int>());
     }
 }

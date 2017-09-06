@@ -5,32 +5,62 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TrueSync;
 
-public class ControllerMenuController : MonoBehaviour {
-    public TextMesh Kills_Text;
-    public TextMesh Ships_Left_Text;
-    public TextMesh Time_Left_Text;
-    public GameObject Map;
-    public UnitMovementcommandcontroller unitcontrol;
-    public List<bliplinecontroller> allyblips = new List<bliplinecontroller>();
-    public List<bliplinecontroller> enemyblips = new List<bliplinecontroller>();
-    public GameObject playerblip;
-    public GameObject allyblip;
-    public GameObject enemyblip;
-    public GameObject parentforblips;
-    public AIController AIController;
-    public bool ismission;
-    public GameObject Playericon;
-    public GameObject Cameratracking;
-    private GameObject Objectsholder;
-    public TextMesh Blue;
-    public TextMesh Green;
-    public TextMesh Grey;
-    public TextMesh Red;
-    public TextMesh White;
-    public TextMesh Yellow;
-    int waitforit;
 
-	// Use this for initialization
+/// <summary>
+/// This class controls the right hand menu text and sets itself up to be in the correct position when called.
+/// </summary>
+public class ControllerMenuController : MonoBehaviour {
+
+    // The Text mesh displaying the current kills by the player.
+    public TextMesh Kills_Text;
+    // The text mesh to display the number of ships the player owns.
+    public TextMesh Ships_Left_Text;
+    // The text mesh to show how much time is left.
+    public TextMesh Time_Left_Text;
+    // the direct center of the minimap.
+    public GameObject Map;
+    // the unitcontroller singleton location.
+    public UnitMovementcommandcontroller unitcontrol;
+    // The pool of allied blips in use currently.
+    public List<bliplinecontroller> allyblips = new List<bliplinecontroller>();
+    // The pool of enemy blips currently in use.
+    public List<bliplinecontroller> enemyblips = new List<bliplinecontroller>();
+    // the blip prefab used for the player.
+    public GameObject playerblip;
+    // the blip prefab used for allied ships.
+    public GameObject allyblip;
+    // the default enemy blips.
+    public GameObject enemyblip;
+    // the transform parent for all blips.
+    public GameObject parentforblips;
+    // The AI controller controlling the blips.
+    public AIController AIController;
+    // cached data determining if the current level is a campaign mission.
+    public bool ismission;
+    // the blip storage for the player icon.
+    public GameObject Playericon;
+    // The Camera the menu needs to point towords.
+    public GameObject Cameratracking;
+    // the parent for all ships in the game.
+    private GameObject Objectsholder;
+    // the text saying how many ships blue has and what player is controlling them.
+    public TextMesh Blue;
+    // the text saying how many ships Green has and what player is controlling them.
+    public TextMesh Green;
+    // the text saying how many ships Grey has and what player is controlling them.
+    public TextMesh Grey;
+    // the text saying how many ships Red has and what player is controlling them.
+    public TextMesh Red;
+    // the text saying how many ships White has and what player is controlling them.
+    public TextMesh White;
+    // the text saying how many ships Yellow has and what player is controlling them.
+    public TextMesh Yellow;
+    // the crosslevelvariableholder singleton
+    private CrossLevelVariableHolder crossvar;
+
+	/// <summary>
+    /// Its literally just the start function, creates all needed blips.
+    /// </summary>
 	void Start () {
         if (Map)
         {
@@ -64,7 +94,10 @@ public class ControllerMenuController : MonoBehaviour {
         OnLevelFinishedLoading(new Scene(),new LoadSceneMode());
         InvokeRepeating("Rep", 0, 1);
     }
-    // Updates map, only hapens once a second for performance reasons.
+
+    /// <summary>
+    /// Repeats every second to update the minimap.
+    /// </summary>
     void Rep ()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0 && UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 1)
@@ -122,7 +155,13 @@ public class ControllerMenuController : MonoBehaviour {
         }
     }
 
-    // gets the player name of a position within a team.
+
+    /// <summary>
+    /// gets the player name of a position within a team.
+    /// </summary>
+    /// <param name="inputarray">The team you want to check</param>
+    /// <param name="inputpos">the index inside that array</param>
+    /// <returns></returns>
     string getplayername (List<int> inputarray,int inputpos)
     {
         string output = "";
@@ -130,16 +169,23 @@ public class ControllerMenuController : MonoBehaviour {
         return output;
     }
 
-    // creates the blip
+    /// <summary>
+    /// spawns  a blip
+    /// </summary>
+    /// <param name="blips"> the list of blips to add this blip to</param>
+    /// <param name="thingtospawn">the prefab of the blip to spawn.</param>
     void spawnblip(ref List<bliplinecontroller> blips,GameObject thingtospawn)
     {
         GameObject gam = Instantiate(thingtospawn) as GameObject;
         blips.Add(gam.GetComponent<bliplinecontroller>());
     }
 
-    private CrossLevelVariableHolder crossvar;
 
-    // resets everything every level
+    /// <summary>
+    /// The level Function called on a level starting, checks what the situation is and updates everything based on that.
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="scenemode"></param>
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode scenemode)
     {
         if (SceneManager.GetActiveScene().buildIndex != 0 && SceneManager.GetActiveScene().buildIndex != 1)
@@ -180,7 +226,9 @@ public class ControllerMenuController : MonoBehaviour {
 
     }
 
-    // Update is called once per frame
+   /// <summary>
+   /// The update function that waits til more or less just after the game starts and updates the ismission parameter (only calls once)
+   /// </summary>
     void Update()
     {
         waitforit++;

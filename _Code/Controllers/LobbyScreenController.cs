@@ -5,70 +5,102 @@ using simple;
 using UnityEngine.SceneManagement;
 using ExitGames.Client.Photon;
 
+/// <summary>
+/// This is the class that handels everything about the game lobbies.
+/// </summary>
 public class LobbyScreenController : MonoBehaviour {
+
+    // the text that shows how much money the player starts off with.
     public TextMesh StartMoneytext;
+    // the text that shows the ongoing story of the campaign mission.
     public TextMesh Storytext;
+    // the text that shows what ships the AI starts off with.
     public TextMesh OpposingShipstext;
+    // the text that shows the current mission name.
     public TextMesh MissionName;
+    // the text that shows the countdown until the game starts.
     public TextMesh countdown2;
+    // the array that shows the campaign mission objective.
     public TextMesh MissionObjective;
+    // the array of buttons allowing the player to select a relevant skybox.
     public MeshRenderer[] skyboxbuttonsrend = new MeshRenderer[5];
+    // the array of buttons that allows the player to select what scenery to use inside the game.
     private MeshRenderer[] mapbuttonsrend = new MeshRenderer[3];
-    private MeshRenderer[] fleetshelfrend = new MeshRenderer[3];
+    // the array of text that shows the players names.
     private TextMesh[] displaytext = new TextMesh[6];
+    // the list of assorted buttons (??)
     public GameObject[] display = new GameObject[6];
     public GameObject[] fleetshelf = new GameObject[3];
     public GameObject[] mapbuttons = new GameObject[3];
     public GameObject[] icons = new GameObject[6];
     public GameObject[] Ships;
-    public GameObject status;
-    public GameObject fleetdispaly;
-    public GameObject countdownobj;
-    public GameObject ping;
-    public GameObject istrans;
-    public GameObject playernamedisply;
-    public  GameObject defaultparent;
-    public GameObject startbutton;
-    private TextMesh statustext;
-    private TextMesh fleetdisplaytext;
-    private TextMesh pingtext;
-    private TextMesh countdowntext;
-    private TextMesh playernametext;
-    private IOComponent FleetBuilder;
+    // the text showing the photon server status.
+    public TextMesh statustext;
+    // the text showing the games ping.
+    public TextMesh pingtext;
+    // the text containing the countdown, there are 2 since the screen has 2 modes and 2 countdowns, one for each mode.
+    public TextMesh countdowntext;
+    // text showing the players name.
+    public TextMesh playernametext;
+    // the component used to save the players current fleet.
+    public IOComponent FleetBuilder;
+    // the material to show a button that is not selected.
     public Material lightmat;
+    // the material to show a button that has been selected.
     public Material darkmat;
+    // the photonvoice recorder that is used locally to record voices.
     private PhotonVoiceRecorder phoprec;
+    // the photonview that is used to record the location of the local player.
     private PhotonView phopview;
-  //  public GameObject lobbystateindicator;
+    // the textmesh used to record the state of the lobby (i.e in game, in lobby, loading , that kinda thing)
     public TextMesh lobbystateindicatortext;
-    int fleet;
-    private int count;
+    // the countdown to the start of the game.
     private int countdown = 10;
+    // the bool to instruct the game to start the countdown next frame.
     private bool startrunning;
+    // the material to show the scenery in the map1. Probably should have used an array.
     public Material map1mat;
+    // the material to show the scenery in the map2.
     public Material map2mat;
+    // the material to show the scenery in the map3.
     public Material map3mat;
+    // the local singleton to hold game properties.
     private CrossLevelVariableHolder crosslevelvarholder;
+    // all the voicerecorders to record everyones voice in the scene.
     private List<PhotonVoiceRecorder> phopvoicerecoreders = new List<PhotonVoiceRecorder>();
+    // the enum containing the currently selected gamemode.
     public CrossLevelVariableHolder.gamemode Gamemode;
+    // the textmesh to tell the player what is the currently selected gamemode.
     public TextMesh GameModeDisplay;
-    public GameObject DefaultBot;
-    public GameObject DefaultShipBot;
+    // the bool to show if bots are currently enabled.
     public bool bots;
+    // the script asigned to handle scene switching.
     private SceneSwitcherController sceneswitch;
-    public GameObject RoomNameDisplaygam;
+    // the display to show the name of the currently joined room.
     public TextMesh RoomNameDisplay;
+    // the holder of the names of the players in team1.
     public GameObject team1displaygam;
+    // the holder of the names of the players in team2.
     public GameObject team2displaygam;
+    // the text mesh to give the players the option to add bots to their game.
     public TextMesh Addbotstext;
-    public GameObject ChangeRoomNumber;
+    // the textmesh telling the players they can change the number of players in the room.
     public TextMesh ChangeRoomNumberText;
+    // all the panels containing buttons in the game.
     public GameObject[] panels = new GameObject[8];
+    // the icon that pops up upon the scene beggining to asyncronously load.
+    public GameObject Loadingobj;
+    // the text showing what difficult the bot was currently on.
+    public TextMesh botdificultytext;
+    // the textmesh that says "start match"
+    public TextMesh Startmatchwriting;
+    // the textmesh that says "start match" but on the secondary screen.
+    public TextMesh startmatchwriting2;
 
-
-
-     // Use this for initialization
-     // TODO: make this function cleaner.
+     /// <summary>
+     /// Use this for initialization
+     /// TODO: make this function cleaner.
+     /// </summary>
      void Start() {
         campaignseg.SetActive(true);
         multimatchseg.SetActive(true);
@@ -115,7 +147,6 @@ public class LobbyScreenController : MonoBehaviour {
         else UpdateMaxPlayerDisplay();
         if(crosslevelvarholder.campaign == true)
         {
-          
             StartMoneytext.text = crosslevelvarholder.campaignlevel.startmoney.ToString();
             OpposingShipstext.text = "";
             MissionName.text = crosslevelvarholder.campaignlevel.name;
@@ -133,7 +164,11 @@ public class LobbyScreenController : MonoBehaviour {
         }
     }
 
-    // returns the objective based on the objective enum
+    /// <summary>
+    /// returns the objective based on the objective enum
+    /// </summary>
+    /// <param name="input">the mission objective enum contained within the mission type class</param>
+    /// <returns></returns>
     string getstringfromobjective (MainMenuCampaignControlScript.eMissionObjective input)
     {
         if (input == MainMenuCampaignControlScript.eMissionObjective.Destroyall) return "Destroy all";
@@ -141,7 +176,10 @@ public class LobbyScreenController : MonoBehaviour {
         else return "Survive";
     }
    
-    // The map data is stored as an int based on the mapcon in the roomdata hash, this function converts the int back to the enum.
+    /// <summary>
+    /// The map data is stored as an int based on the mapcon in the roomdata hash, this function converts the int back to the enum.
+    /// </summary>
+    /// <param name="input"> the networked int giving the map enum type</param>
     void setmapclientbasedonint (int input)
     {
         if (input == 0) directlysetmap(CrossLevelVariableHolder.mapcon.map1);
@@ -149,7 +187,10 @@ public class LobbyScreenController : MonoBehaviour {
         if (input   == 2) directlysetmap(CrossLevelVariableHolder.mapcon.map3);
     }
 
-    // When changing skybox, you arent directly setting that, just the roomdata hash containing it, this function changes it for everyone.
+    /// <summary>
+    /// When changing skybox, you arent directly setting that, just the roomdata hash containing it, this function changes it for everyone.
+    /// </summary>
+    /// <param name="input">the networked int giving the skybox enum type</param>
     void setskyboxclientbasedonint (int input)
     {
         if (input == 0) directlysetskybox(CrossLevelVariableHolder.skyboxcon.skybox1);
@@ -159,7 +200,10 @@ public class LobbyScreenController : MonoBehaviour {
         if (input == 4) directlysetskybox(CrossLevelVariableHolder.skyboxcon.skybox5);
     }
 
-    // see above comment.
+    /// <summary>
+    /// see above comment.
+    /// </summary>
+    ///  /// <param name="botdifficulty">the networked int giving the difficulty enum type</param>
     void setbotdifficultybasedonint(int botdifficulty)
     {
         if (botdifficulty == 0) crosslevelvarholder.botdifficulty = CrossLevelVariableHolder.BotDifficultyhol.easy;
@@ -170,8 +214,12 @@ public class LobbyScreenController : MonoBehaviour {
         else if (crosslevelvarholder.botdifficulty == CrossLevelVariableHolder.BotDifficultyhol.hard)   botdificultytext.text = "Bot Difficulty = hard";
         else if (crosslevelvarholder.botdifficulty == CrossLevelVariableHolder.BotDifficultyhol.easy)  botdificultytext.text = "Bot Difficulty = easy";
     }
-    
-    //see above comment.
+
+
+    /// <summary>
+    /// see above comment.
+    /// </summary>
+    ///  /// <param name="botdifficulty">the networked int giving the game mode enum type</param>
     void setgamemodebasedonint (int input)
     {
         if (input == 0)
@@ -192,7 +240,10 @@ public class LobbyScreenController : MonoBehaviour {
         if (GameModeDisplay) GameModeDisplay.text = Gamemode.ToString();
     }
 
-    // see above comment.
+    /// <summary>
+    /// see above comment.
+    /// </summary>
+    ///  /// <param name="botdifficulty">the networked int giving bots enabled bool</param>
     void setbotsbasedonbool (bool input)
     {
         crosslevelvarholder.bots = input;
@@ -207,13 +258,11 @@ public class LobbyScreenController : MonoBehaviour {
         }
     }
 
-    
-    public GameObject multimatchseg;
-    public GameObject campaignseg;
-    public GameObject[] MenuLocations;
-    public GameObject[] CameraLocations;
-
-    // gets sorted list of all players in room.
+    /// <summary>
+    ///  gets sorted list of all players in room.
+    /// </summary>
+    /// <param name="input">the list of all players in the room</param>
+    /// <returns>the list of all players in the room, but sorted</returns>
     public List<int> getplayerlistinorder (List<PhotonPlayer> input)
     {
         List<int> players = new List<int>();
@@ -222,7 +271,10 @@ public class LobbyScreenController : MonoBehaviour {
         return players;
     }
 
-    // move the player based on their position within the room.
+    /// <summary>
+    /// move the player based on their position within the room.
+    /// </summary>
+    /// <param name="a">The target position</param>
     void setLobbyPosition (int a)
     {
         GameObject cam = GameObject.Find("VRTK_SDK");
@@ -233,15 +285,19 @@ public class LobbyScreenController : MonoBehaviour {
         cam.transform.Find("ResizeObj").transform.localPosition = new Vector3(0.119999f,4.86f,5.71f);
     }
 
-    // updates list of players on someone else joining.
+    /// <summary>
+    ///  updates list of players on someone else joining.
+    /// </summary>
+    /// <param name="other">the other person joining</param>
     void OnPhotonPlayerConnected( PhotonPlayer other )
     {
         List<int> playerlist = getplayerlistinorder(new List<PhotonPlayer>(PhotonNetwork.playerList));
         setLobbyPosition(playerlist.IndexOf(PhotonNetwork.player.ID));
-
     }
-
-    // room initialisation stuff.
+    
+    /// <summary>
+    /// room initialisation stuff.
+    /// </summary>
     void OnJoinedRoom()
     {
         if (PhotonNetwork.isMasterClient == false) startbutton.SetActive(false);
@@ -313,17 +369,16 @@ public class LobbyScreenController : MonoBehaviour {
             map1client();
             skybox3client();
         }
-
-
         Loadingobj.SetActive(false);
         refresh();
-  
-      if(PhotonNetwork.room != null)  if( PhotonNetwork.room.MaxPlayers == 4) ChangeRoomNumber.SetActive(true);
+        if(PhotonNetwork.room != null)  if( PhotonNetwork.room.MaxPlayers == 4) ChangeRoomNumber.SetActive(true);
         UpdateMaxPlayerDisplay();
-      
     }
 
-    // disables everything around an object, doesnt actually disable scripts and functions, just the meshes and colliders.
+    /// <summary>
+    /// disables everything around an object, doesnt actually disable scripts and functions, just the meshes and colliders.
+    /// </summary>
+    /// <param name="disableobj"> the parent to the screen you want to disable</param>
     public void pseudodisable(GameObject disableobj)
     {
         foreach (MeshRenderer mesh in disableobj.GetComponentsInChildren<MeshRenderer>()) mesh.enabled = false;
@@ -331,13 +386,16 @@ public class LobbyScreenController : MonoBehaviour {
         foreach (BoxCollider box in disableobj.GetComponentsInChildren<BoxCollider>()) box.enabled = false;
     }
 
-    public GameObject Loadingobj;
+    
 
-    // gets the room you should be starting in.
+    /// <summary>
+    /// gets the room you should be starting in.
+    /// </summary>
+    /// <returns>the team the player should want to join upon starting the match</returns>
     int GetStartTeam()
     {
-      int output = 1;
-      if (PhotonNetwork.inRoom) {
+       int output = 1;
+       if (PhotonNetwork.inRoom) {
 
             if (getteam1().Count > getteam2().Count) output = 2;
             else if (getteam2().Count > getteam1().Count) output = 1;
@@ -354,9 +412,9 @@ public class LobbyScreenController : MonoBehaviour {
       return output;
     }
 
-    int wait;
-
-    // allows you to bring the number of players upto 6 from 4 for bots in multiplayer or switch it to however you like anyway.
+    /// <summary>
+    ///  allows you to bring the number of players upto 6 from 4 for bots in multiplayer or switch it to however you like in skirmish.
+    /// </summary>
     public void ChangePlayerNumber ()
     {
         if (PhotonNetwork.offlineMode == true)
@@ -407,7 +465,9 @@ public class LobbyScreenController : MonoBehaviour {
         refresh();
     }
 
-    // updates the maxplayer display based upon the room settings.
+    /// <summary>
+    ///  updates the max player display based upon the room settings.
+    /// </summary>
     void UpdateMaxPlayerDisplay ()
     {
         if (PhotonNetwork.room != null)
@@ -418,7 +478,9 @@ public class LobbyScreenController : MonoBehaviour {
         }
     }
 
-    // sets the game mode via the hash.
+    /// <summary>
+    /// sets the game mode via the hash.
+    /// </summary>
     public void SwitchMode()
     {
         if (PhotonNetwork.isMasterClient)
@@ -444,7 +506,10 @@ public class LobbyScreenController : MonoBehaviour {
         }
     }
 
-    // gets the team the player is not on and checks that team isnt full.
+    /// <summary>
+    /// gets the team the player is not on and checks that team isnt full.
+    /// </summary>
+    /// <returns>returns the team the player will be joining.</returns>
     public int gettargetteam ()
     {
         int output = 1;
@@ -457,7 +522,9 @@ public class LobbyScreenController : MonoBehaviour {
         return output;
     }
 
-    // allows you to switch team.
+    /// <summary>
+    /// Switch the local players team.
+    /// </summary>
     public void SwitchTeam ()
     {
         Debug.Log(PhotonNetwork.player.ID + " " + gettargetteam());
@@ -465,7 +532,9 @@ public class LobbyScreenController : MonoBehaviour {
         refresh();
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// the updating function that updates voice icons and keyboard user input.
+    /// </summary>
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) StartMatch();
         if (Input.GetKeyDown(KeyCode.Alpha1)) map1();
@@ -486,9 +555,7 @@ public class LobbyScreenController : MonoBehaviour {
             {
                 if (gam.GetComponent<PhotonVoiceRecorder>().IsTransmitting || gam.GetComponent<PhotonVoiceSpeaker>().IsPlaying)
                 {
-
                     int a = gam.GetComponent<PhotonView>().owner.ID;
-                    //Debug.Log(crosslevelvarholder.findspawnpos(gam.GetComponent<PhotonView>().owner.ID) - 1);
                     int position = 1;
                     if (getteam1().Contains(a) == true)
                     {
@@ -505,15 +572,16 @@ public class LobbyScreenController : MonoBehaviour {
                         if (temp == 2) position = 5;
                     }
                     icons[position].SetActive(true);
-                    //else
                 }
             }
         }
         wait++;
         if (wait == 200 && PhotonNetwork.inRoom == false) PhotonNetwork.LoadLevel(0);
-        
     }
-    public string test;
+
+    /// <summary>
+    /// A Repeating function that counts down until the match starts.
+    /// </summary>
     void secondrep()
     {
          if (startrunning)
@@ -529,7 +597,11 @@ public class LobbyScreenController : MonoBehaviour {
           
     }
 
-    // calculates hash key and returns data from room hash about teams.
+    /// <summary>
+    /// calculates hash key and returns data from room hash about teams.
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     public static List<int> getteaminput(string input)
     {
         if (PhotonNetwork.room != null)
@@ -565,13 +637,23 @@ public class LobbyScreenController : MonoBehaviour {
         }
     }
 
-    // sets team 1 in the room hash.
+    /// <summary>
+    /// sets team 1 in the room hash.
+    /// </summary>
+    /// <param name="teamsset">the new version of team 1</param>
     public static void setteam1 (List<int> teamsset)  { setteaminput(teamsset,"team1"); }
 
-    // sets team 2 in the room hash.
+    /// <summary>
+    /// sets team 2 in the room hash.
+    /// </summary>
+    /// <param name="teamsset">the new version of team 2</param>
     public static void setteam2 (List<int> teamsset) { setteaminput(teamsset, "team2"); }
 
-    // gets the key for the team number
+    /// <summary>
+    /// gets the key for the team number
+    /// </summary>
+    /// <param name="input">the team to key the hash key from</param>
+    /// <returns>the hash key to access the teams</returns>
     public static string getstartkeystring (int input)
     {
         if (input == 1) return "team1";
@@ -579,13 +661,9 @@ public class LobbyScreenController : MonoBehaviour {
                 
     }
 
-    public List<int> team1;
-    public List<int> team2;
-    public List<int> team1Debug;
-    public List<int> team2Debug;
-    public int debugid;
-
-    // checks the room hash and updates the lobby display.
+    /// <summary>
+    /// checks the room hash and updates the lobby display.
+    /// </summary>
     void refresh()
     {
         if (PhotonNetwork.room != null)
@@ -615,10 +693,6 @@ public class LobbyScreenController : MonoBehaviour {
                 setmapclientbasedonint((int)PhotonNetwork.room.CustomProperties["Scenery"]);
             }
         
-           
-        
-       
-          
             if (PhotonNetwork.inRoom)
             {
                 foreach (TextMesh tex in displaytext)
@@ -647,10 +721,7 @@ public class LobbyScreenController : MonoBehaviour {
                     displaytext[4].text = getplayername(2, 1);
                     displaytext[5].text = getplayername(2, 2);
                 }
-               // Debug.Log(PhotonPlayer.Find(getteam2()[0]));
                 foreach (PhotonPlayer pha in PhotonNetwork.playerList) Debug.Log(pha.ID);
-             //   Debug.Log(PhotonNetwork.player.);
-                
                 lobbystateindicatortext.text = "lobby state : " + (string)PhotonNetwork.room.CustomProperties["st"];
             }
 
@@ -658,41 +729,41 @@ public class LobbyScreenController : MonoBehaviour {
             List<string> ships = loadships(fleet);
             string outstring = "";
             foreach (string ship in ships) if (ship != "nothing") outstring = outstring + "\n" + ship;
-          //  fleetdisplaytext.text = outstring;
-
         }
     }
 
-    // gets the player name at position inside which team.
+    /// <summary>
+    /// gets the player name at position inside which team.
+    /// </summary>
+    /// <param name="index">the index of the player inside the team</param>
+    /// <param name="team">the team to get the index from</param>
+    /// <returns></returns>
     public string getplayername (int index,int team)
     {
         string output = "";
         if (crosslevelvarholder.bots == true) output = "bot";
         if (index != 300 )
-        {
-            
+        { 
           if (team == 1 && getteam1().Count > (index) && PhotonPlayer.Find(getteam1()[index]) != null) output = PhotonPlayer.Find(getteam1()[index]).NickName;
           if (team == 2 && getteam2().Count > (index ) && PhotonPlayer.Find(getteam2()[index]) != null) output = PhotonPlayer.Find(getteam2()[index]).NickName;
-         
         }
         return output;
     }
   
 
-    public TextMesh botdificultytext;
-
-    // starts the match countdown.
+  
+    /// <summary>
+    ///  starts the match countdown.
+    /// </summary>
     public void StartMatch()
     {
         if (PhotonNetwork.isMasterClient)
         {
-
             if (startrunning == false)
             {
                 phopview.RPC("StartMatchclient", PhotonTargets.AllViaServer);
                 Startmatchwriting.text =  "     Reset";
                 startmatchwriting2.text = "     Reset";
-
             }
             else if (countdown > 2)
             {
@@ -705,7 +776,9 @@ public class LobbyScreenController : MonoBehaviour {
 
     }
 
-    //resets the countdown to the start of the match.
+    /// <summary>
+    /// networked function that resets the countdown to the start of the match.
+    /// </summary>
     [PunRPC]
     public void stopstartmatchclient ()
     {
@@ -714,14 +787,16 @@ public class LobbyScreenController : MonoBehaviour {
         countdowntext.text = countdown.ToString();
         countdown2.text = countdown.ToString();
     }
-    public TextMesh Startmatchwriting;
-    public TextMesh startmatchwriting2;
 
-    //
+    /// <summary>
+    /// function to start the match countdown on the client.
+    /// </summary>
     [PunRPC]
     public void StartMatchclient() { startrunning = true; }
 
-
+    /// <summary>
+    /// The function that switches the bot difficulty and updates it in the hash.
+    /// </summary>
     public void SwitchBotDificulty()
     {
         if (PhotonNetwork.isMasterClient)
@@ -735,14 +810,16 @@ public class LobbyScreenController : MonoBehaviour {
             refresh();
         }
     }
-
-    // calls the removing bots function.
+     
+    /// <summary>
+    ///  calls the removing bots function.
+    /// </summary>
     public void RemoveBots ()
-    {
-        if (PhotonNetwork.isMasterClient)   RemoveBotsClient();
-    }
-
-    // sets the removed bots status in the room hash.
+    { if (PhotonNetwork.isMasterClient)   RemoveBotsClient(); }
+       
+    /// <summary>
+    /// sets the removed bots status in the room hash.
+    /// </summary>
     [PunRPC]
     public void RemoveBotsClient ()
     {
@@ -754,14 +831,18 @@ public class LobbyScreenController : MonoBehaviour {
         refresh();
     }
 
-    // leaves the room.
+    /// <summary>
+    /// leaves the room.
+    /// </summary>
     public void Quit()
     {
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene(0);
     }
 
-    // starts the match immidiately for all clients.
+    /// <summary>
+    /// starts the match immidiately for all clients.
+    /// </summary>
     void startmatchactual () {
 
         if(PhotonNetwork.isMasterClient)
@@ -774,6 +855,10 @@ public class LobbyScreenController : MonoBehaviour {
         }
    
     }
+
+    /// <summary>
+    /// the function that starts the match immidiately clientside.
+    /// </summary>
     [PunRPC]
     public void startmatchactualclient ()
     {
@@ -786,7 +871,11 @@ public class LobbyScreenController : MonoBehaviour {
         PhotonNetwork.LoadLevel(3);
     }
 
-    // defunct function that showed all ships in your fleets.
+    /// <summary>
+    /// DEPRECIATED function that showed all ships in your fleets.
+    /// </summary>
+    /// <param name="fleet"></param>
+    /// <returns></returns>
     List<string> loadships (int fleet)
     {
         string loadObj = "AttachPointsList" + fleet.ToString() + "num";
@@ -800,7 +889,11 @@ public class LobbyScreenController : MonoBehaviour {
        // FleetBuilder.read();
         return shipnames;
     }
-
+    /// <summary>
+    /// Strangely designed functions that used to send a message to all clients to change the map and skybox.
+    /// This was removed when i switched to using a networked hash, but the structure remains
+    /// TODO: fix it.
+    /// </summary>
     public void map1() { if (PhotonNetwork.isMasterClient) map1client(); }
     public void map2() { if (PhotonNetwork.isMasterClient) map2client(); }
     public void map3()  {  if (PhotonNetwork.isMasterClient) map3client(); }
@@ -835,6 +928,10 @@ public class LobbyScreenController : MonoBehaviour {
     [PunRPC]
     private void skybox5client() { changeskyboxrendselected( CrossLevelVariableHolder.skyboxcon.skybox5);    }
 
+    /// <summary>
+    /// directly set the map locally.
+    /// </summary>
+    /// <param name="maptoset">the map to use.</param>
     void directlysetmap (CrossLevelVariableHolder.mapcon maptoset)
     {
         for (int a = 0; a < 3; a++)
@@ -844,6 +941,12 @@ public class LobbyScreenController : MonoBehaviour {
         }
         crosslevelvarholder.map = maptoset;
     }
+
+
+    /// <summary>
+    /// The function that changes the value in the hash to the appropriate value.
+    /// </summary>
+    /// <param name="maptoset">the map to change the hash value to</param>
     void changemapselected (CrossLevelVariableHolder.mapcon maptoset)
     {
         ExitGames.Client.Photon.Hashtable hash = PhotonNetwork.room.CustomProperties;
@@ -851,6 +954,11 @@ public class LobbyScreenController : MonoBehaviour {
         PhotonNetwork.room.SetCustomProperties(hash);
         refresh();
     }
+
+    /// <summary>
+    /// directly set the skybox locally.
+    /// </summary>
+    /// <param name="skyboxtoset">the skybox to use.</param>
     void directlysetskybox(CrossLevelVariableHolder.skyboxcon skyboxtoset)
     {
         for (int a = 0; a < 5; a++)
@@ -860,6 +968,11 @@ public class LobbyScreenController : MonoBehaviour {
         }
         crosslevelvarholder.skybox = skyboxtoset;
     }
+
+    /// <summary>
+    /// The function that changes the value in the hash to the appropriate value.
+    /// </summary>
+    /// <param name="skyboxtoset">the skybox to change the hash value to</param>
     void changeskyboxrendselected (CrossLevelVariableHolder.skyboxcon skyboxtoset)
     {
 

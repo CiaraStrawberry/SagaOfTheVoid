@@ -5,16 +5,67 @@ using System.Linq;
 using TrueSync;
 using DFNetwork.Simulation.Modules;
 
+/// <summary>
+/// This class is the default class to control a team of ships in the game, 1 per team.
+/// </summary>
 public class AIController : MonoBehaviour {
+    // eShipColor enum dictating the colour and team of the ship
     public _Ship.eShipColor team;
+    // all ships connected to this controller.
     public List<GameObject> ships = new List<GameObject>();
+    // all List of all ships the AI controllers team can target.
     public TSTransform[] enemyships = new TSTransform[0];
+    // Cached Game Controller
     private UnitMovementcommandcontroller unitcontrol;
+    // Current Target being tracked.
     public TSTransform Target;
+    // Current money held.
     [SerializeField]
     private int money = 1000;
+    // The amount the money amount increases every second.
     public int increaserate = 20;
-    public string debugmaxcount;
+    // Current AIState state.
+    public AIstate state;
+    // Current World Root GameObject.
+    private GameObject World;
+    // The number between 0 and 200 to determin which ship is spawned.
+    public int NextBuy;
+    // The CrossLevelVariableHolder Singleton in use currently, holds things like map type and gamemode.
+    private CrossLevelVariableHolder crosslevelvar;
+    // The Cost of the next Ship Planned to be bought.
+    public int NextBuyCost;
+    // FP is a deterministic float, this tracks the amount of time since the start of the game, probs should have kept this in a static variable.
+    public FP timepassed;
+    // The Random number class kept to produce random deterministic floats for all players.
+    public TSRandom randominst;
+    // The Relay Controller, this is the thing you Send Ship buy requests and move orders to, to get them sent to all players.
+    public RelayController InputRelay;
+    // The Starting position for the Team, used as a spot to fall back to.
+    public TSVector startpos;
+    // The networked integer used as a seed to ensure the Random number generators for all clients change every match, but stay the same for all players.
+    public int debugseed;
+    // The bool to dermin if the match is a campaign mission, and if so can referance the stored mission in crosslevelvariableholder.
+    public bool ismission;
+    // The class containing relevant data for the current mission
+    public MainMenuCampaignControlScript.mapcontainer mission;
+    // The List of ships that the AI starts off with.
+    private List<int> shipstartspawn;
+    // The Spawning Position of the AI.
+    private TSVector defaultspawnpos;
+    // The integer corseponding to the next Ship to be bought, this should probably have been an enum
+    public int actualshiptobuy;
+    // The last ship bought.
+    private int lastbuy;
+    // THe time passed since the "start of the match", i use a different simulation frame to truesync, due to an inability to start the match in the same way across clients.
+    public FP timepassedactual;
+    // the alloted spawn team for this AI.
+    private int spawnerhold;
+    // time left til next order to be sent out.
+    private int timelefttilorder;
+    // ships spawned so far.
+    int shipsmissionspawned = 0;
+
+    // The enum to hold the current state of the AI.
     public enum AIstate
     {
         attacking,
@@ -22,28 +73,6 @@ public class AIController : MonoBehaviour {
         holding,
         maintain
     }
-    public AIstate state;
-    private GameObject World;
-    public int NextBuy;
-    private CrossLevelVariableHolder crosslevelvar;
-    public int NextBuyCost;
-    public FP timepassed;
-    public TSRandom randominst;
-    public RelayController InputRelay;
-    public TSVector startpos;
-    public int debugseed;
-    // Use this for initialization
-    public bool ismission;
-    public MainMenuCampaignControlScript.mapcontainer mission;
-    private List<int> shipstartspawn;
-    private TSVector defaultspawnpos;
-    InputRelay inputrelay;
-    public int actualshiptobuy;
-    private int lastbuy;
-    public FP timepassedactual;
-    private int spawnerhold;
-    private int timelefttilorder;
-    int shipsmissionspawned = 0;
 
     /// <summary>
     // tells the AI wether to use any mission paramiters at the start of a match.
@@ -107,14 +136,15 @@ public class AIController : MonoBehaviour {
         }
     }
 
-
-
-
+   
     /// <summary>
-    // checks if the bot has enough money and is allowed to spawn ship.
-    /// <summary>
+    /// checks if the bot has enough money and is allowed to spawn ship.
+    /// </summary>
+    /// <param name="spawner"></param>
+    /// <returns></returns>
     public bool checkmoney(int spawner)
     {
+
         bool output = false;
         GameObject temp = unitcontrol.getshipbynumber(actualshiptobuy);
         if (temp)
@@ -196,8 +226,9 @@ public class AIController : MonoBehaviour {
     /// <summary>
     // called every second to update the AIs orders to adapt to the situation.
     /// <summary>
-    public void GiveOrderwait()
+    public void GiveOrderwait(int waittime)
     {
+
         if (TrueSyncManager.Time > 0 && randominst != null)
         {
             ships.Clear();
@@ -279,7 +310,7 @@ public class AIController : MonoBehaviour {
     }
 
     /// <summary>
-    // if not attacking ship, get positions around target movement position
+    /// if not attacking ship, get positions around target movement position
     /// <summary>
     private int[] agentsPerSide = new int[35];
     private TSVector TargetPosition(int index, TSVector sphere, int agentsnum)

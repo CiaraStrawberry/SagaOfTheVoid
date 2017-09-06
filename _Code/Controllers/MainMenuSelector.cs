@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
+/// <summary>
+/// This class changes outputs based on the bool of its function, this bool can change, could have designed this alot better tbh.
+/// </summary>
 public class MainMenuSelector : MonoBehaviour {
+
+    // these are pretty self explanatory tbh.
     public bool Multiplayer;
     public bool singleplayer;
     public bool settings;
@@ -22,15 +27,16 @@ public class MainMenuSelector : MonoBehaviour {
     public bool creatematch;
     public bool joinrandom;
     private int cooldown;
-	// Use this for initialization
-	void Start () {
-    }
-	
-	// Update is called once per frame
+
 	void Update () {
         cooldown++;
+        // cooldown ensures you must wait more then a second between button presses.
 	}
-    void ButtonPress ()
+
+    /// <summary>
+    /// Called upon this function having its button pressed.
+    /// </summary>
+    void ButtonPress()
     {
         if (Multiplayer && cooldown > 60) { GameObject.Find("Controllers").GetComponent<GalaxyController>().findagameactual(); cooldown = 0; }
         else if (singleplayer && cooldown > 60) { GameObject.Find("Controllers").GetComponent<GalaxyController>().SinglePlayerSort(); cooldown = 0; }
@@ -44,9 +50,13 @@ public class MainMenuSelector : MonoBehaviour {
         else if (tutorial && cooldown > 60) { GameObject.Find("Controllers").GetComponent<GalaxyController>().Tutorial(); cooldown = 0; }
         else if (exit && cooldown > 60) Quit();
         if (rightfind) GameObject.Find("FindGameParent").GetComponent<MainMenuNetworkingController>().next();
-            if (leftfind) GameObject.Find("FindGameParent").GetComponent<MainMenuNetworkingController>().last();
-            if (creatematch) Debug.Log("ERROR: NEED TO SPECIFY IN WHAT WAY");
+        if (leftfind) GameObject.Find("FindGameParent").GetComponent<MainMenuNetworkingController>().last();
+        if (creatematch) Debug.Log("ERROR: NEED TO SPECIFY IN WHAT WAY");
     }
+
+    /// <summary>
+    /// Quits the application.
+    /// </summary>
     void Quit ()
     {
         if (GameObject.Find("VRTK_SDK").GetComponent<VRTK_SDK_CONTROLLER_MANAGER>().issteamversion == true)
@@ -58,17 +68,21 @@ public class MainMenuSelector : MonoBehaviour {
             Application.Quit();
         }
     }
-    public void disableall ()
+
+    /// <summary>
+    /// Resets the button status to the initial one.
+    /// </summary>
+    public void disableall()
     {
-     Multiplayer = false;
-     singleplayer = false;
-     settings = false;
-     returntomenu =false;
-     exit = false;
-     FindAGame = false;
-     TestArea= false;
-     ShipBuilder = false;
+        Multiplayer = false;
+        singleplayer = false;
+        settings = false;
+        returntomenu = false;
+        exit = false;
+        FindAGame = false;
+        TestArea = false;
+        ShipBuilder = false;
         fleetbuilder = false;
-}
+    }
 
 }

@@ -4,19 +4,40 @@ using UnityEngine;
 using TrueSync;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This script controls the Spawning menu.
+/// </summary>
 public class PositinonRelativeToHeadset : TrueSyncBehaviour 
 {
+    // cam1 is the oculus cameraobj.
     public GameObject cam1;
+    // cam2 is the vive cameraobj.
     public GameObject cam2;
+    // CameraObj holds cam1 or cam2 depending on attached headset.
+    public GameObject CameraObj;
+    // this is the input relay to the input relay (ironic huh) you can call to spawn ships.
     public RelayController InputRelay;
-    public GameObject Reasourcesthing;
+    // this textmesh holds the players money amount.
     public TextMesh reasourcestextmesh;
+    // Game Controller.
     public UnitMovementcommandcontroller unitcon;
+    // Singleton variable holder.
     public CrossLevelVariableHolder crossvar;
+    // Build Que to send orders to.
     private BuildQueController bulcontrol;
+    // Build Menu Holding the fighter build options.
     public GameObject Fighters;
+    // Build Menu Holding the Frigate Build options.
     public GameObject Frigates;
+    // Build Menu Holding the special build options.
     public GameObject Special;
+
+
+    /// <summary>
+    /// Reset after a level loads and apopulate variables.
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="scenemode"></param>
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode scenemode)
     {
         if (Reasourcesthing && reasourcestextmesh == null) reasourcestextmesh = Reasourcesthing.GetComponent<TextMesh>();
@@ -61,6 +82,9 @@ public class PositinonRelativeToHeadset : TrueSyncBehaviour
 
     }
 
+    /// <summary>
+    /// Initialise the menu and levelloading.
+    /// </summary>
     void Awake ()
     {
         SceneManager.sceneLoaded += OnLevelFinishedLoading;
@@ -68,25 +92,30 @@ public class PositinonRelativeToHeadset : TrueSyncBehaviour
         OnLevelFinishedLoading(new Scene(),new LoadSceneMode());
     }
 
+    /// <summary>
+    /// Reset the InputRelay.
+    /// </summary>
     public override void OnSyncedStart()
     {
         InputRelay = GameObject.Find("TrueSyncManager").GetComponent<RelayController>();
     }
 
+    /// <summary>
+    /// Update the Reasource count.
+    /// </summary>
     void Update ()
     {
-     
         if (Reasourcesthing)
         {
-         if(unitcon == null) unitcon = GameObject.Find("Controllers").GetComponent<UnitMovementcommandcontroller>();
+            if (unitcon == null) unitcon = GameObject.Find("Controllers").GetComponent<UnitMovementcommandcontroller>();
             if (reasourcestextmesh == null) reasourcestextmesh = Reasourcesthing.GetComponent<TextMesh>();
-         if(unitcon)   reasourcestextmesh.text = "Resources : " + unitcon.getmoney();
-
+            if (unitcon) reasourcestextmesh.text = "Resources : " + unitcon.getmoney();
         }
-    
    }
 
-   public GameObject CameraObj;
+   /// <summary>
+   /// Initialise the menu position upon turning it on.
+   /// </summary>
     public void TurnOn()
     {
         GameObject actualcamobj = null;
@@ -102,6 +131,13 @@ public class PositinonRelativeToHeadset : TrueSyncBehaviour
             crossvar = GameObject.Find("CrossLevelVariables").GetComponent<CrossLevelVariableHolder>();
         }
     }
+
+    /// <summary>
+    /// Check if you can spawn something and if so send a build order to the inputrelay.
+    /// </summary>
+    /// <param name="a">spawn ship int</param>
+    /// <param name="name">ship name</param>
+    /// <param name="timetospawn">time taken to spawn</param>
     public void spawnship(int a,string name,float timetospawn)
     {
         if (a != 0)
@@ -111,12 +147,14 @@ public class PositinonRelativeToHeadset : TrueSyncBehaviour
                 unitcon = GameObject.Find("Controllers").GetComponent<UnitMovementcommandcontroller>();
                 crossvar = GameObject.Find("CrossLevelVariables").GetComponent<CrossLevelVariableHolder>();
             }
-            if (checkmoney(unitcon.getmoney(), a) == true)
-            {
-                bulcontrol.addbuildorder(new BuildQueController.buildorder(name,a,1,timetospawn));
-            }
+            if (checkmoney(unitcon.getmoney(), a) == true)   bulcontrol.addbuildorder(new BuildQueController.buildorder(name,a,1,timetospawn));
         }
     }
+
+    /// <summary>
+    /// Given order immidately after the countdown ends.
+    /// </summary>
+    /// <param name="a">The ship to spawn</param>
     public void spawnshiprightnow (int a)
     {
         if (InputRelay == null) InputRelay = GameObject.Find("TrueSyncManager").GetComponent<RelayController>();
@@ -127,6 +165,12 @@ public class PositinonRelativeToHeadset : TrueSyncBehaviour
         }
         if (InputRelay != null) InputRelay.ordershipspawn(a, getspawnpos(unitcon.team), crossvar.findspawnpos(PhotonNetwork.player.ID), PhotonNetwork.AllocateViewID());
     }
+
+    /// <summary>
+    /// Calculate the position to spawn the ship in based on ships on the same team.
+    /// </summary>
+    /// <param name="teamin">the team of the ship you are spawning</param>
+    /// <returns></returns>
     public static TSVector getspawnpos(_Ship.eShipColor teamin) {
         List<GameObject> ships = GameObject.Find("Controllers").GetComponent<UnitMovementcommandcontroller>().teammembersout(teamin);
         TSVector output = new TSVector(0,0,0);
@@ -141,6 +185,11 @@ public class PositinonRelativeToHeadset : TrueSyncBehaviour
         else return output;
     }
 
+    /// <summary>
+    /// Calculates the fleets general forwards direction by combining all the ships and getting their average direction.
+    /// </summary>
+    /// <param name="teamin">the team of the ship you are spawning</param>
+    /// <returns></returns>
     public static TSQuaternion getspawnrotation(_Ship.eShipColor teamin) {
         List<GameObject> ships = GameObject.Find("Controllers").GetComponent<UnitMovementcommandcontroller>().teammembersout(teamin);
         if (ships.Count > 0)
@@ -152,6 +201,11 @@ public class PositinonRelativeToHeadset : TrueSyncBehaviour
         else return new TSQuaternion(0, 0, 0, 0); 
     }
 
+    /// <summary>
+    /// If all the ships are only fighters, just spawn forwards.
+    /// </summary>
+    /// <param name="ships"></param>
+    /// <returns></returns>
     public static GameObject getrotationprime (List<GameObject> ships)
     {
         GameObject output = null;
@@ -159,6 +213,13 @@ public class PositinonRelativeToHeadset : TrueSyncBehaviour
         if (output == null) output = ships[0];
         return output;
     }
+
+    /// <summary>
+    /// Check if you have enough money to spawn the desired ship.
+    /// </summary>
+    /// <param name="money">money existing in bank</param>
+    /// <param name="spawner">ship to spawn cost</param>
+    /// <returns></returns>
     public bool checkmoney (int money,int spawner)
     {
         bool output = false;
@@ -173,6 +234,10 @@ public class PositinonRelativeToHeadset : TrueSyncBehaviour
         if (unitcon.checkiffactiondead(unitcon.team) == true) output = false;
         return output;
     }
+
+    /// <summary>
+    /// These Functions just allow you to accept spawn orders from the UI scripts. 
+    /// </summary>
 
     public void Scout () { spawnship(1,"Scout",5); }
 

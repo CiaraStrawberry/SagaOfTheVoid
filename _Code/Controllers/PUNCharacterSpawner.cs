@@ -3,38 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Spawns the player prefab once someone has joined the room.
+/// </summary>
 public class PUNCharacterSpawner : MonoBehaviour
 {
 
-    // Use this for initialization
-    void Start()
-    {
-        SceneManager.sceneLoaded += OnLevelFinishedLoading;
-    }
-    public GameObject gam;
-    // Update is called once per frame
-    public void Update ()
-    {
-    }
-    public void OnJoinedRoom()
-    {
-        PhotonNetwork.Instantiate("PlayerPrefab", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), 0);
-    }
+    /// <summary>
+    /// Initialise the function deligates.
+    /// </summary>
+    void Start() {  SceneManager.sceneLoaded += OnLevelFinishedLoading;  }
+   
+
+   /// <summary>
+   /// Spawn the prefab.
+   /// </summary>
+    public void OnJoinedRoom() { PhotonNetwork.Instantiate("PlayerPrefab", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), 0); }
+   
+    /// <summary>
+    /// Disconnect the voice player.
+    /// </summary>
     public void disconnect()
     {
         PhotonVoiceNetwork.Disconnect();
-       // foreach(GameObject gam in GameObject.FindGameObjectsWithTag("Voice"))
-       // {
-       ///     PhotonNetwork.Destroy(gam.GetComponent<PhotonView>());
-       // }
     }
+
+    /// <summary>
+    /// Check if a player prefab needs to be spawned.
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="scenemode"></param>
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode scenemode)
     {
         PhotonVoiceNetwork.Connect();
-        if(PhotonNetwork.inRoom)
-        {
-            PhotonNetwork.Instantiate("PlayerPrefab", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), 0);
-        }
-      
+        if(PhotonNetwork.inRoom) PhotonNetwork.Instantiate("PlayerPrefab", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), 0);
     }
 }

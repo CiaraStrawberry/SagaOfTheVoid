@@ -3,29 +3,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This class attaches to the player controller and checks if there is an object which has a set tag near the controller and if there are more then one, which is the closest.
+/// </summary>
 public class onTriggerEnterEnemy : MonoBehaviour
 {
-
-    // This script sorts through all objects in the collider and gets the closest, kinda inefficant but the result is great.
+    // the nearest object.
     public GameObject focus;
+    // the nearest object for the holotag.
     public GameObject holofocus;
+    // the nearest of both.
     public GameObject closest;
+    // colliders to see which object is inside which.
     public Collider[] cols;
+    // the main tag to look for.
     public string maintag = "Pickup";
+    // the holo tag to look for.
     public string holotag = "Hologram";
+    // the size of the box to check.
     public float flo;
+    // a box collider to use to check.
     private BoxCollider box;
+    // all colliders inside the box.
     List<Collider> list = new List<Collider>();
+    // colliders inside the box with the holo tag.
     List<GameObject> Holograms = new List<GameObject>();
+    // has the game started?
     public bool ingamemode;
+    // the root gameobject holding all other gameobjects in the world.
     public GameObject ObjectsHolder;
+    // the Game Controller.
     private UnitMovementcommandcontroller unitcontrol;
-    // Use this for initialization
 
+    /// <summary>
+    /// Initialise The Sceneloading.
+    /// </summary>
     void Awake ()
     {
        SceneManager.sceneLoaded += OnLevelFinishedLoading;
     }
+
+    /// <summary>
+    /// check which level is loaded and act upon it.
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="scenemode"></param>
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode scenemode)
     {
       if(this != null && this.gameObject != null)  box = this.GetComponent<BoxCollider>();
@@ -33,7 +55,9 @@ public class onTriggerEnterEnemy : MonoBehaviour
        
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Update box sizes and check closest player.
+    /// </summary>
     void Update()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0 && UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 1 && box != null)
@@ -50,6 +74,10 @@ public class onTriggerEnterEnemy : MonoBehaviour
      
         
     }
+
+    /// <summary>
+    /// Get the _ship components of the selected ship and turn on its healthbar.
+    /// </summary>
     void LateUpdate ()
     {
       if(closest)
@@ -59,6 +87,9 @@ public class onTriggerEnterEnemy : MonoBehaviour
       }
     }
 
+    /// <summary>
+    /// Find the closest player to the player controller with maths.
+    /// </summary>
     public void FindClosestPlayer()
     {
         if (box && transform.parent.Find("MovePos") != null)
@@ -83,45 +114,35 @@ public class onTriggerEnterEnemy : MonoBehaviour
                 }
             }
         }
-
-
-
         GameObject[] colliders3 = Holograms.ToArray(); ;
         Holograms.Clear();
-         if (colliders3.Length != 0)
-         {
+        if (colliders3.Length != 0)
+        {
             float distance = Mathf.Infinity;
             for (int i = 0; i < colliders3.Length; i++)
             {
-               Vector3 diff = colliders3[i].transform.position - transform.parent.Find("MovePos").position;
-               float curDistance = diff.sqrMagnitude;
-               if (curDistance < distance)
-               {
-                  closest = colliders3[i].gameObject;
-                  distance = curDistance;
-               }
-               
-             }
-             holofocus = closest;
-          }
+                Vector3 diff = colliders3[i].transform.position - transform.parent.Find("MovePos").position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < distance)
+                {
+                    closest = colliders3[i].gameObject;
+                    distance = curDistance;
+                }
+
+            }
+            holofocus = closest;
+        }
         if (closest == null) holofocus = null;
         closest = null;
-
-
-
-
-
-
-
         Collider[] colliders = list.ToArray(); ;
-           list.Clear();
+        list.Clear();
         if (colliders.Length != 0)
         {
             float distance;
-        distance = Mathf.Infinity;
-        for (int i = 0; i < colliders.Length ; i++)
-        {
-               
+            distance = Mathf.Infinity;
+            for (int i = 0; i < colliders.Length; i++)
+            {
+
                 Vector3 diff = colliders[i].transform.position - transform.parent.Find("MovePos").position;
                 float curDistance = diff.sqrMagnitude;
                 if (curDistance < distance)
@@ -129,20 +150,9 @@ public class onTriggerEnterEnemy : MonoBehaviour
                     closest = colliders[i].gameObject;
                     distance = curDistance;
                 }
-
-           
-           
+            }
+            focus = closest;
         }
-        focus = closest;
-            
-
-        }
-        else
-        {
-            focus = null;
-        }
-
-     
+        else focus = null;
     }
-
 }

@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class just sets the object it is attached to to not destroy on load.
+/// </summary>
 public class DontDestroyOnLoadSet : MonoBehaviour {
-
-	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(this.gameObject);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

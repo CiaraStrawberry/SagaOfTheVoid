@@ -2,6 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
+/// <summary>
+/// This is the orginal GameControlle. it was Overwritten in purpose by UnitMovementsomethingcontroller due to a *minor* design oversite, it does however still control the spawn locations.
+/// </summary>
 public class GameController : MonoBehaviour {
 
     /// <summary>
@@ -28,6 +32,8 @@ public class GameController : MonoBehaviour {
     /// First spawn point, always faces 0.0.0
     /// </summary>
     /// 
+
+    // these spawnpoints control the spawn locations and update depending on the gamemode.
 
     [SerializeField]
     private Vector3 SpawnPoint1local;
@@ -101,6 +107,11 @@ public class GameController : MonoBehaviour {
 
     }
 
+
+    /// <summary>
+    /// Move the spawnpoints from the required gamemode holders into the actual spawnpoints the spawning script draws from.
+    /// </summary>
+    /// <param name="input">the gamemode input enum</param>
     public void convertspawnpoints (CrossLevelVariableHolder.gamemode input)
     {
         if( input == CrossLevelVariableHolder.gamemode.TeamDeathMatch)
@@ -135,12 +146,10 @@ public class GameController : MonoBehaviour {
         }
   
     }
-    // Use this for initialization
-    void Awake ()
-    {
-        
-    }
 
+    /// <summary>
+    /// Honestly dont know what this does, i didn't write it.
+    /// </summary>
     void Start() {
         
         // Make sure that SOV folder exists
@@ -164,11 +173,6 @@ public class GameController : MonoBehaviour {
 
         }
 
-    }
-
-    // Update is called once per frame
-    void Update() {
-        //convertspawnpoints();
     }
 
 }
