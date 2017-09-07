@@ -140,8 +140,8 @@ public class AIController : MonoBehaviour {
     /// <summary>
     /// checks if the bot has enough money and is allowed to spawn ship.
     /// </summary>
-    /// <param name="spawner"></param>
-    /// <returns></returns>
+    /// <param name="spawner"> the unit number corresponding to the desired ship to spawn</param>
+    /// <returns>do you have enough money?</returns>
     public bool checkmoney(int spawner)
     {
 
