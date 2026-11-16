@@ -36,6 +36,9 @@ namespace Saga.Game
             public bool Selected;
             public Craft[] Crafts;   // squadrons: each craft flies on its own (BattleView.Motion.cs)
             public Warp Warp;        // arriving through a warp portal
+            // Squadrons after a warp: fly straight ahead in formation until StraightUntil (Pulse time).
+            public float StraightUntil = -1f, StraightFrom;
+            public Vector3 StraightAnchor, StraightDir;
         }
 
         class Fx
@@ -479,6 +482,9 @@ namespace Saga.Game
             return Centre(v) + yaw * new Vector3(side * v.Length, 8f, along * v.Length);
         }
 
+        // A craft's guns point forward: within 35 degrees of the nose.
+        static bool FacesTarget(Craft c, Vector3 target) => Vector3.Dot(c.Facing, (target - c.Pos).normalized) >= 0.82f;
+
         void SpawnShot(ShotEvent e)
         {
             var from = ViewOf(e.From); var to = ViewOf(e.To);
@@ -495,7 +501,22 @@ namespace Saga.Game
                 bursts[key] = b;
             }
             b.Last = World.Time;
-            var a = b.Craft != null && b.Craft.R.enabled ? b.Craft.T.position : from.Crafts != null ? AnyCraft(from).T.position : GunMuzzle(from, e.GunIndex);
+            // Fighters only fire forward: the shot comes from a craft whose nose points at the target (the
+            // burst's craft while it still does). If no craft is lined up, nothing is drawn leaving the guns;
+            // the hit still lands on the target.
+            bool drawShot = true;
+            if (from.Crafts != null)
+            {
+                var aimAt = Centre(to);
+                if (b.Craft == null || !b.Craft.R.enabled || !FacesTarget(b.Craft, aimAt))
+                {
+                    var best = from.Crafts.Where(x => x.R.enabled)
+                                          .OrderByDescending(x => Vector3.Dot(x.Facing, (aimAt - x.Pos).normalized)).FirstOrDefault();
+                    if (best != null) b.Craft = best;
+                    drawShot = best != null && FacesTarget(best, aimAt);
+                }
+            }
+            var a = b.Craft != null && b.Craft.R.enabled ? b.Craft.T.position + b.Craft.Facing * 10f : from.Crafts != null ? AnyCraft(from).T.position : GunMuzzle(from, e.GunIndex);
 
             bool shieldShot = e.AtShield && e.Visual != "repair_beam";
             if (b.Plan == null || b.Plan.OnShield != shieldShot || b.Plan.Anchor == null || !b.Plan.Anchor.gameObject.activeInHierarchy)
@@ -515,6 +536,7 @@ namespace Saga.Game
                 end = Where(plan) + b.MissSide * (to.Crafts != null ? 140f : to.Length * 0.45f + 90f) + jitter * 3f;
                 plan = null;
             }
+            if (!drawShot) return;
 
             var c = TeamTint[e.From.Team % TeamTint.Length];
             Fx f;

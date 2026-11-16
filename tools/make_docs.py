@@ -61,7 +61,8 @@ CONTENT = {
         ["tools/", "Data, campaign and docs builders; preview captures"],
     ],
     "controls": [
-        ["Select", "Left-click a ship, or drag a box. <kbd>Shift</kbd> adds. Double-click: that type on screen. <kbd>Ctrl</kbd>+<kbd>A</kbd>: all. <kbd>Esc</kbd> clears."],
+        ["Select", "Left-click a ship, or drag a box. <kbd>Shift</kbd> adds. Double-click: that type on screen. <kbd>Ctrl</kbd>+<kbd>A</kbd>: all. <kbd>Esc</kbd> clears. In the panel at the bottom left, click one ship of a group to select just it; <kbd>Shift</kbd>-click drops it."],
+        ["Fight zones", "Left-click anywhere in a dogfight ring or a strike ring selects your craft in it. If you have none there, it selects the enemy craft so you can look at them (no orders). Clicking right on your own big ship still selects the ship."],
         ["Move", "Right-click space. The group keeps its shape."],
         ["Waypoints", "<kbd>Shift</kbd>+right-click queues a point after the current orders."],
         ["Attack", "Right-click an enemy. Ships chase it and fire on it first; big ships stop at gun range."],
@@ -114,6 +115,11 @@ CONTENT = {
         ["2026-11-16", "Strike zones: craft attacking a big ship fly their own lanes around it and make attack runs. The big ship stays clickable and chooses its own targets.", "Owner request: bombers on a capital ship should look like the dogfights, without blocking the ship."],
         ["2026-11-16", "Missiles speed up through their flight and dive steeply onto the target.", "Owner feedback: missiles slowed down as they arrived."],
         ["2026-11-16", "Skirmish modes. Capital ship: the Super-Capital becomes each side's flagship (60,000 armour, 40,000 shield, speed 25, 2 main guns, 2 missile racks, 2 miniguns). Base defence: a home base from the 2017 space station model (90,000 armour, 60,000 shield, 3 main guns, 3 missile racks, 4 miniguns) with 4 platforms from the 2017 main-gun turret. These do not count toward the fleet limit.", "Owner request. New numbers, not from 2017; tune after playing."],
+        ["2026-11-16", "Sound volume follows the camera: near silent at full zoom-out, full volume when zoomed in on the action.", "Owner feedback: every sound played at once."],
+        ["2026-11-16", "Big ships turn with weight: turning speed builds up over 0.8 s (frigates) to 3.5 s (Super-Capital) and eases off before the new heading.", "Owner feedback: capital turns were jerky; they should feel slow and bulky."],
+        ["2026-11-16", "Fighters warp in along a straight line, fly straight ahead in formation for about 1 s with contrails, then break off.", "Owner request."],
+        ["2026-11-16", "Fighters only fire forward: a shot is drawn from a craft whose nose points within 35 degrees of the target.", "Owner request. The damage rules are unchanged; only what is drawn."],
+        ["2026-11-16", "Enemy ships can be selected to look at their stats (no orders).", "Needed for the fight-zone click rule."],
     ],
     "recovery_stats": [
         ["Build", "Unity 5.6.1f1, Mono"],

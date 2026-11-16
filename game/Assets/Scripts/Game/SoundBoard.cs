@@ -11,6 +11,8 @@ namespace Saga.Game
         public static SoundBoard Current { get; private set; }
         const string MuteKey = "saga.muted";
         const int Voices = 24;
+        const float NearDistance = 1800f;  // camera this close to a sound: full volume
+        const float FarDistance = 16000f;  // this far or more: barely audible (camera zooms out to 24,000)
 
         readonly ShipLibrary lib;
         readonly Camera cam;
@@ -98,19 +100,23 @@ namespace Saga.Game
             float now = Time.unscaledTime;
             if (lastPlayed.TryGetValue(clip, out var last) && now - last < minGap) return;
 
-            // Loudest near the point the camera looks at; fades out across about one and a half screens.
+            // Volume follows how close the camera is to the sound: a faint murmur at full zoom-out, full volume
+            // when zoomed in on it. Sounds off to the side of the view fade out as well.
+            float camDist = Vector3.Distance(cam.transform.position, at);
+            float near = Mathf.InverseLerp(FarDistance, NearDistance, camDist); // 0 far away, 1 up close
+            float gain = Mathf.Lerp(0.03f, 1f, near * near * near);
             var look = LookPoint();
-            float reach = Mathf.Max(3000f, Vector3.Distance(cam.transform.position, look) * 1.4f);
-            float d = Vector3.Distance(new Vector3(at.x, 0, at.z), look);
-            float gain = Mathf.Clamp01(1f - d / reach);
-            if (gain <= 0.02f) return;
+            float reach = Mathf.Max(2500f, Vector3.Distance(cam.transform.position, look) * 1.2f);
+            float side = Vector3.Distance(new Vector3(at.x, 0, at.z), look);
+            gain *= Mathf.Clamp01(1f - side / reach);
+            if (gain <= 0.01f) return;
             lastPlayed[clip] = now;
 
             var vp = cam.WorldToViewportPoint(at);
             var v = NextVoice();
             v.panStereo = Mathf.Clamp((vp.x - 0.5f) * 1.4f, -0.8f, 0.8f);
             v.pitch = pitch * (1f + Random.Range(-pitchJitter, pitchJitter));
-            v.PlayOneShot(clip, volume * gain * gain);
+            v.PlayOneShot(clip, volume * gain);
         }
 
         Vector3 LookPoint()

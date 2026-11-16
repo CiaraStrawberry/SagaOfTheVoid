@@ -75,7 +75,13 @@ namespace Saga.Game
             {
                 int col = i % 8, row = i / 8;
                 var cell = MakeRect(selectionPanel, "cell", new Vector2(0, 1), new Vector2(12 + col * 92, -12 - row * 60), new Vector2(84, 54));
-                cell.gameObject.AddComponent<Image>().color = new Color(1, 1, 1, 0.05f);
+                var cellImage = cell.gameObject.AddComponent<Image>();
+                cellImage.color = new Color(1, 1, 1, 0.05f);
+                // Click a ship in the group to select just that one; Shift-click drops it from the group.
+                int index = i;
+                var pick = cell.gameObject.AddComponent<Button>();
+                pick.targetGraphic = cellImage;
+                pick.onClick.AddListener(() => game.PickFromSelection(index, Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)));
                 var icon = MakeRect(cell, "icon", new Vector2(0.5f, 0.5f), new Vector2(0, 4), new Vector2(46, 46)).gameObject.AddComponent<Image>();
                 icon.preserveAspect = true;
                 var sh = Bar(cell, -18, new Color(0.45f, 0.75f, 1f));

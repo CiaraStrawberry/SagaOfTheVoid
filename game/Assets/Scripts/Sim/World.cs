@@ -25,6 +25,7 @@ namespace Saga.Sim
         public double Heading;
         public double Speed;
         public double TurnRate;
+        public double TurnVel;      // big ships: current turning speed (rad/s), built up and eased off
         public int Armor, Shield, StartArmor, StartShield;
         public Ship Target;
         public Vec2 MoveTarget;
@@ -309,7 +310,13 @@ namespace Saga.Sim
             if (s.TurnRate < s.Def.turn_rate) s.TurnRate = Math.Min(s.Def.turn_rate, s.TurnRate + 0.003 * UpdateRate * dt);
             if (s.Def.Immobile) { s.Speed = 0; return; }
             bool smallIdle = !s.HasMoveOrder && Hulls.IsSmall(s.Hull);
-            if (!s.HasMoveOrder && !smallIdle) return;
+            if (!s.HasMoveOrder && !smallIdle)
+            {
+                // Stopped big ships still finish their swing smoothly.
+                s.TurnVel = Approach(s.TurnVel, 0, Math.Max(0.01, s.Def.turn_rate) * TurnScale * 1.3 / TurnSpinUp(s.Hull) * dt);
+                s.Heading += s.TurnVel * dt;
+                return;
+            }
             if (smallIdle)
             {
                 // Fighters never sit still: they chase what they're shooting at, or circle where they were left.
@@ -345,6 +352,7 @@ namespace Saga.Sim
             }
 
             if (dist > 150 || small) Turn(s, s.MoveTarget, dt);
+            else if (!small) { s.TurnVel = Approach(s.TurnVel, 0, s.Def.turn_rate * TurnScale * 1.3 / TurnSpinUp(s.Hull) * dt); s.Heading += s.TurnVel * dt; }
 
             // Big ships only thrust when the target is within 45 degrees of the nose.
             bool facing = small || Vec2.Dot(s.Forward, (s.MoveTarget - s.Pos).Normalized) >= Math.Cos(Math.PI / 4);
@@ -362,10 +370,21 @@ namespace Saga.Sim
                 s.Heading += Math.Max(-w * dt, Math.Min(w * dt, diff));
                 return;
             }
+            // Big ships: turning speed builds up and eases off, so they swing round slowly and heavily.
+            // Top turning speed matches the old turn on a ~75 degree change; heavier hulls take longer
+            // to get turning and to stop.
             double rate = Math.Min(MaxTurnLight, Math.Max(0.05, s.TurnRate) * TurnScale);
-            double frac = Math.Min(1.0, rate * dt);
-            s.Heading += diff * frac;
+            double wMax = rate * 1.3;
+            double alpha = wMax / TurnSpinUp(s.Hull);
+            double wantVel = Math.Sign(diff) * Math.Min(wMax, Math.Sqrt(2 * alpha * Math.Abs(diff)) * 0.9);
+            s.TurnVel = Approach(s.TurnVel, wantVel, alpha * dt);
+            s.Heading += s.TurnVel * dt;
         }
+
+        // Seconds a big ship takes to reach full turning speed.
+        static double TurnSpinUp(Hull h) => h == Hull.SuperCapital ? 3.5 : h == Hull.Capital ? 2.6 : h == Hull.Destroyer ? 1.8 : h == Hull.Cruiser ? 1.2 : 0.8;
+
+        static double Approach(double v, double to, double step) => v < to ? Math.Min(to, v + step) : Math.Max(to, v - step);
 
         void PushApart(double dt)
         {

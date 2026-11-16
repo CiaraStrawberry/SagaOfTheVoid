@@ -73,6 +73,14 @@ namespace Saga.Game
                 w.Streaks[i] = lr;
             }
             v.Warp = w;
+            if (v.Crafts != null)
+            {
+                // Fighters come out of the jump in a straight line and keep flying straight ahead for 1 s.
+                v.StraightFrom = v.Pulse + delay + WarpOpen + WarpFly;
+                v.StraightUntil = v.StraightFrom + 1f + 0.07f * v.Crafts.Length;
+                v.StraightAnchor = v.Go.transform.position + Vector3.up * v.Height;
+                v.StraightDir = w.Dir;
+            }
             if (v.Ship.Arrived >= 0) SoundBoard.Current?.Warp(Centre(v));
             ApplyWarp(v, 0f);
         }
@@ -312,9 +320,25 @@ namespace Saga.Game
                          && Vector3.Distance(v.Go.transform.position, target.Go.transform.position) < 2400f;
             bool dogfight = target != null && Hulls.IsSmall(s.Target.Hull);
 
+            bool straight = v.Pulse < v.StraightUntil;
+            float cruise = maxSpeed * 0.8f;
+            var straightYaw = straight ? Quaternion.LookRotation(v.StraightDir) : Quaternion.identity;
             foreach (var c in v.Crafts)
             {
                 Vector3 goal, lead;
+                if (straight)
+                {
+                    // Just out of the warp: in formation, straight along the jump line at cruise speed.
+                    float flown = cruise * Mathf.Max(0f, v.Pulse - v.StraightFrom);
+                    c.Pos = v.StraightAnchor + v.StraightDir * flown + straightYaw * c.Offset;
+                    c.Vel = v.StraightDir * cruise;
+                    c.Facing = v.StraightDir;
+                    c.Bank = 0f; c.Placed = true;
+                    c.T.position = c.Pos;
+                    c.T.rotation = Quaternion.LookRotation(c.Facing) * c.BaseRot;
+                    UpdateTrail(v, c, dt);
+                    continue;
+                }
                 if (orbit)
                 {
                     // Strike on a big ship: each craft has its own lane around it (radius across the strike zone,
@@ -342,8 +366,9 @@ namespace Saga.Game
                     // Each craft has its own lane in the fight (a radius across the whole area and a height),
                     // and drifts between flying its lane and chasing an enemy's tail, so the fight fills the area
                     // instead of collapsing into one ball.
-                    float R = (float)s.Furball.Radius * 0.9f;
-                    float lane = Mathf.Lerp(0.3f, 1f, Mathf.Repeat(c.Phase * 0.618f + k * 0.37f, 1f)) * R;
+                    // Lanes lean toward the edge (square root spreads them evenly over the area, not the radius).
+                    float R = (float)s.Furball.Radius;
+                    float lane = Mathf.Lerp(0.45f, 1f, Mathf.Sqrt(Mathf.Repeat(c.Phase * 0.618f + k * 0.37f, 1f))) * R * 0.95f;
                     float th = c.Phase + c.Dir * (maxSpeed * 0.8f / lane) * v.Pulse;
                     var lanePoint = centreOfFight + new Vector3(
                         Mathf.Cos(th + 0.4f * c.Dir) * lane,
@@ -351,8 +376,9 @@ namespace Saga.Game
                         Mathf.Sin(th + 0.4f * c.Dir) * lane);
                     var side = Vector3.Cross(prey.Facing, Vector3.up) * (c.Dir * 80f);
                     var tail = prey.Pos - prey.Facing * 140f + side;
-                    float chase = 0.5f + 0.5f * Mathf.Sin(v.Pulse * 0.35f + c.Phase * 2f); // 0 = own lane, 1 = on a tail
-                    goal = Vector3.Lerp(lanePoint, tail, chase * 0.65f);
+                    // 0 = own lane, 1 = on a tail; chases are short bursts so most of the time the lanes hold.
+                    float chase = Mathf.Pow(0.5f + 0.5f * Mathf.Sin(v.Pulse * 0.35f + c.Phase * 2f), 2f);
+                    goal = Vector3.Lerp(lanePoint, tail, chase * 0.45f);
                     var fromCentre = goal - centreOfFight;
                     if (fromCentre.magnitude > R) goal = centreOfFight + fromCentre.normalized * R;
                     lead = Vector3.Lerp(Vector3.zero, prey.Vel * 0.5f, chase);
@@ -400,7 +426,8 @@ namespace Saga.Game
 
         void UpdateTrail(ShipView v, Craft c, float dt)
         {
-            bool show = c.R.enabled && v.Warp == null;
+            // Contrails start the moment the craft is out of the jump (it flies straight on from there).
+            bool show = c.R.enabled && (v.Warp == null || v.Pulse >= v.StraightFrom);
             if (!show) { c.HistCount = 0; c.Trail.positionCount = 0; return; }
             if (dt > 0f)
             {

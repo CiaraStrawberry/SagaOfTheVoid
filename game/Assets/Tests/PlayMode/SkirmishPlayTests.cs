@@ -63,9 +63,9 @@ namespace Saga.Tests
             game.CommandAttack(capital);
             Assert.IsTrue(game.Selected.All(s => s.OrderedTarget == capital));
             game.Focus(new[] { capital });
-            yield return RunUntil(game, 60);
+            yield return RunUntil(game, 90); // big ships are slow and turn heavily
             Assert.IsTrue(capital.Dead || capital.Armor < capital.StartArmor || capital.Shield < capital.StartShield,
-                "the ordered target took fire");
+                "the ordered target took fire (game time " + game.World.Time.ToString("F0") + " s, nearest attacker " + game.Selected.Where(s => !s.Dead).Select(s => Vec2.Distance(s.Pos, capital.Pos)).DefaultIfEmpty(-1).Min().ToString("F0") + ")");
             Shot(cam, rt, "skirmish_3_attack");
 
             // Buy a fighter: paid now, arrives after its build time beside the fleet.

@@ -172,19 +172,34 @@ namespace Saga.Game
 
         public IEnumerable<Ship> Own => World.Alive.Where(s => s.Team == PlayerTeam);
 
-        public void Select(IEnumerable<Ship> ships, bool add = false)
+        // inspect: select enemy ships to look at them (the panel shows their stats; no orders can be given).
+        public void Select(IEnumerable<Ship> ships, bool add = false, bool inspect = false)
         {
+            if (add && Inspecting != inspect) add = false; // never mix own and enemy ships
             if (!add) { foreach (var s in Selected) View.SetSelected(s, false); Selected.Clear(); }
             int before = Selected.Count;
             foreach (var s in ships)
-                if (!s.Dead && s.Team == PlayerTeam && !Selected.Contains(s)) { Selected.Add(s); View.SetSelected(s, true); }
+                if (!s.Dead && (inspect ? s.Team != PlayerTeam : s.Team == PlayerTeam) && !Selected.Contains(s)) { Selected.Add(s); View.SetSelected(s, true); }
             if (Selected.Count > 0 && (Selected.Count != before || !add)) SoundBoard.Current?.Select();
+        }
+
+        // The selection is enemy ships being looked at, not commanded.
+        public bool Inspecting => Selected.Count > 0 && Selected[0].Team != PlayerTeam;
+
+        // Selection panel: click one ship of the group to select only it (shift: drop it from the group).
+        public void PickFromSelection(int index, bool remove)
+        {
+            if (index < 0 || index >= Selected.Count) return;
+            var s = Selected[index];
+            if (remove) { Selected.Remove(s); View.SetSelected(s, false); }
+            else Select(new[] { s }, false, s.Team != PlayerTeam);
         }
 
         public void SelectAllOwn() => Select(Own);
 
         public void CommandMove(Vector3 worldPoint, bool queue)
         {
+            if (Inspecting) return;
             if (Selected.Count == 0) return;
             World.OrderMove(Selected, BattleView.ToSim(worldPoint), queue);
             SoundBoard.Current?.OrderMove();
@@ -193,6 +208,7 @@ namespace Saga.Game
 
         public void CommandAttack(Ship target)
         {
+            if (Inspecting) return;
             if (Selected.Count == 0 || target == null || target.Team == PlayerTeam) return;
             World.OrderAttack(Selected, target);
             SoundBoard.Current?.OrderAttack();
@@ -200,11 +216,12 @@ namespace Saga.Game
             if (v != null) View.Ping(v.Go.transform.position, true, v.Length * 1.3f);
         }
 
-        public void CommandStop() => World.OrderStop(Selected);
+        public void CommandStop() { if (!Inspecting) World.OrderStop(Selected); }
 
         // Into a dogfight area: fighters join the fight, other ships attack the enemies in it.
         public void CommandFight(Furball f)
         {
+            if (Inspecting) return;
             if (Selected.Count == 0) return;
             World.OrderIntoFight(Selected, f, PlayerTeam);
             SoundBoard.Current?.OrderAttack();
@@ -385,13 +402,19 @@ namespace Saga.Game
                 }
                 else
                 {
-                    var hit = PickAt(mouse, s => s.Team == PlayerTeam);
-                    var fight = hit == null ? FightUnderMouse() : null;
-                    var strike = hit == null && fight == null ? StrikeUnderMouse() : null;
-                    if (fight != null && fight.Alive.Any(s => s.Team == PlayerTeam))
-                        Select(fight.Alive.Where(s => s.Team == PlayerTeam), shift);
-                    else if (strike.HasValue && strike.Value.attackers.Any(s => s.Team == PlayerTeam))
-                        Select(strike.Value.attackers.Where(s => s.Team == PlayerTeam), shift);
+                    // Clicking right on one of your big ships always selects it. Otherwise, anywhere inside a
+                    // fight zone (dogfight or strike ring) selects your craft in it, or, if you have none there,
+                    // the enemy craft (to look at them).
+                    var exact = View.Pick(cam.ScreenPointToRay(mouse));
+                    bool onOwnBig = exact != null && exact.Team == PlayerTeam && !Hulls.IsSmall(exact.Hull);
+                    var fight = onOwnBig ? null : FightUnderMouse();
+                    var strike = onOwnBig || fight != null ? null : StrikeUnderMouse();
+                    var zoneCraft = fight != null ? fight.Alive.ToList() : strike.HasValue ? strike.Value.attackers : null;
+                    var hit = onOwnBig ? exact : zoneCraft == null ? PickAt(mouse, s => s.Team == PlayerTeam) : null;
+                    if (zoneCraft != null && zoneCraft.Any(s => s.Team == PlayerTeam))
+                        Select(zoneCraft.Where(s => s.Team == PlayerTeam), shift);
+                    else if (zoneCraft != null && zoneCraft.Count > 0)
+                        Select(zoneCraft, false, inspect: true);
                     else if (hit != null)
                     {
                         if (hit == lastClicked && Time.unscaledTime - lastClickTime < 0.35f)
@@ -405,7 +428,7 @@ namespace Saga.Game
                 dragging = false;
             }
 
-            if (Input.GetMouseButtonDown(1) && Selected.Count > 0)
+            if (Input.GetMouseButtonDown(1) && Selected.Count > 0 && !Inspecting)
             {
                 var exact = View.Pick(cam.ScreenPointToRay(mouse));
                 var fight = FightUnderMouse();
