@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace Saga.Game
 {
-    // Battle music: plays its tracks one after another, starting from a random one, and crossfades each into the
+    // Battle music: plays its tracks one after another, each battle starting on the next one in turn, and crossfades each into the
     // next over its last few seconds, so a long battle never sits on one looping piece. Unscaled time, so pausing
     // the battle does not stop the music.
     public class MusicPlaylist : MonoBehaviour
     {
         const float Crossfade = 6f;
+        const string NextKey = "saga.music.next";
 
         AudioSource a, b;
         List<AudioClip> clips;
@@ -23,7 +24,11 @@ namespace Saga.Game
             b.playOnAwake = false; b.spatialBlend = 0f; b.loop = false; b.volume = 0f;
             a.loop = false;
             clips = tracks;
-            index = Random.Range(0, clips.Count);
+            // Each battle starts on the next track in turn (remembered between battles and sessions), so
+            // starting several battles in a row never repeats the opening track.
+            index = PlayerPrefs.GetInt(NextKey, 0) % clips.Count;
+            PlayerPrefs.SetInt(NextKey, (index + 1) % clips.Count);
+            PlayerPrefs.Save();
             a.Stop();
             a.clip = clips[index];
             a.volume = volume;
