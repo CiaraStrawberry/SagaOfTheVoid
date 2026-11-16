@@ -81,7 +81,10 @@ namespace Saga.Tests
                 yield return RunUntil(game, until);
                 // Built ships wait in reserve; warp them in behind the fleet.
                 Assert.AreEqual(2, game.World.TeamOf(SkirmishController.PlayerTeam).Reserve.Count + (game.World.Winner >= 0 ? 2 : 0), "both wait in reserve");
-                var behind = Centre(game.Own.ToList()) + new Vector3(-1500, 0, 0);
+                // The first clear spot behind the fleet (not within 1,000 of an enemy).
+                var fleetCentre = Centre(game.Own.ToList());
+                var behind = new[] { 1500f, 3000f, 5000f, 8000f }.Select(d => fleetCentre + new Vector3(-d, 0, 0))
+                    .FirstOrDefault(p => game.World.CannotDeploy(SkirmishController.PlayerTeam, BattleView.ToSim(p)) == null);
                 game.Focus(game.Own);
                 game.BeginDeploy("*");
                 var deployed = game.DeployAt(behind, game.DeployType);

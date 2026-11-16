@@ -120,10 +120,11 @@ CONTENT = {
         ["2026-11-16", "Fighters warp in along a straight line, fly straight ahead in formation for about 1 s with contrails, then break off.", "Owner request."],
         ["2026-11-16", "Fighters only fire forward: a shot is drawn from a craft whose nose points within 35 degrees of the target.", "Owner request. The damage rules are unchanged; only what is drawn."],
         ["2026-11-16", "Enemy ships can be selected to look at their stats (no orders).", "Needed for the fight-zone click rule."],
-        ["2026-11-16", "Fighters fire pairs of small homing missiles (35% to hit other fighters, 60 damage) instead of 6-round gun bursts (10%, 20 damage); about the same kill rate, but the shots read clearly. Bombers fire single heavy shots (600 damage every 3 s, was 3 x 200); they still never target fighters, as in 2017.", "Owner request: concrete firing effects for fighters and bombers."],
+        ["2026-11-16", "Fighters fire volleys of 6 small orange homing missiles (12% to hit other fighters, 20 damage, 650/s) instead of 6-round gun bursts (10%, 20 damage); about the same kill rate, but the fire reads clearly. Missiles launch off the nose and curve onto the target. Bombers fire single heavy shots (600 damage every 3 s, was 3 x 200); they still never target fighters, as in 2017.", "Owner request: concrete firing effects for fighters and bombers."],
         ["2026-11-16", "Shots that hit fighter craft: missiles home in on the craft; gun shots fly straight to where the craft will be. Misses fly straight past. When a squadron loses a craft, the craft that was just hit goes, with a small explosion.", "Owner request: fighter losses should come from being hit."],
         ["2026-11-16", "Contrails are 1.2 s of flight at any frame rate (points by time, not per frame).", "At 60-144 fps they were only 0.2-0.5 s long."],
         ["2026-11-16", "Computer fleets close in on a beaten enemy (3 ships or fewer) instead of holding at gun range.", "Battles stalled with the last few craft out at the edge of range."],
+        ["2026-11-16", "Squadron markers, selection rings and click targets follow the squadron's craft, not its rules position; warp portals stay where the ship arrived.", "Owner feedback: portals and selection rings spun while fighters flew straight out of the jump."],
     ],
     "recovery_stats": [
         ["Build", "Unity 5.6.1f1, Mono"],

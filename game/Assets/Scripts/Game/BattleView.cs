@@ -86,6 +86,10 @@ namespace Saga.Game
         }
 
         public IEnumerable<ShipView> Views => views.Values;
+        // Where a ship shows on screen: squadrons by their craft (marker), others by their own point.
+        public static Vector3 ShownCentre(ShipView v) =>
+            v.Crafts != null && v.Disc != null ? new Vector3(v.Disc.transform.position.x, v.Go.transform.position.y + v.Height, v.Disc.transform.position.z)
+                                               : v.Go.transform.position + Vector3.up * v.Height;
         public ShipView ViewOf(Ship s) => views.TryGetValue(s, out var v) ? v : null;
 
         public static Vector3 ToWorld(Vec2 p) => new Vector3((float)p.X, 0, (float)p.Y);
@@ -157,6 +161,12 @@ namespace Saga.Game
                 SpawnExplosion(dv);
                 dv.Go.SetActive(false);
                 foreach (var b in new[] { dv.BarBack, dv.BarArmor, dv.BarShield }) if (b != null) b.gameObject.SetActive(false);
+                if (dv.Warp != null) // its portal lives outside the ship
+                {
+                    Kill(dv.Warp.Portal.gameObject); Kill(dv.Warp.Aura.gameObject);
+                    foreach (var lr in dv.Warp.Streaks) Kill(lr.gameObject);
+                    dv.Warp = null;
+                }
             }
             foreach (var v in views.Values) if (!v.Ship.Dead) PlaceBars(v, now);
             UpdateFurballRings();
@@ -316,6 +326,15 @@ namespace Saga.Game
                 LoseCraft(v, craft);
                 for (int i = 0; i < v.Crafts.Length; i++) v.Crafts[i].R.enabled = !v.Crafts[i].Lost;
                 UpdateCrafts(v, dt);
+                // The squadron's marker and selection ring sit under its craft, not under its rules position
+                // (which keeps circling while the craft fly their own paths).
+                var live = v.Crafts.Where(c => !c.Lost).ToArray();
+                if (live.Length > 0)
+                {
+                    var cen = live.Aggregate(Vector3.zero, (acc, c) => acc + c.Pos) / live.Length;
+                    foreach (var tr in new[] { v.Disc.transform, v.Select.transform })
+                        tr.position = new Vector3(cen.x, tr.position.y, cen.z);
+                }
             }
             ApplyWarp(v, dt);
 
@@ -517,7 +536,7 @@ namespace Saga.Game
                     var best = from.Crafts.Where(x => x.R.enabled)
                                           .OrderByDescending(x => Vector3.Dot(x.Facing, (aimAt - x.Pos).normalized)).FirstOrDefault();
                     if (best != null) b.Craft = best;
-                    drawShot = best != null && FacesTarget(best, aimAt);
+                    drawShot = best != null && (e.Visual == "seeker" || FacesTarget(best, aimAt));
                 }
             }
             var a = b.Craft != null && b.Craft.R.enabled ? b.Craft.T.position + b.Craft.Facing * 10f : from.Crafts != null ? AnyCraft(from).T.position : GunMuzzle(from, e.GunIndex);
@@ -552,7 +571,7 @@ namespace Saga.Game
                 case "shell": f = AddLine("shell", a, end, Hdr(new Color(1f, 0.65f, 0.25f), 2.0f), 7f, (float)e.TravelTime); break;
                 case "bomb": f = AddLine("bomb", a, end, Hdr(new Color(0.8f, 1f, 0.35f), 2.6f), 16f, (float)e.TravelTime); break;
                 case "seeker":
-                    f = AddLine("seeker", a, end, Hdr(new Color(1f, 0.9f, 0.7f), 2.2f), 5f, (float)e.TravelTime, 8);
+                    f = AddLine("seeker", a, end, Hdr(new Color(1f, 0.28f, 0.04f), 1.8f), 22f, (float)e.TravelTime, 8);
                     f.Velocity = b.Craft != null ? b.Craft.Facing : (end - a).normalized; // leaves along the nose
                     break;
                 default: f = AddLine("tracer", a, end, Hdr(Color.Lerp(c, Color.white, 0.5f), 2f), 4f, Mathf.Min(0.6f, (float)e.TravelTime)); break;
@@ -576,7 +595,7 @@ namespace Saga.Game
                 case "missile": flash = 40f; life = 0.18f; fc = new Color(1f, 0.75f, 0.45f); break;
                 case "shell": flash = 50f; life = 0.12f; fc = new Color(1f, 0.7f, 0.35f); break;
                 case "bomb": flash = 44f; life = 0.16f; fc = new Color(0.85f, 1f, 0.5f); break;
-                case "seeker": flash = 14f; life = 0.08f; fc = new Color(1f, 0.85f, 0.6f); break;
+                case "seeker": flash = 26f; life = 0.1f; fc = new Color(1f, 0.5f, 0.2f); break;
                 default: flash = from.Crafts != null ? 16f : 22f; life = 0.07f; fc = Color.Lerp(c, Color.white, 0.6f); break;
             }
             AddSprite("flash", glow, a, Hdr(fc, 1.6f), flash, life, Vector3.zero, false);
@@ -753,7 +772,7 @@ namespace Saga.Game
                     else if (f.Kind == "seeker")
                     {
                         // Small homing missile: leaves along the fighter's nose, then curves onto the target.
-                        float head = Mathf.Pow(t, 1.3f), tail = Mathf.Max(0f, head - 0.12f);
+                        float head = Mathf.Pow(t, 1.3f), tail = Mathf.Max(0f, head - 0.6f);
                         int n = f.Line.positionCount;
                         for (int k = 0; k < n; k++) f.Line.SetPosition(k, SeekerPath(f.From, f.Velocity, f.To, Mathf.Lerp(tail, head, k / (float)(n - 1))));
                         f.Line.startColor = new Color(0, 0, 0, 0);

@@ -90,11 +90,11 @@
   },
   {
    "id": "fighter_missile",
-   "damage": 60,
+   "damage": 20,
    "prefers": "light",
    "hit": {
-    "light": 0.35,
-    "corvette": 0.6,
+    "light": 0.12,
+    "corvette": 0.35,
     "frigate": 1,
     "cruiser": 1,
     "destroyer": 1,
@@ -102,7 +102,7 @@
     "super_capital": 1
    },
    "visual": "seeker",
-   "projectile_speed": 1100,
+   "projectile_speed": 650,
    "launch_delay": 0.15
   },
   {

@@ -48,13 +48,16 @@ namespace Saga.Game
             // The portal stands across the line of arrival, turning, in team-tinted light.
             w.Portal = new GameObject("warp portal").AddComponent<SpriteRenderer>();
             w.Portal.sprite = warpTunnel; w.Portal.sharedMaterial = addMat;
-            w.Portal.transform.SetParent(v.Go.transform, false);
-            w.Portal.transform.localPosition = Vector3.up * v.Height;
+            // Fixed in the world where the ship arrives (a squadron's own point keeps moving while its craft
+            // are still flying straight out of the jump).
+            var portalAt = v.Go.transform.position + Vector3.up * v.Height;
+            w.Portal.transform.SetParent(root, false);
+            w.Portal.transform.position = portalAt;
             w.Portal.transform.localScale = Vector3.one * 0.01f;
             w.Aura = new GameObject("warp aura").AddComponent<SpriteRenderer>();
             w.Aura.sprite = warpAura; w.Aura.sharedMaterial = addMat;
-            w.Aura.transform.SetParent(v.Go.transform, false);
-            w.Aura.transform.localPosition = Vector3.up * v.Height;
+            w.Aura.transform.SetParent(root, false);
+            w.Aura.transform.position = portalAt;
             w.Aura.transform.localScale = Vector3.one * size * 1.6f;
             Tint(w.Portal, new Color(0, 0, 0, 0)); Tint(w.Aura, new Color(0, 0, 0, 0));
 
@@ -303,7 +306,7 @@ namespace Saga.Game
                 tr.sharedMaterial = addMat;
                 tr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 tr.widthCurve = AnimationCurve.Linear(0, 0, 1, 1);
-                tr.widthMultiplier = 18f;
+                tr.widthMultiplier = 13f;
                 c.Trail = tr;
                 return c;
             }).ToArray();
@@ -448,7 +451,7 @@ namespace Saga.Game
             for (int k = 0; k < n; k++) c.Trail.SetPosition(k, c.Hist[n - 1 - k]); // oldest first
             var tint = Color.Lerp(TeamTint[v.Ship.Team % TeamTint.Length], Color.white, 0.55f);
             c.Trail.startColor = new Color(0, 0, 0, 0);
-            c.Trail.endColor = Hdr(new Color(tint.r, tint.g, tint.b, 0.7f), 1.4f);
+            c.Trail.endColor = Hdr(new Color(tint.r, tint.g, tint.b, 0.5f), 1.2f);
         }
 
         // A live craft of a squadron, at random (for muzzles and aim points).

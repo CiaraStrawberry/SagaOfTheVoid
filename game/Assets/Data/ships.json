@@ -43,9 +43,9 @@
     {
      "weapon": "fighter_missile",
      "range": 1100,
-     "time_between_shots": 0.35,
-     "shots_per_burst": 2,
-     "burst_wait": 3.0
+     "time_between_shots": 0.2,
+     "shots_per_burst": 6,
+     "burst_wait": 2.4
     }
    ],
    "icon": "Fighter"

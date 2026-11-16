@@ -466,7 +466,7 @@ namespace Saga.Game
             {
                 if (!which(s)) continue;
                 var v = View.ViewOf(s);
-                var centre = v.Go.transform.position + Vector3.up * v.Height;
+                var centre = BattleView.ShownCentre(v);
                 var p = cam.WorldToScreenPoint(centre);
                 if (p.z <= 0) continue;
                 // Half the ship's shown length, measured on screen.
@@ -488,7 +488,7 @@ namespace Saga.Game
         bool OnScreen(Ship s, out Vector2 screen)
         {
             var v = View.ViewOf(s);
-            var p = cam.WorldToScreenPoint(v.Go.transform.position + Vector3.up * v.Height);
+            var p = cam.WorldToScreenPoint(BattleView.ShownCentre(v));
             screen = p;
             return p.z > 0 && p.x >= 0 && p.x <= Screen.width && p.y >= 0 && p.y <= Screen.height;
         }
