@@ -455,30 +455,75 @@ namespace Saga.Game
 
         static Vector3 Where(ShotPlan p) => p.Anchor.TransformPoint(p.Local);
 
+        // A burst: shots from one gun at one target close together in time. They share a muzzle and an aim
+        // point, so a burst reads as one tight stream instead of shots spraying everywhere.
+        class Burst
+        {
+            public Ship Target;
+            public double Last;
+            public ShotPlan Plan;
+            public Craft Craft;
+            public Vector3 MissSide;
+        }
+        readonly Dictionary<(Ship, int), Burst> bursts = new Dictionary<(Ship, int), Burst>();
+        const double BurstGap = 1.2; // seconds of quiet that end a burst
+
+        // Each gun has a fixed spot on the hull, spread along the ship's length.
+        Vector3 GunMuzzle(ShipView v, int gun)
+        {
+            float along = (((gun * 0.618f) % 1f) - 0.5f) * 0.55f;
+            float side = (gun % 2 == 0 ? 1f : -1f) * 0.1f;
+            var yaw = Quaternion.Euler(0, -(float)(v.Ship.Heading * Mathf.Rad2Deg), 0);
+            return Centre(v) + yaw * new Vector3(side * v.Length, 8f, along * v.Length);
+        }
+
         void SpawnShot(ShotEvent e)
         {
             var from = ViewOf(e.From); var to = ViewOf(e.To);
             if (from == null || to == null) return;
-            var a = Muzzle(from);
-            ShotPlan plan = null;
-            Vector3 b;
+            var key = (e.From, e.GunIndex);
+            if (!bursts.TryGetValue(key, out var b) || b.Target != e.To || World.Time - b.Last > BurstGap)
+            {
+                b = new Burst
+                {
+                    Target = e.To,
+                    Craft = from.Crafts != null ? AnyCraft(from) : null,
+                    MissSide = (Quaternion.Euler(0, (float)(rng.NextDouble() * 360), 0) * Vector3.forward),
+                };
+                bursts[key] = b;
+            }
+            b.Last = World.Time;
+            var a = b.Craft != null && b.Craft.R.enabled ? b.Craft.T.position : from.Crafts != null ? AnyCraft(from).T.position : GunMuzzle(from, e.GunIndex);
+
+            bool shieldShot = e.AtShield && e.Visual != "repair_beam";
+            if (b.Plan == null || b.Plan.OnShield != shieldShot || b.Plan.Anchor == null || !b.Plan.Anchor.gameObject.activeInHierarchy)
+                b.Plan = PlanShot(to, a, shieldShot);
+            // Same aim point for the whole burst, with a little scatter.
+            var jitter = UnityEngine.Random.insideUnitSphere * (to.Crafts != null ? 6f : 14f);
+            var plan = new ShotPlan { Anchor = b.Plan.Anchor, Local = b.Plan.Local + b.Plan.Anchor.InverseTransformVector(jitter), OnShield = b.Plan.OnShield, Dir = b.Plan.Dir };
+            Vector3 end;
             if (e.Hit)
             {
-                plan = PlanShot(to, a, e.AtShield && e.Visual != "repair_beam");
                 plans[e.ShotId] = plan;
-                b = Where(plan);
+                end = Where(plan);
             }
-            else b = MissPoint(to);
+            else
+            {
+                // Misses go just wide, on the burst's side.
+                end = Where(plan) + b.MissSide * (to.Crafts != null ? 140f : to.Length * 0.45f + 90f) + jitter * 3f;
+                plan = null;
+            }
+
             var c = TeamTint[e.From.Team % TeamTint.Length];
             Fx f;
             switch (e.Visual)
             {
-                case "beam": f = AddLine("beam", a, b, Hdr(Color.Lerp(c, Color.white, 0.4f), 2.2f), 30f, 0.6f); break;
-                case "repair_beam": f = AddLine("beam", a, b, Hdr(new Color(0.4f, 1f, 0.6f), 1.6f), 12f, 0.5f); break;
-                case "missile": f = AddLine("missile", a, b, Hdr(new Color(1f, 0.85f, 0.6f), 2f), 12f, (float)e.TravelTime, 8); break;
-                case "shell": f = AddLine("shell", a, b, Hdr(new Color(1f, 0.65f, 0.25f), 2.0f), 10f, (float)e.TravelTime); break;
-                case "bomb": f = AddLine("shell", a, b, Hdr(new Color(0.8f, 1f, 0.35f), 2f), 10f, (float)e.TravelTime); break;
-                default: f = AddLine("tracer", a, b, Hdr(Color.Lerp(c, Color.white, 0.5f), 2f), 7f, Mathf.Min(0.6f, (float)e.TravelTime)); break;
+                case "beam": f = AddLine("beam", a, end, Hdr(Color.Lerp(c, Color.white, 0.4f), 2.2f), 22f, 0.6f); break;
+                case "repair_beam": f = AddLine("beam", a, end, Hdr(new Color(0.4f, 1f, 0.6f), 1.6f), 9f, 0.5f); break;
+                case "missile": f = AddLine("missile", a, end, Hdr(new Color(1f, 0.85f, 0.6f), 2f), 8f, (float)e.TravelTime, 8); break;
+                case "shell": f = AddLine("shell", a, end, Hdr(new Color(1f, 0.65f, 0.25f), 2.0f), 7f, (float)e.TravelTime); break;
+                case "bomb": f = AddLine("shell", a, end, Hdr(new Color(0.8f, 1f, 0.35f), 2f), 7f, (float)e.TravelTime); break;
+                default: f = AddLine("tracer", a, end, Hdr(Color.Lerp(c, Color.white, 0.5f), 2f), 4f, Mathf.Min(0.6f, (float)e.TravelTime)); break;
             }
             // Hits follow the moving target so they land on the spot they were aimed at.
             if (plan != null) { f.Anchor = plan.Anchor; f.Local = plan.Local; }
@@ -541,11 +586,11 @@ namespace Saga.Game
             {
                 // A short arc of the shield bubble lights up on the side facing the shooter, with a spark where it struck.
                 AddSprite("arc", arc, Centre(v), new Color(0.35f, 0.65f, 1f, heavy ? 0.6f : 0.3f), v.Length * 1.25f, heavy ? 0.3f : 0.18f, Vector3.zero, true, yaw);
-                AddSprite("flash", glow, at, Hdr(new Color(0.5f, 0.75f, 1f), 1.2f), heavy ? 55f : 28f, 0.12f, Vector3.zero, false);
+                AddSprite("flash", glow, at, Hdr(new Color(0.5f, 0.75f, 1f), 1.2f), heavy ? 38f : 18f, 0.12f, Vector3.zero, false);
                 return;
             }
             // Hull hit: a flash on the plating, and for heavy hits a few sparks thrown back toward the shooter.
-            AddSprite("flash", glow, at, Hdr(new Color(1f, 0.6f, 0.25f), 1.4f), heavy ? 70f : 28f, heavy ? 0.3f : 0.12f, Vector3.zero, false);
+            AddSprite("flash", glow, at, Hdr(new Color(1f, 0.6f, 0.25f), 1.4f), heavy ? 48f : 18f, heavy ? 0.3f : 0.12f, Vector3.zero, false);
             if (heavy)
                 for (int i = 0; i < 4; i++)
                 {
@@ -618,7 +663,7 @@ namespace Saga.Game
                     else
                     {
                         var head = Vector3.Lerp(f.From, f.To, t);
-                        float tail = f.Kind == "tracer" ? 60f : 24f; // short streaks, not long lines
+                        float tail = f.Kind == "tracer" ? 40f : 18f; // short streaks, not long lines
                         var back = head - (f.To - f.From).normalized * tail;
                         f.Line.SetPosition(0, back); f.Line.SetPosition(1, head);
                         f.Line.startColor = f.Colour * 0.6f;

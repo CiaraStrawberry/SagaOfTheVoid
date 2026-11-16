@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74948e22893dbd24a9749f544f04c682, type: 2}
+  - {fileID: 2100000, guid: 5a72c8a8f2cb6d343abee81a2440e642, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -270,7 +270,7 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &3218620169681220486
+--- !u!1 &1869296024092412796
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,9 +278,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7525961010965264623}
-  - component: {fileID: 3961207996408775029}
-  - component: {fileID: 1718640536898065698}
+  - component: {fileID: 8771184681113065041}
+  - component: {fileID: 8710346601290724766}
+  - component: {fileID: 1582212761898029038}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -288,13 +288,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7525961010965264623
+--- !u!4 &8771184681113065041
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3218620169681220486}
+  m_GameObject: {fileID: 1869296024092412796}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000004390882, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -303,21 +303,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3477723849519942963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3961207996408775029
+--- !u!33 &8710346601290724766
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3218620169681220486}
+  m_GameObject: {fileID: 1869296024092412796}
   m_Mesh: {fileID: 4300000, guid: ff939dcf6eabe0340b5d81ad617bdd10, type: 2}
---- !u!23 &1718640536898065698
+--- !u!23 &1582212761898029038
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3218620169681220486}
+  m_GameObject: {fileID: 1869296024092412796}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
@@ -336,7 +336,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74948e22893dbd24a9749f544f04c682, type: 2}
+  - {fileID: 2100000, guid: 5a72c8a8f2cb6d343abee81a2440e642, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -751,7 +751,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 399026293792560928}
-  - {fileID: 7525961010965264623}
+  - {fileID: 8771184681113065041}
   - {fileID: 1965348246683220426}
   - {fileID: 7935629560602341594}
   - {fileID: 3389913210566573232}
@@ -771,10 +771,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b6a69eeb919af54b83129c89cd9148b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Saga.Game.ShipModel
+  m_EditorClassIdentifier: Saga.Game::Saga.Game.ShipModel
   renderers:
   - {fileID: 8291721803411220121}
-  - {fileID: 1718640536898065698}
+  - {fileID: 1582212761898029038}
   - {fileID: 6877191042478580189}
   - {fileID: 7576249720236478308}
   - {fileID: 3871112999172362808}
@@ -782,16 +782,6 @@ MonoBehaviour:
   - {fileID: 9003818117067921255}
   - {fileID: 5950824156709780288}
   paints:
-  - colour: Black
-    materials:
-    - {fileID: 2100000, guid: 5590f57316615274ebd7122c0f571852, type: 2}
-    - {fileID: 2100000, guid: 5590f57316615274ebd7122c0f571852, type: 2}
-    - {fileID: 2100000, guid: c2a4959d1b9ab234b908ba88bdeae805, type: 2}
-    - {fileID: 2100000, guid: 96776d503bc1782418a39b7e52e44d1d, type: 2}
-    - {fileID: 2100000, guid: c5826a6df8cc89d4c96419499a27391e, type: 2}
-    - {fileID: 2100000, guid: a5478139324c2bc438ee7fb50ebf5062, type: 2}
-    - {fileID: 2100000, guid: fc8fa727f05c78c45b086b047003f974, type: 2}
-    - {fileID: 2100000, guid: fc8fa727f05c78c45b086b047003f974, type: 2}
   - colour: Blue
     materials:
     - {fileID: 2100000, guid: 5a72c8a8f2cb6d343abee81a2440e642, type: 2}
@@ -802,50 +792,10 @@ MonoBehaviour:
     - {fileID: 2100000, guid: a5478139324c2bc438ee7fb50ebf5062, type: 2}
     - {fileID: 2100000, guid: fc8fa727f05c78c45b086b047003f974, type: 2}
     - {fileID: 2100000, guid: fc8fa727f05c78c45b086b047003f974, type: 2}
-  - colour: Green
-    materials:
-    - {fileID: 2100000, guid: 754f8e78739714c43834f8af428ec2a3, type: 2}
-    - {fileID: 2100000, guid: 754f8e78739714c43834f8af428ec2a3, type: 2}
-    - {fileID: 2100000, guid: c2a4959d1b9ab234b908ba88bdeae805, type: 2}
-    - {fileID: 2100000, guid: 96776d503bc1782418a39b7e52e44d1d, type: 2}
-    - {fileID: 2100000, guid: c5826a6df8cc89d4c96419499a27391e, type: 2}
-    - {fileID: 2100000, guid: a5478139324c2bc438ee7fb50ebf5062, type: 2}
-    - {fileID: 2100000, guid: fc8fa727f05c78c45b086b047003f974, type: 2}
-    - {fileID: 2100000, guid: fc8fa727f05c78c45b086b047003f974, type: 2}
-  - colour: Grey
-    materials:
-    - {fileID: 2100000, guid: 74948e22893dbd24a9749f544f04c682, type: 2}
-    - {fileID: 2100000, guid: 74948e22893dbd24a9749f544f04c682, type: 2}
-    - {fileID: 2100000, guid: c2a4959d1b9ab234b908ba88bdeae805, type: 2}
-    - {fileID: 2100000, guid: 96776d503bc1782418a39b7e52e44d1d, type: 2}
-    - {fileID: 2100000, guid: c5826a6df8cc89d4c96419499a27391e, type: 2}
-    - {fileID: 2100000, guid: a5478139324c2bc438ee7fb50ebf5062, type: 2}
-    - {fileID: 2100000, guid: fc8fa727f05c78c45b086b047003f974, type: 2}
-    - {fileID: 2100000, guid: fc8fa727f05c78c45b086b047003f974, type: 2}
   - colour: Red
     materials:
     - {fileID: 2100000, guid: 98839598760b69049802c6ae12a3b9a6, type: 2}
     - {fileID: 2100000, guid: 98839598760b69049802c6ae12a3b9a6, type: 2}
-    - {fileID: 2100000, guid: c2a4959d1b9ab234b908ba88bdeae805, type: 2}
-    - {fileID: 2100000, guid: 96776d503bc1782418a39b7e52e44d1d, type: 2}
-    - {fileID: 2100000, guid: c5826a6df8cc89d4c96419499a27391e, type: 2}
-    - {fileID: 2100000, guid: a5478139324c2bc438ee7fb50ebf5062, type: 2}
-    - {fileID: 2100000, guid: fc8fa727f05c78c45b086b047003f974, type: 2}
-    - {fileID: 2100000, guid: fc8fa727f05c78c45b086b047003f974, type: 2}
-  - colour: White
-    materials:
-    - {fileID: 2100000, guid: 2348da605abfc71449e960eb07122a6b, type: 2}
-    - {fileID: 2100000, guid: 2348da605abfc71449e960eb07122a6b, type: 2}
-    - {fileID: 2100000, guid: c2a4959d1b9ab234b908ba88bdeae805, type: 2}
-    - {fileID: 2100000, guid: 96776d503bc1782418a39b7e52e44d1d, type: 2}
-    - {fileID: 2100000, guid: c5826a6df8cc89d4c96419499a27391e, type: 2}
-    - {fileID: 2100000, guid: a5478139324c2bc438ee7fb50ebf5062, type: 2}
-    - {fileID: 2100000, guid: fc8fa727f05c78c45b086b047003f974, type: 2}
-    - {fileID: 2100000, guid: fc8fa727f05c78c45b086b047003f974, type: 2}
-  - colour: Yellow
-    materials:
-    - {fileID: 2100000, guid: 95d01c4e8d0124f4c8ff8ef9671042e1, type: 2}
-    - {fileID: 2100000, guid: 95d01c4e8d0124f4c8ff8ef9671042e1, type: 2}
     - {fileID: 2100000, guid: c2a4959d1b9ab234b908ba88bdeae805, type: 2}
     - {fileID: 2100000, guid: 96776d503bc1782418a39b7e52e44d1d, type: 2}
     - {fileID: 2100000, guid: c5826a6df8cc89d4c96419499a27391e, type: 2}

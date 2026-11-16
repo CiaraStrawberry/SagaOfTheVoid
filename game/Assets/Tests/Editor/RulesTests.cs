@@ -342,6 +342,38 @@ namespace Saga.Tests
             Assert.AreEqual("time ran out", w.Mission.Outcome);
         }
 
+        [Test]
+        public void Campaign_EnemyClosesInAfterTheHold_FightersNeverSitStill()
+        {
+            var w = NewWorld();
+            w.SetUpMission(Campaign().missions[1]); // Core Outskirts: 3 bombers (2017 would have them retreat forever)
+            var enemyStart = w.Ships.Where(s => s.Team == 1).Select(s => s.Pos).ToList();
+            var mine = w.Ships.Where(s => s.Team == 0 && Hulls.IsSmall(s.Hull)).ToList();
+            var mineStart = mine.Select(s => s.Pos).ToList();
+            Run(w, 3);
+            for (int i = 0; i < mine.Count; i++)
+                Assert.Greater(Vec2.Distance(mine[i].Pos, mineStart[i]), 100, "idle fighters keep flying");
+            Run(w, 25);
+            var playerCentre = new Vec2(w.Ships.Where(s => s.Team == 0).Average(s => s.Pos.X), 0);
+            double before = enemyStart.Average(p => Vec2.Distance(p, playerCentre));
+            double after = w.Ships.Where(s => s.Team == 1 && !s.Dead).Select(s => Vec2.Distance(s.Pos, playerCentre)).DefaultIfEmpty(0).Average();
+            Assert.Less(after, before - 1500, "the enemy came for the player after its hold");
+        }
+
+        [Test]
+        public void Tally_CountsDamageLandedAndKills()
+        {
+            var w = Duel();
+            Run(w, 0.1);
+            var victim = w.Spawn("cannon_frigate", 1, new Vec2(0, 0), 0);
+            var shooter = w.Spawn("laser_frigate", 0, new Vec2(0, 1500), 0);
+            victim.Shield = -1; victim.Armor = 1000;
+            for (int i = 0; i < 60 * 30 && !victim.Dead; i++) w.Step(1.0 / 60);
+            Assert.IsTrue(victim.Dead);
+            Assert.AreEqual(1000, shooter.DamageDealt, "only damage that actually landed counts (3,000 laser on 1,000 armour)");
+            Assert.AreEqual(1, shooter.Kills);
+        }
+
         // Mirrors Saga.Game.Fleets.Quick (that assembly is not referenced here to keep these tests engine-light).
         static void SpawnBoth(World w)
         {

@@ -20,6 +20,8 @@ public static class ShipModelBuilder
     const string OutDir = "Assets/Ships";
     const string MatDir = "Assets/Ships/Materials";
     static readonly Regex ColourToken = new Regex("(Black|Blue|Green|Grey|Red|White|Yellow)");
+    // Team paints shipped in builds (BattleView.TeamColour). The 2017 build had 7; add more here when more teams play.
+    public static readonly string[] ShippedPaints = { "Blue", "Red" };
 
     public static void SetupAndBuild()
     {
@@ -118,12 +120,13 @@ public static class ShipModelBuilder
             var notes = new HashSet<string>();
             model.renderers = kept.ToArray();
             model.length = Mathf.Max(bounds.size.x, bounds.size.z);
-            model.paints = ShipModel.Colours.Select(c => new ShipModel.Paint
+            // Only the paints the game uses go into the prefabs; the other paint textures then stay out of builds.
+            model.paints = ShippedPaints.Select(c => new ShipModel.Paint
             {
                 colour = c,
                 materials = sourceMats.Select(m => Convert(m, c, lit, texByName, matCache, notes)).ToArray(),
             }).ToArray();
-            model.ApplyPaint("Grey");
+            model.ApplyPaint("Blue");
 
             PrefabUtility.SaveAsPrefabAsset(root, OutDir + "/" + def.id + ".prefab");
             Object.DestroyImmediate(root);

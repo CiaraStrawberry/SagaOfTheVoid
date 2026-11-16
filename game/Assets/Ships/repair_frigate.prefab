@@ -45,38 +45,18 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b6a69eeb919af54b83129c89cd9148b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Saga.Game.ShipModel
+  m_EditorClassIdentifier: Saga.Game::Saga.Game.ShipModel
   renderers:
   - {fileID: 897831195778179728}
   - {fileID: 5191193063398829181}
   paints:
-  - colour: Black
-    materials:
-    - {fileID: 2100000, guid: cda015b011708b043a0c9f7fb9ac33e8, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
   - colour: Blue
     materials:
     - {fileID: 2100000, guid: bca6c4fb0a6f0434bad4da92cc5f9e0c, type: 2}
     - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-  - colour: Green
-    materials:
-    - {fileID: 2100000, guid: 743603aa99e5cc64e819554e90ad07cf, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-  - colour: Grey
-    materials:
-    - {fileID: 2100000, guid: 27b5640943d28ed4c88c9f076c33b895, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
   - colour: Red
     materials:
     - {fileID: 2100000, guid: 58ab3d5243a2ea2478ccbc4fae1265f6, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-  - colour: White
-    materials:
-    - {fileID: 2100000, guid: e5546a5276995d44f8648a58f5205ca6, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-  - colour: Yellow
-    materials:
-    - {fileID: 2100000, guid: a5ff90f0d276eaf45af25d054b17ac7f, type: 2}
     - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
   length: 42.115433
 --- !u!1 &6266573652771589085
@@ -235,7 +215,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 27b5640943d28ed4c88c9f076c33b895, type: 2}
+  - {fileID: 2100000, guid: bca6c4fb0a6f0434bad4da92cc5f9e0c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

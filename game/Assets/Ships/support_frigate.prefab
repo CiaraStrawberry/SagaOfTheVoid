@@ -47,52 +47,22 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b6a69eeb919af54b83129c89cd9148b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Saga.Game.ShipModel
+  m_EditorClassIdentifier: Saga.Game::Saga.Game.ShipModel
   renderers:
   - {fileID: 1048693893039993540}
   - {fileID: 590496767751228298}
   - {fileID: 8884919706152919503}
   - {fileID: 3955547315377313963}
   paints:
-  - colour: Black
-    materials:
-    - {fileID: 2100000, guid: 54b1625c1ceb4534487378a888c2cbdb, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
   - colour: Blue
     materials:
     - {fileID: 2100000, guid: 842678dc11127484fba3ce0701d76ec0, type: 2}
     - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
     - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
     - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-  - colour: Green
-    materials:
-    - {fileID: 2100000, guid: 780bd189e994f01488d43e7c59f8c8a6, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-  - colour: Grey
-    materials:
-    - {fileID: 2100000, guid: eae941302fd4b3342b72458aad54671b, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
   - colour: Red
     materials:
     - {fileID: 2100000, guid: 82e7319afd8ac9c42a6df87dbd2e5b65, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-  - colour: White
-    materials:
-    - {fileID: 2100000, guid: 19597f87f45a4ef42adb2345ba254e4d, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-    - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
-  - colour: Yellow
-    materials:
-    - {fileID: 2100000, guid: e5ed8bbe580885f49add18ca96e03561, type: 2}
     - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
     - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
     - {fileID: 2100000, guid: 0d12d6e2421b10348b817746340a9a91, type: 2}
@@ -253,7 +223,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eae941302fd4b3342b72458aad54671b, type: 2}
+  - {fileID: 2100000, guid: 842678dc11127484fba3ce0701d76ec0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

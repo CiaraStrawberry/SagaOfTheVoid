@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2536526437035564358
+--- !u!1 &1924388340471773658
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,133 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4652830697153855657}
-  - component: {fileID: 4036778130354204793}
-  m_Layer: 0
-  m_Name: missile_frigate
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4652830697153855657
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2536526437035564358}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3425697133025955909}
-  - {fileID: 2417239038771262165}
-  - {fileID: 5459505215026273296}
-  - {fileID: 665978655718963039}
-  - {fileID: 6279778065561610328}
-  - {fileID: 262808241877752290}
-  - {fileID: 7899755051739432386}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4036778130354204793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2536526437035564358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b6a69eeb919af54b83129c89cd9148b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Saga.Game.ShipModel
-  renderers:
-  - {fileID: 2613821408334086221}
-  - {fileID: 8502947710476247467}
-  - {fileID: 5910336788434933170}
-  - {fileID: 7600697420132564087}
-  - {fileID: 7712816870619352837}
-  - {fileID: 1435068668769443023}
-  - {fileID: 7633584975443820861}
-  paints:
-  - colour: Black
-    materials:
-    - {fileID: 2100000, guid: ef0e2660c3ca8f34d931ea8898a7275d, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-  - colour: Blue
-    materials:
-    - {fileID: 2100000, guid: 8416623afd2f9ec4599ac7870a4d313e, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-  - colour: Green
-    materials:
-    - {fileID: 2100000, guid: c45adcb0fe28bfa488a95eef7fa9998b, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-  - colour: Grey
-    materials:
-    - {fileID: 2100000, guid: 669c4c74ad2e8f74ba2a7f288b0364e0, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-  - colour: Red
-    materials:
-    - {fileID: 2100000, guid: 51d18e45dd672534592157130d7c0060, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-  - colour: White
-    materials:
-    - {fileID: 2100000, guid: 6af6a085e7830ed4cb68fff51c457fed, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-  - colour: Yellow
-    materials:
-    - {fileID: 2100000, guid: 5ffac33079db52e4da543bcde9d60eb0, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-  length: 50.518864
---- !u!1 &2775169078273371942
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6279778065561610328}
-  - component: {fileID: 4549926970234570340}
-  - component: {fileID: 7712816870619352837}
+  - component: {fileID: 5588772018627596250}
+  - component: {fileID: 7538782302354186671}
+  - component: {fileID: 7322393817938838295}
   m_Layer: 0
   m_Name: ScifiCapitalMissileSiloMKI
   m_TagString: Untagged
@@ -142,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6279778065561610328
+--- !u!4 &5588772018627596250
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2775169078273371942}
+  m_GameObject: {fileID: 1924388340471773658}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000043533177, y: -0.000000057312537, z: -0.13052624, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 4.04, z: 10.204}
@@ -157,21 +33,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4652830697153855657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4549926970234570340
+--- !u!33 &7538782302354186671
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2775169078273371942}
+  m_GameObject: {fileID: 1924388340471773658}
   m_Mesh: {fileID: 4300000, guid: 04e3026e9a473aa45902931949f00f89, type: 2}
---- !u!23 &7712816870619352837
+--- !u!23 &7322393817938838295
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2775169078273371942}
+  m_GameObject: {fileID: 1924388340471773658}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
@@ -214,7 +90,7 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &3877367587919744797
+--- !u!1 &2536526437035564358
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,46 +98,125 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7899755051739432386}
-  - component: {fileID: 3129853721553777207}
-  - component: {fileID: 7633584975443820861}
+  - component: {fileID: 4652830697153855657}
+  - component: {fileID: 4036778130354204793}
   m_Layer: 0
-  m_Name: ScifiCapitalMissileSiloMKICapLeft
+  m_Name: missile_frigate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7899755051739432386
+--- !u!4 &4652830697153855657
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3877367587919744797}
+  m_GameObject: {fileID: 2536526437035564358}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3425697133025955909}
+  - {fileID: 2417239038771262165}
+  - {fileID: 262808241877752290}
+  - {fileID: 665978655718963039}
+  - {fileID: 5588772018627596250}
+  - {fileID: 8519176108921429539}
+  - {fileID: 5021832425267843100}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4036778130354204793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536526437035564358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6a69eeb919af54b83129c89cd9148b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Saga.Game::Saga.Game.ShipModel
+  renderers:
+  - {fileID: 2613821408334086221}
+  - {fileID: 8502947710476247467}
+  - {fileID: 1435068668769443023}
+  - {fileID: 7600697420132564087}
+  - {fileID: 7322393817938838295}
+  - {fileID: 8636400259082321945}
+  - {fileID: 5758508023822241112}
+  paints:
+  - colour: Blue
+    materials:
+    - {fileID: 2100000, guid: 8416623afd2f9ec4599ac7870a4d313e, type: 2}
+    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
+    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
+    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
+    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
+    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
+    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
+  - colour: Red
+    materials:
+    - {fileID: 2100000, guid: 51d18e45dd672534592157130d7c0060, type: 2}
+    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
+    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
+    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
+    - {fileID: 2100000, guid: 85ef1f6d173203d4597d5f64dd50bbd5, type: 2}
+    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
+    - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
+  length: 50.518864
+--- !u!1 &2762963022333875847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8519176108921429539}
+  - component: {fileID: 3557325995915306407}
+  - component: {fileID: 8636400259082321945}
+  m_Layer: 0
+  m_Name: ScifiCapitalMissileSiloMKICapRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8519176108921429539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2762963022333875847}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000043533177, y: -0.000000057312537, z: -0.13052624, w: 0.9914449}
-  m_LocalPosition: {x: -1.3621032, y: 5.5727663, z: 10.204001}
+  m_LocalPosition: {x: 1.9413629, y: 4.687605, z: 10.204001}
   m_LocalScale: {x: 60, y: 60, z: 60}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4652830697153855657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3129853721553777207
+--- !u!33 &3557325995915306407
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3877367587919744797}
-  m_Mesh: {fileID: 4300000, guid: 6c27aaaf92629d143af3c12ef3936c39, type: 2}
---- !u!23 &7633584975443820861
+  m_GameObject: {fileID: 2762963022333875847}
+  m_Mesh: {fileID: 4300000, guid: 5e60b0b8273aa5849ab406b34fcd0a58, type: 2}
+--- !u!23 &8636400259082321945
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3877367587919744797}
+  m_GameObject: {fileID: 2762963022333875847}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
@@ -330,9 +285,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5036376781150227713}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000043533177, y: -0.000000057312537, z: -0.13052624, w: 0.9914449}
-  m_LocalPosition: {x: 1.9413629, y: 4.687605, z: 10.204001}
-  m_LocalScale: {x: 60, y: 60, z: 60}
+  m_LocalRotation: {x: 0.00000043533177, y: 0.000000057312494, z: 0.13052616, w: 0.9914449}
+  m_LocalPosition: {x: 1.3574672, y: 6.1635237, z: 0.000000990583}
+  m_LocalScale: {x: 60.000004, y: 60.000004, z: 60}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4652830697153855657}
@@ -352,96 +307,6 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5036376781150227713}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &5644145989550799368
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5459505215026273296}
-  - component: {fileID: 5869450209722009410}
-  - component: {fileID: 5910336788434933170}
-  m_Layer: 0
-  m_Name: ScifiCapitalMissileSiloMKICapRight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5459505215026273296
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5644145989550799368}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.00000043533177, y: 0.000000057312494, z: 0.13052616, w: 0.9914449}
-  m_LocalPosition: {x: 1.3574672, y: 6.1635237, z: 0.000000990583}
-  m_LocalScale: {x: 60.000004, y: 60.000004, z: 60}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4652830697153855657}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5869450209722009410
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5644145989550799368}
-  m_Mesh: {fileID: 4300000, guid: 5e60b0b8273aa5849ab406b34fcd0a58, type: 2}
---- !u!23 &5910336788434933170
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5644145989550799368}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
@@ -730,7 +595,97 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 669c4c74ad2e8f74ba2a7f288b0364e0, type: 2}
+  - {fileID: 2100000, guid: 8416623afd2f9ec4599ac7870a4d313e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7847121765117142477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5021832425267843100}
+  - component: {fileID: 4432523658905781240}
+  - component: {fileID: 5758508023822241112}
+  m_Layer: 0
+  m_Name: ScifiCapitalMissileSiloMKICapLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5021832425267843100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847121765117142477}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000043533177, y: -0.000000057312537, z: -0.13052624, w: 0.9914449}
+  m_LocalPosition: {x: -1.3621032, y: 5.5727663, z: 10.204001}
+  m_LocalScale: {x: 60, y: 60, z: 60}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4652830697153855657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4432523658905781240
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847121765117142477}
+  m_Mesh: {fileID: 4300000, guid: 6c27aaaf92629d143af3c12ef3936c39, type: 2}
+--- !u!23 &5758508023822241112
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847121765117142477}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 68d4f1145384e5c458cf5c2ea3d7e476, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

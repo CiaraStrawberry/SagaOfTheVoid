@@ -15,7 +15,8 @@
     "super_capital": 1
    },
    "visual": "shell",
-   "projectile_speed": 440
+   "projectile_speed": 1500,
+   "launch_delay": 0.1
   },
   {
    "id": "capital_main_gun",
@@ -31,7 +32,8 @@
     "super_capital": 1
    },
    "visual": "shell",
-   "projectile_speed": 440
+   "projectile_speed": 1500,
+   "launch_delay": 0.1
   },
   {
    "id": "missile",
@@ -49,7 +51,8 @@
    "always_hits_non_light": true,
    "never_targets_light": true,
    "visual": "missile",
-   "projectile_speed": 440
+   "projectile_speed": 440,
+   "launch_delay": 0.5
   },
   {
    "id": "minigun",
@@ -65,7 +68,8 @@
     "super_capital": 1
    },
    "visual": "tracer",
-   "projectile_speed": 440
+   "projectile_speed": 440,
+   "launch_delay": 0.5
   },
   {
    "id": "fighter_gun",
@@ -81,7 +85,8 @@
     "super_capital": 1
    },
    "visual": "tracer",
-   "projectile_speed": 440
+   "projectile_speed": 440,
+   "launch_delay": 0.5
   },
   {
    "id": "bomber_gun",
@@ -98,7 +103,8 @@
    },
    "never_targets_light": true,
    "visual": "bomb",
-   "projectile_speed": 440
+   "projectile_speed": 440,
+   "launch_delay": 0.5
   },
   {
    "id": "dual_role",
@@ -114,7 +120,8 @@
     "super_capital": 1
    },
    "visual": "tracer",
-   "projectile_speed": 440
+   "projectile_speed": 440,
+   "launch_delay": 0.5
   },
   {
    "id": "laser",
@@ -131,7 +138,8 @@
    },
    "visual": "beam",
    "travel_time": 3.0,
-   "projectile_speed": 440
+   "projectile_speed": 440,
+   "launch_delay": 0.5
   },
   {
    "id": "shield_repair",
@@ -148,7 +156,8 @@
     "super_capital": 1
    },
    "visual": "repair_beam",
-   "projectile_speed": 440
+   "projectile_speed": 440,
+   "launch_delay": 0.5
   },
   {
    "id": "shield_field",
@@ -157,7 +166,8 @@
    "aura_radius": 1500,
    "shield_regen_pct": 1.0,
    "visual": "none",
-   "projectile_speed": 440
+   "projectile_speed": 440,
+   "launch_delay": 0.5
   }
  ]
 }

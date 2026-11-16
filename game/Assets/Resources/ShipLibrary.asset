@@ -54,11 +54,11 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 9443794253123df468dca03c5dc112f0, type: 3}
   maps:
   - id: asteroid_field
-    prefab: {fileID: 5393080188900160539, guid: 59cfc18c1c925b04dbea707ce3a34ad6, type: 3}
+    prefab: {fileID: 6344107126215410629, guid: 59cfc18c1c925b04dbea707ce3a34ad6, type: 3}
   - id: space_station
-    prefab: {fileID: 8756652293520339696, guid: d970ca8a1c672a840a8131bef8703af9, type: 3}
+    prefab: {fileID: 3163385856011083985, guid: d970ca8a1c672a840a8131bef8703af9, type: 3}
   - id: ship_graveyard
-    prefab: {fileID: 4178140419808272839, guid: 440e8156b23fce54da6215619ce93129, type: 3}
+    prefab: {fileID: 518732970021965745, guid: 440e8156b23fce54da6215619ce93129, type: 3}
   skies:
   - id: Skybox1
     texture: {fileID: 2800000, guid: 42b4708a1f1797d4e94a865ec1e47c3f, type: 3}

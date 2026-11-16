@@ -45,7 +45,7 @@ namespace Saga.Game
 
         // camera rig: a point on the play plane, a turn, and a distance
         Vector3 pivot; float yaw, distance = 7000f;
-        const float MinDist = 1200f, MaxDist = 16000f;
+        const float MinDist = 1200f, MaxDist = 24000f;
 
         // mouse selection
         Vector2 dragStart; bool dragging; bool leftDown;
@@ -106,7 +106,7 @@ namespace Saga.Game
             else
             {
                 World.PlayerTeams.Add(PlayerTeam);
-                Fleets.Spawn(World, config.Quick ? Fleets.Quick : Fleets.Full, config.Quick ? 2800f : 4200f);
+                Fleets.Spawn(World, config.Quick ? Fleets.Quick : Fleets.Full, config.Quick ? Fleets.QuickGap : Fleets.FullGap);
                 World.TeamOf(1).Difficulty = config.Difficulty;
             }
 

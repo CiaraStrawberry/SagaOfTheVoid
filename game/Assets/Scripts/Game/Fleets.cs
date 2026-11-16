@@ -25,6 +25,9 @@ namespace Saga.Game
             ("flak_frigate", 200, -1200), ("support_frigate", -900, -800), ("fighter", 500, 1600), ("bomber", 400, -1800),
         };
 
+        // Distance from the middle to each fleet's centre (owner asked for bigger maps: was 4,200 and 2,800).
+        public const float FullGap = 6500f, QuickGap = 4500f;
+
         // Team 0 starts on the left facing right, team 1 on the right facing left, `gap` from the middle.
         public static void Spawn(World w, (string id, float x, float y)[] fleet, float gap)
         {

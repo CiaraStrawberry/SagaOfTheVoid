@@ -40,7 +40,7 @@ namespace Saga.Sim
         public double TimeLimit;
         public int PlayerTeam, EnemyTeam;
         public Ship Target;               // kill_target: the enemy flagship
-        public double EnemyHoldUntil = 30; // enemy waits this long before attacking (not in Survive)
+        public double EnemyHoldUntil = 15; // enemy waits this long before attacking (not in Survive); 2017 used 30 s
         public HashSet<string> Allowed = new HashSet<string>();
         public string Outcome;            // null while running; then "victory" or a reason for defeat
 
@@ -87,12 +87,12 @@ namespace Saga.Sim
 
             var starter = MissionRules.StarterFleet(def.ships_allowed);
             for (int i = 0; i < starter.Length; i++)
-                Spawn(starter[i], playerTeam, new Vec2(-4200 + (i % 3) * -500, (i / 3 - 0.5) * 900 + (i % 3) * 300 - 300), -Math.PI / 2);
+                Spawn(starter[i], playerTeam, new Vec2(-6500 + (i % 3) * -500, (i / 3 - 0.5) * 900 + (i % 3) * 300 - 300), -Math.PI / 2);
 
             // Enemy fleet in a column on the right (2017 spawned it one ship at a time down a line).
             for (int i = 0; i < def.enemy_fleet.Count; i++)
             {
-                var s = Spawn(def.enemy_fleet[i], enemyTeam, new Vec2(4200 + (i % 2) * 600, (i - def.enemy_fleet.Count / 2.0) * 700), Math.PI / 2);
+                var s = Spawn(def.enemy_fleet[i], enemyTeam, new Vec2(6500 + (i % 2) * 600, (i - def.enemy_fleet.Count / 2.0) * 700), Math.PI / 2);
                 if (def.enemy_fleet[i] == "super_capital" && m.Objective == Objective.KillTarget) m.Target = s;
             }
 

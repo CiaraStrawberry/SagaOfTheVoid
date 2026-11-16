@@ -40,9 +40,9 @@ public static class MapBuilder
     // Afterwards the whole map is lowered so its highest point stays under the battle plane.
     static readonly Dictionary<string, (float spread, float piece, float north, float shade)> Fit = new Dictionary<string, (float, float, float, float)>
     {
-        { "asteroid_field", (0.3f, 3.5f, 0f, 0.5f) },     // rocks closer in and bigger
-        { "space_station", (0.5f, 1f, 8500f, 0.3f) },     // half size, under the battle, darker (white hull)
-        { "ship_graveyard", (0.3f, 1.2f, 0f, 0.6f) },     // derelict and debris field at the screen's sides
+        { "asteroid_field", (0.45f, 2.4f, 0f, 0.5f) },     // rocks closer in and bigger
+        { "space_station", (0.6f, 1f, 8000f, 0.3f) },     // half size, under the battle, darker (white hull)
+        { "ship_graveyard", (0.45f, 1.0f, 0f, 0.6f) },     // derelict and debris field at the screen's sides
     };
     const float TopOfScenery = -600f;
     // shade: scenery brightness, below 1 so ships stand out

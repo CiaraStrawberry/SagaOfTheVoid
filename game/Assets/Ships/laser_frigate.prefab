@@ -46,45 +46,20 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b6a69eeb919af54b83129c89cd9148b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Saga.Game.ShipModel
+  m_EditorClassIdentifier: Saga.Game::Saga.Game.ShipModel
   renderers:
   - {fileID: 8678227512854855268}
   - {fileID: 8511193624950295883}
   - {fileID: 300800994262334998}
   paints:
-  - colour: Black
-    materials:
-    - {fileID: 2100000, guid: 12cb004ae5b69c84fb6e70931980bc0e, type: 2}
-    - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
-    - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
   - colour: Blue
     materials:
     - {fileID: 2100000, guid: 976c661704e05dd49943a9153547fd01, type: 2}
     - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
     - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
-  - colour: Green
-    materials:
-    - {fileID: 2100000, guid: 4cf9478957c9b21499bb9d7293b7e955, type: 2}
-    - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
-    - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
-  - colour: Grey
-    materials:
-    - {fileID: 2100000, guid: 0a0746ea8baaa794eae9b7c059597494, type: 2}
-    - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
-    - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
   - colour: Red
     materials:
     - {fileID: 2100000, guid: dc9110a79f7323b40a1360d962294b42, type: 2}
-    - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
-    - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
-  - colour: White
-    materials:
-    - {fileID: 2100000, guid: 3ee40a4fc1fdb374f9d6e8746d2cdd12, type: 2}
-    - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
-    - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
-  - colour: Yellow
-    materials:
-    - {fileID: 2100000, guid: 742568dc2751d0847b860e8606f0f00a, type: 2}
     - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
     - {fileID: 2100000, guid: af41f2d67f6fba745888b751fdfb1ba4, type: 2}
   length: 78.551056
@@ -154,7 +129,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0a0746ea8baaa794eae9b7c059597494, type: 2}
+  - {fileID: 2100000, guid: 976c661704e05dd49943a9153547fd01, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -38,6 +38,11 @@ namespace Saga.Sim
         public readonly Queue<Vec2> Waypoints = new Queue<Vec2>(); // queued move points (2017: StoredOrders)
         public bool Holds = true;                            // HoldAtRange applies; off for plain move orders
         public int LastHitByTeam = -1;                       // who gets the kill bounty
+        public Ship LastHitBy;                               // who gets the kill on the tally
+        public long DamageDealt;                             // running tally: damage landed on enemies (shields and armour)
+        public int Kills;
+        public long ShieldsRestored;                         // repair ships
+        public Vec2 Loiter; public bool LoiterSet;           // where an idle fighter squadron circles
         public double Arrived = -1;                          // world time a bought ship arrived (-1: started on the field)
         public readonly List<Gun> Guns = new List<Gun>();
 
@@ -54,6 +59,7 @@ namespace Saga.Sim
     {
         public Ship From, To;
         public int ShotId;
+        public int GunIndex;    // which of the ship's guns fired (bursts keep their direction)
         public string Visual;
         public bool Hit;
         public bool AtShield;   // target's shields were up when fired
@@ -96,6 +102,8 @@ namespace Saga.Sim
         const double ArriveDistance = 10;
         const double TurnScale = 2.0;                    // old Look() ran twice per frame (Update + synced update)
         const double MaxTurnLight = 4.0;
+        // Fighters and corvettes turn on a circle at least this wide (2017 craft looped in ~90 units, which looked jittery).
+        public const double SmallTurnRadius = 380;
 
         public readonly Rulebook Rules;
         public readonly List<Ship> Ships = new List<Ship>();
@@ -229,6 +237,7 @@ namespace Saga.Sim
             foreach (var s in Ships.Where(s => !s.Dead && s.Armor < 0).ToList())
             {
                 s.Dead = true;
+                if (s.LastHitBy != null && s.LastHitBy.Team != s.Team) s.LastHitBy.Kills++;
                 PayBounty(s);
                 Deaths.Add(s);
             }
@@ -261,7 +270,8 @@ namespace Saga.Sim
 
             // AIController states, simplified: attacking (> 4 ships), retreating home (<= 3), and a
             // retreat turns back into an attack when an enemy gets within 1,000 of the lead ship.
-            if (mine.Count > 4) t.Retreating = false;
+            if (Mission != null && team == Mission.EnemyTeam) t.Retreating = false;
+            else if (mine.Count > 4) t.Retreating = false;
             else if (mine.Count <= 3 && nearestDist >= 1000) t.Retreating = true;
             if (t.Retreating && nearestDist < 1000) t.Retreating = false;
 
@@ -282,7 +292,15 @@ namespace Saga.Sim
         void Move(Ship s, double dt)
         {
             if (s.TurnRate < s.Def.turn_rate) s.TurnRate = Math.Min(s.Def.turn_rate, s.TurnRate + 0.003 * UpdateRate * dt);
-            if (!s.HasMoveOrder) return;
+            bool smallIdle = !s.HasMoveOrder && Hulls.IsSmall(s.Hull);
+            if (!s.HasMoveOrder && !smallIdle) return;
+            if (smallIdle)
+            {
+                // Fighters never sit still: they chase what they're shooting at, or circle where they were left.
+                if (!s.LoiterSet) { s.Loiter = s.Pos; s.LoiterSet = true; }
+                s.MoveTarget = s.Target != null && !s.Target.Dead ? s.Target.Pos : s.Loiter;
+            }
+            else s.LoiterSet = false;
 
             double maxSpeed = s.Def.speed;
             double dist = Vec2.Distance(s.Pos, s.MoveTarget);
@@ -318,6 +336,13 @@ namespace Saga.Sim
         {
             double want = Vec2.HeadingOf(target - s.Pos);
             double diff = Math.IEEERemainder(want - s.Heading, 2 * Math.PI);
+            if (Hulls.IsSmall(s.Hull))
+            {
+                // Constant turn rate giving a wide circle; hits from other fighters (TurnRate penalty) slow it further.
+                double w = Math.Max(0.15, s.Def.speed / SmallTurnRadius) * Math.Max(0.2, s.TurnRate / Math.Max(0.01, s.Def.turn_rate));
+                s.Heading += Math.Max(-w * dt, Math.Min(w * dt, diff));
+                return;
+            }
             double rate = Math.Min(MaxTurnLight, Math.Max(0.05, s.TurnRate) * TurnScale);
             double frac = Math.Min(1.0, rate * dt);
             s.Heading += diff * frac;
@@ -392,11 +417,11 @@ namespace Saga.Sim
         {
             var w = g.Weapon;
             var t = s.Target;
-            double travel = w.travel_time > 0 ? w.travel_time : dist / w.projectile_speed + 0.5;
+            double travel = w.travel_time > 0 ? w.travel_time : dist / w.projectile_speed + w.launch_delay;
             if (w.targets_friends)
             {
                 int rid = nextShotId++;
-                Shots.Add(new ShotEvent { ShotId = rid, From = s, To = t, Visual = w.visual, Hit = true, TravelTime = 0.6 });
+                Shots.Add(new ShotEvent { ShotId = rid, GunIndex = s.Guns.IndexOf(g), From = s, To = t, Visual = w.visual, Hit = true, TravelTime = 0.6 });
                 pending.Add(new PendingHit { ShotId = rid, Target = t, Source = s, Damage = w.shield_restore, Repair = true, TimeLeft = 0.6, Visual = w.visual });
                 return;
             }
@@ -408,7 +433,7 @@ namespace Saga.Sim
             if (w.damage_vs_capital_hull_owner > 0 && s.Hull == Hull.Capital) damage = w.damage_vs_capital_hull_owner;
 
             int id = nextShotId++;
-            Shots.Add(new ShotEvent { ShotId = id, From = s, To = t, Visual = w.visual, Hit = hit, AtShield = t.Shield > 0, TravelTime = travel });
+            Shots.Add(new ShotEvent { ShotId = id, GunIndex = s.Guns.IndexOf(g), From = s, To = t, Visual = w.visual, Hit = hit, AtShield = t.Shield > 0, TravelTime = travel });
             if (hit) pending.Add(new PendingHit { ShotId = id, Target = t, Source = s, Damage = damage, TimeLeft = travel, Visual = w.visual });
         }
 
@@ -424,13 +449,20 @@ namespace Saga.Sim
                 if (p.Repair)
                 {
                     if (p.Target.Hull != Hull.Light)
-                        p.Target.Shield = Math.Min(p.Target.StartShield, Math.Max(0, p.Target.Shield) + p.Damage);
+                    {
+                        int before = Math.Max(0, p.Target.Shield);
+                        p.Target.Shield = Math.Min(p.Target.StartShield, before + p.Damage);
+                        p.Source.ShieldsRestored += p.Target.Shield - before;
+                    }
                     Impacts.Add(new ImpactEvent { ShotId = p.ShotId, Target = p.Target, Source = p.Source, Repair = true, Visual = p.Visual });
                     continue;
                 }
                 bool onShield = p.Target.Shield > 0;
                 p.Target.LastHitByTeam = p.Source.Team;
+                p.Target.LastHitBy = p.Source;
+                long hpBefore = Math.Max(0, p.Target.Shield) + Math.Max(0, p.Target.Armor);
                 TakeDamage(p.Target, p.Damage, p.Source.Hull);
+                p.Source.DamageDealt += hpBefore - (Math.Max(0, p.Target.Shield) + Math.Max(0, p.Target.Armor));
                 Impacts.Add(new ImpactEvent { ShotId = p.ShotId, Target = p.Target, Source = p.Source, OnShield = onShield, Visual = p.Visual });
             }
         }

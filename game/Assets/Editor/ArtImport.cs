@@ -29,5 +29,8 @@ public class ArtImport : AssetPostprocessor
         {
             if (ti.maxTextureSize > 2048) ti.maxTextureSize = 2048;
         }
+        // Compression and per-platform size caps for everything the game ships.
+        if (assetPath.StartsWith("Assets/Imported/") || assetPath.StartsWith("Assets/Art/"))
+            TextureSettings.Configure(ti, assetPath);
     }
 }

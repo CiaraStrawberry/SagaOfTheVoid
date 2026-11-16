@@ -72,6 +72,7 @@ namespace Saga.Sim
         public bool module;
         public string visual;
         public float projectile_speed = 440f;
+        public float launch_delay = 0.5f;   // seconds added to the flight time (2017: 0.5)
         public float travel_time;
         public float aura_radius;        // shield_field: reach of the field
         public float shield_regen_pct;   // shield_field: % of max shield restored per second

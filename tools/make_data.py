@@ -36,6 +36,7 @@ GUN_IDS = {"Cannon": "cannon", "Missile": "missile", "MiniGun": "minigun", "Shie
 BUILD_TIME = {"scout": 5, "fighter": 7, "bomber": 7, "attack_craft": 8, "missile_frigate": 6, "flak_frigate": 6,
               "cannon_frigate": 7, "laser_frigate": 6, "support_frigate": 6, "repair_frigate": 8,
               "destroyer": 15, "capital": 20, "super_capital": 0}
+SPEED_TUNE = {"light": 1.5, "corvette": 1.5, "capital": 0.7, "super_capital": 0.7}
 HULLS = ["light", "corvette", "frigate", "cruiser", "destroyer", "capital", "super_capital"]
 
 
@@ -49,8 +50,9 @@ def hits(light, corvette, frigate, cruiser, destroyer, capital):
 
 
 weapons = {
-    "cannon":           {"damage": 800, "damage_vs_capital_hull_owner": 275, "prefers": "capital", "hit": hits(.02, .05, .8, .8, .8, 1), "visual": "shell"},
-    "capital_main_gun": {"damage": 2000, "prefers": "frigate", "hit": hits(.02, .05, .8, .8, .8, 1), "visual": "shell"},
+    # Cannon shells: 1,500/s with a 0.1 s launch delay (2017: 440/s + 0.5 s; owner found them too slow, 2026-11-16).
+    "cannon":           {"damage": 800, "damage_vs_capital_hull_owner": 275, "prefers": "capital", "hit": hits(.02, .05, .8, .8, .8, 1), "visual": "shell", "projectile_speed": 1500, "launch_delay": 0.1},
+    "capital_main_gun": {"damage": 2000, "prefers": "frigate", "hit": hits(.02, .05, .8, .8, .8, 1), "visual": "shell", "projectile_speed": 1500, "launch_delay": 0.1},
     "missile":          {"damage": 300, "prefers": "frigate", "hit": hits(.05, .5, 1, 1, 1, 1), "always_hits_non_light": True, "never_targets_light": True, "visual": "missile"},
     "minigun":          {"damage": 20, "prefers": "light", "hit": hits(.1, .1, .8, .8, .8, 1), "visual": "tracer"},
     "fighter_gun":      {"damage": 20, "prefers": "light", "hit": hits(.1, .5, 1, 1, 1, 1), "visual": "tracer"},
@@ -64,6 +66,7 @@ weapons = {
 }
 for w in weapons.values():
     w.setdefault("projectile_speed", 440)  # old _Weapon.hittime: distance / 440 + 0.5 s
+    w.setdefault("launch_delay", 0.5)
 
 src = json.load(open(os.path.join(ROOT, "recovery", "catalog", "ships.json")))
 man = json.load(open(os.path.join(ROOT, "tools", "bake", "out", "manifest.json")))
@@ -86,7 +89,8 @@ for old, (sid, name, sprite) in BUYABLE.items():
         "id": sid, "name": name, "sprite": sprite, "hull": hull,
         "cost": s["cost"], "buyable": sid != "super_capital", "build_time": BUILD_TIME[sid],
         "armor": s["armor"], "shield": s["armor"],
-        "speed": round(s["max_speed"] * 30, 2), "turn_rate": s["max_turn"],
+        # Speed: 2017 value x30, then tuned 2026-11-16: fighters/corvettes x1.5, capital-class x0.7 (owner request).
+        "speed": round(s["max_speed"] * 30 * SPEED_TUNE.get(hull, 1.0), 2), "turn_rate": s["max_turn"],
         "sprite_world_size": man[sprite]["world_size"],
         "squadron": hull == "light",
         "turrets": turrets,

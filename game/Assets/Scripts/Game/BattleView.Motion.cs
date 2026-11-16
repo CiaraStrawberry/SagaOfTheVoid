@@ -177,7 +177,14 @@ namespace Saga.Game
             public Vector3 Pos, Vel, Facing;
             public float Phase, Dir, RadiusK, Bank;
             public bool Placed;
+            public LineRenderer Trail;
+            public readonly Vector3[] Hist = new Vector3[TrailPoints];
+            public int HistCount;
         }
+
+        // Fading engine trail behind each craft (2017 fighters had trails). Drawn from recent positions so it
+        // also works in the frame-by-frame recorder, where Unity's own trail timing doesn't run.
+        const int TrailPoints = 16;
 
         void SetUpCrafts(ShipView v)
         {
@@ -194,6 +201,14 @@ namespace Saga.Game
                     RadiusK = 0.8f + (float)rng.NextDouble() * 0.5f,
                 };
                 r.transform.SetParent(v.Go.transform, true); // free of the model's turning and banking
+                var tr = new GameObject("trail").AddComponent<LineRenderer>();
+                tr.transform.SetParent(v.Go.transform, false);
+                tr.useWorldSpace = true; tr.positionCount = 0; tr.numCapVertices = 2;
+                tr.sharedMaterial = addMat;
+                tr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                tr.widthCurve = AnimationCurve.Linear(0, 0, 1, 1);
+                tr.widthMultiplier = 14f;
+                c.Trail = tr;
                 return c;
             }).ToArray();
         }
@@ -218,20 +233,20 @@ namespace Saga.Game
                 {
                     // Each craft circles the big ship at its own radius, height and direction, aiming a little
                     // ahead on the circle so it chases smoothly.
-                    float r = (target.Length * 0.6f + 160f) * c.RadiusK;
-                    float th = c.Phase + c.Dir * (maxSpeed * 0.7f / r) * v.Pulse;
+                    float r = (target.Length * 0.75f + 280f) * c.RadiusK;
+                    float th = c.Phase + c.Dir * (maxSpeed * 0.75f / r) * v.Pulse;
                     float ahead = th + c.Dir * 0.4f;
-                    goal = Centre(target) + new Vector3(Mathf.Cos(ahead) * r, 50f + Mathf.Sin(th * 2f + c.Phase) * 90f, Mathf.Sin(ahead) * r);
+                    goal = Centre(target) + new Vector3(Mathf.Cos(ahead) * r, 70f + Mathf.Sin(th * 2f + c.Phase) * 90f, Mathf.Sin(ahead) * r);
                     lead = Vector3.zero;
                 }
                 else if (dogfight)
                 {
                     // Weaving around the squadron's position: crossing paths, climbing and diving.
-                    const float R = 420f;
+                    const float R = 450f;
                     goal = centre + new Vector3(
-                        Mathf.Sin(v.Pulse * 0.9f * c.RadiusK + c.Phase) * R,
-                        Mathf.Sin(v.Pulse * 0.7f + c.Phase) * 70f,
-                        Mathf.Cos(v.Pulse * 1.1f / c.RadiusK + c.Phase * 1.3f) * R);
+                        Mathf.Sin(v.Pulse * 0.5f * c.RadiusK + c.Phase) * R,
+                        Mathf.Sin(v.Pulse * 0.45f + c.Phase) * 110f,
+                        Mathf.Cos(v.Pulse * 0.6f / c.RadiusK + c.Phase * 1.3f) * R);
                     lead = squadVel;
                 }
                 else
@@ -247,21 +262,40 @@ namespace Saga.Game
                 }
                 else
                 {
-                    var desired = (goal - c.Pos) * 2.2f + lead;
+                    var desired = (goal - c.Pos) * (orbit || dogfight ? 1.2f : 2.2f) + lead;
                     if (desired.magnitude > maxSpeed) desired = desired.normalized * maxSpeed;
-                    c.Vel = Vector3.MoveTowards(c.Vel, desired, 1800f * dt);
+                    c.Vel = Vector3.MoveTowards(c.Vel, desired, (orbit || dogfight ? 700f : 1400f) * dt);
                     c.Pos += c.Vel * dt;
                     if (c.Vel.sqrMagnitude > 400f)
                     {
                         var before = c.Facing;
-                        c.Facing = Vector3.Slerp(c.Facing, c.Vel.normalized, Mathf.Clamp01(8f * dt));
+                        c.Facing = Vector3.Slerp(c.Facing, c.Vel.normalized, Mathf.Clamp01(5f * dt));
                         float turn = Vector3.SignedAngle(before, c.Facing, Vector3.up) / Mathf.Max(dt, 1e-4f);
                         c.Bank = Mathf.Lerp(c.Bank, Mathf.Clamp(-turn * 0.5f, -65f, 65f), Mathf.Clamp01(6f * dt));
                     }
                 }
                 c.T.position = c.Pos;
                 c.T.rotation = Quaternion.LookRotation(c.Facing) * Quaternion.Euler(0, 0, c.Bank) * c.BaseRot;
+                UpdateTrail(v, c, dt);
             }
+        }
+
+        void UpdateTrail(ShipView v, Craft c, float dt)
+        {
+            bool show = c.R.enabled && v.Warp == null;
+            if (!show) { c.HistCount = 0; c.Trail.positionCount = 0; return; }
+            if (dt > 0f)
+            {
+                for (int k = Mathf.Min(c.HistCount, TrailPoints - 1); k > 0; k--) c.Hist[k] = c.Hist[k - 1];
+                c.Hist[0] = c.Pos - c.Facing * 12f;
+                c.HistCount = Mathf.Min(c.HistCount + 1, TrailPoints);
+            }
+            int n = c.HistCount;
+            c.Trail.positionCount = n;
+            for (int k = 0; k < n; k++) c.Trail.SetPosition(k, c.Hist[n - 1 - k]); // oldest first
+            var tint = Color.Lerp(TeamTint[v.Ship.Team % TeamTint.Length], Color.white, 0.55f);
+            c.Trail.startColor = new Color(0, 0, 0, 0);
+            c.Trail.endColor = Hdr(new Color(tint.r, tint.g, tint.b, 0.55f), 1.3f);
         }
 
         // A live craft of a squadron, at random (for muzzles and aim points).

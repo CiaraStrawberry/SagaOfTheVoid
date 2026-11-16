@@ -28,7 +28,7 @@ public static class BattlePreview
         var lib = ShipLibrary.Load();
         if (lib == null) throw new Exception("Assets/Resources/ShipLibrary.asset missing; run ShipModelBuilder.BuildShips");
         var world = new World(lib.Rules(), seed: 2017);
-        Fleets.Spawn(world, quick ? Fleets.Quick : Fleets.Full, quick ? 2800f : 4200f);
+        Fleets.Spawn(world, quick ? Fleets.Quick : Fleets.Full, quick ? Fleets.QuickGap : Fleets.FullGap);
         double maxSeconds = quick ? 75 : 300;
 
         var cam = new GameObject("Camera").AddComponent<Camera>();

@@ -54,7 +54,13 @@ namespace Saga.Game
             var root = canvasGo.transform;
 
             status = MakeText(root, "status", 26, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(28, -22), new Vector2(900, 40));
-            MakeText(root, "hint", 20, TextAnchor.UpperRight, new Vector2(1, 1), new Vector2(-28, -24), new Vector2(600, 40)).text =
+            // Back to the menu mid-battle: the first click asks, a second within 3 s leaves.
+            menuLabel = UiKit.Button(root, "Menu", new Vector2(1, 1), new Vector2(-24, -16), new Vector2(150, 38), () =>
+            {
+                if (Time.unscaledTime < menuConfirmUntil) SkirmishController.BackToMenu();
+                else { menuConfirmUntil = Time.unscaledTime + 3f; menuLabel.text = "<color=#ffb0a8>Leave battle?</color>"; }
+            }, 20);
+            MakeText(root, "hint", 20, TextAnchor.UpperRight, new Vector2(1, 1), new Vector2(-190, -24), new Vector2(600, 40)).text =
                 "<color=#8d98ab>H  controls     P  pause     + / -  speed</color>";
 
             objective = MakeText(root, "objective", 22, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(28, -60), new Vector2(1100, 36));
@@ -156,6 +162,9 @@ namespace Saga.Game
             helpUntil = 15f;
         }
 
+        Text menuLabel;
+        float menuConfirmUntil = -1f;
+
         public void ToggleHelp() => helpUntil = helpPanel.gameObject.activeSelf ? 0f : float.MaxValue;
 
         public bool PointerOverPanel()
@@ -203,6 +212,7 @@ namespace Saga.Game
             }
 
             helpPanel.gameObject.SetActive(Time.unscaledTime < helpUntil);
+            if (menuConfirmUntil > 0 && Time.unscaledTime >= menuConfirmUntil) { menuConfirmUntil = -1f; menuLabel.text = "Menu"; }
             RefreshSelection();
             RefreshBuild();
             RefreshReserve();
@@ -216,7 +226,7 @@ namespace Saga.Game
             bool single = sel.Count == 1;
             detail.gameObject.SetActive(single);
             int rows = single ? 1 : Mathf.Min(3, (sel.Count + 7) / 8);
-            selectionPanel.sizeDelta = new Vector2(single ? 620 : 12 + Mathf.Min(8, sel.Count) * 92, single ? 112 : 12 + rows * 60);
+            selectionPanel.sizeDelta = new Vector2(single ? 620 : 12 + Mathf.Min(8, sel.Count) * 92, single ? 140 : 12 + rows * 60);
             for (int i = 0; i < cells.Count; i++)
             {
                 var (cell, icon, hp, sh) = cells[i];
@@ -236,10 +246,12 @@ namespace Saga.Game
                     "<b>{0}</b>   <color=#8d98ab>{1}</color>\n" +
                     "Armour  {2:N0} / {3:N0}     Shield  {4:N0} / {5:N0}\n" +
                     "Speed  {6:0}     <color=#8d98ab>{7}</color>\n" +
-                    "{8}",
+                    "{8}\n" +
+                    "<color=#e7d38c>Damage dealt  {9:N0}     Kills  {10}</color>{11}",
                     s.Def.name, Pretty(s.Def.hull), Mathf.Max(0, s.Armor), s.StartArmor, Mathf.Max(0, s.Shield), s.StartShield,
                     s.Def.speed, s.InShieldField ? "in shield field" : "",
-                    string.Join(",  ", guns));
+                    string.Join(",  ", guns), s.DamageDealt, s.Kills,
+                    s.ShieldsRestored > 0 ? string.Format("     <color=#a8ffc0>Shields restored  {0:N0}</color>", s.ShieldsRestored) : "");
             }
         }
 

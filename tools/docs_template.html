@@ -114,6 +114,9 @@ button.on { border-color: var(--signal); color: var(--signal); }
   <h1>How to run things</h1>
   <h3>Play the skirmish</h3>
   <p>Editor: open the <code>game</code> folder in Unity Hub with Unity 6000.3.28f1, open <code>Assets/Scenes/Skirmish.unity</code>, press Play. Test build: <code>builds/Skirmish/SagaRemake.exe</code>.</p>
+  <h3>Play in the browser</h3>
+  <pre>Unity.exe -batchmode -quit -projectPath game -buildTarget WebGL -executeMethod BuildScript.BuildWeb -logFile tools/buildweb.log
+python tools/serve_web.py        # then open http://127.0.0.1:8000</pre>
   <h3>Build the test executable</h3>
   <pre>"C:\Program Files\Unity\Hub\Editor\6000.3.28f1\Editor\Unity.exe" -batchmode -quit -projectPath game -executeMethod BuildScript.BuildWindows -logFile tools/build.log</pre>
   <h3>Run the tests</h3>
