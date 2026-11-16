@@ -100,9 +100,12 @@ namespace Saga.Game
         // ---------- stage: sky, lights, post-processing ----------
 
         // mapId: asteroid_field, space_station or ship_graveyard (null for empty space). skyId: Skybox1, skybox2 ... skybox5.
+        public static SkyBackdrop Backdrop { get; private set; }
+
         public static void BuildStage(ShipLibrary lib, Camera cam, string mapId = null, string skyId = null)
         {
-            cam.clearFlags = CameraClearFlags.Skybox;
+            cam.clearFlags = CameraClearFlags.SolidColor;
+            cam.backgroundColor = Color.black;
             cam.allowHDR = true;
             var camData = cam.GetComponent<UniversalAdditionalCameraData>() ?? cam.gameObject.AddComponent<UniversalAdditionalCameraData>();
             camData.renderPostProcessing = true;
@@ -111,7 +114,9 @@ namespace Saga.Game
             var sky = new Material(lib.skybox);
             var skyTex = skyId != null ? lib.Sky(skyId) : null;
             if (skyTex != null) sky.SetTexture("_MainTex", skyTex);
-            RenderSettings.skybox = sky;
+            RenderSettings.skybox = sky; // still lights the scene's reflections; not drawn (see SkyBackdrop)
+            var backdropTex = skyTex != null ? skyTex : lib.skybox.GetTexture("_MainTex") as Texture2D;
+            if (backdropTex != null) Backdrop = SkyBackdrop.Create(cam, lib.skyBackdrop, backdropTex, lib.skybox.GetFloat("_Exposure"));
             var mapPrefab = mapId != null ? lib.Map(mapId) : null;
             if (mapPrefab != null) UnityEngine.Object.Instantiate(mapPrefab).name = "Map: " + mapId;
             RenderSettings.ambientMode = AmbientMode.Trilight;
@@ -174,6 +179,7 @@ namespace Saga.Game
             UpdateFurballRings();
             UpdateStrikeRings();
             UpdateFx(dt);
+            if (Backdrop != null) Backdrop.Refresh();
             // Hits whose target died before they landed never get an impact: drop them once their line is gone.
             if (shotFx.Count > 400)
                 foreach (var id in shotFx.Where(kv => kv.Value.Go == null).Select(kv => kv.Key).ToList()) shotFx.Remove(id);
@@ -584,6 +590,11 @@ namespace Saga.Game
                 default: f = AddLine("tracer", a, end, Hdr(Color.Lerp(c, Color.white, 0.5f), 2f), 4f, (float)e.TravelTime); break;
             }
             if (e.Hit && e.Visual != "beam" && e.Visual != "repair_beam") shotFx[e.ShotId] = f; // ends when its hit lands
+            if (!e.Hit && f.Line != null && !f.Miss && (e.Visual == "tracer" || e.Visual == "shell" || e.Visual == "bomb" || e.Visual == "missile"))
+            {
+                f.Miss = true; f.Flight = f.Life;
+                f.Life = f.Flight + (e.Visual == "missile" ? 1.2f : 0.6f); // flies on, fading
+            }
             // Hits follow the moving target so they land on the spot they were aimed at.
             if (plan != null) { f.Anchor = plan.Anchor; f.Local = plan.Local; }
             // Hits on fighter craft: missiles home in on the craft (they follow the anchor). Gun shots fly in a
@@ -642,6 +653,17 @@ namespace Saga.Game
 
         // Launch is slow, then the motor kicks in and the missile keeps accelerating into the target.
         static float MissileProgress(float t) => t < 0.15f ? t * t / 0.15f * 0.5f : 0.075f + Mathf.Pow((t - 0.15f) / 0.85f, 1.7f) * 0.925f;
+
+        // Misses fade out over the time they fly on past the target.
+        static float MissFade(Fx f) => f.Miss && f.Age > f.Flight ? Mathf.Clamp01(1f - (f.Age - f.Flight) / Mathf.Max(0.05f, f.Life - f.Flight)) : 1f;
+
+        static Vector3 MissilePoint(Fx f, float s)
+        {
+            if (s <= 1f) return MissilePath(f.From, f.To, s);
+            var end = MissilePath(f.From, f.To, 1f);
+            var dir = (end - MissilePath(f.From, f.To, 0.97f)).normalized;
+            return end + dir * (s - 1f) * Vector3.Distance(f.From, f.To) * 0.4f;
+        }
 
         // Along the missile's path; past 1 it carries straight on in its final direction (misses).
         static Vector3 SeekerPoint(Fx f, float s)
@@ -814,28 +836,31 @@ namespace Saga.Game
                         float tail = Mathf.Max(0f, head - 0.35f);
                         int n = f.Line.positionCount;
                         for (int k = 0; k < n; k++) f.Line.SetPosition(k, SeekerPoint(f, Mathf.Lerp(tail, head, k / (float)(n - 1))));
-                        float fade = f.Miss ? Mathf.Clamp01(1f - (f.Age - f.Flight) / (f.Life - f.Flight)) : 1f;
+                        float fade = MissFade(f);
                         f.Line.startColor = new Color(0, 0, 0, 0);
                         f.Line.endColor = f.Colour * fade;
                     }
                     else if (f.Kind == "missile")
                     {
                         // A short curved smoke-and-flame trail behind the missile along its path.
-                        float head = MissileProgress(t), tail = Mathf.Max(0f, head - 0.05f);
+                        float ft = f.Miss ? f.Age / Mathf.Max(0.05f, f.Flight) : t;
+                        float head = ft <= 1f ? MissileProgress(ft) : 1f + (ft - 1f) * 1.9f, tail = Mathf.Max(0f, head - 0.05f);
                         int n = f.Line.positionCount;
-                        for (int k = 0; k < n; k++) f.Line.SetPosition(k, MissilePath(f.From, f.To, Mathf.Lerp(tail, head, k / (float)(n - 1))));
+                        for (int k = 0; k < n; k++) f.Line.SetPosition(k, MissilePoint(f, Mathf.Lerp(tail, head, k / (float)(n - 1))));
                         f.Line.startColor = new Color(0, 0, 0, 0);
-                        f.Line.endColor = f.Colour;
+                        f.Line.endColor = f.Colour * MissFade(f);
                     }
                     else
                     {
                         var aim = f.Led ? Vector3.Lerp(f.LeadPoint, f.To, Mathf.Pow(t, 6f)) : f.To;
-                        var head = Vector3.Lerp(f.From, aim, t);
+                        // Misses keep their speed and carry straight on past the target.
+                        float ft = f.Miss ? f.Age / Mathf.Max(0.05f, f.Flight) : t;
+                        var head = Vector3.LerpUnclamped(f.From, aim, ft);
                         float tail = f.Kind == "tracer" ? 40f : f.Kind == "bomb" ? 70f : 18f; // short streaks, not long lines
                         var back = head - (f.To - f.From).normalized * tail;
                         f.Line.SetPosition(0, back); f.Line.SetPosition(1, head);
-                        f.Line.startColor = f.Colour * 0.6f;
-                        f.Line.endColor = f.Colour;
+                        f.Line.startColor = f.Colour * 0.6f * MissFade(f);
+                        f.Line.endColor = f.Colour * MissFade(f);
                     }
                     continue;
                 }

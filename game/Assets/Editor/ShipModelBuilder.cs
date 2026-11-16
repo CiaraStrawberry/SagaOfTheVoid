@@ -200,6 +200,14 @@ public static class ShipModelBuilder
         lib.sfxOrderMove = A("Sfx/Marco.ogg");
         lib.sfxOrderAttack = A("Sfx/Polo.ogg");
         lib.skybox = sky;
+        const string backdropPath = "Assets/Settings/SkyBackdrop.mat";
+        var backdrop = AssetDatabase.LoadAssetAtPath<Material>(backdropPath);
+        if (backdrop == null)
+        {
+            backdrop = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
+            AssetDatabase.CreateAsset(backdrop, backdropPath);
+        }
+        lib.skyBackdrop = backdrop;
         EditorUtility.SetDirty(lib);
         AssetDatabase.SaveAssets();
         Log(string.Format("library: {0} ships, {1} with prefab, {2} with icon, {3} maps, {4} skies, data {5}, campaign {6}, shader {7}",

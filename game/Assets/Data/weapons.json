@@ -91,9 +91,10 @@
   {
    "id": "fighter_missile",
    "damage": 20,
+   "damage_vs_light": 1,
    "prefers": "light",
    "hit": {
-    "light": 0.12,
+    "light": 0.8,
     "corvette": 0.35,
     "frigate": 1,
     "cruiser": 1,

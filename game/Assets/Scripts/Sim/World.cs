@@ -84,6 +84,7 @@ namespace Saga.Sim
         public Ship Target, Source;
         public int ShotId;
         public int Damage;
+        public bool Chip;   // ordinary damage to a squadron (WeaponDef.damage_vs_light)
         public bool Repair;
         public double TimeLeft;
         public string Visual;
@@ -478,10 +479,12 @@ namespace Saga.Sim
 
             int damage = w.damage;
             if (w.damage_vs_capital_hull_owner > 0 && s.Hull == Hull.Capital) damage = w.damage_vs_capital_hull_owner;
+            bool chip = w.damage_vs_light > 0 && t.Hull == Hull.Light;
+            if (chip) damage = w.damage_vs_light;
 
             int id = nextShotId++;
             Shots.Add(new ShotEvent { ShotId = id, GunIndex = s.Guns.IndexOf(g), From = s, To = t, Visual = w.visual, Hit = hit, AtShield = t.Shield > 0, TravelTime = travel });
-            if (hit) pending.Add(new PendingHit { ShotId = id, Target = t, Source = s, Damage = damage, TimeLeft = travel, Visual = w.visual });
+            if (hit) pending.Add(new PendingHit { ShotId = id, Target = t, Source = s, Damage = damage, Chip = chip, TimeLeft = travel, Visual = w.visual });
         }
 
         void LandShots(double dt)
@@ -508,16 +511,21 @@ namespace Saga.Sim
                 p.Target.LastHitByTeam = p.Source.Team;
                 p.Target.LastHitBy = p.Source;
                 long hpBefore = Math.Max(0, p.Target.Shield) + Math.Max(0, p.Target.Armor);
-                TakeDamage(p.Target, p.Damage, p.Source.Hull);
+                TakeDamage(p.Target, p.Damage, p.Source.Hull, p.Chip);
                 p.Source.DamageDealt += hpBefore - (Math.Max(0, p.Target.Shield) + Math.Max(0, p.Target.Armor));
                 Impacts.Add(new ImpactEvent { ShotId = p.ShotId, Target = p.Target, Source = p.Source, OnShield = onShield, Visual = p.Visual });
             }
         }
 
         // _Ship.takeDamage: shield soaks whole hits; squadrons lose craft in steps whatever the damage.
-        public void TakeDamage(Ship s, int damage, Hull attackerHull)
+        public void TakeDamage(Ship s, int damage, Hull attackerHull, bool chip = false)
         {
             if (s.Shield > 0) s.Shield -= damage;
+            else if (chip && s.Hull == Hull.Light)
+            {
+                s.Armor -= damage;
+                if (s.Armor <= 0) s.Armor = -5;
+            }
             else if (s.Hull == Hull.Corvette)
             {
                 if (s.Armor > s.StartArmor * 0.6) s.Armor = (int)Math.Round(s.StartArmor * 0.5);
@@ -534,7 +542,9 @@ namespace Saga.Sim
             }
             else s.Armor -= damage;
             if (s.Shield < 0) s.Shield = -1;
-            if (attackerHull == Hull.Light && s.Hull == Hull.Light) s.TurnRate = Math.Max(0.2, s.TurnRate - 0.5);
+            // 2017: a fighter hit by a fighter turns slower for a while. Fighter missiles hit about 6x as often, so
+            // each of their hits slows it a sixth as much (0.08 instead of 0.5).
+            if (attackerHull == Hull.Light && s.Hull == Hull.Light) s.TurnRate = Math.Max(0.2, s.TurnRate - (chip ? 0.08 : 0.5));
         }
 
         // Squadron craft still flying, out of 5, for the renderer.

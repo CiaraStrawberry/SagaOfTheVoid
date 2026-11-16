@@ -39,6 +39,7 @@ namespace Saga.Game
         public TextAsset campaignJson;
         public Shader fxShader;
         public Material skybox;
+        public Material skyBackdrop; // flat sky behind the battle (SkyBackdrop), URP Unlit
         [Header("Warp-in (2017 Forge3D WarpJump textures)")]
         public Texture2D warpTunnel;
         public Texture2D warpRing;

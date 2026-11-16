@@ -65,6 +65,9 @@ namespace Saga.Sim
         public string id;
         public int damage;
         public int damage_vs_capital_hull_owner;
+        // Remake: if set, hits on fighters/scouts/bombers do this much ordinary damage (each craft is a fifth of the
+        // squadron's armour) instead of the 2017 rule where every hit knocks out a whole craft.
+        public int damage_vs_light;
         public int shield_restore;
         public string prefers;
         public HitTable hit;

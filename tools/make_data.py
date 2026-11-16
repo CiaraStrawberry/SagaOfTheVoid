@@ -58,9 +58,10 @@ weapons = {
     # real flight and hits land when it arrives; bombs at 900/s after 0.2 s.
     "minigun":          {"damage": 20, "prefers": "light", "hit": hits(.1, .1, .8, .8, .8, 1), "visual": "tracer", "projectile_speed": 1600, "launch_delay": 0.1},
     "fighter_gun":      {"damage": 20, "prefers": "light", "hit": hits(.1, .5, 1, 1, 1, 1), "visual": "tracer", "projectile_speed": 1600, "launch_delay": 0.1},
-    # Remake: fighters fire volleys of 6 small homing missiles (fewer shots that hit far more often; about the same
+    # Remake: fighters fire volleys of 6 small homing missiles that hit fighters 80% of the time for 1 damage
+    # each (a craft is 6 of a fighter squadron's 30 armour), so about one craft per volley and a half; (fewer shots that hit far more often; about the same
     # kill rate as the 2017 6-round bursts at 10%).
-    "fighter_missile":  {"damage": 20, "prefers": "light", "hit": hits(.12, .35, 1, 1, 1, 1), "visual": "seeker", "projectile_speed": 650, "launch_delay": 0.15},
+    "fighter_missile":  {"damage": 20, "damage_vs_light": 1, "prefers": "light", "hit": hits(.8, .35, 1, 1, 1, 1), "visual": "seeker", "projectile_speed": 650, "launch_delay": 0.15},
     # Remake: single heavy shots (was 3 x 200 per burst); same damage per salvo.
     "bomber_gun":       {"damage": 600, "prefers": "capital", "hit": hits(.05, .5, 1, 1, 1, 1), "never_targets_light": True, "visual": "bomb", "projectile_speed": 900, "launch_delay": 0.2},
     "dual_role":        {"damage": 50, "prefers": "frigate", "hit": hits(.01, .5, .5, .5, 1, 1), "visual": "tracer", "projectile_speed": 1600, "launch_delay": 0.1},
