@@ -184,6 +184,25 @@ namespace Saga.Tests
         }
 
         [Test]
+        public void MissileFrigate_FiresWithoutTurningToFaceItsTarget()
+        {
+            var w = NewWorld();
+            w.PlayerTeams.Add(0); w.PlayerTeams.Add(1);
+            var missiles = w.Spawn("missile_frigate", 0, new Vec2(0, 0), 0);
+            var guns = w.Spawn("cannon_frigate", 0, new Vec2(0, 6000), 0);
+            var side = new Vec2(-missiles.Forward.Y, missiles.Forward.X); // 90 degrees off the nose
+            var t1 = w.Spawn("home_base", 1, side * 1000, 0); t1.Guns.Clear();
+            var t2 = w.Spawn("home_base", 1, new Vec2(0, 6000) + side * 1000, 0); t2.Guns.Clear();
+            w.OrderAttack(new[] { missiles }, t1);
+            w.OrderAttack(new[] { guns }, t2);
+            double h0 = missiles.Heading;
+            for (int i = 0; i < 60 * 20; i++) w.Step(1.0 / 60);
+            Assert.AreEqual(h0, missiles.Heading, 0.05, "the missile frigate keeps its heading");
+            Assert.Less(t1.Shield + t1.Armor, t1.StartShield + t1.StartArmor, "and still hits the target");
+            Assert.Greater(System.Math.Abs(System.Math.IEEERemainder(guns.Heading - h0, 2 * System.Math.PI)), 0.5, "a gun frigate still turns");
+        }
+
+        [Test]
         public void AttackMove_StopsToFight_PlainMove_FliesThrough()
         {
             var w = NewWorld();

@@ -52,6 +52,9 @@ namespace Saga.Sim
         public readonly List<Gun> Guns = new List<Gun>();
 
         public Gun MainGun => Guns.FirstOrDefault(g => !g.Weapon.module);
+        // Armed only with missile launchers (vertical cells that fire in any direction): the Missile Frigate.
+        public bool LaunchesOnly => Guns.Any(g => !g.Weapon.module && g.Weapon.damage > 0)
+                                    && Guns.Where(g => !g.Weapon.module && g.Weapon.damage > 0).All(g => g.Weapon.visual == "missile");
         public Gun ShieldBeam => Guns.FirstOrDefault(g => g.Weapon.aura_radius > 0);
         public double MaxRange => Guns.Count == 0 ? 0 : Guns.Max(g => g.Turret.range);
         // Where a ship holds when HoldAtRange is on: inside the reach of its shortest damaging gun, so every gun fires.
@@ -348,6 +351,7 @@ namespace Saga.Sim
                 dist = Vec2.Distance(s.Pos, s.MoveTarget);
             }
             bool small = Hulls.IsSmall(s.Hull);
+            bool hold = false;
 
             if (small)
             {
@@ -356,14 +360,17 @@ namespace Saga.Sim
             else if (dist > ArriveDistance)
             {
                 double enemyDist = s.OrderedTarget != null ? Vec2.Distance(s.OrderedTarget.Pos, s.Pos) : s.NearestEnemy;
-                bool hold = HoldAtRange && s.Holds && enemyDist < Math.Max(1200, s.HoldRange * 0.9);
+                hold = HoldAtRange && s.Holds && enemyDist < Math.Max(1200, s.HoldRange * 0.9);
                 if (dist < BrakeDistance || hold) s.Speed = Math.Max(0, s.Speed - Acceleration / 2 * dt);
                 else if (s.Accelerating && s.Speed < maxSpeed) s.Speed += Acceleration * dt;
                 if (s.Speed > maxSpeed) s.Speed = maxSpeed;
             }
 
-            if (dist > 150 || small) Turn(s, s.MoveTarget, dt);
-            else if (!small) { s.TurnVel = Approach(s.TurnVel, 0, s.Def.turn_rate * TurnScale * 1.3 / TurnSpinUp(s.Hull) * dt); s.Heading += s.TurnVel * dt; }
+            // Missile ships fire from vertical launch cells in any direction: holding at range, they don't turn
+            // to point at the target (they only finish any swing already under way).
+            bool steady = hold && s.LaunchesOnly;
+            if (!steady && (dist > 150 || small)) Turn(s, s.MoveTarget, dt);
+            else if (!small && (steady || dist <= 150)) { s.TurnVel = Approach(s.TurnVel, 0, s.Def.turn_rate * TurnScale * 1.3 / TurnSpinUp(s.Hull) * dt); s.Heading += s.TurnVel * dt; }
 
             // Big ships only thrust when the target is within 45 degrees of the nose.
             bool facing = small || Vec2.Dot(s.Forward, (s.MoveTarget - s.Pos).Normalized) >= Math.Cos(Math.PI / 4);
