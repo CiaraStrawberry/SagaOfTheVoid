@@ -51,6 +51,7 @@ namespace Saga.Game
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1920, 1080);
             scaler.matchWidthOrHeight = 0.5f;
+            canvasGo.AddComponent<AspectFit>(); // narrower than 16:9: scale to fit the width
             var root = canvasGo.transform;
 
             status = MakeText(root, "status", 26, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(28, -22), new Vector2(900, 40));

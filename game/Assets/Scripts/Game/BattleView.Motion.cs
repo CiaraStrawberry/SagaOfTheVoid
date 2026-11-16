@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Saga.Sim;
 using UnityEngine;
@@ -166,6 +167,33 @@ namespace Saga.Game
 
         public bool IsWarping(Ship s) => ViewOf(s)?.Warp != null;
 
+        // ---------- dogfight areas ----------
+
+        readonly Dictionary<int, SpriteRenderer> furballRings = new Dictionary<int, SpriteRenderer>();
+
+        // A faint ring where each fight is, so it can be seen and clicked.
+        void UpdateFurballRings()
+        {
+            var live = new HashSet<int>();
+            foreach (var f in World.Furballs)
+            {
+                live.Add(f.Id);
+                if (!furballRings.TryGetValue(f.Id, out var r))
+                {
+                    r = FlatSprite("fight area", ring, root, (float)f.Radius * 2f / 0.85f, 0f);
+                    furballRings[f.Id] = r;
+                }
+                r.transform.position = ToWorld(f.Centre) + Vector3.up * 180f;
+                float pulse = 0.09f + 0.04f * Mathf.Sin(Time.unscaledTime * 3f + f.Id);
+                Tint(r, new Color(1f, 0.85f, 0.55f, pulse));
+            }
+            foreach (var id in furballRings.Keys.Where(k => !live.Contains(k)).ToList())
+            {
+                Kill(furballRings[id].gameObject);
+                furballRings.Remove(id);
+            }
+        }
+
         // ---------- independent craft ----------
 
         public class Craft
@@ -184,7 +212,7 @@ namespace Saga.Game
 
         // Fading engine trail behind each craft (2017 fighters had trails). Drawn from recent positions so it
         // also works in the frame-by-frame recorder, where Unity's own trail timing doesn't run.
-        const int TrailPoints = 16;
+        const int TrailPoints = 28;
 
         void SetUpCrafts(ShipView v)
         {
@@ -207,7 +235,7 @@ namespace Saga.Game
                 tr.sharedMaterial = addMat;
                 tr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 tr.widthCurve = AnimationCurve.Linear(0, 0, 1, 1);
-                tr.widthMultiplier = 14f;
+                tr.widthMultiplier = 18f;
                 c.Trail = tr;
                 return c;
             }).ToArray();
@@ -239,6 +267,20 @@ namespace Saga.Game
                     goal = Centre(target) + new Vector3(Mathf.Cos(ahead) * r, 70f + Mathf.Sin(th * 2f + c.Phase) * 90f, Mathf.Sin(ahead) * r);
                     lead = Vector3.zero;
                 }
+                else if (dogfight && s.Dogfighting && target.Crafts != null)
+                {
+                    // Furball: each craft gets on the tail of one enemy craft, inside a small shared area
+                    // around the point between the two squadrons.
+                    var centreOfFight = ToWorld(s.Furball.Centre) + Vector3.up * v.Height;
+                    int k = System.Array.IndexOf(v.Crafts, c);
+                    var live = target.Crafts.Where(x => x.R.enabled).ToArray();
+                    var prey = live.Length > 0 ? live[(k + s.Id) % live.Length] : target.Crafts[0];
+                    var side = Vector3.Cross(prey.Facing, Vector3.up) * (c.Dir * 60f);
+                    goal = prey.Pos - prey.Facing * 110f + side;
+                    var fromCentre = goal - centreOfFight;
+                    if (fromCentre.magnitude > 480f) goal = centreOfFight + fromCentre.normalized * 480f;
+                    lead = prey.Vel * 0.6f;
+                }
                 else if (dogfight)
                 {
                     // Weaving around the squadron's position: crossing paths, climbing and diving.
@@ -262,7 +304,7 @@ namespace Saga.Game
                 }
                 else
                 {
-                    var desired = (goal - c.Pos) * (orbit || dogfight ? 1.2f : 2.2f) + lead;
+                    var desired = (goal - c.Pos) * (orbit || dogfight ? 1.4f : 2.2f) + lead;
                     if (desired.magnitude > maxSpeed) desired = desired.normalized * maxSpeed;
                     c.Vel = Vector3.MoveTowards(c.Vel, desired, (orbit || dogfight ? 700f : 1400f) * dt);
                     c.Pos += c.Vel * dt;
@@ -295,7 +337,7 @@ namespace Saga.Game
             for (int k = 0; k < n; k++) c.Trail.SetPosition(k, c.Hist[n - 1 - k]); // oldest first
             var tint = Color.Lerp(TeamTint[v.Ship.Team % TeamTint.Length], Color.white, 0.55f);
             c.Trail.startColor = new Color(0, 0, 0, 0);
-            c.Trail.endColor = Hdr(new Color(tint.r, tint.g, tint.b, 0.55f), 1.3f);
+            c.Trail.endColor = Hdr(new Color(tint.r, tint.g, tint.b, 0.7f), 1.4f);
         }
 
         // A live craft of a squadron, at random (for muzzles and aim points).

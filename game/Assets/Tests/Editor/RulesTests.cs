@@ -374,6 +374,46 @@ namespace Saga.Tests
             Assert.AreEqual(1, shooter.Kills);
         }
 
+        [Test]
+        public void Dogfight_EnemySquadronsStayTangledInASmallArea()
+        {
+            var w = NewWorld();
+            w.PlayerTeams.Add(0); w.PlayerTeams.Add(1); // no computer orders: just the dogfight rule
+            var a = w.Spawn("fighter", 0, new Vec2(-500, 0), -System.Math.PI / 2);
+            var b = w.Spawn("fighter", 1, new Vec2(500, 0), System.Math.PI / 2);
+            a.Shield = b.Shield = 100000; a.Armor = b.Armor = 100000; // keep them alive for the test
+            double furthest = 0;
+            for (int i = 0; i < 60 * 30; i++)
+            {
+                w.Step(1.0 / 60);
+                furthest = System.Math.Max(furthest, System.Math.Max(a.Pos.Length, b.Pos.Length));
+            }
+            Assert.IsTrue(a.Dogfighting && b.Dogfighting, "both squadrons are in the fight");
+            Assert.Less(furthest, 1600, "they circle each other near where they met, not all over the map");
+        }
+
+        [Test]
+        public void Dogfight_OneAreaHoldsManySquadrons_AndPlayersCanJoinOrLeave()
+        {
+            var w = NewWorld();
+            w.PlayerTeams.Add(0); w.PlayerTeams.Add(1);
+            var a1 = w.Spawn("fighter", 0, new Vec2(-500, 0), -System.Math.PI / 2);
+            var a2 = w.Spawn("scout", 0, new Vec2(-600, 300), -System.Math.PI / 2);
+            var b1 = w.Spawn("fighter", 1, new Vec2(500, 0), System.Math.PI / 2);
+            var b2 = w.Spawn("scout", 1, new Vec2(600, -300), System.Math.PI / 2);
+            foreach (var s in w.Ships) { s.Shield = 100000; s.Armor = 100000; }
+            Run(w, 3);
+            Assert.AreEqual(1, w.Furballs.Count, "one shared fight");
+            Assert.AreEqual(4, w.Furballs[0].Members.Count, "both squadrons from both sides");
+
+            var late = w.Spawn("attack_craft", 0, new Vec2(-6000, 0), -System.Math.PI / 2);
+            w.OrderIntoFight(new[] { late }, w.Furballs[0], 0);
+            Assert.AreEqual(w.Furballs[0], late.Furball, "a fighter ordered into the fight joins it");
+
+            w.OrderMove(new[] { a1 }, new Vec2(-8000, 0), false);
+            Assert.IsNull(a1.Furball, "a plain move order pulls it out");
+        }
+
         // Mirrors Saga.Game.Fleets.Quick (that assembly is not referenced here to keep these tests engine-light).
         static void SpawnBoth(World w)
         {

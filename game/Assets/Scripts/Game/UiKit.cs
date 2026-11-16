@@ -29,8 +29,13 @@ namespace Saga.Game
             s.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             s.referenceResolution = new Vector2(1920, 1080);
             s.matchWidthOrHeight = 0.5f;
+            go.AddComponent<AspectFit>();
             return c;
         }
+
+        // Layouts are made for 16:9. Wider screens keep that size; narrower ones (towards 1:1) scale the whole UI
+        // down to fit the width instead of letting panels overlap.
+        public static float MatchFor(float aspect) => aspect >= 16f / 9f ? 0.5f : 0f;
 
         public static RectTransform Rect(Transform parent, string name, Vector2 anchor, Vector2 pos, Vector2 size)
         {
@@ -75,6 +80,22 @@ namespace Saga.Game
             b.colors = colours;
             b.onClick.AddListener(() => onClick());
             return Label(bg.transform, "label", fontSize, TextAnchor.MiddleCenter, new Vector2(0.5f, 0.5f), Vector2.zero, size, label);
+        }
+    }
+}
+
+namespace Saga.Game
+{
+    // Keeps a canvas's scaling right as the window changes shape (see UiKit.MatchFor).
+    public class AspectFit : MonoBehaviour
+    {
+        CanvasScaler scaler;
+        void Awake() => scaler = GetComponent<CanvasScaler>();
+        void Update()
+        {
+            var cam = GetComponent<Canvas>().worldCamera;
+            float aspect = cam != null ? cam.aspect : (float)Screen.width / Mathf.Max(1, Screen.height);
+            scaler.matchWidthOrHeight = UiKit.MatchFor(aspect);
         }
     }
 }

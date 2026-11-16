@@ -153,6 +153,7 @@ namespace Saga.Game
                 foreach (var b in new[] { dv.BarBack, dv.BarArmor, dv.BarShield }) if (b != null) b.gameObject.SetActive(false);
             }
             foreach (var v in views.Values) if (!v.Ship.Dead) PlaceBars(v, now);
+            UpdateFurballRings();
             UpdateFx(dt);
         }
 
@@ -518,7 +519,7 @@ namespace Saga.Game
             Fx f;
             switch (e.Visual)
             {
-                case "beam": f = AddLine("beam", a, end, Hdr(Color.Lerp(c, Color.white, 0.4f), 2.2f), 22f, 0.6f); break;
+                case "beam": f = AddLine("beam", a, end, Hdr(Color.Lerp(c, Color.white, 0.4f), 2.2f), 22f, 1.4f); break;
                 case "repair_beam": f = AddLine("beam", a, end, Hdr(new Color(0.4f, 1f, 0.6f), 1.6f), 9f, 0.5f); break;
                 case "missile": f = AddLine("missile", a, end, Hdr(new Color(1f, 0.85f, 0.6f), 2f), 8f, (float)e.TravelTime, 8); break;
                 case "shell": f = AddLine("shell", a, end, Hdr(new Color(1f, 0.65f, 0.25f), 2.0f), 7f, (float)e.TravelTime); break;
@@ -527,6 +528,19 @@ namespace Saga.Game
             }
             // Hits follow the moving target so they land on the spot they were aimed at.
             if (plan != null) { f.Anchor = plan.Anchor; f.Local = plan.Local; }
+
+            // Barrel flash at the gun.
+            float flash; float life; Color fc;
+            switch (e.Visual)
+            {
+                case "beam": flash = 70f; life = 0.25f; fc = Color.Lerp(c, Color.white, 0.5f); break;
+                case "repair_beam": flash = 30f; life = 0.2f; fc = new Color(0.5f, 1f, 0.65f); break;
+                case "missile": flash = 40f; life = 0.18f; fc = new Color(1f, 0.75f, 0.45f); break;
+                case "shell": flash = 50f; life = 0.12f; fc = new Color(1f, 0.7f, 0.35f); break;
+                case "bomb": flash = 28f; life = 0.1f; fc = new Color(0.85f, 1f, 0.5f); break;
+                default: flash = from.Crafts != null ? 16f : 22f; life = 0.07f; fc = Color.Lerp(c, Color.white, 0.6f); break;
+            }
+            AddSprite("flash", glow, a, Hdr(fc, 1.6f), flash, life, Vector3.zero, false);
         }
 
         Fx AddLine(string kind, Vector3 a, Vector3 b, Color c, float width, float life, int points = 2)
@@ -648,7 +662,7 @@ namespace Saga.Game
                     if (f.Kind == "beam")
                     {
                         f.Line.SetPosition(0, f.From); f.Line.SetPosition(1, f.To);
-                        f.Line.widthMultiplier = 1f - t * 0.7f;
+                        f.Line.widthMultiplier = (1f - t * 0.6f) * (0.85f + 0.15f * Mathf.Sin(f.Age * 40f));
                         f.Line.startColor = f.Line.endColor = f.Colour * (1f - t);
                     }
                     else if (f.Kind == "missile")

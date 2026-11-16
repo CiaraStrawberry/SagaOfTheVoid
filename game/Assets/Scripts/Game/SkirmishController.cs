@@ -195,6 +195,20 @@ namespace Saga.Game
 
         public void CommandStop() => World.OrderStop(Selected);
 
+        // Into a dogfight area: fighters join the fight, other ships attack the enemies in it.
+        public void CommandFight(Furball f)
+        {
+            if (Selected.Count == 0) return;
+            World.OrderIntoFight(Selected, f, PlayerTeam);
+            View.Ping(BattleView.ToWorld(f.Centre), true, (float)f.Radius * 2f);
+        }
+
+        Furball FightUnderMouse()
+        {
+            var g = GroundUnderMouse();
+            return g.HasValue ? World.FurballAt(BattleView.ToSim(g.Value)) : null;
+        }
+
         // ---------- reserve: built ships wait until you choose where they warp in ----------
 
         public string DeployType { get; private set; }   // ship being placed, or "*" for the whole reserve
@@ -313,8 +327,19 @@ namespace Saga.Game
             }
         }
 
+        // 35° tall at 16:9 and wider. Narrower windows (towards 1:1) widen the view so you still see as much across.
+        const float BaseFov = 35f;
+        static float FovFor(float aspect)
+        {
+            const float wide = 16f / 9f;
+            if (aspect >= wide) return BaseFov;
+            float halfTan = Mathf.Tan(BaseFov * 0.5f * Mathf.Deg2Rad) * wide / Mathf.Max(0.3f, aspect);
+            return Mathf.Min(75f, 2f * Mathf.Atan(halfTan) * Mathf.Rad2Deg);
+        }
+
         void PlaceCamera()
         {
+            cam.fieldOfView = FovFor(cam.aspect);
             // Lower, more cinematic angle close in; steeper overview far out.
             float pitch = Mathf.Lerp(38f, 62f, Mathf.InverseLerp(MinDist, MaxDist, distance));
             var rot = Quaternion.Euler(pitch, yaw, 0);
@@ -346,7 +371,10 @@ namespace Saga.Game
                 else
                 {
                     var hit = PickAt(mouse, s => s.Team == PlayerTeam);
-                    if (hit != null)
+                    var fight = hit == null ? FightUnderMouse() : null;
+                    if (fight != null && fight.Alive.Any(s => s.Team == PlayerTeam))
+                        Select(fight.Alive.Where(s => s.Team == PlayerTeam), shift);
+                    else if (hit != null)
                     {
                         if (hit == lastClicked && Time.unscaledTime - lastClickTime < 0.35f)
                             Select(Own.Where(s => s.Def.id == hit.Def.id && OnScreen(s, out _)), shift);
@@ -361,8 +389,11 @@ namespace Saga.Game
 
             if (Input.GetMouseButtonDown(1) && Selected.Count > 0)
             {
-                var hit = PickAt(mouse, s => s.Team != PlayerTeam);
-                if (hit != null) CommandAttack(hit);
+                var exact = View.Pick(cam.ScreenPointToRay(mouse));
+                var fight = FightUnderMouse();
+                var hit = exact != null && exact.Team != PlayerTeam && !Hulls.IsSmall(exact.Hull) ? exact : null;
+                if (hit == null && fight != null && fight.Alive.Any(s => s.Team != PlayerTeam)) CommandFight(fight);
+                else if ((hit ??= PickAt(mouse, s => s.Team != PlayerTeam)) != null) CommandAttack(hit);
                 else
                 {
                     var g = GroundUnderMouse();

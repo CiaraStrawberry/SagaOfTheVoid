@@ -42,6 +42,8 @@ namespace Saga.Sim
         public long DamageDealt;                             // running tally: damage landed on enemies (shields and armour)
         public int Kills;
         public long ShieldsRestored;                         // repair ships
+        public Furball Furball;                              // the dogfight this squadron is in, if any
+        public bool Dogfighting => Furball != null;
         public Vec2 Loiter; public bool LoiterSet;           // where an idle fighter squadron circles
         public double Arrived = -1;                          // world time a bought ship arrived (-1: started on the field)
         public readonly List<Gun> Guns = new List<Gun>();
@@ -104,6 +106,8 @@ namespace Saga.Sim
         const double MaxTurnLight = 4.0;
         // Fighters and corvettes turn on a circle at least this wide (2017 craft looped in ~90 units, which looked jittery).
         public const double SmallTurnRadius = 380;
+        // Enemy squadrons this close lock into a dogfight: both circle the point between them (a furball).
+        public const double DogfightRange = 1500;
 
         public readonly Rulebook Rules;
         public readonly List<Ship> Ships = new List<Ship>();
@@ -172,6 +176,7 @@ namespace Saga.Sim
                 if (queue && x.HasMoveOrder) { x.Waypoints.Enqueue(p); continue; }
                 x.Waypoints.Clear();
                 x.OrderedTarget = null;
+                Leave(x);
                 x.MoveTarget = p;
                 x.HasMoveOrder = true;
                 x.Accelerating = true;
@@ -225,6 +230,7 @@ namespace Saga.Sim
                     s.Target = FindTarget(s);
                     s.NearestEnemy = Alive.Where(o => o.Team != s.Team).Select(o => Vec2.Distance(o.Pos, s.Pos)).DefaultIfEmpty(double.MaxValue).Min();
                 }
+                UpdateFurballs();
             }
             ApplyShieldFields(dt);
             StepEconomy(dt);
@@ -302,6 +308,9 @@ namespace Saga.Sim
             }
             else s.LoiterSet = false;
 
+            // Dogfight: fighters in a fight circle its fixed centre (Furball.cs).
+            if (s.Furball != null) s.MoveTarget = s.Furball.Centre;
+
             double maxSpeed = s.Def.speed;
             double dist = Vec2.Distance(s.Pos, s.MoveTarget);
             if (dist < 400 && s.Waypoints.Count > 0)
@@ -373,6 +382,12 @@ namespace Saga.Sim
                                         && Vec2.Distance(o.Pos, s.Pos) <= range)
                             .OrderBy(o => Vec2.Distance(o.Pos, s.Pos)).FirstOrDefault();
 
+            if (s.Furball != null)
+            {
+                var inFight = s.Furball.Alive.Where(o => o.Team != s.Team && Vec2.Distance(o.Pos, s.Pos) <= range)
+                                .OrderBy(o => Vec2.Distance(o.Pos, s.Pos)).FirstOrDefault();
+                if (inFight != null) return inFight;
+            }
             var ordered = s.OrderedTarget;
             if (ordered != null && !ordered.Dead && ordered.Team != s.Team && Vec2.Distance(ordered.Pos, s.Pos) <= range
                 && !(gun.Weapon.never_targets_light && ordered.Hull == Hull.Light))
