@@ -78,9 +78,10 @@ namespace Saga.Game
             v.Warp = w;
             if (v.Crafts != null)
             {
-                // Fighters come out of the jump in a straight line and keep flying straight ahead for 1 s.
+                // Fighters come out of the jump in a straight line, fly straight ahead in formation for about
+                // 2 s, then peel off into the fight (see UpdateCrafts).
                 v.StraightFrom = v.Pulse + delay + WarpOpen + WarpFly;
-                v.StraightUntil = v.StraightFrom + 1f + 0.07f * v.Crafts.Length;
+                v.StraightUntil = v.StraightFrom + 2f + 0.07f * v.Crafts.Length;
                 v.StraightAnchor = v.Go.transform.position + Vector3.up * v.Height;
                 v.StraightDir = w.Dir;
             }
@@ -404,6 +405,14 @@ namespace Saga.Game
                     lead = squadVel;
                 }
 
+                // Just after the straight run: keep pushing forward along the jump line and only ease into the
+                // fight over a few seconds (each craft peels off at its own moment), with gentle acceleration,
+                // so they swing round in wide arcs instead of spinning on the spot.
+                float peel = Mathf.Clamp01((v.Pulse - v.StraightUntil - Mathf.Repeat(c.Phase, 1f) * 0.8f) / 2.5f);
+                if (v.StraightUntil > 0f && peel < 1f)
+                    goal = Vector3.Lerp(c.Pos + v.StraightDir * 900f, goal, peel * peel);
+                float agility = v.StraightUntil > 0f ? Mathf.Lerp(0.3f, 1f, peel) : 1f;
+
                 if (!c.Placed || dt <= 0f)
                 {
                     c.Pos = goal; c.Vel = lead; c.Placed = true;
@@ -413,7 +422,7 @@ namespace Saga.Game
                 {
                     var desired = (goal - c.Pos) * (orbit || dogfight ? 1.4f : 2.2f) + lead;
                     if (desired.magnitude > maxSpeed) desired = desired.normalized * maxSpeed;
-                    c.Vel = Vector3.MoveTowards(c.Vel, desired, (orbit || dogfight ? 700f : 1400f) * dt);
+                    c.Vel = Vector3.MoveTowards(c.Vel, desired, (orbit || dogfight ? 700f : 1400f) * agility * dt);
                     c.Pos += c.Vel * dt;
                     if (c.Vel.sqrMagnitude > 400f)
                     {

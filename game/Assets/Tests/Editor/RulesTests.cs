@@ -28,7 +28,7 @@ namespace Saga.Tests
             Assert.AreEqual(11, rules.Weapons.Count); // + fighter_missile (remake)
             Assert.AreEqual(17000, rules.Ships["capital"].armor);
             Assert.AreEqual(3000, rules.Weapons["laser"].damage);
-            Assert.IsFalse(rules.Weapons.ContainsKey("cloak"), "cloak was replaced by the shield field");
+            Assert.IsFalse(rules.Weapons.ContainsKey("cloak"), "cloak was replaced by the shield beam");
         }
 
         [Test]
@@ -89,20 +89,54 @@ namespace Saga.Tests
         }
 
         [Test]
-        public void ShieldField_RechargesFriendsInRange_NotFighters_NotStacking()
+        public void ShieldBeam_RechargesOneFriendInReach_NotFighters_NotStacking()
         {
             var w = NewWorld();
             w.PlayerTeams.Add(0); // no computer orders moving things about
-            w.Spawn("support_frigate", 0, new Vec2(0, 0), 0);
-            w.Spawn("support_frigate", 0, new Vec2(100, 0), 0);
+            var a = w.Spawn("support_frigate", 0, new Vec2(0, 0), 0);
             var near = w.Spawn("capital", 0, new Vec2(500, 0), 0);
+            var near2 = w.Spawn("capital", 0, new Vec2(-500, 0), 0);
             var far = w.Spawn("capital", 0, new Vec2(5000, 0), 0);
             var fighter = w.Spawn("fighter", 0, new Vec2(300, 0), 0);
-            near.Shield = 0; far.Shield = 0; fighter.Shield = 0;
-            for (int i = 0; i < 600; i++) w.Step(1.0 / 60); // 10 s
-            Assert.AreEqual(1700, near.Shield, 20, "1% of 17,000 per second for 10 s, one field only");
+            near.Shield = 0; near2.Shield = 1000; far.Shield = 0; fighter.Shield = 0;
+            for (int i = 0; i < 300; i++) w.Step(1.0 / 60); // 5 s
+            Assert.AreEqual(near, a.ShieldLink, "the beam goes to the friend with the weakest shields");
+            Assert.AreEqual(3400, near.Shield, 40, "4% of 17,000 per second for 5 s");
+            Assert.AreEqual(1000, near2.Shield, "one ship at a time");
             Assert.AreEqual(0, far.Shield);
             Assert.AreEqual(0, fighter.Shield);
+
+            // A second beam takes the other ship rather than doubling up.
+            var b = w.Spawn("support_frigate", 0, new Vec2(100, 0), 0);
+            w.Step(1.0 / 60);
+            Assert.AreEqual(near2, b.ShieldLink);
+        }
+
+        [Test]
+        public void SetAsideShips_AreNotForSale_AndTheComputerBuysStandIns()
+        {
+            var w = NewWorld();
+            Assert.AreEqual("not for sale", w.CannotBuy(0, "support_frigate"));
+            Assert.AreEqual("not for sale", w.CannotBuy(0, "attack_craft"));
+            foreach (var id in World.BuyOrder)
+                if (id != null) Assert.IsTrue(w.Rules.Ships[World.InPlay(id)].buyable, id);
+        }
+
+        [Test]
+        public void AttackMove_StopsToFight_PlainMove_FliesThrough()
+        {
+            var w = NewWorld();
+            w.PlayerTeams.Add(0); w.PlayerTeams.Add(1); // nobody moves on their own
+            var attacker = w.Spawn("cannon_frigate", 0, new Vec2(-300, 0), 0);
+            var mover = w.Spawn("cannon_frigate", 0, new Vec2(300, 0), 0);
+            var enemy = w.Spawn("home_base", 1, new Vec2(0, 5000), 0);
+            enemy.Guns.Clear(); // a target that does not shoot back
+            w.OrderMove(new[] { attacker }, new Vec2(-300, 10000), false, attack: true);
+            w.OrderMove(new[] { mover }, new Vec2(300, 10000), false);
+            for (int i = 0; i < 60 * 120; i++) w.Step(1.0 / 60);
+            Assert.Less(attacker.Pos.Y, 5000, "attack-move holds at range to fight what it meets");
+            Assert.Greater(enemy.StartShield + enemy.StartArmor - enemy.Shield - enemy.Armor, 0, "and it fires on it");
+            Assert.Greater(mover.Pos.Y, 8000, "a plain move flies straight past");
         }
 
         [Test]
@@ -450,7 +484,7 @@ namespace Saga.Tests
             var fleet = new (string, double, double)[]
             {
                 ("capital", -700, 0), ("missile_frigate", -300, 900), ("laser_frigate", 0, -500), ("cannon_frigate", 0, 500),
-                ("flak_frigate", 200, -1200), ("support_frigate", -900, -800), ("fighter", 500, 1600), ("bomber", 400, -1800),
+                ("flak_frigate", 200, -1200), ("repair_frigate", -900, -800), ("fighter", 500, 1600), ("bomber", 400, -1800),
             };
             for (int team = 0; team < 2; team++)
             {

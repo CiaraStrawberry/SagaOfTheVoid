@@ -79,8 +79,8 @@ namespace Saga.Sim
         public float projectile_speed = 440f;
         public float launch_delay = 0.5f;   // seconds added to the flight time (2017: 0.5)
         public float travel_time;
-        public float aura_radius;        // shield_field: reach of the field
-        public float shield_regen_pct;   // shield_field: % of max shield restored per second
+        public float aura_radius;        // shield_beam: reach of the beam
+        public float shield_regen_pct;   // shield_beam: % of the target's max shield restored per second
     }
 
     [Serializable] public class ShipDefList { public List<ShipDef> ships = new List<ShipDef>(); }

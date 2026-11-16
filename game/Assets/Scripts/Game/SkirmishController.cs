@@ -107,9 +107,9 @@ namespace Saga.Game
             else
             {
                 World.PlayerTeams.Add(PlayerTeam);
-                Fleets.Spawn(World, config.Quick ? Fleets.Quick : Fleets.Full, config.Quick ? Fleets.QuickGap : Fleets.FullGap);
+                Fleets.Spawn(World, Fleets.FleetFor(config), Fleets.GapFor(config));
                 World.TeamOf(1).Difficulty = config.Difficulty;
-                Fleets.SpawnMode(World, config.Mode, config.Quick ? Fleets.QuickGap : Fleets.FullGap);
+                Fleets.SpawnMode(World, config.Mode, Fleets.GapFor(config));
             }
 
             BattleView.BuildStage(lib, cam, string.IsNullOrEmpty(map) ? null : map, sky);
@@ -197,14 +197,17 @@ namespace Saga.Game
 
         public void SelectAllOwn() => Select(Own);
 
-        public void CommandMove(Vector3 worldPoint, bool queue)
+        public void CommandMove(Vector3 worldPoint, bool queue, bool attack = false)
         {
             if (Inspecting) return;
             if (Selected.Count == 0) return;
-            World.OrderMove(Selected, BattleView.ToSim(worldPoint), queue);
-            SoundBoard.Current?.OrderMove();
-            View.Ping(worldPoint, false);
+            World.OrderMove(Selected, BattleView.ToSim(worldPoint), queue, attack);
+            if (attack) SoundBoard.Current?.OrderAttack(); else SoundBoard.Current?.OrderMove();
+            View.Ping(worldPoint, attack);
         }
+
+        // Attack-move: T, then left-click a spot (or Ctrl + right-click it).
+        public bool AttackMoveArmed;
 
         public void CommandAttack(Ship target)
         {
@@ -304,6 +307,8 @@ namespace Saga.Game
             if (Input.GetKeyDown(KeyCode.F)) Focus(Selected);
             bool ctrl = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
             if (Input.GetKeyDown(KeyCode.X)) CommandStop();
+            if (Input.GetKeyDown(KeyCode.T) && Selected.Count > 0 && !Inspecting && !Deploying) AttackMoveArmed = true;
+            if (AttackMoveArmed && (Input.GetKeyDown(KeyCode.Escape) || Selected.Count == 0 || Inspecting)) AttackMoveArmed = false;
             if (ctrl && Input.GetKeyDown(KeyCode.A)) SelectAllOwn();
 
             for (int n = 1; n <= 9; n++)
@@ -390,6 +395,21 @@ namespace Saga.Game
             }
             if (hud.PointerOverPanel()) return;
 
+            if (AttackMoveArmed)
+            {
+                if (Input.GetMouseButtonDown(1)) { AttackMoveArmed = false; return; }
+                if (Input.GetMouseButtonDown(0))
+                {
+                    AttackMoveArmed = false;
+                    var target = PickAt(mouse, s => s.Team != PlayerTeam);
+                    if (target != null) CommandAttack(target);
+                    else { var g = GroundUnderMouse(); if (g.HasValue) CommandMove(g.Value, shift, attack: true); }
+                    leftDown = false;
+                    return;
+                }
+                return;
+            }
+
             if (Input.GetMouseButtonDown(0)) { leftDown = true; dragStart = mouse; dragging = false; }
             if (leftDown && (mouse - dragStart).magnitude > 8f) dragging = true;
             if (leftDown && Input.GetMouseButtonUp(0))
@@ -447,7 +467,8 @@ namespace Saga.Game
                 else
                 {
                     var g = GroundUnderMouse();
-                    if (g.HasValue) CommandMove(g.Value, shift);
+                    bool ctrl = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
+                    if (g.HasValue) CommandMove(g.Value, shift, attack: ctrl);
                 }
             }
         }

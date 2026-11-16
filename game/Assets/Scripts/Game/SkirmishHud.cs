@@ -152,15 +152,16 @@ namespace Saga.Game
             reserveHint = MakeText(root, "deploy hint", 24, TextAnchor.MiddleCenter, new Vector2(0.5f, 0), new Vector2(0, 150), new Vector2(1100, 40));
 
             // Controls card, shown at the start and on H.
-            helpPanel = MakeRect(root, "help", new Vector2(1, 1), new Vector2(-24, -64), new Vector2(560, 352));
+            helpPanel = MakeRect(root, "help", new Vector2(1, 1), new Vector2(-24, -64), new Vector2(560, 380));
             helpPanel.gameObject.AddComponent<Image>().color = Panel;
-            help = MakeText(helpPanel, "text", 20, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(20, -16), new Vector2(520, 300));
+            help = MakeText(helpPanel, "text", 20, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(20, -16), new Vector2(520, 330));
             help.text =
                 "<b>You command Blue.</b>\n" +
                 "<color=#a8d4ff>Select</color>   left-click, or drag a box. Shift adds.\n" +
                 "            Double-click: all of that type on screen. Ctrl+A: all.\n" +
                 "<color=#a8d4ff>Orders</color>   right-click space to move, an enemy to attack.\n" +
                 "            Shift+right-click queues waypoints. X stops.\n" +
+                "            T then click (or Ctrl+right-click): attack-move.\n" +
                 "<color=#a8d4ff>Groups</color>   Ctrl+1..9 saves, 1..9 selects, press twice to jump.\n" +
                 "<color=#a8d4ff>Camera</color>   WASD / arrows / screen edge, wheel zoom,\n" +
                 "            Q/E or middle-drag to turn, F to focus.\n" +
@@ -262,7 +263,7 @@ namespace Saga.Game
                     "{8}\n" +
                     "<color=#e7d38c>Damage dealt  {9:N0}     Kills  {10}</color>{11}",
                     s.Def.name, Pretty(s.Def.hull), Mathf.Max(0, s.Armor), s.StartArmor, Mathf.Max(0, s.Shield), s.StartShield,
-                    s.Def.speed, s.InShieldField ? "in shield field" : "",
+                    s.Def.speed, s.ShieldBeamed ? "shield beam on it" : "",
                     string.Join(",  ", guns), s.DamageDealt, s.Kills,
                     s.ShieldsRestored > 0 ? string.Format("     <color=#a8ffc0>Shields restored  {0:N0}</color>", s.ShieldsRestored) : "");
             }
@@ -329,6 +330,8 @@ namespace Saga.Game
                 string what = game.DeployType == "*" ? "the whole reserve (" + me.Reserve.Count + ")" : game.World.Rules.Ships[game.DeployType].name;
                 reserveHint.text = "<color=#a8ffc0>Click to warp in " + what + "</color>   <color=#8d98ab>Shift keeps placing · right-click or Esc cancels</color>";
             }
+            else if (game.AttackMoveArmed)
+                reserveHint.text = "<color=#ffb0a0>Attack-move: click a spot</color>   <color=#8d98ab>they fight whatever they meet on the way · right-click or Esc cancels</color>";
             else reserveHint.text = "";
         }
 

@@ -81,7 +81,7 @@
    "sprite": "AttackCraft",
    "hull": "light",
    "cost": 1000,
-   "buyable": true,
+   "buyable": false,
    "build_time": 8,
    "armor": 38,
    "shield": 38,
@@ -227,7 +227,7 @@
    "sprite": "SupportFrigate",
    "hull": "frigate",
    "cost": 1100,
-   "buyable": true,
+   "buyable": false,
    "build_time": 6,
    "armor": 6000,
    "shield": 6000,
@@ -237,7 +237,7 @@
    "squadron": false,
    "turrets": [
     {
-     "weapon": "shield_field",
+     "weapon": "shield_beam",
      "range": 0,
      "time_between_shots": 1.0,
      "shots_per_burst": 0,

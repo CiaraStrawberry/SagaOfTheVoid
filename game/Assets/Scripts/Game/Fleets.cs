@@ -13,20 +13,29 @@ namespace Saga.Game
             ("missile_frigate", -300, 1700), ("missile_frigate", -300, -1700),
             ("laser_frigate", 0, 400), ("cannon_frigate", 0, -400),
             ("flak_frigate", 300, 1200), ("flak_frigate", 300, -1200),
-            ("repair_frigate", -1200, 700), ("support_frigate", -1200, -700),
+            ("repair_frigate", -1200, 700), ("repair_frigate", -1200, -700),
             ("fighter", 600, 2300), ("fighter", 600, -2300), ("bomber", 400, 2800), ("bomber", 400, -2800),
-            ("attack_craft", 700, 0), ("scout", 900, 1600), ("scout", 900, -1600),
+            ("fighter", 700, 0), ("scout", 900, 1600), ("scout", 900, -1600),
         };
 
         // One of most kinds, so every effect shows up, in a short fight. For fast iteration.
         public static readonly (string id, float x, float y)[] Quick =
         {
             ("capital", -700, 0), ("missile_frigate", -300, 900), ("laser_frigate", 0, -500), ("cannon_frigate", 0, 500),
-            ("flak_frigate", 200, -1200), ("support_frigate", -900, -800), ("fighter", 500, 1600), ("bomber", 400, -1800),
+            ("flak_frigate", 200, -1200), ("repair_frigate", -900, -800), ("fighter", 500, 1600), ("bomber", 400, -1800),
+        };
+
+        // A small, fast skirmish: one destroyer, two frigates and a fighter squadron each.
+        public static readonly (string id, float x, float y)[] Small =
+        {
+            ("destroyer", -500, 0), ("cannon_frigate", 0, 600), ("flak_frigate", 0, -600), ("fighter", 400, 1400),
         };
 
         // Distance from the middle to each fleet's centre (owner asked for bigger maps: was 4,200 and 2,800).
-        public const float FullGap = 6500f, QuickGap = 4500f;
+        public const float FullGap = 6500f, QuickGap = 4500f, SmallGap = 3500f;
+
+        public static (string id, float x, float y)[] FleetFor(BattleConfig c) => c.Small ? Small : c.Quick ? Quick : Full;
+        public static float GapFor(BattleConfig c) => c.Small ? SmallGap : c.Quick ? QuickGap : FullGap;
 
         // Adds each side's flagship or home base (behind its fleet) for the capital ship and base defence modes.
         public static void SpawnMode(World w, SkirmishMode mode, float gap)

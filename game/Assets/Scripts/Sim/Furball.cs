@@ -59,7 +59,12 @@ namespace Saga.Sim
             // A fight with only one side left is over; its fighters go back to their orders.
             foreach (var f in Furballs.Where(f => !f.Contested).ToList())
             {
-                foreach (var m in f.Members.ToList()) Leave(m);
+                foreach (var m in f.Members.ToList())
+                {
+                    Leave(m);
+                    // Attack-moving fighters carry on to where they were sent.
+                    if (m.AttackMoveTo.HasValue) { m.MoveTarget = m.AttackMoveTo.Value; m.HasMoveOrder = true; m.Holds = true; }
+                }
                 Furballs.Remove(f);
             }
         }
@@ -81,6 +86,7 @@ namespace Saga.Sim
                 {
                     s.Waypoints.Clear();
                     s.OrderedTarget = null;
+                    s.AttackMoveTo = null;
                     s.MoveTarget = f.Centre;
                     s.HasMoveOrder = true;
                     s.Holds = true;

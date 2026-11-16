@@ -70,7 +70,16 @@ public static class BattlePreview
 
             // Camera: keep every live ship in view, eased.
             var alive = world.Alive.ToList();
-            if (alive.Count > 0)
+            // -follow <ship id> [-dist n]: a close camera on the first live ship of that kind (looking at details).
+            var follow = alive.FirstOrDefault(s => s.Def.id == Arg("-follow", "") && s.Team == 0);
+            if (follow != null)
+            {
+                var fv = view.ViewOf(follow);
+                var fp = fv != null ? BattleView.ShownCentre(fv) : BattleView.ToWorld(follow.Pos);
+                camTarget = Vector3.Lerp(camTarget, new Vector3(fp.x, 0, fp.z), 0.08f);
+                camDist = float.Parse(Arg("-dist", "2200"), System.Globalization.CultureInfo.InvariantCulture);
+            }
+            else if (alive.Count > 0)
             {
                 var c = Centre(alive);
                 float spread = alive.Max(s => Vector3.Distance(BattleView.ToWorld(s.Pos), c)) + 900f;

@@ -59,6 +59,14 @@ namespace Saga.Sim
             "laser_frigate", "support_frigate", "repair_frigate", "destroyer", "capital",
         };
 
+        // Ships set aside for now (owner, 2026-11-16; not for sale): wherever one would appear (computer buys,
+        // campaign fleets), this ship stands in.
+        public static readonly Dictionary<string, string> StandIn = new Dictionary<string, string>
+        {
+            { "attack_craft", "bomber" }, { "support_frigate", "repair_frigate" },
+        };
+        public static string InPlay(string id) => id != null && StandIn.TryGetValue(id, out var s) ? s : id;
+
         public TeamState TeamOf(int team)
         {
             if (!teams.TryGetValue(team, out var t))
@@ -207,7 +215,7 @@ namespace Saga.Sim
             if (t.NextBuy == null)
             {
                 int roll = rng.Next(0, 200);
-                t.NextBuy = roll > 100 ? t.LastBuy : BuyOrder[PickNumber(roll)];
+                t.NextBuy = InPlay(roll > 100 ? t.LastBuy : BuyOrder[PickNumber(roll)]);
             }
             if (TryBuy(team, t.NextBuy)) { t.LastBuy = t.NextBuy; t.NextBuy = null; }
         }

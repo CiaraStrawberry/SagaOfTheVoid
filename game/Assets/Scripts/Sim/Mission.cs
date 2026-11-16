@@ -92,7 +92,7 @@ namespace Saga.Sim
             // Enemy fleet in a column on the right (2017 spawned it one ship at a time down a line).
             for (int i = 0; i < def.enemy_fleet.Count; i++)
             {
-                var s = Spawn(def.enemy_fleet[i], enemyTeam, new Vec2(6500 + (i % 2) * 600, (i - def.enemy_fleet.Count / 2.0) * 700), Math.PI / 2);
+                var s = Spawn(InPlay(def.enemy_fleet[i]), enemyTeam, new Vec2(6500 + (i % 2) * 600, (i - def.enemy_fleet.Count / 2.0) * 700), Math.PI / 2);
                 if (def.enemy_fleet[i] == "super_capital" && m.Objective == Objective.KillTarget) m.Target = s;
             }
 

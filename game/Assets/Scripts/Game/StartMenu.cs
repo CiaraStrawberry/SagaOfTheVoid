@@ -37,7 +37,7 @@ namespace Saga.Game
             UiKit.Label(root, "title", 64, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(80, -70), new Vector2(1200, 90), "<b>SAGA OF THE VOID</b>");
 
             // Skirmish column
-            var sk = UiKit.Box(root, "skirmish", new Vector2(0, 1), new Vector2(80, -220), new Vector2(520, 540), UiKit.Panel).transform;
+            var sk = UiKit.Box(root, "skirmish", new Vector2(0, 1), new Vector2(80, -220), new Vector2(520, 616), UiKit.Panel).transform;
             UiKit.Label(sk, "h", 30, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(24, -20), new Vector2(480, 40), "<b>Skirmish</b>");
             UiKit.Label(sk, "p", 20, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(24, -64), new Vector2(470, 60),
                 "<color=#8d98ab>You command Blue against the computer. Both sides earn credits and buy ships.</color>");
@@ -46,6 +46,7 @@ namespace Saga.Game
             skirmishDifficulty = UiKit.Button(sk, "", new Vector2(0, 1), new Vector2(24, -272), new Vector2(472, 56), () => { difficulty = (Difficulty)(((int)difficulty + 1) % 3); Refresh(); }, 22);
             UiKit.Button(sk, "Full battle  ·  18 v 18", new Vector2(0, 1), new Vector2(24, -366), new Vector2(472, 64), () => StartSkirmish(false), 26);
             UiKit.Button(sk, "Quick battle  ·  8 v 8", new Vector2(0, 1), new Vector2(24, -442), new Vector2(472, 64), () => StartSkirmish(true), 26);
+            UiKit.Button(sk, "Small battle  ·  4 v 4", new Vector2(0, 1), new Vector2(24, -518), new Vector2(472, 64), () => StartSkirmish(true, small: true), 26);
 
             // Campaign column
             var cp = UiKit.Box(root, "campaign", new Vector2(0, 1), new Vector2(640, -220), new Vector2(1200, 640), UiKit.Panel).transform;
@@ -84,7 +85,7 @@ namespace Saga.Game
         {
             chosenMission = i;
             var m = campaign.missions[i];
-            var names = m.enemy_fleet.GroupBy(x => x).Select(g => (g.Count() > 1 ? g.Count() + " × " : "") + ShipName(g.Key));
+            var names = m.enemy_fleet.Select(Saga.Sim.World.InPlay).GroupBy(x => x).Select(g => (g.Count() > 1 ? g.Count() + " × " : "") + ShipName(g.Key));
             string goal = m.objective == "survive" ? $"Survive for {m.time_limit / 60} minutes" : m.objective == "kill_target" ? "Destroy the enemy flagship" : $"Destroy every enemy ship within {m.time_limit / 60} minutes";
             briefing.text =
                 $"<size=30><b>{i + 1}. {m.name}</b></size>\n\n" +
@@ -99,9 +100,9 @@ namespace Saga.Game
 
         string ShipName(string id) => rules.Ships.TryGetValue(id, out var d) ? d.name : Pretty(id);
 
-        void StartSkirmish(bool quick) => SkirmishController.Begin(new BattleConfig
+        void StartSkirmish(bool quick, bool small = false) => SkirmishController.Begin(new BattleConfig
         {
-            Quick = quick, Map = MapIds[mapIndex], Sky = MapSkies[mapIndex], Difficulty = difficulty, Mode = mode,
+            Quick = quick, Small = small, Map = MapIds[mapIndex], Sky = MapSkies[mapIndex], Difficulty = difficulty, Mode = mode,
         });
 
         void Launch()

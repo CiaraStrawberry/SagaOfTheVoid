@@ -31,13 +31,15 @@ namespace Saga.Sim
         public Vec2 MoveTarget;
         public bool HasMoveOrder;
         public bool Accelerating;
-        public bool InShieldField;   // inside a friendly Support Frigate's shield field this step
+        public bool ShieldBeamed;    // a friendly Support Frigate's shield beam is on it this step
+        public Ship ShieldLink;      // Support Frigates: the friendly ship its shield beam is on
         public double ShieldCarry;   // fractional shield points not yet applied
         public bool Dead;
         public double NearestEnemy = double.MaxValue;
         public Ship OrderedTarget;                           // player/AI attack order (2017: shiptarget)
         public readonly Queue<Vec2> Waypoints = new Queue<Vec2>(); // queued move points (2017: StoredOrders)
         public bool Holds = true;                            // HoldAtRange applies; off for plain move orders
+        public Vec2? AttackMoveTo;                           // attack-move destination, resumed after a dogfight
         public int LastHitByTeam = -1;                       // who gets the kill bounty
         public Ship LastHitBy;                               // who gets the kill on the tally
         public long DamageDealt;                             // running tally: damage landed on enemies (shields and armour)
@@ -50,7 +52,7 @@ namespace Saga.Sim
         public readonly List<Gun> Guns = new List<Gun>();
 
         public Gun MainGun => Guns.FirstOrDefault(g => !g.Weapon.module);
-        public Gun ShieldField => Guns.FirstOrDefault(g => g.Weapon.aura_radius > 0);
+        public Gun ShieldBeam => Guns.FirstOrDefault(g => g.Weapon.aura_radius > 0);
         public double MaxRange => Guns.Count == 0 ? 0 : Guns.Max(g => g.Turret.range);
         // Where a ship holds when HoldAtRange is on: inside the reach of its shortest damaging gun, so every gun fires.
         public double HoldRange => Guns.Where(g => !g.Weapon.module && g.Weapon.damage > 0).Select(g => (double)g.Turret.range).DefaultIfEmpty(1500).Min();
@@ -95,7 +97,7 @@ namespace Saga.Sim
     //   targeting _Ship.FindTarget / getpreferance
     //   firing    _Weapon.UpdateSpec / ishit / getmodifyer / hittime
     //   damage    _Ship.takeDamage / addShield
-    //   shield field  new: replaces the 2017 visual-only cloak (decided 2026-11-16)
+    //   shield beam   new: replaces the 2017 visual-only cloak (decided 2026-11-16)
     //   computer  AIController (attack with more than 4 ships, else regroup)
     // Known old bugs fixed here: lasers hit once, and shots land after their travel time.
     public partial class World
@@ -168,7 +170,9 @@ namespace Saga.Sim
 
         // Player move: the group keeps its shape around the point and goes exactly there, firing on the way.
         // With queue, the point is added after the ships' current orders (2017 waypoints, popped within 400).
-        public void OrderMove(IList<Ship> ships, Vec2 point, bool queue)
+        // With attack (attack-move), the ships stop to fight whatever they meet on the way (hold at range,
+        // fighters join dogfights) and carry on once it is dealt with; a plain move flies straight through.
+        public void OrderMove(IList<Ship> ships, Vec2 point, bool queue, bool attack = false)
         {
             var live = ships.Where(x => !x.Dead).ToList();
             if (live.Count == 0) return;
@@ -178,14 +182,15 @@ namespace Saga.Sim
                 var offset = x.Pos - centre;
                 if (offset.Length > 900) offset = offset.Normalized * 900;
                 var p = point + offset;
-                if (queue && x.HasMoveOrder) { x.Waypoints.Enqueue(p); continue; }
+                if (queue && x.HasMoveOrder) { x.Waypoints.Enqueue(p); x.Holds = x.Holds && attack; continue; }
                 x.Waypoints.Clear();
                 x.OrderedTarget = null;
+                x.AttackMoveTo = attack ? p : (Vec2?)null;
                 Leave(x);
                 x.MoveTarget = p;
                 x.HasMoveOrder = true;
                 x.Accelerating = true;
-                x.Holds = false;
+                x.Holds = attack;
             }
         }
 
@@ -196,6 +201,7 @@ namespace Saga.Sim
             foreach (var x in ships.Where(x => !x.Dead && x.Team != target.Team))
             {
                 x.Waypoints.Clear();
+                x.AttackMoveTo = null;
                 x.OrderedTarget = target;
                 x.MoveTarget = target.Pos;
                 x.HasMoveOrder = true;
@@ -210,6 +216,7 @@ namespace Saga.Sim
             {
                 x.Waypoints.Clear();
                 x.OrderedTarget = null;
+                x.AttackMoveTo = null;
                 x.HasMoveOrder = false;
                 x.Speed = 0;
             }
@@ -237,7 +244,7 @@ namespace Saga.Sim
                 }
                 UpdateFurballs();
             }
-            ApplyShieldFields(dt);
+            ApplyShieldBeams(dt);
             StepEconomy(dt);
 
             foreach (var s in Alive) Move(s, dt);
@@ -556,30 +563,42 @@ namespace Saga.Sim
             return f > 0.8 ? 5 : f > 0.6 ? 4 : f > 0.4 ? 3 : f > 0.2 ? 2 : 1;
         }
 
-        // ---------- shield field (Support Frigate) ----------
-        // Friendly non-fighter ships within the field recharge a share of their max shield per second,
-        // even from broken (-1). Fields do not stack: a ship gets the strongest one it is inside.
+        // ---------- shield beam (Support Frigate) ----------
+        // Each Support Frigate keeps a steady beam on one friendly non-fighter ship within reach, recharging a
+        // share of that ship's max shield per second, even from broken (-1). It stays on its ship until that ship
+        // is full or out of reach, then moves to the friend with the weakest shields (preferring one no other
+        // beam is on). Beams do not stack: a ship gets the strongest one on it.
 
-        void ApplyShieldFields(double dt)
+        void ApplyShieldBeams(double dt)
         {
-            var fields = Alive.Where(s => s.ShieldField != null).ToList();
+            var beams = Alive.Where(s => s.ShieldBeam != null).ToList();
+            foreach (var s in Alive) s.ShieldBeamed = false;
+            var rate = new Dictionary<Ship, double>();
+            foreach (var f in beams)
+            {
+                var w = f.ShieldBeam.Weapon;
+                bool Ok(Ship o) => o != null && !o.Dead && o != f && o.Team == f.Team && !Hulls.IsSmall(o.Hull)
+                                   && o.Shield < o.StartShield && Vec2.Distance(o.Pos, f.Pos) <= w.aura_radius;
+                if (!Ok(f.ShieldLink))
+                    f.ShieldLink = Alive.Where(Ok)
+                        .OrderBy(o => beams.Any(b => b != f && b.ShieldLink == o) ? 1 : 0)
+                        .ThenBy(o => (double)Math.Max(0, o.Shield) / Math.Max(1, o.StartShield))
+                        .ThenBy(o => Vec2.Distance(o.Pos, f.Pos)).FirstOrDefault();
+                var t = f.ShieldLink;
+                if (t == null) continue;
+                t.ShieldBeamed = true;
+                rate[t] = Math.Max(rate.TryGetValue(t, out var r) ? r : 0, w.shield_regen_pct);
+            }
             foreach (var s in Alive)
             {
-                s.InShieldField = false;
-                if (Hulls.IsSmall(s.Hull) || s.Shield >= s.StartShield) { s.ShieldCarry = 0; continue; }
-                double best = 0;
-                foreach (var f in fields)
-                {
-                    var w = f.ShieldField.Weapon;
-                    if (f.Team == s.Team && Vec2.Distance(f.Pos, s.Pos) <= w.aura_radius) best = Math.Max(best, w.shield_regen_pct);
-                }
-                if (best <= 0) { s.ShieldCarry = 0; continue; }
-                s.InShieldField = true;
-                s.ShieldCarry += s.StartShield * best / 100.0 * dt;
+                if (!rate.TryGetValue(s, out var pct)) { s.ShieldCarry = 0; continue; }
+                s.ShieldCarry += s.StartShield * pct / 100.0 * dt;
                 int whole = (int)s.ShieldCarry;
                 if (whole <= 0) continue;
                 s.ShieldCarry -= whole;
-                s.Shield = Math.Min(s.StartShield, Math.Max(0, s.Shield) + whole);
+                int before = Math.Max(0, s.Shield);
+                s.Shield = Math.Min(s.StartShield, before + whole);
+                foreach (var f in beams) if (f.ShieldLink == s) { f.ShieldsRestored += s.Shield - before; break; }
             }
         }
     }

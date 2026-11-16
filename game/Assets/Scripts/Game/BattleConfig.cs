@@ -10,7 +10,8 @@ namespace Saga.Game
     public class BattleConfig
     {
         public int Mission = -1;
-        public bool Quick;
+        public bool Quick;   // 8 v 8
+        public bool Small;   // 4 v 4
         public string Map = "asteroid_field";
         public string Sky = "skybox5";
         public Difficulty Difficulty = Difficulty.Normal;

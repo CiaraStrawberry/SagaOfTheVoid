@@ -178,12 +178,12 @@
    "launch_delay": 0.5
   },
   {
-   "id": "shield_field",
+   "id": "shield_beam",
    "damage": 0,
    "module": true,
    "aura_radius": 1500,
-   "shield_regen_pct": 1.0,
-   "visual": "none",
+   "shield_regen_pct": 4.0,
+   "visual": "shield_beam",
    "projectile_speed": 440,
    "launch_delay": 0.5
   }

@@ -25,7 +25,8 @@ namespace Saga.Game
             public Ship Ship;
             public GameObject Go;
             public Transform Model;
-            public SpriteRenderer Disc, FieldRing, Select;
+            public SpriteRenderer Disc, Select;
+            public LineRenderer Link; public SpriteRenderer LinkGlow; // Support Frigates: the shield beam
             public SpriteRenderer[] Engines;
             public ShipModel Paint;
             public Transform BarBack, BarShield, BarArmor;
@@ -40,6 +41,15 @@ namespace Saga.Game
             // Squadrons after a warp: fly straight ahead in formation until StraightUntil (Pulse time).
             public float StraightUntil = -1f, StraightFrom;
             public Vector3 StraightAnchor, StraightDir;
+            public Turret[] Turrets; // big ships: gun turrets that swing to face what they shoot at
+        }
+
+        public class Turret
+        {
+            public Transform Body, Barrel;
+            public float Yaw, AimUntil = -9f;
+            public Vector3 AimAt;
+            public Vector3 Tip; // barrel muzzle, in the barrel's own space
         }
 
         class Fx
@@ -168,6 +178,7 @@ namespace Saga.Game
                 SpawnExplosion(dv);
                 dv.Go.SetActive(false);
                 foreach (var b in new[] { dv.BarBack, dv.BarArmor, dv.BarShield }) if (b != null) b.gameObject.SetActive(false);
+                if (dv.Link != null) { Kill(dv.Link.gameObject); dv.Link = null; }
                 if (dv.Warp != null) // its portal lives outside the ship
                 {
                     Kill(dv.Warp.Portal.gameObject); Kill(dv.Warp.Aura.gameObject);
@@ -278,11 +289,25 @@ namespace Saga.Game
             }).ToArray();
 
             if (small) SetUpCrafts(v);
+            else SetUpTurrets(v);
 
-            var field = s.ShieldField;
-            if (field != null)
+            if (s.ShieldBeam != null)
             {
-                v.FieldRing = FlatSprite("shield field", ring, v.Go.transform, field.Weapon.aura_radius * 2f / 0.85f, 20f); // ring peaks at 85% of half-size
+                var lg = new GameObject("shield beam");
+                lg.transform.SetParent(root, false);
+                v.Link = lg.AddComponent<LineRenderer>();
+                v.Link.sharedMaterial = addMat;
+                v.Link.positionCount = 2;
+                v.Link.useWorldSpace = true;
+                v.Link.startWidth = 10f; v.Link.endWidth = 16f;
+                v.Link.numCapVertices = 2;
+                v.Link.shadowCastingMode = ShadowCastingMode.Off;
+                v.Link.enabled = false;
+                var gg = new GameObject("shield beam glow");
+                gg.transform.SetParent(lg.transform, false);
+                v.LinkGlow = gg.AddComponent<SpriteRenderer>();
+                v.LinkGlow.sprite = glow; v.LinkGlow.sharedMaterial = addMat;
+                v.LinkGlow.enabled = false;
             }
 
             if (!small) { v.BarBack = Bar(); v.BarArmor = Bar(); v.BarShield = Bar(); }
@@ -354,6 +379,7 @@ namespace Saga.Game
 
             // Engines: brighter with speed, flickering slightly; always billboarded.
             v.Pulse += dt;
+            UpdateTurrets(v, dt);
             float throttle = Mathf.Clamp01((float)(s.Speed / Math.Max(1.0, s.Def.speed)));
             for (int i = 0; i < v.Engines.Length; i++)
             {
@@ -366,8 +392,28 @@ namespace Saga.Game
                 Tint(e, Hdr(Color.Lerp(new Color(0.55f, 0.75f, 1f), tint, 0.25f), (0.6f + 1.4f * throttle) * flicker));
             }
 
-            if (v.FieldRing != null)
-                Tint(v.FieldRing, new Color(0.35f, 0.65f, 1f, 0.035f + 0.025f * Mathf.Sin(v.Pulse * 2.2f)));
+            // Support Frigate: a steady shield beam onto the friend it is recharging, with a glow where it lands.
+            if (v.Link != null)
+            {
+                var tv = s.ShieldLink != null && !s.ShieldLink.Dead ? ViewOf(s.ShieldLink) : null;
+                bool on = tv != null && tv.Warp == null && v.Warp == null;
+                v.Link.enabled = on; v.LinkGlow.enabled = on;
+                if (on)
+                {
+                    var a = Centre(v) + Vector3.up * 12f;
+                    var b = Centre(tv);
+                    b = b + (a - b).normalized * tv.Length * 0.35f; // lands on the near side of the ship
+                    v.Link.SetPosition(0, a); v.Link.SetPosition(1, b);
+                    float pulse = 0.8f + 0.2f * Mathf.Sin(v.Pulse * 9f);
+                    v.Link.widthMultiplier = pulse;
+                    var col = Hdr(new Color(0.35f, 0.75f, 1f), 1.6f);
+                    v.Link.startColor = col * 0.9f; v.Link.endColor = col * pulse;
+                    v.LinkGlow.transform.position = b;
+                    v.LinkGlow.transform.rotation = Cam.transform.rotation;
+                    v.LinkGlow.transform.localScale = Vector3.one * (70f + 15f * Mathf.Sin(v.Pulse * 6f));
+                    Tint(v.LinkGlow, Hdr(new Color(0.4f, 0.75f, 1f), 1.3f));
+                }
+            }
         }
 
         // Homeworld-style: a thin line over the ship while it is taking damage (or selected), fading out after.
@@ -507,9 +553,63 @@ namespace Saga.Game
         readonly Dictionary<(Ship, int), Burst> bursts = new Dictionary<(Ship, int), Burst>();
         const double BurstGap = 1.2; // seconds of quiet that end a burst
 
-        // Each gun has a fixed spot on the hull, spread along the ship's length.
-        Vector3 GunMuzzle(ShipView v, int gun)
+        // Turrets: the 2017 models have each turret as a body (pivot at its centre, upright) with its barrel
+        // as a separate part beside it. The barrel is attached to the nearest body so they swing together.
+        static void SetUpTurrets(ShipView v)
         {
+            var parts = v.Model.GetComponentsInChildren<Transform>(true);
+            var bodies = parts.Where(t => t.name.Contains("TurretBody") || t.name == "MiniGunTurret").ToList();
+            var barrels = parts.Where(t => t.name.Contains("Barrel")).ToList();
+            var list = new List<Turret>();
+            foreach (var body in bodies)
+            {
+                var near = barrels.OrderBy(b => Vector3.ProjectOnPlane(b.position - body.position, Vector3.up).sqrMagnitude).FirstOrDefault();
+                var t = new Turret { Body = body };
+                if (near != null)
+                {
+                    barrels.Remove(near);
+                    near.SetParent(body, true);
+                    t.Barrel = near;
+                    var mf = near.GetComponent<MeshFilter>();
+                    if (mf != null && mf.sharedMesh != null) { var b = mf.sharedMesh.bounds; t.Tip = new Vector3(b.center.x, b.center.y, b.max.z); }
+                }
+                list.Add(t);
+            }
+            v.Turrets = list.ToArray();
+        }
+
+        // Each turret turns (at a heavy, steady rate) toward the last thing it fired at, or else toward the
+        // ship's target, and settles back to face forward when there is nothing to shoot.
+        void UpdateTurrets(ShipView v, float dt)
+        {
+            if (v.Turrets == null || v.Turrets.Length == 0 || dt <= 0f) return;
+            var target = v.Ship.Target != null && !v.Ship.Target.Dead ? ViewOf(v.Ship.Target) : null;
+            foreach (var t in v.Turrets)
+            {
+                if (t.Body == null) continue;
+                float want = 0f;
+                Vector3? aim = v.Pulse < t.AimUntil ? t.AimAt : target != null ? Centre(target) : (Vector3?)null;
+                if (aim.HasValue && t.Body.parent != null)
+                {
+                    var local = t.Body.parent.InverseTransformDirection(aim.Value - t.Body.position);
+                    want = Mathf.Atan2(local.x, local.z) * Mathf.Rad2Deg;
+                }
+                t.Yaw = Mathf.MoveTowardsAngle(t.Yaw, want, 75f * dt);
+                t.Body.localRotation = Quaternion.Euler(0, t.Yaw, 0);
+            }
+        }
+
+        // Each gun has a fixed spot on the hull, spread along the ship's length; ships with turrets fire
+        // from the turret barrels (and point that turret at the target).
+        Vector3 GunMuzzle(ShipView v, int gun, Vector3 aimAt)
+        {
+            if (v.Turrets != null && v.Turrets.Length > 0)
+            {
+                var t = v.Turrets[gun % v.Turrets.Length];
+                t.AimAt = aimAt; t.AimUntil = v.Pulse + 3f;
+                if (t.Barrel != null) return t.Barrel.TransformPoint(t.Tip);
+                if (t.Body != null) return t.Body.position;
+            }
             float along = (((gun * 0.618f) % 1f) - 0.5f) * 0.55f;
             float side = (gun % 2 == 0 ? 1f : -1f) * 0.1f;
             var yaw = Quaternion.Euler(0, -(float)(v.Ship.Heading * Mathf.Rad2Deg), 0);
@@ -547,10 +647,12 @@ namespace Saga.Game
                     var best = from.Crafts.Where(x => x.R.enabled)
                                           .OrderByDescending(x => Vector3.Dot(x.Facing, (aimAt - x.Pos).normalized)).FirstOrDefault();
                     if (best != null) b.Craft = best;
-                    drawShot = best != null && (e.Visual == "seeker" || FacesTarget(best, aimAt));
+                    // Missiles and bombs are always drawn (bombers mostly circle their target, so they are
+                    // rarely lined up exactly): they leave from the craft pointing most nearly at it.
+                    drawShot = best != null && (e.Visual == "seeker" || e.Visual == "bomb" || FacesTarget(best, aimAt));
                 }
             }
-            var a = b.Craft != null && b.Craft.R.enabled ? b.Craft.T.position + b.Craft.Facing * 10f : from.Crafts != null ? AnyCraft(from).T.position : GunMuzzle(from, e.GunIndex);
+            var a = b.Craft != null && b.Craft.R.enabled ? b.Craft.T.position + b.Craft.Facing * 10f : from.Crafts != null ? AnyCraft(from).T.position : GunMuzzle(from, e.GunIndex, Centre(to));
 
             bool shieldShot = e.AtShield && e.Visual != "repair_beam";
             if (b.Plan == null || b.Plan.OnShield != shieldShot || b.Plan.Anchor == null || !b.Plan.Anchor.gameObject.activeInHierarchy)
@@ -580,9 +682,9 @@ namespace Saga.Game
                 case "repair_beam": f = AddLine("beam", a, end, Hdr(new Color(0.4f, 1f, 0.6f), 1.6f), 9f, 0.5f); break;
                 case "missile": f = AddLine("missile", a, end, Hdr(new Color(1f, 0.85f, 0.6f), 2f), 8f, (float)e.TravelTime, 8); break;
                 case "shell": f = AddLine("shell", a, end, Hdr(new Color(1f, 0.65f, 0.25f), 2.0f), 7f, (float)e.TravelTime); break;
-                case "bomb": f = AddLine("bomb", a, end, Hdr(new Color(0.8f, 1f, 0.35f), 2.6f), 16f, (float)e.TravelTime); break;
+                case "bomb": f = AddLine("bomb", a, end, Hdr(new Color(0.8f, 1f, 0.35f), 3f), 15f, (float)e.TravelTime); break;
                 case "seeker":
-                    f = AddLine("seeker", a, end, Hdr(new Color(1f, 0.28f, 0.04f), 1.8f), 11f, (float)e.TravelTime, 8);
+                    f = AddLine("seeker", a, end, Hdr(new Color(1f, 0.28f, 0.04f), 1.8f), 6.5f, (float)e.TravelTime, 8);
                     f.Velocity = b.Craft != null ? b.Craft.Facing : (end - a).normalized; // leaves along the nose
                     f.Flight = f.Life;
                     if (!e.Hit) { f.Miss = true; f.Life = f.Flight + 0.8f; } // misses fly on and fade
@@ -595,6 +697,15 @@ namespace Saga.Game
                 f.Miss = true; f.Flight = f.Life;
                 f.Life = f.Flight + (e.Visual == "missile" ? 1.2f : 0.6f); // flies on, fading
             }
+            // Bombers: the squadron's one heavy shot is drawn as a salvo, a bomb from each craft, landing together.
+            if (e.Visual == "bomb" && from.Crafts != null)
+                foreach (var cr in from.Crafts.Where(x => x.R.enabled && x != b.Craft).Take(4))
+                {
+                    var spread = UnityEngine.Random.insideUnitSphere * (to.Crafts != null ? 30f : to.Length * 0.12f);
+                    var g = AddLine("bomb", cr.T.position + cr.Facing * 10f, end + spread, f.Colour, 15f, (float)e.TravelTime);
+                    if (f.Miss) { g.Miss = true; g.Flight = f.Flight; g.Life = f.Life; }
+                    if (plan != null) { g.Anchor = plan.Anchor; g.Local = plan.Local + plan.Anchor.InverseTransformVector(spread); }
+                }
             // Hits follow the moving target so they land on the spot they were aimed at.
             if (plan != null) { f.Anchor = plan.Anchor; f.Local = plan.Local; }
             // Hits on fighter craft: missiles home in on the craft (they follow the anchor). Gun shots fly in a
@@ -629,7 +740,7 @@ namespace Saga.Game
             lr.sharedMaterial = addMat;
             lr.positionCount = points;
             lr.useWorldSpace = true;
-            lr.startWidth = kind == "missile" || kind == "seeker" ? width * 0.2f : width;
+            lr.startWidth = kind == "missile" || kind == "seeker" || kind == "bomb" ? width * 0.2f : width;
             lr.endWidth = width;
             lr.numCapVertices = 2;
             lr.shadowCastingMode = ShadowCastingMode.Off;
@@ -704,11 +815,13 @@ namespace Saga.Game
         void CraftExplosion(Craft c)
         {
             var p = c.T.position;
-            AddSprite("flash", glow, p, Hdr(new Color(1f, 0.65f, 0.3f), 1.8f), 60f, 0.35f, Vector3.zero, false);
-            for (int i = 0; i < 6; i++)
+            AddSprite("flash", glow, p, Hdr(new Color(1f, 0.95f, 0.8f), 3f), 50f, 0.1f, Vector3.zero, false);
+            AddSprite("flash", glow, p, Hdr(new Color(1f, 0.6f, 0.25f), 2.2f), 110f, 0.55f, c.Vel * 0.3f, false);
+            AddSprite("ring", warpRing, p, Hdr(new Color(1f, 0.7f, 0.4f), 1.3f), 160f, 0.3f, Vector3.zero, false);
+            for (int i = 0; i < 10; i++)
             {
                 var d = (c.Vel.normalized * 0.6f + UnityEngine.Random.insideUnitSphere).normalized;
-                AddSprite("debris", dot, p, Hdr(new Color(1f, 0.6f, 0.25f), 1.4f), UnityEngine.Random.Range(5f, 10f), UnityEngine.Random.Range(0.4f, 0.8f), d * UnityEngine.Random.Range(60f, 160f), false);
+                AddSprite("debris", dot, p, Hdr(new Color(1f, 0.6f, 0.25f), 1.8f), UnityEngine.Random.Range(5f, 11f), UnityEngine.Random.Range(0.5f, 1f), d * UnityEngine.Random.Range(80f, 220f), false);
             }
             SoundBoard.Current?.Explosion(p, false);
         }
@@ -753,24 +866,41 @@ namespace Saga.Game
             if (e.Visual == "missile" || e.Visual == "seeker")
             {
                 bool big = e.Visual == "missile";
-                float size = big ? 110f : 55f;
-                AddSprite("flash", glow, at, Hdr(new Color(1f, 0.85f, 0.5f), 2f), size * 0.6f, 0.12f, Vector3.zero, false);
-                AddSprite("flash", glow, at, Hdr(new Color(1f, 0.45f, 0.12f), 1.5f), size, 0.45f, Vector3.zero, false);
-                AddSprite("ring", warpRing, at, new Color(1f, 0.6f, 0.3f, 0.5f), size * 1.3f, 0.3f, Vector3.zero, false);
-                for (int i = 0; i < (big ? 8 : 5); i++)
+                float size = big ? 170f : 95f;
+                // White-hot core, then a bigger orange fireball that lingers, a fast shock ring and a dull smoke puff.
+                AddSprite("flash", glow, at, Hdr(new Color(1f, 0.95f, 0.8f), 3.2f), size * 0.55f, 0.1f, Vector3.zero, false);
+                AddSprite("flash", glow, at, Hdr(new Color(1f, 0.5f, 0.12f), 2.4f), size, 0.55f, Vector3.zero, false);
+                AddSprite("flash", glow, at, new Color(0.35f, 0.18f, 0.08f, 0.5f), size * 1.5f, 1.1f, plan.Dir * 25f, false);
+                AddSprite("ring", warpRing, at, Hdr(new Color(1f, 0.7f, 0.4f), 1.4f), size * 1.8f, 0.28f, Vector3.zero, false);
+                for (int i = 0; i < (big ? 14 : 9); i++)
                 {
                     var d = (plan.Dir * 0.5f + UnityEngine.Random.insideUnitSphere).normalized;
-                    AddSprite("debris", dot, at, Hdr(new Color(1f, 0.55f, 0.2f), 1.5f), UnityEngine.Random.Range(4f, 9f) * (big ? 1.5f : 1f), UnityEngine.Random.Range(0.35f, 0.7f), d * UnityEngine.Random.Range(50f, 140f) * (big ? 1.4f : 1f), false);
+                    AddSprite("debris", dot, at, Hdr(new Color(1f, 0.6f, 0.2f), 2f), UnityEngine.Random.Range(5f, 11f) * (big ? 1.5f : 1f), UnityEngine.Random.Range(0.45f, 0.9f), d * UnityEngine.Random.Range(90f, 240f) * (big ? 1.4f : 1f), false);
                 }
                 return;
             }
-            // Hull hit: a flash on the plating, and for heavy hits a few sparks thrown back toward the shooter.
-            AddSprite("flash", glow, at, Hdr(new Color(1f, 0.6f, 0.25f), 1.4f), heavy ? 48f : 18f, heavy ? 0.3f : 0.12f, Vector3.zero, false);
-            if (heavy)
+            // Hull hit: a hot flash on the plating with a lingering glow, and for heavy hits a shock ring and
+            // a spray of sparks thrown back toward the shooter.
+            AddSprite("flash", glow, at, Hdr(new Color(1f, 0.9f, 0.7f), heavy ? 3f : 2.2f), heavy ? 40f : 16f, 0.08f, Vector3.zero, false);
+            AddSprite("flash", glow, at, Hdr(new Color(1f, 0.55f, 0.2f), heavy ? 2.2f : 1.6f), heavy ? 90f : 30f, heavy ? 0.45f : 0.18f, Vector3.zero, false);
+            if (e.Visual == "bomb") // the rest of the salvo lands around it
                 for (int i = 0; i < 4; i++)
+                    AddSprite("flash", glow, at + UnityEngine.Random.insideUnitSphere * (v.Crafts != null ? 30f : v.Length * 0.12f),
+                        Hdr(new Color(0.9f, 1f, 0.5f), 2f), UnityEngine.Random.Range(50f, 80f), UnityEngine.Random.Range(0.3f, 0.5f), Vector3.zero, false);
+            if (heavy)
+            {
+                AddSprite("ring", warpRing, at, Hdr(new Color(1f, 0.65f, 0.35f), 1.2f), 130f, 0.25f, Vector3.zero, false);
+                for (int i = 0; i < 8; i++)
                 {
                     var d = (plan.Dir + UnityEngine.Random.insideUnitSphere * 0.8f).normalized;
-                    AddSprite("debris", dot, at, Hdr(new Color(1f, 0.6f, 0.25f), 1.4f), UnityEngine.Random.Range(6f, 12f), UnityEngine.Random.Range(0.3f, 0.6f), d * UnityEngine.Random.Range(40f, 110f), false);
+                    AddSprite("debris", dot, at, Hdr(new Color(1f, 0.65f, 0.25f), 1.9f), UnityEngine.Random.Range(6f, 13f), UnityEngine.Random.Range(0.35f, 0.75f), d * UnityEngine.Random.Range(80f, 200f), false);
+                }
+            }
+            else
+                for (int i = 0; i < 2; i++)
+                {
+                    var d = (plan.Dir + UnityEngine.Random.insideUnitSphere).normalized;
+                    AddSprite("debris", dot, at, Hdr(new Color(1f, 0.7f, 0.3f), 1.7f), UnityEngine.Random.Range(3f, 6f), UnityEngine.Random.Range(0.2f, 0.4f), d * UnityEngine.Random.Range(60f, 140f), false);
                 }
         }
 
@@ -833,7 +963,7 @@ namespace Saga.Game
                         // A miss keeps going past the target in a straight line, fading out.
                         float ft = f.Age / Mathf.Max(0.05f, f.Flight);
                         float head = ft <= 1f ? Mathf.Pow(ft, 1.3f) : 1f + (ft - 1f) * 1.3f;
-                        float tail = Mathf.Max(0f, head - 0.35f);
+                        float tail = Mathf.Max(0f, head - 0.22f);
                         int n = f.Line.positionCount;
                         for (int k = 0; k < n; k++) f.Line.SetPosition(k, SeekerPoint(f, Mathf.Lerp(tail, head, k / (float)(n - 1))));
                         float fade = MissFade(f);
@@ -856,7 +986,7 @@ namespace Saga.Game
                         // Misses keep their speed and carry straight on past the target.
                         float ft = f.Miss ? f.Age / Mathf.Max(0.05f, f.Flight) : t;
                         var head = Vector3.LerpUnclamped(f.From, aim, ft);
-                        float tail = f.Kind == "tracer" ? 40f : f.Kind == "bomb" ? 70f : 18f; // short streaks, not long lines
+                        float tail = f.Kind == "tracer" ? 40f : f.Kind == "bomb" ? 110f : 18f; // short streaks, not long lines
                         var back = head - (f.To - f.From).normalized * tail;
                         f.Line.SetPosition(0, back); f.Line.SetPosition(1, head);
                         f.Line.startColor = f.Colour * 0.6f * MissFade(f);

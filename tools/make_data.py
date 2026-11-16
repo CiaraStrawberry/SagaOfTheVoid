@@ -28,7 +28,7 @@ BUYABLE = {  # old resource name -> (id, display name, sprite name)
     "super-capital": ("super_capital", "Super-Capital", "Super-Capital"),
 }
 GUN_IDS = {"Cannon": "cannon", "Missile": "missile", "MiniGun": "minigun", "ShieldGenerator": "shield_repair",
-           "Cloak": "shield_field",  # the 2017 cloak, redesigned as a shield support field (decided 2026-11-16)
+           "Cloak": "shield_beam",  # the 2017 cloak, redesigned as a shield support beam (decided 2026-11-16)
            "FighterGun": "fighter_gun", "BomberGun": "bomber_gun", "Dual_Role": "dual_role",
            "CapitalMainGun": "capital_main_gun", "Lazer": "laser"}
 # Build times in seconds, as the 2017 build menu passed them (PositinonRelativeToHeadset.cs:258-316).
@@ -67,9 +67,10 @@ weapons = {
     "dual_role":        {"damage": 50, "prefers": "frigate", "hit": hits(.01, .5, .5, .5, 1, 1), "visual": "tracer", "projectile_speed": 1600, "launch_delay": 0.1},
     "laser":            {"damage": 3000, "prefers": "capital", "hit": hits(.01, .02, .6, .9, .9, .9), "visual": "beam", "travel_time": 3.0},
     "shield_repair":    {"damage": 0, "shield_restore": 300, "targets_friends": True, "hit": hits(1, 1, 1, 1, 1, 1), "visual": "repair_beam"},
-    # Not in 2017 (it was a visual-only cloak): friendly non-fighter ships within aura_radius recharge
-    # shield_regen_pct of their max shield per second, up to full, even from broken. Does not stack.
-    "shield_field":     {"damage": 0, "module": True, "aura_radius": 1500, "shield_regen_pct": 1.0, "visual": "none"},
+    # Not in 2017 (it was a visual-only cloak): a steady beam on one friendly non-fighter ship within
+    # aura_radius (the one with the weakest shields), recharging shield_regen_pct of its max shield per second,
+    # up to full, even from broken. Beams do not stack on one ship.
+    "shield_beam":      {"damage": 0, "module": True, "aura_radius": 1500, "shield_regen_pct": 4.0, "visual": "shield_beam"},
 }
 for w in weapons.values():
     w.setdefault("projectile_speed", 440)  # old _Weapon.hittime: distance / 440 + 0.5 s
@@ -94,7 +95,7 @@ for old, (sid, name, sprite) in BUYABLE.items():
         hull = "super_capital"
     ships.append({
         "id": sid, "name": name, "sprite": sprite, "hull": hull,
-        "cost": s["cost"], "buyable": sid != "super_capital", "build_time": BUILD_TIME[sid],
+        "cost": s["cost"], "buyable": sid not in ("super_capital", "support_frigate", "attack_craft"), "build_time": BUILD_TIME[sid],  # Support Frigate and Attack Craft set aside for now (owner, 2026-11-16)
         "armor": s["armor"], "shield": s["armor"],
         # Speed: 2017 value x30, then tuned 2026-11-16: fighters/corvettes x1.5, capital-class x0.7 (owner request).
         "speed": round(s["max_speed"] * 30 * SPEED_TUNE.get(hull, 1.0), 2), "turn_rate": s["max_turn"],
