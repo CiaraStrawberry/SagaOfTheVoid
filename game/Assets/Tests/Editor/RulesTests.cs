@@ -112,6 +112,67 @@ namespace Saga.Tests
             Assert.AreEqual(near2, b.ShieldLink);
         }
 
+        static StoryDef Story() => JsonUtility.FromJson<StoryDef>(File.ReadAllText("Assets/Data/narrative.json"));
+
+        [Test]
+        public void Story_EveryMissionHasBriefingBattleBeatAndAftermath_AndKnownSpeakers()
+        {
+            var s = Story();
+            Assert.AreEqual(8, s.missions.Count);
+            foreach (var m in s.missions)
+            {
+                Assert.IsTrue(m.beats.Any(b => b.trigger == "mission_start"), m.name);
+                Assert.IsTrue(m.beats.Any(b => b.trigger == "mission_victory"), m.name);
+                foreach (var l in m.beats.SelectMany(b => b.lines))
+                    Assert.NotNull(s.Character(l.speaker), m.name + ": speaker " + l.speaker);
+            }
+            Assert.AreEqual(2, s.endings.Count);
+            Assert.IsTrue(StoryDirector.Hidden("sen", 2), "Sen is an unnamed signal in mission 3");
+            Assert.IsFalse(StoryDirector.Hidden("sen", 5), "and names herself in mission 6");
+        }
+
+        [Test]
+        public void Story_BeatsPlayOnTheirTriggers_OnceEach()
+        {
+            var c = Campaign();
+            var w = NewWorld();
+            w.SetUpMission(c.missions[0]); // Basic Training: interruption at enemy_kills >= 2
+            var d = new StoryDirector(Story().Mission(0), w, 0, 1);
+            Assert.AreEqual("briefing", d.Due()?.id);
+            Assert.IsNull(d.Due(), "nothing else yet, and the briefing only once");
+            var enemies = w.Alive.Where(s => s.Team == 1).ToList();
+            enemies[0].Armor = -5; w.Step(1.0 / 60);
+            Assert.IsNull(d.Due(), "one kill is not enough");
+            enemies[1].Armor = -5; w.Step(1.0 / 60);
+            Assert.AreEqual("interruption", d.Due()?.id);
+            foreach (var e in enemies) e.Armor = -5;
+            w.Step(1.0 / 60);
+            Assert.AreEqual(0, w.Winner);
+            Assert.IsNull(d.Due(), "no battle beats after the end");
+            Assert.AreEqual(new[] { "victory" }, d.AtVictory().Select(b => b.id).ToArray());
+        }
+
+        [Test]
+        public void Story_ABattleBeatThatNeverFired_PlaysAtVictory_AndNothingAfterDefeat()
+        {
+            var c = Campaign();
+            var w = NewWorld();
+            w.SetUpMission(c.missions[2]); // System Patrol: Holt's relay at target_hull <= 0.45
+            var d = new StoryDirector(Story().Mission(2), w, 0, 1);
+            d.Due();
+            w.Mission.Target.Armor = -5; // killed outright, never below 45% first
+            w.Step(1.0 / 60);
+            Assert.AreEqual(new[] { "interruption", "victory" }, d.AtVictory().Select(b => b.id).ToArray());
+
+            var lost = NewWorld();
+            lost.SetUpMission(c.missions[0]);
+            var d2 = new StoryDirector(Story().Mission(0), lost, 0, 1);
+            foreach (var s in lost.Alive.Where(s => s.Team == 0).ToList()) s.Armor = -5;
+            lost.Step(1.0 / 60);
+            Assert.AreEqual(1, lost.Winner);
+            Assert.AreEqual(0, d2.AtVictory().Count);
+        }
+
         [Test]
         public void SetAsideShips_AreNotForSale_AndTheComputerBuysStandIns()
         {

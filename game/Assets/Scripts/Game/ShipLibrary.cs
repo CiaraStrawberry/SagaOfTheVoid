@@ -37,6 +37,8 @@ namespace Saga.Game
         public TextAsset shipsJson;
         public TextAsset weaponsJson;
         public TextAsset campaignJson;
+        public TextAsset narrativeJson;          // campaign story beats (tools/make_narrative.py)
+        public List<PortraitEntry> portraits = new List<PortraitEntry>(); // comms portraits by character id
         public Shader fxShader;
         public Material skybox;
         public Material skyBackdrop; // flat sky behind the battle (SkyBackdrop), URP Unlit
@@ -50,6 +52,9 @@ namespace Saga.Game
         public AudioClip sfxCannon, sfxMachinegun, sfxGatling, sfxMissile, sfxBeam, sfxShotgun, sfxRailgun;
         public AudioClip sfxWarp, sfxExplosion, sfxKick;
         public AudioClip sfxClick, sfxSelect, sfxOrderMove, sfxOrderAttack;
+
+        [Serializable] public class PortraitEntry { public string id; public Sprite sprite; }
+        public Sprite Portrait(string id) => portraits.Find(p => p.id == id)?.sprite;
 
         public GameObject Map(string id) => maps.Find(m => m.id == id)?.prefab;
         public Texture2D Sky(string id) => skies.Find(s => string.Equals(s.id, id, StringComparison.OrdinalIgnoreCase))?.texture;

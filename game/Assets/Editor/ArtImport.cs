@@ -37,6 +37,15 @@ public class ArtImport : AssetPostprocessor
             ti.mipmapEnabled = true;
             ti.maxTextureSize = 512;
         }
+        else if (assetPath.StartsWith("Assets/Art/Portraits/"))
+        {
+            // Comms portraits (tools/portraits.py): transparent PNGs shown in the dialogue panel.
+            ti.textureType = TextureImporterType.Sprite;
+            ti.spriteImportMode = SpriteImportMode.Single;
+            ti.alphaIsTransparency = true;
+            ti.mipmapEnabled = false;
+            ti.maxTextureSize = 1024;
+        }
         else if (assetPath.StartsWith("Assets/Art/Backgrounds/"))
         {
             ti.textureType = TextureImporterType.Default;

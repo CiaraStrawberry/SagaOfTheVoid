@@ -131,10 +131,39 @@ namespace Saga.Tests
             Assert.AreEqual(4, game.World.Count(1), "four enemy scouts");
             Assert.AreEqual(2000, game.World.TeamOf(0).Money, 1, "mission start money");
             Assert.IsNotNull(game.World.CannotBuy(0, "cannon_frigate"), "frigates are not available in mission 1");
+            // The opening briefing holds the battle until it is read.
+            Assert.IsNotNull(game.Comms, "campaign missions have a comms panel");
+            Assert.IsTrue(game.Comms.Open, "the briefing opens at the start");
+            double before = game.World.Time;
+            yield return null; yield return null;
+            Assert.AreEqual(before, game.World.Time, 1e-9, "the battle waits during the briefing");
+            game.Comms.FinishLine();
+            yield return null;
+            Shot(cam, rt, "mission_1_briefing");
+            game.Comms.Close();
             game.SelectAllOwn();
             game.GameSpeed = 4f;
             yield return RunUntil(game, 8);
             Shot(cam, rt, "mission_1_basic_training");
+            Object.Destroy(go);
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator Campaign_Mission3_RelayCallIsAnUnidentifiedSignal()
+        {
+            var (go, cam, rt) = MakeCamera();
+            SkirmishController.Pending = new BattleConfig { Mission = 2 };
+            var game = go.AddComponent<SkirmishController>();
+            yield return null; yield return null;
+            game.Comms.Close();
+            game.PlayStoryBeat("interruption");
+            yield return null;
+            Assert.IsTrue(game.Comms.Open);
+            game.Comms.FinishLine();
+            yield return null;
+            Shot(cam, rt, "mission_3_unknown_signal");
+            game.Comms.Close();
             Object.Destroy(go);
             yield return null;
         }

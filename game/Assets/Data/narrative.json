@@ -1,0 +1,561 @@
+{
+ "title": "The Thessa Record",
+ "characters": [
+  {
+   "id": "vey",
+   "name": "Admiral Oren Vey",
+   "role": "Imperial Naval Command",
+   "faction": "IMPERIAL COMMAND",
+   "color": "blue"
+  },
+  {
+   "id": "kest",
+   "name": "Lt. Mara Kest",
+   "role": "Wing Leader, 9th Fleet",
+   "faction": "NINTH FLEET",
+   "color": "blue"
+  },
+  {
+   "id": "sar",
+   "name": "Dr. Leena Sar",
+   "role": "Former Imperial records director",
+   "faction": "CIVILIAN FREQUENCY",
+   "color": "gold"
+  },
+  {
+   "id": "sen",
+   "name": "Commander Nara Sen",
+   "role": "Rebel Fleet Commander",
+   "faction": "UNAUTHORISED SIGNAL",
+   "color": "red"
+  }
+ ],
+ "missions": [
+  {
+   "index": 0,
+   "name": "Basic Training",
+   "act": "I · ORDERS",
+   "premise": "Four drone squadrons. A routine assessment, until a civilian distress call cuts through the exercise channel.",
+   "primary": "Destroy all four training drone squadrons.",
+   "secondary": "Keep at least one starting fighter squadron intact.",
+   "bonus": "Finish before the second training warning.",
+   "beats": [
+    {
+     "id": "briefing",
+     "trigger": "mission_start",
+     "type": "intro",
+     "lines": [
+      {
+       "speaker": "vey",
+       "text": "Four drone flights, no live ammunition from their side. Take your time if you need to. But do finish."
+      },
+      {
+       "speaker": "kest",
+       "text": "They said the same thing before my assessment. Lost an engine to a training drone. Took three weeks to stop hearing about it."
+      }
+     ]
+    },
+    {
+     "id": "interruption",
+     "trigger": "enemy_kills >= 2",
+     "type": "mid",
+     "lines": [
+      {
+       "speaker": "kest",
+       "text": "Wait. I have a distress call on the civilian band. Cargo shuttle, Morrow Gate registry. They say someone is shooting at them."
+      },
+      {
+       "speaker": "vey",
+       "text": "Exercise first, Lieutenant. The outer patrols have that sector."
+      },
+      {
+       "speaker": "kest",
+       "text": "It is the outer patrol calling us, sir."
+      }
+     ]
+    },
+    {
+     "id": "victory",
+     "trigger": "mission_victory",
+     "type": "outro",
+     "lines": [
+      {
+       "speaker": "vey",
+       "text": "Assessment passed. Report to Core Outskirts. Your fleet leaves in ten minutes."
+      },
+      {
+       "speaker": "kest",
+       "text": "No ceremony, then. I was hoping for a certificate."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "index": 1,
+   "name": "Core Outskirts",
+   "act": "I · ORDERS",
+   "premise": "Bombers have reached a civilian shipping hub. One of them is broadcasting an Imperial traffic code that should have been retired.",
+   "primary": "Destroy the three bomber squadrons.",
+   "secondary": "Prevent the bombers from damaging the station registry.",
+   "bonus": "Identify the stolen Imperial transponder code.",
+   "beats": [
+    {
+     "id": "briefing",
+     "trigger": "mission_start",
+     "type": "intro",
+     "lines": [
+      {
+       "speaker": "vey",
+       "text": "Three rebel bomber groups are moving on the station. They have already stopped merchant traffic. Clear them out."
+      },
+      {
+       "speaker": "kest",
+       "text": "I have the civilian channels. Dock crews are still aboard, Commander. Get between those bombers and the ring."
+      }
+     ]
+    },
+    {
+     "id": "interruption",
+     "trigger": "first_enemy_destroyed",
+     "type": "mid",
+     "lines": [
+      {
+       "speaker": "kest",
+       "text": "One of those bombers is using an Imperial clearance code. Old, but valid. Why would a rebel ship have that?"
+      },
+      {
+       "speaker": "vey",
+       "text": "Codes get stolen. Send the wreckage report to intelligence and stay on task."
+      },
+      {
+       "speaker": "kest",
+       "text": "I did. They rejected it. Before I even finished uploading."
+      }
+     ]
+    },
+    {
+     "id": "victory",
+     "trigger": "mission_victory",
+     "type": "outro",
+     "lines": [
+      {
+       "speaker": "kest",
+       "text": "Station is answering again. They lost a customs deck. The registry staff got out."
+      },
+      {
+       "speaker": "vey",
+       "text": "You are being reassigned. We have a pirate commander to deal with."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "index": 2,
+   "name": "System Patrol",
+   "act": "I · ORDERS",
+   "premise": "A wanted pirate captain has brought a heavy ship into a graveyard of Imperial wrecks. The Navy wants him dead, not questioned.",
+   "primary": "Destroy pirate commander Garric Holt’s super-capital.",
+   "secondary": "Recover the encrypted burst he transmits when his flagship is crippled.",
+   "bonus": "Withdraw with at least one fighter squadron operational.",
+   "beats": [
+    {
+     "id": "briefing",
+     "trigger": "mission_start",
+     "type": "intro",
+     "lines": [
+      {
+       "speaker": "vey",
+       "text": "Garric Holt. Smuggler, raider, occasionally a murderer. His ship is the large one among the wrecks. Remove it."
+      },
+      {
+       "speaker": "kest",
+       "text": "He has three cannon frigates screening him. I will take the fighters around the flank. Best not to fly straight at the big guns."
+      }
+     ]
+    },
+    {
+     "id": "interruption",
+     "trigger": "target_hull <= 0.45",
+     "type": "mid",
+     "lines": [
+      {
+       "speaker": "sen",
+       "text": "Imperial ships, this is Captain Holt’s relay. He has a registry copy from Thessa. You have been lied to."
+      },
+      {
+       "speaker": "vey",
+       "text": "That signal is pirate interference. Do not engage."
+      },
+      {
+       "speaker": "kest",
+       "text": "They attached a file. It is only forty kilobytes. Hardly a convincing ransom demand."
+      }
+     ]
+    },
+    {
+     "id": "victory",
+     "trigger": "mission_victory",
+     "type": "outro",
+     "lines": [
+      {
+       "speaker": "kest",
+       "text": "Holt is down. His data burst made it through before the explosion. I kept a copy."
+      },
+      {
+       "speaker": "vey",
+       "text": "Delete it. You are ordered to strike his base before the rest of his people scatter."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "index": 3,
+   "name": "Pirate Base",
+   "act": "II · DOUBT",
+   "premise": "The pirate hideout contains records taken from an Imperial transport. Someone has been paying Holt’s men to intercept specific ships.",
+   "primary": "Destroy the base defence fleet.",
+   "secondary": "Search the abandoned storage node after the battle.",
+   "bonus": "Keep a frigate alive to retrieve the cargo.",
+   "beats": [
+    {
+     "id": "briefing",
+     "trigger": "mission_start",
+     "type": "intro",
+     "lines": [
+      {
+       "speaker": "vey",
+       "text": "Holt’s hideout is ahead. A flak ship and four fighter groups. Do not give them time to regroup."
+      },
+      {
+       "speaker": "kest",
+       "text": "A whole frigate protecting a hole in an asteroid. Either Holt liked his furniture, or there is something worth keeping in there."
+      }
+     ]
+    },
+    {
+     "id": "interruption",
+     "trigger": "remaining_enemies <= 2",
+     "type": "mid",
+     "lines": [
+      {
+       "speaker": "kest",
+       "text": "Their cargo manifest lists Imperial transports. Same date, same route, same clearance code as the bombers."
+      },
+      {
+       "speaker": "vey",
+       "text": "That manifest is outside your assignment, Lieutenant."
+      },
+      {
+       "speaker": "kest",
+       "text": "It has my brother’s ship on it, sir. He was on the Thessa evacuation convoy."
+      }
+     ]
+    },
+    {
+     "id": "victory",
+     "trigger": "mission_victory",
+     "type": "outro",
+     "lines": [
+      {
+       "speaker": "kest",
+       "text": "The file says the Navy sealed the evacuation lane. Twelve minutes before the convoy arrived."
+      },
+      {
+       "speaker": "vey",
+       "text": "You will report to my office when this operation is complete. Until then, keep that information off the tactical net."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "index": 4,
+   "name": "Military Excursion",
+   "act": "II · DOUBT",
+   "premise": "The Navy sends the fleet into rebel territory to retrieve an Imperial records director. She says the rebels did not kidnap her.",
+   "primary": "Hold the extraction point for five minutes.",
+   "secondary": "Keep the prisoner shuttle alive until warp-out.",
+   "bonus": "Recover the shuttle’s complete testimony.",
+   "beats": [
+    {
+     "id": "briefing",
+     "trigger": "mission_start",
+     "type": "intro",
+     "lines": [
+      {
+       "speaker": "vey",
+       "text": "Dr. Leena Sar, former director of transit records, is held aboard a rebel courier. Your extraction team is inbound. Hold this position for five minutes."
+      },
+      {
+       "speaker": "kest",
+       "text": "We are two systems inside rebel space with a single pickup window. That makes the shuttle the most valuable ship in this battle."
+      }
+     ]
+    },
+    {
+     "id": "interruption",
+     "trigger": "time_remaining <= 150",
+     "type": "mid",
+     "lines": [
+      {
+       "speaker": "sar",
+       "text": "This is Dr. Sar. I was not taken prisoner. I left because my own office ordered me to erase the Thessa convoy logs."
+      },
+      {
+       "speaker": "kest",
+       "text": "You could have said that before we started shooting."
+      },
+      {
+       "speaker": "sar",
+       "text": "I asked for safe passage three times. Your admiral sent people to arrest me."
+      },
+      {
+       "speaker": "vey",
+       "text": "Commander, secure the passenger. We will discuss her claims in private."
+      }
+     ]
+    },
+    {
+     "id": "victory",
+     "trigger": "mission_victory",
+     "type": "outro",
+     "lines": [
+      {
+       "speaker": "sar",
+       "text": "The convoy was following an approved evacuation corridor. The Navy closed it and fired on ships that crossed the line."
+      },
+      {
+       "speaker": "kest",
+       "text": "My brother was on one of those ships."
+      },
+      {
+       "speaker": "sar",
+       "text": "I have the original orders. Your admiral signed them."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "index": 5,
+   "name": "All out war",
+   "act": "II · DOUBT",
+   "premise": "The rebels launch a major strike toward the capital, claiming they need the Crown Relay to transmit unaltered records throughout the Empire.",
+   "primary": "Destroy the rebel fleet approaching the capital.",
+   "secondary": "Stop the bombers from hitting the civilian dock.",
+   "bonus": "Record Commander Sen’s transmission intact.",
+   "beats": [
+    {
+     "id": "briefing",
+     "trigger": "mission_start",
+     "type": "intro",
+     "lines": [
+      {
+       "speaker": "vey",
+       "text": "Rebel ships are within striking distance of the capital. That destroyer carries their command staff. Nothing gets through."
+      },
+      {
+       "speaker": "kest",
+       "text": "There are civilian freighters still queued at the station. I am asking traffic control to clear them now."
+      }
+     ]
+    },
+    {
+     "id": "interruption",
+     "trigger": "enemy_destroyer_hull <= 0.5",
+     "type": "mid",
+     "lines": [
+      {
+       "speaker": "sen",
+       "text": "Imperial fleet, this is Commander Nara Sen. We are going to the Crown Relay. We have the Thessa recording. The Empire can hear it, if you let us through."
+      },
+      {
+       "speaker": "vey",
+       "text": "She has launched bombers at a civilian port. Remember that when she speaks about justice."
+      },
+      {
+       "speaker": "sen",
+       "text": "Then move the civilians. We have warned the station twice. Your command refused to evacuate it."
+      },
+      {
+       "speaker": "kest",
+       "text": "She is right about the warnings. I can see both of them in the traffic log."
+      }
+     ]
+    },
+    {
+     "id": "victory",
+     "trigger": "mission_victory",
+     "type": "outro",
+     "lines": [
+      {
+       "speaker": "kest",
+       "text": "Their destroyer is gone. The bombers are down. But that was an advance force. The main fleet is already past us."
+      },
+      {
+       "speaker": "vey",
+       "text": "Fall back to the palace approach. We hold there."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "index": 6,
+   "name": "Final Assault",
+   "act": "III · RECKONING",
+   "premise": "The Palace defence fleet falls back through a graveyard of old warships. The player must buy time for an evacuation while command argues about who gets a seat.",
+   "primary": "Survive the five-minute palace approach engagement.",
+   "secondary": "Keep the evacuation corridor open.",
+   "bonus": "Evacuate the registry team carrying the original orders.",
+   "beats": [
+    {
+     "id": "briefing",
+     "trigger": "mission_start",
+     "type": "intro",
+     "lines": [
+      {
+       "speaker": "vey",
+       "text": "The palace defence line has broken. Hold the approach. Two rebel destroyers are coming through the wreck field."
+      },
+      {
+       "speaker": "kest",
+       "text": "The evacuation ships are behind us. Most are civilian. Some are palace staff. They are all using the same corridor."
+      }
+     ]
+    },
+    {
+     "id": "interruption",
+     "trigger": "time_remaining <= 120",
+     "type": "mid",
+     "lines": [
+      {
+       "speaker": "vey",
+       "text": "Redirect your screen to Transport One. It carries the senior cabinet."
+      },
+      {
+       "speaker": "kest",
+       "text": "Transport Three is full of dock workers. Its engines are failing."
+      },
+      {
+       "speaker": "sar",
+       "text": "Transport Three also has the original transit registry. Commander, that is our proof."
+      },
+      {
+       "speaker": "vey",
+       "text": "I gave you an order."
+      },
+      {
+       "speaker": "kest",
+       "text": "And I have two ships asking for cover. You need to pick a route."
+      }
+     ]
+    },
+    {
+     "id": "victory",
+     "trigger": "mission_victory",
+     "type": "outro",
+     "lines": [
+      {
+       "speaker": "sar",
+       "text": "The relay is still powered. Sen’s fleet is converging on it."
+      },
+      {
+       "speaker": "vey",
+       "text": "Their flagship is exposed. This ends before the next broadcast."
+      },
+      {
+       "speaker": "kest",
+       "text": "Commander. Whatever you decide out there, I will follow your lead."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "index": 7,
+   "name": "Last Hope",
+   "act": "III · RECKONING",
+   "premise": "The rebel flagship reaches the relay perimeter. The fleet has one final battle, followed by a decision about the evidence it carries.",
+   "primary": "Defeat Commander Sen’s super-capital flagship.",
+   "secondary": "Preserve the Thessa transmission in your fleet archive.",
+   "bonus": "Bring at least one capital ship home.",
+   "beats": [
+    {
+     "id": "briefing",
+     "trigger": "mission_start",
+     "type": "intro",
+     "lines": [
+      {
+       "speaker": "vey",
+       "text": "There is Sen’s flagship. Destroy it and the rebellion loses its last command ship. You know what is at stake."
+      },
+      {
+       "speaker": "sen",
+       "text": "Commander of the Ninth Fleet, I know you received Sar’s records. Check the signatures. I would rather you heard them before you killed us."
+      },
+      {
+       "speaker": "kest",
+       "text": "I have checked them. They are genuine."
+      }
+     ]
+    },
+    {
+     "id": "interruption",
+     "trigger": "target_hull <= 0.25",
+     "type": "mid",
+     "lines": [
+      {
+       "speaker": "sen",
+       "text": "We will not reach the relay. You have won. The record is transmitting to your fleet now."
+      },
+      {
+       "speaker": "vey",
+       "text": "Block it. That is a direct order."
+      },
+      {
+       "speaker": "sar",
+       "text": "It is the last complete copy, Commander. Once the flagship goes down, the choice is yours."
+      }
+     ]
+    },
+    {
+     "id": "victory",
+     "trigger": "mission_victory",
+     "type": "outro",
+     "lines": [
+      {
+       "speaker": "kest",
+       "text": "Sen’s flagship is gone. The Crown Relay is waiting for an authenticated order."
+      },
+      {
+       "speaker": "sar",
+       "text": "I can release the record under your command signature. Or I can close the archive and no one will know you received it."
+      },
+      {
+       "speaker": "vey",
+       "text": "Commander. I will not ask you twice."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "endings": [
+  {
+   "id": "publish",
+   "choice": "Transmit the Thessa record.",
+   "title": "Release the recording",
+   "text": "The recording reaches the outer fleets before the Admiralty can cut the Crown Relay. Some captains stand down. Others declare for Sen. Admiral Vey is recalled to answer for Thessa. There is no peace yet. For the first time, both sides have to answer the same question."
+  },
+  {
+   "id": "seal",
+   "choice": "Seal the archive pending an inquiry.",
+   "title": "Seal the archive",
+   "text": "The official report calls the battle a complete victory. The Navy buries the files and the capital celebrates. Weeks later, the border fighting resumes. Kest leaves the Ninth without requesting a transfer. On her desk she leaves the convoy manifest, with her brother’s name circled."
+  }
+ ]
+}

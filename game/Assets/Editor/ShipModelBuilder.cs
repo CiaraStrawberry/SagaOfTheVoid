@@ -175,6 +175,10 @@ public static class ShipModelBuilder
             .Select(id => new ShipLibrary.SkyEntry { id = id, texture = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Art/Backgrounds/" + id + ".png") })
             .Where(s => s.texture != null).ToList();
         lib.campaignJson = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/campaign.json");
+        lib.narrativeJson = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/narrative.json");
+        lib.portraits = new[] { "vey", "kest", "sar", "sen" }
+            .Select(id => new ShipLibrary.PortraitEntry { id = id, sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Portraits/" + id + ".png") })
+            .Where(p => p.sprite != null).ToList();
         lib.shipsJson = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/ships.json");
         lib.weaponsJson = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/weapons.json");
         lib.fxShader = Shader.Find("Saga/Fx");
@@ -210,9 +214,9 @@ public static class ShipModelBuilder
         lib.skyBackdrop = backdrop;
         EditorUtility.SetDirty(lib);
         AssetDatabase.SaveAssets();
-        Log(string.Format("library: {0} ships, {1} with prefab, {2} with icon, {3} maps, {4} skies, data {5}, campaign {6}, shader {7}",
+        Log(string.Format("library: {0} ships, {1} with prefab, {2} with icon, {3} maps, {4} skies, data {5}, campaign {6}, shader {7}, narrative {8}, portraits {9}",
             lib.ships.Count, lib.ships.Count(e => e.prefab != null), lib.ships.Count(e => e.icon != null), lib.maps.Count, lib.skies.Count,
-            lib.shipsJson != null && lib.weaponsJson != null, lib.campaignJson != null, lib.fxShader != null));
+            lib.shipsJson != null && lib.weaponsJson != null, lib.campaignJson != null, lib.fxShader != null, lib.narrativeJson != null, lib.portraits.Count));
     }
 
     // Splits one submesh out so each part has exactly one material slot.

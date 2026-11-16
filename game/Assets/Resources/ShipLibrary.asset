@@ -79,6 +79,16 @@ MonoBehaviour:
   shipsJson: {fileID: 4900000, guid: bbfd9f5fc13c80144bc677eaa4d5d2a6, type: 3}
   weaponsJson: {fileID: 4900000, guid: 6fda9e69948aa84438c849dfdecbc2b1, type: 3}
   campaignJson: {fileID: 4900000, guid: 0f4284937ec4ab5438df0f0396585f1a, type: 3}
+  narrativeJson: {fileID: 4900000, guid: a91a236344739994cba7a9f3045f063e, type: 3}
+  portraits:
+  - id: vey
+    sprite: {fileID: 21300000, guid: caca0211c0ea5cc4baa93c969a634d75, type: 3}
+  - id: kest
+    sprite: {fileID: 21300000, guid: f5f2e24b56012d14a9687fc03caaad5c, type: 3}
+  - id: sar
+    sprite: {fileID: 21300000, guid: bc2b8914dc5faac40906cdf216d4cd43, type: 3}
+  - id: sen
+    sprite: {fileID: 21300000, guid: fd4df7c668e46e44bb261de4feba5a71, type: 3}
   fxShader: {fileID: 4800000, guid: 897beb3a6a88af1488b117f147670858, type: 3}
   skybox: {fileID: 2100000, guid: cf32db390983d614a8c26a8036f44b26, type: 2}
   skyBackdrop: {fileID: 2100000, guid: f91b57bd38573d84f99b9fdbd7a70670, type: 2}

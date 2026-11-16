@@ -216,7 +216,7 @@ namespace Saga.Game
             }
             else objective.text = "";
 
-            if (w.Winner < 0) banner.text = "";
+            if (w.Winner < 0 || game.StoryBusy) banner.text = ""; // a won mission's aftermath plays first
             else
             {
                 bool won = w.Winner == SkirmishController.PlayerTeam;
@@ -225,7 +225,9 @@ namespace Saga.Game
                 if (endPanel == null) ShowEndButtons(won);
             }
 
-            helpPanel.gameObject.SetActive(Time.unscaledTime < helpUntil);
+            // The controls card waits until a transmission is over (it would sit behind the comms panel).
+            if (game.StoryBusy && Time.unscaledTime < helpUntil) helpUntil = Time.unscaledTime + 12f;
+            helpPanel.gameObject.SetActive(Time.unscaledTime < helpUntil && !game.StoryBusy);
             if (menuConfirmUntil > 0 && Time.unscaledTime >= menuConfirmUntil) { menuConfirmUntil = -1f; menuLabel.text = "Menu"; }
             RefreshSelection();
             RefreshBuild();

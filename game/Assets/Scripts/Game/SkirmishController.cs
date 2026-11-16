@@ -61,6 +61,18 @@ namespace Saga.Game
         StartMenu menu;
         bool resultSaved;
 
+        // Campaign story (CommsPanel): beats play as their triggers fire; the battle waits while one is open.
+        StoryDef storyDef;
+        StoryDirector story;
+        CommsPanel comms;
+        bool victoryStoryQueued;
+        public const string EndingKey = "saga.campaign.ending";
+        // True while a transmission is on screen or a won mission's aftermath is still to come.
+        public CommsPanel Comms => comms;
+        // Opens one of this mission's beats right away (tests and screenshots).
+        public void PlayStoryBeat(string id) { var b = story?.Mission.beats.Find(x => x.id == id); if (b != null) comms.Play(b); }
+        public bool StoryBusy => comms != null && (comms.Open || (World.Winner == PlayerTeam && !victoryStoryQueued));
+
         public static void Begin(BattleConfig config)
         {
             Pending = config;
@@ -116,6 +128,16 @@ namespace Saga.Game
             View = new BattleView(World, lib, cam);
             new SoundBoard(lib, gameObject, cam).PlayMusic(lib.musicBattle);
             hud = new SkirmishHud(this, lib, cam);
+            if (MissionDef != null && lib.narrativeJson != null)
+            {
+                storyDef = JsonUtility.FromJson<StoryDef>(lib.narrativeJson.text);
+                var sm = storyDef.Mission(MissionDef.index);
+                if (sm != null)
+                {
+                    story = new StoryDirector(sm, World, PlayerTeam, 1);
+                    comms = new CommsPanel(lib, cam, storyDef, MissionDef.index);
+                }
+            }
 
             var mine = World.Alive.Where(s => s.Team == PlayerTeam).ToList();
             pivot = Centre(mine) + new Vector3(2000f, 0, 0);
@@ -142,6 +164,7 @@ namespace Saga.Game
                     PlayerPrefs.Save();
                 }
             }
+            if (comms != null && UpdateStory(dt)) return;
             HandleKeys();
             HandleCamera(dt);
             HandleMouse();
@@ -166,6 +189,39 @@ namespace Saga.Game
             View.Sync(shots, impacts, deaths, Paused ? 0f : dt * GameSpeed, World.Time);
             shots.Clear(); impacts.Clear(); deaths.Clear();
             hud.Refresh();
+        }
+
+        // Starts any story beat that is due; while a transmission is open the battle stays frozen beneath it and
+        // this returns true (no other input). On victory the aftermath plays before the end banner; after the
+        // last mission comes the ending choice.
+        bool UpdateStory(float dt)
+        {
+            if (!comms.Open)
+            {
+                if (World.Winner == PlayerTeam && !victoryStoryQueued)
+                {
+                    victoryStoryQueued = true;
+                    foreach (var b in story.AtVictory()) comms.Play(b);
+                    if (MissionDef.index == storyDef.missions.Count - 1 && storyDef.endings.Count > 0)
+                        comms.Choose(storyDef.endings, e =>
+                        {
+                            PlayerPrefs.SetString(EndingKey, e.id);
+                            PlayerPrefs.Save();
+                            comms.Card(e.title, e.text);
+                        });
+                }
+                else if (World.Winner < 0)
+                {
+                    var due = story.Due();
+                    if (due != null) comms.Play(due, due.trigger == "mission_start" ? story.Mission : null);
+                }
+            }
+            if (!comms.Open) return false;
+            comms.Update(dt);
+            PlaceCamera();
+            View.Sync(shots, impacts, deaths, 0f, World.Time);
+            hud.Refresh();
+            return true;
         }
 
         // ---------- commands (public so tests and later UI can drive them) ----------
@@ -393,9 +449,14 @@ namespace Saga.Game
                 else HandleDeploy(mouse, shift);
                 return;
             }
-            if (hud.PointerOverPanel()) return;
+            // Over the HUD panels nothing new starts, but a drag already under way still finishes there
+            // (letting go over the build bar ends the box as usual).
+            bool overPanel = hud.PointerOverPanel();
+            if (overPanel && !leftDown) return;
+            // The button was let go somewhere we didn't see (another window): end the drag anyway.
+            bool released = leftDown && (Input.GetMouseButtonUp(0) || !Input.GetMouseButton(0));
 
-            if (AttackMoveArmed)
+            if (AttackMoveArmed && !overPanel)
             {
                 if (Input.GetMouseButtonDown(1)) { AttackMoveArmed = false; return; }
                 if (Input.GetMouseButtonDown(0))
@@ -412,9 +473,10 @@ namespace Saga.Game
 
             if (Input.GetMouseButtonDown(0)) { leftDown = true; dragStart = mouse; dragging = false; }
             if (leftDown && (mouse - dragStart).magnitude > 8f) dragging = true;
-            if (leftDown && Input.GetMouseButtonUp(0))
+            if (released)
             {
                 leftDown = false;
+                if (overPanel && !dragging) { dragging = false; return; } // a click that ended on the panel
                 if (dragging)
                 {
                     var rect = Rect.MinMaxRect(Mathf.Min(dragStart.x, mouse.x), Mathf.Min(dragStart.y, mouse.y), Mathf.Max(dragStart.x, mouse.x), Mathf.Max(dragStart.y, mouse.y));
@@ -448,7 +510,7 @@ namespace Saga.Game
                 dragging = false;
             }
 
-            if (Input.GetMouseButtonDown(1) && Selected.Count > 0 && !Inspecting)
+            if (Input.GetMouseButtonDown(1) && Selected.Count > 0 && !Inspecting && !overPanel)
             {
                 var exact = View.Pick(cam.ScreenPointToRay(mouse));
                 var fight = FightUnderMouse();

@@ -57,3 +57,7 @@ tools/mapbake/Assets/*
 tools/mapbake/Assets/Editor/*.meta
 
 recovery/audio/
+
+# API keys (never commit)
+.env
+.env.*
