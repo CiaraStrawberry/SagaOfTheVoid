@@ -1,0 +1,1113 @@
+{
+ "attackcraft": {
+  "resource": "attackcraft",
+  "prefab": "AttackCraft",
+  "script": "LightCraft_Tank",
+  "hull": "Light",
+  "role": "Tank",
+  "cost": 1000,
+  "armor": 38,
+  "shield": 38,
+  "max_speed": 10.0,
+  "max_turn": 1.75,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "AttackCraft/MiniGunTurretInGame",
+    "type": "Dual_Role",
+    "range": 800,
+    "time_between_shots": {
+     "_serializedValue": 429496736
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 12884901888
+    }
+   }
+  ]
+ },
+ "bomber": {
+  "resource": "bomber",
+  "prefab": "Bomber",
+  "script": "LightCraft_Support",
+  "hull": "Light",
+  "role": "Support",
+  "cost": 1050,
+  "armor": 36,
+  "shield": 36,
+  "max_speed": 10.0,
+  "max_turn": 1.75,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "Bomber/MiniGunTurretInGame",
+    "type": "BomberGun",
+    "range": 1300,
+    "time_between_shots": {
+     "_serializedValue": 429496736
+    },
+    "shots_per_burst": 3,
+    "burst_wait": {
+     "_serializedValue": 12884901888
+    }
+   }
+  ]
+ },
+ "cannonfrigate": {
+  "resource": "cannonfrigate",
+  "prefab": "CannonFrigate",
+  "script": "Destroyer_Support",
+  "hull": "Frigate",
+  "role": "Support",
+  "cost": 1050,
+  "armor": 5000,
+  "shield": 5000,
+  "max_speed": 4.0,
+  "max_turn": 0.5,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "CannonFrigate/MidTurretInGame",
+    "type": "Cannon",
+    "range": 1800,
+    "time_between_shots": {
+     "_serializedValue": 12884901888
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 0
+    }
+   },
+   {
+    "node": "CannonFrigate/MidTurretInGame (1)",
+    "type": "Cannon",
+    "range": 1800,
+    "time_between_shots": {
+     "_serializedValue": 12884901888
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 0
+    }
+   }
+  ]
+ },
+ "capital": {
+  "resource": "capital",
+  "prefab": "Capital",
+  "script": "Capital_Offense",
+  "hull": "Capital",
+  "role": "Offense",
+  "cost": 5000,
+  "armor": 17000,
+  "shield": 17000,
+  "max_speed": 3.0,
+  "max_turn": 0.25,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "Capital/MissileTurretInGame",
+    "type": "Missile",
+    "range": 4000,
+    "time_between_shots": {
+     "_serializedValue": 1288490240
+    },
+    "shots_per_burst": 3,
+    "burst_wait": {
+     "_serializedValue": 12884901888
+    }
+   },
+   {
+    "node": "Capital/CapitalMainGunInGame",
+    "type": "Cannon",
+    "range": 1800,
+    "time_between_shots": {
+     "_serializedValue": 4294967296
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 12884901888
+    }
+   },
+   {
+    "node": "Capital/MissileTurretInGame (1)",
+    "type": "Missile",
+    "range": 4000,
+    "time_between_shots": {
+     "_serializedValue": 1288490240
+    },
+    "shots_per_burst": 3,
+    "burst_wait": {
+     "_serializedValue": 12884901888
+    }
+   }
+  ]
+ },
+ "capitaldefense": {
+  "resource": "capitaldefense",
+  "prefab": "CapitalDefense",
+  "script": "Capital_Defense",
+  "hull": "Capital",
+  "role": "Defense",
+  "cost": 4500,
+  "armor": 22500,
+  "shield": 22500,
+  "max_speed": 3.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "capitaloffense": {
+  "resource": "capitaloffense",
+  "prefab": "CapitalOffense",
+  "script": "Capital_Offense",
+  "hull": "Capital",
+  "role": "Offense",
+  "cost": 5500,
+  "armor": 22500,
+  "shield": 22500,
+  "max_speed": 3.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "capitalsupport": {
+  "resource": "capitalsupport",
+  "prefab": "CapitalSupport",
+  "script": "Capital_Support",
+  "hull": "Capital",
+  "role": "Support",
+  "cost": 5000,
+  "armor": 25000,
+  "shield": 25000,
+  "max_speed": 3.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "capitaltank": {
+  "resource": "capitaltank",
+  "prefab": "CapitalTank",
+  "script": "Capital_Tank",
+  "hull": "Capital",
+  "role": "Tank",
+  "cost": 5000,
+  "armor": 32500,
+  "shield": 32500,
+  "max_speed": 3.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "corvettedefense": {
+  "resource": "corvettedefense",
+  "prefab": "CorvetteDefense",
+  "script": "Corvette_Defense",
+  "hull": "Corvette",
+  "role": "Defense",
+  "cost": 360,
+  "armor": 68,
+  "shield": 68,
+  "max_speed": 11.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "CorvetteDefense/MiniGunTurretInGame",
+    "type": "FighterGun",
+    "range": 1200,
+    "time_between_shots": {
+     "_serializedValue": 4294967296
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 0
+    }
+   }
+  ]
+ },
+ "corvetteoffense": {
+  "resource": "corvetteoffense",
+  "prefab": "CorvetteOffense",
+  "script": "Corvette_Offense",
+  "hull": "Corvette",
+  "role": "Offense",
+  "cost": 1000,
+  "armor": 68,
+  "shield": 68,
+  "max_speed": 8.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "CorvetteOffense/MiniGunTurretInGame",
+    "type": "FighterGun",
+    "range": 1200,
+    "time_between_shots": {
+     "_serializedValue": 4294967296
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 0
+    }
+   }
+  ]
+ },
+ "corvettesupport": {
+  "resource": "corvettesupport",
+  "prefab": "CorvetteSupport",
+  "script": "Corvette_Support",
+  "hull": "Corvette",
+  "role": "Support",
+  "cost": 900,
+  "armor": 75,
+  "shield": 75,
+  "max_speed": 8.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "CorvetteSupport/MiniGunTurretInGame",
+    "type": "BomberGun",
+    "range": 1200,
+    "time_between_shots": {
+     "_serializedValue": 4294967296
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 0
+    }
+   }
+  ]
+ },
+ "corvettetank": {
+  "resource": "corvettetank",
+  "prefab": "CorvetteTank",
+  "script": "Corvette_Offense",
+  "hull": "Corvette",
+  "role": "Offense",
+  "cost": 800,
+  "armor": 68,
+  "shield": 68,
+  "max_speed": 8.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "CorvetteTank/MiniGunTurretInGame",
+    "type": "MiniGun",
+    "range": 1200,
+    "time_between_shots": {
+     "_serializedValue": 4294967296
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 0
+    }
+   }
+  ]
+ },
+ "cruiserdefense": {
+  "resource": "cruiserdefense",
+  "prefab": "CruiserDefense",
+  "script": "Cruiser_Defense",
+  "hull": "Cruiser",
+  "role": "Defense",
+  "cost": 1800,
+  "armor": 2700,
+  "shield": 2700,
+  "max_speed": 5.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "cruiseroffense": {
+  "resource": "cruiseroffense",
+  "prefab": "CruiserOffense",
+  "script": "Cruiser_Offense",
+  "hull": "Cruiser",
+  "role": "Offense",
+  "cost": 2200,
+  "armor": 2700,
+  "shield": 2700,
+  "max_speed": 5.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "cruisersupport": {
+  "resource": "cruisersupport",
+  "prefab": "CruiserSupport",
+  "script": "Cruiser_Support",
+  "hull": "Cruiser",
+  "role": "Support",
+  "cost": 2000,
+  "armor": 3000,
+  "shield": 3000,
+  "max_speed": 5.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "cruisertank": {
+  "resource": "cruisertank",
+  "prefab": "CruiserTank",
+  "script": "Cruiser_Tank",
+  "hull": "Cruiser",
+  "role": "Tank",
+  "cost": 2000,
+  "armor": 3900,
+  "shield": 3900,
+  "max_speed": 5.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "destroyer": {
+  "resource": "destroyer",
+  "prefab": "Destroyer",
+  "script": "Capital_Defense",
+  "hull": "Capital",
+  "role": "Defense",
+  "cost": 3000,
+  "armor": 11000,
+  "shield": 11000,
+  "max_speed": 3.0,
+  "max_turn": 0.25,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "Destroyer/MidTurretInGame",
+    "type": "Cannon",
+    "range": 1800,
+    "time_between_shots": {
+     "_serializedValue": 429496736
+    },
+    "shots_per_burst": 5,
+    "burst_wait": {
+     "_serializedValue": 21474836480
+    }
+   },
+   {
+    "node": "Destroyer/MidTurretInGame (1)",
+    "type": "Cannon",
+    "range": 1800,
+    "time_between_shots": {
+     "_serializedValue": 429496736
+    },
+    "shots_per_burst": 5,
+    "burst_wait": {
+     "_serializedValue": 21474836480
+    }
+   },
+   {
+    "node": "Destroyer/MidTurretInGame (2)",
+    "type": "Cannon",
+    "range": 1800,
+    "time_between_shots": {
+     "_serializedValue": 429496736
+    },
+    "shots_per_burst": 5,
+    "burst_wait": {
+     "_serializedValue": 21474836480
+    }
+   },
+   {
+    "node": "Destroyer/MidTurretInGame (3)",
+    "type": "Cannon",
+    "range": 1800,
+    "time_between_shots": {
+     "_serializedValue": 429496736
+    },
+    "shots_per_burst": 5,
+    "burst_wait": {
+     "_serializedValue": 21474836480
+    }
+   }
+  ]
+ },
+ "destroyerdefense": {
+  "resource": "destroyerdefense",
+  "prefab": "DestroyerDefense",
+  "script": "Destroyer_Defense",
+  "hull": "Destroyer",
+  "role": "Defense",
+  "cost": 2250,
+  "armor": 9000,
+  "shield": 9000,
+  "max_speed": 4.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "destroyeroffense": {
+  "resource": "destroyeroffense",
+  "prefab": "DestroyerOffense",
+  "script": "Destroyer_Offense",
+  "hull": "Destroyer",
+  "role": "Offense",
+  "cost": 2750,
+  "armor": 9000,
+  "shield": 9000,
+  "max_speed": 4.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "destroyersupport": {
+  "resource": "destroyersupport",
+  "prefab": "DestroyerSupport",
+  "script": "Destroyer_Support",
+  "hull": "Destroyer",
+  "role": "Support",
+  "cost": 2500,
+  "armor": 10000,
+  "shield": 10000,
+  "max_speed": 4.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "destroyertank": {
+  "resource": "destroyertank",
+  "prefab": "DestroyerTank",
+  "script": "Destroyer_Tank",
+  "hull": "Destroyer",
+  "role": "Tank",
+  "cost": 2500,
+  "armor": 13000,
+  "shield": 13000,
+  "max_speed": 4.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "fighter": {
+  "resource": "fighter",
+  "prefab": "Fighter",
+  "script": "LightCraft_Offense",
+  "hull": "Light",
+  "role": "Offense",
+  "cost": 950,
+  "armor": 30,
+  "shield": 30,
+  "max_speed": 10.0,
+  "max_turn": 1.75,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "Fighter/MiniGunTurretInGame",
+    "type": "FighterGun",
+    "range": 1100,
+    "time_between_shots": {
+     "_serializedValue": 429496736
+    },
+    "shots_per_burst": 6,
+    "burst_wait": {
+     "_serializedValue": 8761733120
+    }
+   }
+  ]
+ },
+ "flackfrigate": {
+  "resource": "flackfrigate",
+  "prefab": "FlackFrigate",
+  "script": "Destroyer_Offense",
+  "hull": "Frigate",
+  "role": "Offense",
+  "cost": 1000,
+  "armor": 6000,
+  "shield": 6000,
+  "max_speed": 4.0,
+  "max_turn": 0.5,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "FlackFrigate/MiniGunTurretInGame",
+    "type": "MiniGun",
+    "range": 1200,
+    "time_between_shots": {
+     "_serializedValue": 429496736
+    },
+    "shots_per_burst": 10,
+    "burst_wait": {
+     "_serializedValue": 12884901888
+    }
+   },
+   {
+    "node": "FlackFrigate/MiniGunTurretInGame (1)",
+    "type": "MiniGun",
+    "range": 900,
+    "time_between_shots": {
+     "_serializedValue": 429496736
+    },
+    "shots_per_burst": 10,
+    "burst_wait": {
+     "_serializedValue": 12884901888
+    }
+   }
+  ]
+ },
+ "frigatedefense": {
+  "resource": "frigatedefense",
+  "prefab": "FrigateDefense",
+  "script": "Frigate_Defense",
+  "hull": "Frigate",
+  "role": "Defense",
+  "cost": 720,
+  "armor": 900,
+  "shield": 900,
+  "max_speed": 6.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "frigateoffense": {
+  "resource": "frigateoffense",
+  "prefab": "FrigateOffense",
+  "script": "Frigate_Offense",
+  "hull": "Frigate",
+  "role": "Offense",
+  "cost": 880,
+  "armor": 900,
+  "shield": 900,
+  "max_speed": 6.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "frigatesupport": {
+  "resource": "frigatesupport",
+  "prefab": "FrigateSupport",
+  "script": "Frigate_Support",
+  "hull": "Frigate",
+  "role": "Support",
+  "cost": 800,
+  "armor": 1000,
+  "shield": 1000,
+  "max_speed": 6.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "frigatetank": {
+  "resource": "frigatetank",
+  "prefab": "FrigateTank",
+  "script": "Frigate_Tank",
+  "hull": "Frigate",
+  "role": "Tank",
+  "cost": 800,
+  "armor": 1300,
+  "shield": 1300,
+  "max_speed": 6.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "lazerfrigate": {
+  "resource": "lazerfrigate",
+  "prefab": "LazerFrigate",
+  "script": "Destroyer_Tank",
+  "hull": "Frigate",
+  "role": "Tank",
+  "cost": 1200,
+  "armor": 6000,
+  "shield": 6000,
+  "max_speed": 4.0,
+  "max_turn": 0.5,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "LazerFrigate/LazerTurret",
+    "type": "Lazer",
+    "range": 2000,
+    "time_between_shots": {
+     "_serializedValue": 42949672960
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 0
+    }
+   }
+  ]
+ },
+ "lightcraftdefense": {
+  "resource": "lightcraftdefense",
+  "prefab": "LightCraftDefense",
+  "script": "LightCraft_Defense",
+  "hull": "Light",
+  "role": "Defense",
+  "cost": 600,
+  "armor": 30,
+  "shield": 30,
+  "max_speed": 11.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "LightCraftDefense/MiniGunTurretInGame",
+    "type": "FighterGun",
+    "range": 800,
+    "time_between_shots": {
+     "_serializedValue": 4294967296
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 0
+    }
+   }
+  ]
+ },
+ "lightcraftoffense": {
+  "resource": "lightcraftoffense",
+  "prefab": "LightCraftOffense",
+  "script": "LightCraft_Offense",
+  "hull": "Light",
+  "role": "Offense",
+  "cost": 750,
+  "armor": 30,
+  "shield": 30,
+  "max_speed": 10.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "LightCraftOffense/MiniGunTurretInGame",
+    "type": "FighterGun",
+    "range": 800,
+    "time_between_shots": {
+     "_serializedValue": 4294967296
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 0
+    }
+   }
+  ]
+ },
+ "lightcraftsupport": {
+  "resource": "lightcraftsupport",
+  "prefab": "LightCraftSupport",
+  "script": "LightCraft_Support",
+  "hull": "Light",
+  "role": "Support",
+  "cost": 720,
+  "armor": 36,
+  "shield": 36,
+  "max_speed": 10.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "LightCraftSupport/MiniGunTurretInGame",
+    "type": "BomberGun",
+    "range": 800,
+    "time_between_shots": {
+     "_serializedValue": 4294967296
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 0
+    }
+   }
+  ]
+ },
+ "lightcrafttank": {
+  "resource": "lightcrafttank",
+  "prefab": "LightCraftTank",
+  "script": "LightCraft_Tank",
+  "hull": "Light",
+  "role": "Tank",
+  "cost": 900,
+  "armor": 38,
+  "shield": 38,
+  "max_speed": 10.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "LightCraftTank/MiniGunTurretInGame",
+    "type": "Dual_Role",
+    "range": 800,
+    "time_between_shots": {
+     "_serializedValue": 4294967296
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 0
+    }
+   }
+  ]
+ },
+ "missilefrigate": {
+  "resource": "missilefrigate",
+  "prefab": "MissileFrigate",
+  "script": "Destroyer_Defense",
+  "hull": "Frigate",
+  "role": "Defense",
+  "cost": 1100,
+  "armor": 5000,
+  "shield": 5000,
+  "max_speed": 4.0,
+  "max_turn": 0.5,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "MissileFrigate/MissileTurretInGame",
+    "type": "Missile",
+    "range": 4000,
+    "time_between_shots": {
+     "_serializedValue": 2147483648
+    },
+    "shots_per_burst": 3,
+    "burst_wait": {
+     "_serializedValue": 21474836480
+    }
+   },
+   {
+    "node": "MissileFrigate/MissileTurretInGame (1)",
+    "type": "Missile",
+    "range": 4000,
+    "time_between_shots": {
+     "_serializedValue": 2147483648
+    },
+    "shots_per_burst": 3,
+    "burst_wait": {
+     "_serializedValue": 21474836480
+    }
+   }
+  ]
+ },
+ "repairfrigate": {
+  "resource": "repairfrigate",
+  "prefab": "RepairFrigate",
+  "script": "Cruiser_Support",
+  "hull": "Frigate",
+  "role": "Support",
+  "cost": 900,
+  "armor": 5000,
+  "shield": 5000,
+  "max_speed": 5.0,
+  "max_turn": 0.5,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "RepairFrigate/ShieldInGame",
+    "type": "ShieldGenerator",
+    "range": 2000,
+    "time_between_shots": {
+     "_serializedValue": 8589934592
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 0
+    }
+   }
+  ]
+ },
+ "scout": {
+  "resource": "scout",
+  "prefab": "Scout",
+  "script": "LightCraft_Defense",
+  "hull": "Light",
+  "role": "Defense",
+  "cost": 650,
+  "armor": 30,
+  "shield": 30,
+  "max_speed": 15.0,
+  "max_turn": 1.75,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "Scout/MiniGunTurretInGame",
+    "type": "FighterGun",
+    "range": 800,
+    "time_between_shots": {
+     "_serializedValue": 4294967296
+    },
+    "shots_per_burst": 2,
+    "burst_wait": {
+     "_serializedValue": 8589934592
+    }
+   }
+  ]
+ },
+ "scripts/vrtk_destinationpoint": {
+  "resource": "scripts/vrtk_destinationpoint",
+  "prefab": "Fighter",
+  "script": "LightCraft_Offense",
+  "hull": "Light",
+  "role": "Offense",
+  "cost": 950,
+  "armor": 30,
+  "shield": 30,
+  "max_speed": 10.0,
+  "max_turn": 1.75,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "Fighter/MiniGunTurretInGame",
+    "type": "FighterGun",
+    "range": 1100,
+    "time_between_shots": {
+     "_serializedValue": 429496736
+    },
+    "shots_per_burst": 6,
+    "burst_wait": {
+     "_serializedValue": 8761733120
+    }
+   }
+  ]
+ },
+ "ships/capitaldefense": {
+  "resource": "ships/capitaldefense",
+  "prefab": "CapitalDefense",
+  "script": "Capital_Defense",
+  "hull": "Capital",
+  "role": "Defense",
+  "cost": 4500,
+  "armor": 22500,
+  "shield": 22500,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/capitaloffense": {
+  "resource": "ships/capitaloffense",
+  "prefab": "CapitalOffense",
+  "script": "Capital_Offense",
+  "hull": "Capital",
+  "role": "Offense",
+  "cost": 5500,
+  "armor": 22500,
+  "shield": 22500,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/capitalsupport": {
+  "resource": "ships/capitalsupport",
+  "prefab": "CapitalSupport",
+  "script": "Capital_Support",
+  "hull": "Capital",
+  "role": "Support",
+  "cost": 5000,
+  "armor": 25000,
+  "shield": 25000,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/capitaltank": {
+  "resource": "ships/capitaltank",
+  "prefab": "CapitalTank",
+  "script": "Capital_Tank",
+  "hull": "Capital",
+  "role": "Tank",
+  "cost": 5000,
+  "armor": 32500,
+  "shield": 32500,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/cruiserdefense": {
+  "resource": "ships/cruiserdefense",
+  "prefab": "CruiserDefense",
+  "script": "Cruiser_Defense",
+  "hull": "Cruiser",
+  "role": "Defense",
+  "cost": 1800,
+  "armor": 2700,
+  "shield": 2700,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/cruiseroffense": {
+  "resource": "ships/cruiseroffense",
+  "prefab": "CruiserOffense",
+  "script": "Cruiser_Offense",
+  "hull": "Cruiser",
+  "role": "Offense",
+  "cost": 2200,
+  "armor": 2700,
+  "shield": 2700,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/cruisersupport": {
+  "resource": "ships/cruisersupport",
+  "prefab": "CruiserSupport",
+  "script": "Cruiser_Support",
+  "hull": "Cruiser",
+  "role": "Support",
+  "cost": 2000,
+  "armor": 3000,
+  "shield": 3000,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/cruisertank": {
+  "resource": "ships/cruisertank",
+  "prefab": "CruiserTank",
+  "script": "Cruiser_Tank",
+  "hull": "Cruiser",
+  "role": "Tank",
+  "cost": 2000,
+  "armor": 3900,
+  "shield": 3900,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/destroyerdefense": {
+  "resource": "ships/destroyerdefense",
+  "prefab": "DestroyerDefense",
+  "script": "Destroyer_Defense",
+  "hull": "Destroyer",
+  "role": "Defense",
+  "cost": 2250,
+  "armor": 9000,
+  "shield": 9000,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/destroyeroffense": {
+  "resource": "ships/destroyeroffense",
+  "prefab": "DestroyerOffense",
+  "script": "Destroyer_Offense",
+  "hull": "Destroyer",
+  "role": "Offense",
+  "cost": 2750,
+  "armor": 9000,
+  "shield": 9000,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/destroyersupport": {
+  "resource": "ships/destroyersupport",
+  "prefab": "DestroyerSupport",
+  "script": "Destroyer_Support",
+  "hull": "Destroyer",
+  "role": "Support",
+  "cost": 2500,
+  "armor": 10000,
+  "shield": 10000,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/destroyertank": {
+  "resource": "ships/destroyertank",
+  "prefab": "DestroyerTank",
+  "script": "Destroyer_Tank",
+  "hull": "Destroyer",
+  "role": "Tank",
+  "cost": 2500,
+  "armor": 13000,
+  "shield": 13000,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/frigatedefense": {
+  "resource": "ships/frigatedefense",
+  "prefab": "FrigateDefense",
+  "script": "Frigate_Defense",
+  "hull": "Frigate",
+  "role": "Defense",
+  "cost": 720,
+  "armor": 900,
+  "shield": 900,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/frigateoffense": {
+  "resource": "ships/frigateoffense",
+  "prefab": "FrigateOffense",
+  "script": "Frigate_Offense",
+  "hull": "Frigate",
+  "role": "Offense",
+  "cost": 880,
+  "armor": 900,
+  "shield": 900,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "ships/frigatesupport": {
+  "resource": "ships/frigatesupport",
+  "prefab": "FrigateSupport",
+  "script": "Frigate_Support",
+  "hull": "Frigate",
+  "role": "Support",
+  "cost": 800,
+  "armor": 1000,
+  "shield": 1000,
+  "max_speed": 0.0,
+  "max_turn": 0.0,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "super-capital": {
+  "resource": "super-capital",
+  "prefab": "Super-Capital",
+  "script": "Capital_Offense",
+  "hull": "Capital",
+  "role": "Offense",
+  "cost": 0,
+  "armor": 10000,
+  "shield": 10000,
+  "max_speed": 2.0,
+  "max_turn": 0.2,
+  "colour": "Blue",
+  "turrets": []
+ },
+ "supportfrigate": {
+  "resource": "supportfrigate",
+  "prefab": "SupportFrigate",
+  "script": "Cruiser_Tank",
+  "hull": "Frigate",
+  "role": "Tank",
+  "cost": 1100,
+  "armor": 6000,
+  "shield": 6000,
+  "max_speed": 5.0,
+  "max_turn": 0.5,
+  "colour": "Blue",
+  "turrets": [
+   {
+    "node": "SupportFrigate/CloakInGame",
+    "type": "Cloak",
+    "range": 0,
+    "time_between_shots": {
+     "_serializedValue": 4294967296
+    },
+    "shots_per_burst": 0,
+    "burst_wait": {
+     "_serializedValue": 0
+    }
+   }
+  ]
+ }
+}

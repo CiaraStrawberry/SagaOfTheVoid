@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <TargetFramework>net35</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>14.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\saga_original\SagaOfTheVoid_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="ApexShared">
+      <HintPath>..\..\..\saga_original\SagaOfTheVoid_Data\Managed\ApexShared.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\saga_original\SagaOfTheVoid_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Galaxia">
+      <HintPath>..\..\..\saga_original\SagaOfTheVoid_Data\Managed\Galaxia.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>..\..\..\saga_original\SagaOfTheVoid_Data\Managed\Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\saga_original\SagaOfTheVoid_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="TrueSync">
+      <HintPath>..\..\..\saga_original\SagaOfTheVoid_Data\Managed\TrueSync.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="SimpleSave">
+      <HintPath>..\..\..\saga_original\SagaOfTheVoid_Data\Managed\SimpleSave.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

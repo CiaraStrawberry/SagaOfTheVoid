@@ -1,0 +1,34 @@
+# Original build and bulk recovery output stay out of git
+saga_original/
+recovery/assetripper/
+recovery/export/
+
+# Tool output (rebuildable)
+tools/preview/frames/
+tools/*.xml
+tools/bake/out/
+# the bake project's art is a copy of recovery output; keep only its tool script
+tools/bake/Assets/*
+!tools/bake/Assets/Editor/
+tools/bake/Assets/Editor/*.meta
+tools/bake/Packages/
+tools/bake/ProjectSettings/
+tools/bake/[Ll]ibrary/
+tools/bake/[Tt]emp/
+tools/bake/[Ll]ogs/
+tools/bake/[Uu]ser[Ss]ettings/
+tools/bake/*.csproj
+tools/bake/*.sln
+
+# Unity
+game/[Ll]ibrary/
+game/[Tt]emp/
+game/[Oo]bj/
+game/[Bb]uild/
+game/[Bb]uilds/
+game/[Ll]ogs/
+game/[Uu]ser[Ss]ettings/
+game/*.csproj
+game/*.sln
+game/.vs/
+*.log

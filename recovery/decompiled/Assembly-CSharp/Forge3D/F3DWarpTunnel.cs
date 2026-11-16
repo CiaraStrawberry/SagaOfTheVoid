@@ -1,0 +1,31 @@
+using UnityEngine;
+
+namespace Forge3D;
+
+public class F3DWarpTunnel : MonoBehaviour
+{
+	public float MaxRotationSpeed;
+
+	public float AdaptationFactor;
+
+	private float speed;
+
+	private float newSpeed;
+
+	private void Start()
+	{
+		speed = 0f;
+		OnDirectionChange();
+	}
+
+	private void OnDirectionChange()
+	{
+		newSpeed = Random.Range(0f - MaxRotationSpeed, MaxRotationSpeed);
+	}
+
+	private void Update()
+	{
+		speed = Mathf.Lerp(speed, newSpeed, Time.deltaTime * AdaptationFactor);
+		transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation * Quaternion.Euler(speed, 0f, 0f), Time.deltaTime);
+	}
+}

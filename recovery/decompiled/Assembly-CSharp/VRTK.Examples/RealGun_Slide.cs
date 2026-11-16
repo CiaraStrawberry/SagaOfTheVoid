@@ -1,0 +1,47 @@
+using UnityEngine;
+
+namespace VRTK.Examples;
+
+public class RealGun_Slide : VRTK_InteractableObject
+{
+	private float restPosition;
+
+	private float fireTimer;
+
+	private float fireDistance = 0.05f;
+
+	private float boltSpeed = 0.01f;
+
+	public void Fire()
+	{
+		fireTimer = fireDistance;
+	}
+
+	protected override void Awake()
+	{
+		base.Awake();
+		restPosition = transform.localPosition.z;
+	}
+
+	protected override void Update()
+	{
+		base.Update();
+		if (transform.localPosition.z >= restPosition)
+		{
+			transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, restPosition);
+		}
+		if (fireTimer == 0f && transform.localPosition.z < restPosition && !IsGrabbed())
+		{
+			transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + boltSpeed);
+		}
+		if (fireTimer > 0f)
+		{
+			transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - boltSpeed);
+			fireTimer -= boltSpeed;
+		}
+		if (fireTimer < 0f)
+		{
+			fireTimer = 0f;
+		}
+	}
+}

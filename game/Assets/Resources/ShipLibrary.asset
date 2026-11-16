@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3271c88e1ef53ac4183ee3ea5a369429, type: 3}
+  m_Name: ShipLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::Saga.Game.ShipLibrary
+  ships:
+  - id: scout
+    prefab: {fileID: 67427085115291928, guid: 8585b54368b5d2341aa43bfcd3c2eef1, type: 3}
+    icon: {fileID: 21300000, guid: 51b45f63978cf9f48afc4b4633a06472, type: 3}
+  - id: fighter
+    prefab: {fileID: 2943003409530037228, guid: 41d056cdc8f18334ba55d816b15812d7, type: 3}
+    icon: {fileID: 21300000, guid: 43e33a7e75270e84685312383c40958a, type: 3}
+  - id: bomber
+    prefab: {fileID: 1260864818783062817, guid: 9b109764aa26b874c9a507747ae112d3, type: 3}
+    icon: {fileID: 21300000, guid: 652850b0626501641a5ab9a0f30b560d, type: 3}
+  - id: attack_craft
+    prefab: {fileID: 5723705800409470982, guid: 1abce329cffe6244dad4d818129474b3, type: 3}
+    icon: {fileID: 21300000, guid: 786870ee3b602d142ae99e12c68b634b, type: 3}
+  - id: missile_frigate
+    prefab: {fileID: 2536526437035564358, guid: a3fb4146c26dce94984b1e820dc53a27, type: 3}
+    icon: {fileID: 21300000, guid: dd3d3d1467e0e0b47b0e2465e80f2596, type: 3}
+  - id: flak_frigate
+    prefab: {fileID: 3254389415621763117, guid: aec941803fcdd3a41afa42cd978a6986, type: 3}
+    icon: {fileID: 21300000, guid: e78839c4af27db046b7953bc92b98937, type: 3}
+  - id: cannon_frigate
+    prefab: {fileID: 8350749583456371224, guid: be9284a2527d81f459446f8bc113f89d, type: 3}
+    icon: {fileID: 21300000, guid: 9413f7ca958555243beac019abbb6910, type: 3}
+  - id: laser_frigate
+    prefab: {fileID: 2608985612483190935, guid: 2eaf6ff28d39abe428c72053e51c709a, type: 3}
+    icon: {fileID: 21300000, guid: c0ed1b0bf87fa2041b37f86ce7932d99, type: 3}
+  - id: support_frigate
+    prefab: {fileID: 4278472476904818151, guid: 1e70488b6f6fe6245a22c862a2036b27, type: 3}
+    icon: {fileID: 21300000, guid: 8cde335bcddc5614884af4ba12bc0434, type: 3}
+  - id: repair_frigate
+    prefab: {fileID: 1062300235159513685, guid: 5606d651120c11b429481a711cfec578, type: 3}
+    icon: {fileID: 21300000, guid: 4c7d9d1dc57ab9c48b607fd651e32959, type: 3}
+  - id: destroyer
+    prefab: {fileID: 2231525401166529630, guid: 13ce132d392975e478f267d00d16a18a, type: 3}
+    icon: {fileID: 21300000, guid: e7fbb5da3c50d9c4bb808bda156d5fdf, type: 3}
+  - id: capital
+    prefab: {fileID: 7625883793416685051, guid: cd3a7927be0ea50429cd3444f37c82de, type: 3}
+    icon: {fileID: 21300000, guid: ebe533dae2a69e645a44da03b5870404, type: 3}
+  - id: super_capital
+    prefab: {fileID: 8549239968160891932, guid: e553b0f9939a51246b7956214c7adebf, type: 3}
+    icon: {fileID: 21300000, guid: 9443794253123df468dca03c5dc112f0, type: 3}
+  shipsJson: {fileID: 4900000, guid: bbfd9f5fc13c80144bc677eaa4d5d2a6, type: 3}
+  weaponsJson: {fileID: 4900000, guid: 6fda9e69948aa84438c849dfdecbc2b1, type: 3}
+  fxShader: {fileID: 4800000, guid: 897beb3a6a88af1488b117f147670858, type: 3}
+  skybox: {fileID: 2100000, guid: cf32db390983d614a8c26a8036f44b26, type: 2}

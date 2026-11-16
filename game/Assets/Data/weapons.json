@@ -1,0 +1,163 @@
+{
+ "weapons": [
+  {
+   "id": "cannon",
+   "damage": 800,
+   "damage_vs_capital_hull_owner": 275,
+   "prefers": "capital",
+   "hit": {
+    "light": 0.02,
+    "corvette": 0.05,
+    "frigate": 0.8,
+    "cruiser": 0.8,
+    "destroyer": 0.8,
+    "capital": 1,
+    "super_capital": 1
+   },
+   "visual": "shell",
+   "projectile_speed": 440
+  },
+  {
+   "id": "capital_main_gun",
+   "damage": 2000,
+   "prefers": "frigate",
+   "hit": {
+    "light": 0.02,
+    "corvette": 0.05,
+    "frigate": 0.8,
+    "cruiser": 0.8,
+    "destroyer": 0.8,
+    "capital": 1,
+    "super_capital": 1
+   },
+   "visual": "shell",
+   "projectile_speed": 440
+  },
+  {
+   "id": "missile",
+   "damage": 300,
+   "prefers": "frigate",
+   "hit": {
+    "light": 0.05,
+    "corvette": 0.5,
+    "frigate": 1,
+    "cruiser": 1,
+    "destroyer": 1,
+    "capital": 1,
+    "super_capital": 1
+   },
+   "always_hits_non_light": true,
+   "never_targets_light": true,
+   "visual": "missile",
+   "projectile_speed": 440
+  },
+  {
+   "id": "minigun",
+   "damage": 20,
+   "prefers": "light",
+   "hit": {
+    "light": 0.1,
+    "corvette": 0.1,
+    "frigate": 0.8,
+    "cruiser": 0.8,
+    "destroyer": 0.8,
+    "capital": 1,
+    "super_capital": 1
+   },
+   "visual": "tracer",
+   "projectile_speed": 440
+  },
+  {
+   "id": "fighter_gun",
+   "damage": 20,
+   "prefers": "light",
+   "hit": {
+    "light": 0.1,
+    "corvette": 0.5,
+    "frigate": 1,
+    "cruiser": 1,
+    "destroyer": 1,
+    "capital": 1,
+    "super_capital": 1
+   },
+   "visual": "tracer",
+   "projectile_speed": 440
+  },
+  {
+   "id": "bomber_gun",
+   "damage": 200,
+   "prefers": "capital",
+   "hit": {
+    "light": 0.05,
+    "corvette": 0.5,
+    "frigate": 1,
+    "cruiser": 1,
+    "destroyer": 1,
+    "capital": 1,
+    "super_capital": 1
+   },
+   "never_targets_light": true,
+   "visual": "bomb",
+   "projectile_speed": 440
+  },
+  {
+   "id": "dual_role",
+   "damage": 50,
+   "prefers": "frigate",
+   "hit": {
+    "light": 0.01,
+    "corvette": 0.5,
+    "frigate": 0.5,
+    "cruiser": 0.5,
+    "destroyer": 1,
+    "capital": 1,
+    "super_capital": 1
+   },
+   "visual": "tracer",
+   "projectile_speed": 440
+  },
+  {
+   "id": "laser",
+   "damage": 3000,
+   "prefers": "capital",
+   "hit": {
+    "light": 0.01,
+    "corvette": 0.02,
+    "frigate": 0.6,
+    "cruiser": 0.9,
+    "destroyer": 0.9,
+    "capital": 0.9,
+    "super_capital": 0.9
+   },
+   "visual": "beam",
+   "travel_time": 3.0,
+   "projectile_speed": 440
+  },
+  {
+   "id": "shield_repair",
+   "damage": 0,
+   "shield_restore": 300,
+   "targets_friends": true,
+   "hit": {
+    "light": 1,
+    "corvette": 1,
+    "frigate": 1,
+    "cruiser": 1,
+    "destroyer": 1,
+    "capital": 1,
+    "super_capital": 1
+   },
+   "visual": "repair_beam",
+   "projectile_speed": 440
+  },
+  {
+   "id": "shield_field",
+   "damage": 0,
+   "module": true,
+   "aura_radius": 1500,
+   "shield_regen_pct": 1.0,
+   "visual": "none",
+   "projectile_speed": 440
+  }
+ ]
+}

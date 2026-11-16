@@ -1,0 +1,7733 @@
+{
+ "by_type": {
+  "GameObject": 7693,
+  "MonoBehaviour": 6022,
+  "Transform": 4688,
+  "RectTransform": 3005,
+  "CanvasRenderer": 2609,
+  "MonoScript": 2513,
+  "MeshRenderer": 2139,
+  "MeshFilter": 1814,
+  "BoxCollider": 758,
+  "Texture2D": 677,
+  "ParticleSystem": 484,
+  "ParticleSystemRenderer": 484,
+  "Material": 459,
+  "TextMesh": 321,
+  "Mesh": 224,
+  "Rigidbody": 217,
+  "Sprite": 168,
+  "Shader": 129,
+  "Canvas": 116,
+  "MeshCollider": 83,
+  "LineRenderer": 81,
+  "Animator": 79,
+  "AudioSource": 57,
+  "AnimationClip": 57,
+  "CapsuleCollider": 54,
+  "CanvasGroup": 44,
+  "SphereCollider": 42,
+  "Light": 36,
+  "Camera": 21,
+  "SpriteRenderer": 20,
+  "AudioClip": 20,
+  "SkinnedMeshRenderer": 18,
+  "AudioListener": 14,
+  "AnimatorController": 14,
+  "Font": 13,
+  "GUILayer": 12,
+  "FlareLayer": 12,
+  "PreloadData": 8,
+  "RenderSettings": 7,
+  "LightmapSettings": 7,
+  "CGProgram": 6,
+  "CharacterController": 6,
+  "Avatar": 5,
+  "GUIText": 4,
+  "Cubemap": 4,
+  "Animation": 4,
+  "AnimatorOverrideController": 2,
+  "Rigidbody2D": 2,
+  "BoxCollider2D": 2,
+  "RenderTexture": 2,
+  "PlayerSettings": 1,
+  "InputManager": 1,
+  "TagManager": 1,
+  "AudioManager": 1,
+  "ScriptMapper": 1,
+  "MonoManager": 1,
+  "GraphicsSettings": 1,
+  "TimeManager": 1,
+  "DelayedCallManager": 1,
+  "PhysicsManager": 1,
+  "BuildSettings": 1,
+  "QualitySettings": 1,
+  "ResourceManager": 1,
+  "NetworkManager": 1,
+  "MasterServerInterface": 1,
+  "NavMeshProjectSettings": 1,
+  "Physics2DSettings": 1,
+  "RuntimeInitializeOnLoadManager": 1,
+  "CloudWebServicesManager": 1,
+  "UnityConnectSettings": 1,
+  "TextAsset": 1,
+  "PhysicsMaterial2D": 1,
+  "ComputeShader": 1,
+  "LightProbes": 1
+ },
+ "by_file_type": {
+  "globalgamemanagers": {
+   "PlayerSettings": 1,
+   "InputManager": 1,
+   "TagManager": 1,
+   "AudioManager": 1,
+   "ScriptMapper": 1,
+   "MonoManager": 1,
+   "GraphicsSettings": 1,
+   "TimeManager": 1,
+   "DelayedCallManager": 1,
+   "PhysicsManager": 1,
+   "BuildSettings": 1,
+   "QualitySettings": 1,
+   "ResourceManager": 1,
+   "NetworkManager": 1,
+   "MasterServerInterface": 1,
+   "NavMeshProjectSettings": 1,
+   "Physics2DSettings": 1,
+   "RuntimeInitializeOnLoadManager": 1,
+   "CloudWebServicesManager": 1,
+   "UnityConnectSettings": 1
+  },
+  "globalgamemanagers.assets": {
+   "MonoScript": 2511,
+   "Texture2D": 2,
+   "PreloadData": 1,
+   "Material": 1,
+   "Sprite": 1
+  },
+  "level0": {
+   "GameObject": 1501,
+   "Transform": 1353,
+   "MeshRenderer": 884,
+   "MonoBehaviour": 762,
+   "MeshFilter": 696,
+   "BoxCollider": 368,
+   "TextMesh": 186,
+   "RectTransform": 148,
+   "CanvasRenderer": 125,
+   "Rigidbody": 67,
+   "MeshCollider": 17,
+   "CanvasGroup": 12,
+   "Canvas": 11,
+   "SpriteRenderer": 5,
+   "Light": 4,
+   "Mesh": 2,
+   "AudioSource": 2,
+   "RenderSettings": 1,
+   "GUIText": 1,
+   "LightmapSettings": 1,
+   "ParticleSystem": 1,
+   "ParticleSystemRenderer": 1
+  },
+  "level1": {
+   "GameObject": 667,
+   "Transform": 619,
+   "MeshRenderer": 390,
+   "MeshFilter": 327,
+   "MonoBehaviour": 241,
+   "BoxCollider": 167,
+   "TextMesh": 63,
+   "Rigidbody": 50,
+   "RectTransform": 48,
+   "CanvasRenderer": 45,
+   "MeshCollider": 16,
+   "Light": 3,
+   "Mesh": 2,
+   "CanvasGroup": 2,
+   "AudioSource": 1,
+   "RenderSettings": 1,
+   "GUIText": 1,
+   "LightmapSettings": 1,
+   "ParticleSystem": 1,
+   "ParticleSystemRenderer": 1,
+   "SpriteRenderer": 1,
+   "Canvas": 1
+  },
+  "level2": {
+   "GameObject": 194,
+   "Transform": 166,
+   "MonoBehaviour": 142,
+   "ParticleSystem": 76,
+   "ParticleSystemRenderer": 76,
+   "MeshRenderer": 37,
+   "MeshFilter": 34,
+   "RectTransform": 28,
+   "CanvasRenderer": 20,
+   "Rigidbody": 16,
+   "SphereCollider": 16,
+   "Canvas": 4,
+   "MeshCollider": 3,
+   "TextMesh": 3,
+   "CapsuleCollider": 3,
+   "SpriteRenderer": 3,
+   "AudioSource": 2,
+   "RenderSettings": 1,
+   "Light": 1,
+   "LightmapSettings": 1
+  },
+  "level3": {
+   "MonoBehaviour": 2640,
+   "GameObject": 2135,
+   "RectTransform": 1855,
+   "CanvasRenderer": 1661,
+   "Transform": 280,
+   "MeshRenderer": 154,
+   "MeshFilter": 152,
+   "Animator": 62,
+   "ParticleSystem": 56,
+   "ParticleSystemRenderer": 56,
+   "CanvasGroup": 23,
+   "MeshCollider": 15,
+   "Canvas": 15,
+   "Light": 7,
+   "Camera": 6,
+   "Rigidbody": 4,
+   "AudioSource": 4,
+   "AudioListener": 3,
+   "GUILayer": 2,
+   "TextMesh": 2,
+   "FlareLayer": 2,
+   "SphereCollider": 2,
+   "SpriteRenderer": 2,
+   "Material": 1,
+   "Mesh": 1,
+   "BoxCollider": 1,
+   "RenderSettings": 1,
+   "LightmapSettings": 1
+  },
+  "level4": {
+   "GameObject": 184,
+   "Transform": 156,
+   "MonoBehaviour": 135,
+   "ParticleSystem": 76,
+   "ParticleSystemRenderer": 76,
+   "MeshRenderer": 34,
+   "MeshFilter": 34,
+   "RectTransform": 28,
+   "CanvasRenderer": 20,
+   "Rigidbody": 16,
+   "SphereCollider": 16,
+   "Canvas": 4,
+   "MeshCollider": 3,
+   "CapsuleCollider": 3,
+   "AudioSource": 2,
+   "RenderSettings": 1,
+   "Light": 1,
+   "LightmapSettings": 1
+  },
+  "level5": {
+   "GameObject": 544,
+   "MonoBehaviour": 493,
+   "Transform": 284,
+   "RectTransform": 260,
+   "CanvasRenderer": 229,
+   "MeshRenderer": 129,
+   "MeshFilter": 100,
+   "BoxCollider": 41,
+   "TextMesh": 25,
+   "Canvas": 23,
+   "LineRenderer": 19,
+   "MeshCollider": 12,
+   "Camera": 6,
+   "CanvasGroup": 5,
+   "Rigidbody": 4,
+   "Light": 4,
+   "Mesh": 3,
+   "AudioListener": 3,
+   "AudioSource": 3,
+   "GUILayer": 2,
+   "FlareLayer": 2,
+   "Material": 1,
+   "Animator": 1,
+   "RenderSettings": 1,
+   "GUIText": 1,
+   "LightmapSettings": 1,
+   "ParticleSystem": 1,
+   "ParticleSystemRenderer": 1,
+   "SpriteRenderer": 1
+  },
+  "level6": {
+   "GameObject": 172,
+   "Transform": 124,
+   "MonoBehaviour": 114,
+   "MeshRenderer": 95,
+   "MeshFilter": 65,
+   "RectTransform": 48,
+   "CanvasRenderer": 45,
+   "TextMesh": 30,
+   "BoxCollider": 26,
+   "MeshCollider": 6,
+   "Light": 4,
+   "Mesh": 2,
+   "AudioSource": 2,
+   "CanvasGroup": 2,
+   "RenderSettings": 1,
+   "GUIText": 1,
+   "LightmapSettings": 1,
+   "ParticleSystem": 1,
+   "ParticleSystemRenderer": 1,
+   "SpriteRenderer": 1,
+   "Canvas": 1
+  },
+  "resources.assets": {
+   "GameObject": 2073,
+   "Transform": 1684,
+   "MonoBehaviour": 1221,
+   "MeshRenderer": 403,
+   "MeshFilter": 396,
+   "RectTransform": 389,
+   "CanvasRenderer": 278,
+   "ParticleSystem": 272,
+   "ParticleSystemRenderer": 272,
+   "Material": 208,
+   "Texture2D": 206,
+   "BoxCollider": 155,
+   "Sprite": 129,
+   "Shader": 74,
+   "Mesh": 60,
+   "LineRenderer": 60,
+   "Rigidbody": 58,
+   "Canvas": 56,
+   "CapsuleCollider": 48,
+   "AnimationClip": 45,
+   "AudioSource": 41,
+   "SkinnedMeshRenderer": 18,
+   "AudioClip": 12,
+   "Light": 12,
+   "MeshCollider": 11,
+   "Animator": 11,
+   "Camera": 9,
+   "TextMesh": 9,
+   "AudioListener": 8,
+   "GUILayer": 8,
+   "FlareLayer": 8,
+   "AnimatorController": 6,
+   "CGProgram": 6,
+   "SphereCollider": 6,
+   "CharacterController": 6,
+   "Avatar": 4,
+   "Font": 4,
+   "Animation": 4,
+   "AnimatorOverrideController": 2,
+   "Rigidbody2D": 2,
+   "BoxCollider2D": 2,
+   "SpriteRenderer": 2,
+   "TextAsset": 1,
+   "PhysicsMaterial2D": 1,
+   "ComputeShader": 1,
+   "Cubemap": 1
+  },
+  "sharedassets0.assets": {
+   "Texture2D": 317,
+   "Material": 195,
+   "Mesh": 48,
+   "Shader": 17,
+   "MonoBehaviour": 17,
+   "Font": 8,
+   "GameObject": 5,
+   "Transform": 5,
+   "MeshRenderer": 5,
+   "MeshFilter": 5,
+   "Sprite": 4,
+   "PreloadData": 1,
+   "AudioClip": 1,
+   "Rigidbody": 1,
+   "SphereCollider": 1
+  },
+  "sharedassets1.assets": {
+   "Texture2D": 50,
+   "Material": 19,
+   "Shader": 4,
+   "Mesh": 3,
+   "AudioClip": 3,
+   "Cubemap": 2,
+   "PreloadData": 1
+  },
+  "sharedassets2.assets": {
+   "Texture2D": 9,
+   "GameObject": 8,
+   "Transform": 8,
+   "MonoBehaviour": 7,
+   "MeshRenderer": 3,
+   "Material": 2,
+   "TextMesh": 2,
+   "SpriteRenderer": 2,
+   "PreloadData": 1,
+   "Mesh": 1,
+   "Sprite": 1,
+   "MeshFilter": 1,
+   "Rigidbody": 1,
+   "SphereCollider": 1
+  },
+  "sharedassets3.assets": {
+   "MonoBehaviour": 247,
+   "GameObject": 207,
+   "RectTransform": 201,
+   "CanvasRenderer": 186,
+   "Mesh": 88,
+   "Texture2D": 36,
+   "Sprite": 32,
+   "Material": 19,
+   "AnimationClip": 12,
+   "AnimatorController": 8,
+   "Transform": 6,
+   "Animator": 5,
+   "SpriteRenderer": 3,
+   "Shader": 2,
+   "AudioClip": 2,
+   "RenderTexture": 2,
+   "MeshRenderer": 2,
+   "LineRenderer": 2,
+   "PreloadData": 1,
+   "Cubemap": 1,
+   "Avatar": 1,
+   "LightProbes": 1,
+   "MeshFilter": 1,
+   "TextMesh": 1,
+   "Canvas": 1
+  },
+  "sharedassets4.assets": {
+   "Texture2D": 6,
+   "PreloadData": 1,
+   "Material": 1
+  },
+  "sharedassets5.assets": {
+   "Texture2D": 11,
+   "Material": 10,
+   "GameObject": 3,
+   "Transform": 3,
+   "MeshRenderer": 3,
+   "MeshFilter": 3,
+   "AudioClip": 2,
+   "MonoBehaviour": 2,
+   "PreloadData": 1,
+   "Mesh": 1
+  },
+  "sharedassets6.assets": {
+   "PreloadData": 1
+  },
+  "unity default resources": {
+   "Texture2D": 40,
+   "Mesh": 13,
+   "Shader": 5,
+   "Material": 2,
+   "MonoScript": 2,
+   "Font": 1,
+   "Sprite": 1,
+   "MonoBehaviour": 1
+  },
+  "unity_builtin_extra": {
+   "Shader": 27
+  }
+ },
+ "gameobjects_per_file": {
+  "level0": 1501,
+  "level1": 667,
+  "level2": 194,
+  "level3": 2135,
+  "level4": 184,
+  "level5": 544,
+  "level6": 172,
+  "resources.assets": 2073,
+  "sharedassets0.assets": 5,
+  "sharedassets2.assets": 8,
+  "sharedassets3.assets": 207,
+  "sharedassets5.assets": 3
+ },
+ "scripts_used": {
+  "UnityEngine.UI.Image  [UnityEngine.UI.dll]": 1836,
+  "UnityEngine.UI.Text  [UnityEngine.UI.dll]": 731,
+  "UnityEngine.UI.Shadow  [UnityEngine.UI.dll]": 339,
+  "UnityEngine.UI.LayoutElement  [UnityEngine.UI.dll]": 269,
+  "WeaponAttachPoint  [Assembly-CSharp.dll]": 247,
+  "MeshRenderCloakController  [Assembly-CSharp.dll]": 155,
+  "UnityEngine.UI.Button  [UnityEngine.UI.dll]": 118,
+  "UnityEngine.UI.ContentSizeFitter  [UnityEngine.UI.dll]": 115,
+  "UnityEngine.UI.CanvasScaler  [UnityEngine.UI.dll]": 106,
+  "ButtonPressedMessageSender  [Assembly-CSharp.dll]": 97,
+  "PhotonView  [Assembly-CSharp.dll]": 85,
+  "WeaponParentHolder  [Assembly-CSharp.dll]": 81,
+  "<unresolved>": 75,
+  "TrueSync.TSTransform  [Assembly-CSharp.dll]": 70,
+  "Forge3D.F3DWarpJumpTunnel  [Assembly-CSharp.dll]": 69,
+  "WeaponBaseClass  [Assembly-CSharp.dll]": 58,
+  "LineRenderController  [Assembly-CSharp.dll]": 53,
+  "SgtDebris  [Assembly-CSharp.dll]": 49,
+  "Devdog.SciFiDesign.UI.PingPong  [Assembly-CSharp.dll]": 48,
+  "CustomPathfinding  [Assembly-CSharp.dll]": 47,
+  "SelectorBase  [Assembly-CSharp.dll]": 44,
+  "SelectorHelper  [Assembly-CSharp.dll]": 44,
+  "Selection_Controller  [Assembly-CSharp.dll]": 43,
+  "UnityEngine.UI.VerticalLayoutGroup  [UnityEngine.UI.dll]": 40,
+  "_Weapon  [Assembly-CSharp.dll]": 39,
+  "EngineScalingScript  [Assembly-CSharp.dll]": 36,
+  "Devdog.SciFiDesign.UI.UIWindowHelper  [Assembly-CSharp.dll]": 33,
+  "Forge3D.Forcefield  [Assembly-CSharp.dll]": 33,
+  "UnityEngine.UI.Mask  [UnityEngine.UI.dll]": 32,
+  "UnityEngine.UI.GridLayoutGroup  [UnityEngine.UI.dll]": 30,
+  "UnityEngine.UI.GraphicRaycaster  [UnityEngine.UI.dll]": 29,
+  "DespawnOnTimer  [Assembly-CSharp.dll]": 27,
+  "UnityEngine.UI.HorizontalLayoutGroup  [UnityEngine.UI.dll]": 26,
+  "MoneyCheckScript  [Assembly-CSharp.dll]": 24,
+  "Devdog.SciFiDesign.UI.Rotate  [Assembly-CSharp.dll]": 24,
+  "Devdog.SciFiDesign.UI.RotatePingPong  [Assembly-CSharp.dll]": 24,
+  "Forge3D.F3DWarpJump  [Assembly-CSharp.dll]": 23,
+  "Devdog.SciFiDesign.UI.ShaderValueInterpolator  [Assembly-CSharp.dll]": 22,
+  "VRTK.VRTK_ObjectTooltip  [Assembly-CSharp.dll]": 18,
+  "Forge3D.F3DDespawn  [Assembly-CSharp.dll]": 16,
+  "PhotonTransformView  [Assembly-CSharp.dll]": 15,
+  "VRTK.Highlighters.VRTK_OutlineObjectCopyHighlighter  [Assembly-CSharp.dll]": 13,
+  "AttachPointsController  [Assembly-CSharp.dll]": 12,
+  "Devdog.SciFiDesign.UI.SelectableUIHelper  [Assembly-CSharp.dll]": 12,
+  "Devdog.SciFiDesign.UI.PointerUIHelper  [Assembly-CSharp.dll]": 12,
+  "Devdog.SciFiDesign.UI.GeneralUIHelper  [Assembly-CSharp.dll]": 12,
+  "PhotonVoiceRecorder  [Assembly-CSharp.dll]": 11,
+  "PhotonVoiceSpeaker  [Assembly-CSharp.dll]": 11,
+  "ScrollTexture  [Assembly-UnityScript.dll]": 11,
+  "Capital_Offense  [Assembly-CSharp.dll]": 10,
+  "Devdog.General.UI.UIWindowPage  [Assembly-CSharp.dll]": 10,
+  "Galaxia.ParticlesPrefab  [Galaxia.dll]": 10,
+  "Apex.WorldGeometry.LayerMappingComponent  [Assembly-CSharp.dll]": 9,
+  "VRTK.VRTK_InteractableObject  [Assembly-CSharp.dll]": 9,
+  "Capital_Tank  [Assembly-CSharp.dll]": 9,
+  "Capital_Support  [Assembly-CSharp.dll]": 9,
+  "Devdog.General.UI.AnimatorHelper  [Assembly-CSharp.dll]": 9,
+  "UnityEngine.UI.ScrollRect  [UnityEngine.UI.dll]": 9,
+  "VRTK.Examples.ButtonReactor  [Assembly-CSharp.dll]": 8,
+  "VRTK.VRTK_Button  [Assembly-CSharp.dll]": 8,
+  "TutorialPositionController  [Assembly-CSharp.dll]": 8,
+  "Devdog.SciFiDesign.UI.PrevWindowUI  [Assembly-CSharp.dll]": 8,
+  "Devdog.SciFiDesign.UI.SetDateTime  [Assembly-CSharp.dll]": 8,
+  "Devdog.SciFiDesign.UI.NextWindowUI  [Assembly-CSharp.dll]": 8,
+  "Devdog.General.UI.UIWindow  [Assembly-CSharp.dll]": 8,
+  "Capital_Defense  [Assembly-CSharp.dll]": 7,
+  "WorldScale  [Assembly-CSharp.dll]": 7,
+  "Cruiser_Defense  [Assembly-CSharp.dll]": 7,
+  "DestroyOnLoad  [Assembly-CSharp.dll]": 7,
+  "BillBoardMe  [Assembly-CSharp.dll]": 7,
+  "UnityEngine.UI.Scrollbar  [UnityEngine.UI.dll]": 7,
+  "SteamVR_TrackedObject  [Assembly-CSharp.dll]": 7,
+  "Forge3D.F3DRandomize  [Assembly-CSharp.dll]": 7,
+  "LightCraft_Tank  [Assembly-CSharp.dll]": 6,
+  "InputController  [Assembly-CSharp.dll]": 6,
+  "PhotonVoiceSettings  [Assembly-CSharp.dll]": 6,
+  "DFNetwork.Simulation.SimulationLayer  [Assembly-CSharp.dll]": 6,
+  "NetImplement_Photon  [Assembly-CSharp.dll]": 6,
+  "PhotonLagSimulationGui  [Assembly-CSharp.dll]": 6,
+  "PhotonStatsGui  [Assembly-CSharp.dll]": 6,
+  "JoinMultiplayerGame  [Assembly-CSharp.dll]": 6,
+  "LightCraft_Offense  [Assembly-CSharp.dll]": 6,
+  "ConeSelectorArea  [Assembly-CSharp.dll]": 6,
+  "PhotonAnimatorView  [Assembly-CSharp.dll]": 6,
+  "ProjectileMovementCom  [Assembly-CSharp.dll]": 6,
+  "Input_UI_Control_Script  [Assembly-CSharp.dll]": 5,
+  "Cruiser_Tank  [Assembly-CSharp.dll]": 5,
+  "Cruiser_Support  [Assembly-CSharp.dll]": 5,
+  "GameController  [Assembly-CSharp.dll]": 5,
+  "Galaxia.Galaxy  [Galaxia.dll]": 5,
+  "Destroyer_Offense  [Assembly-CSharp.dll]": 5,
+  "ParticlePlayground.PlaygroundParticlesC  [Assembly-CSharp.dll]": 5,
+  "Destroyer_Tank  [Assembly-CSharp.dll]": 5,
+  "Corvette_Defense  [Assembly-CSharp.dll]": 5,
+  "Destroyer_Defense  [Assembly-CSharp.dll]": 5,
+  "Destroyer_Support  [Assembly-CSharp.dll]": 5,
+  "Frigate_Tank  [Assembly-CSharp.dll]": 5,
+  "UnityEngine.UI.RawImage  [UnityEngine.UI.dll]": 5,
+  "ControllerMenuController  [Assembly-CSharp.dll]": 5,
+  "SteamVR_RenderModel  [Assembly-CSharp.dll]": 5,
+  "Devdog.SciFiDesign.UI.TransformRotationFromMousePosition  [Assembly-CSharp.dll]": 5,
+  "Frigate_Defense  [Assembly-CSharp.dll]": 4,
+  "MainMenuSelector  [Assembly-CSharp.dll]": 4,
+  "ButtonHoverMessageSender  [Assembly-CSharp.dll]": 4,
+  "Frigate_Support  [Assembly-CSharp.dll]": 4,
+  "Corvette_Offense  [Assembly-CSharp.dll]": 4,
+  "Forge3D.F3DWarpTunnel  [Assembly-CSharp.dll]": 4,
+  "InputRelay  [Assembly-CSharp.dll]": 4,
+  "Frigate_Offense  [Assembly-CSharp.dll]": 4,
+  "MusicPlayerControlScript  [Assembly-CSharp.dll]": 4,
+  "Cruiser_Offense  [Assembly-CSharp.dll]": 4,
+  "ExplosionScaleController  [Assembly-CSharp.dll]": 4,
+  "DistanceUpdate  [Assembly-CSharp.dll]": 4,
+  "Devdog.SciFiDesign.UI.PrimitiveShape  [Assembly-CSharp.dll]": 4,
+  "Devdog.SciFiDesign.CollectionCopyToContainer  [Assembly-CSharp.dll]": 4,
+  "VRTK.VRTK_ControllerEvents  [Assembly-CSharp.dll]": 4,
+  "onTriggerEnterEnemy  [Assembly-CSharp.dll]": 4,
+  "VRTK.VRTK_SDKSetup  [Assembly-CSharp.dll]": 4,
+  "ToolTipController  [Assembly-CSharp.dll]": 4,
+  "Forge3D.F3DProjectile  [Assembly-CSharp.dll]": 4,
+  "Forge3D.F3DBeam  [Assembly-CSharp.dll]": 4,
+  "ExitGames.Demos.DemoPunVoice.ThirdPersonController  [Assembly-CSharp.dll]": 4,
+  "ExitGames.Demos.DemoPunVoice.OrthographicController  [Assembly-CSharp.dll]": 4,
+  "ExitGames.Demos.DemoPunVoice.FirstPersonController  [Assembly-CSharp.dll]": 4,
+  "ExitGames.Demos.DemoPunVoice.Highlighter  [Assembly-CSharp.dll]": 4,
+  "LightCraft_Defense  [Assembly-CSharp.dll]": 3,
+  "LightCraft_Support  [Assembly-CSharp.dll]": 3,
+  "ParticlePlayground.PlaygroundC  [Assembly-CSharp.dll]": 3,
+  "CrossLevelVariableHolder  [Assembly-CSharp.dll]": 3,
+  "RPCrelay  [Assembly-CSharp.dll]": 3,
+  "Forge3D.F3DPoolManager  [Assembly-CSharp.dll]": 3,
+  "UnitMovementcommandcontroller  [Assembly-CSharp.dll]": 3,
+  "RelayController  [Assembly-CSharp.dll]": 3,
+  "SgtDebrisSpawner  [Assembly-CSharp.dll]": 3,
+  "TrueSync.TrueSyncManager  [Assembly-CSharp.dll]": 3,
+  "SteamVR_ControllerManager  [Assembly-CSharp.dll]": 3,
+  "DebugCameraControls  [Assembly-CSharp.dll]": 3,
+  "Forge3D.F3DPoolManagerDB  [Assembly-CSharp.dll]": 3,
+  "Forge3D.F3DPulsewave  [Assembly-CSharp.dll]": 3,
+  "MenuMainMultiplayerScale  [Assembly-CSharp.dll]": 2,
+  "GalaxyController  [Assembly-CSharp.dll]": 2,
+  "PhotonVoiceNetwork  [Assembly-CSharp.dll]": 2,
+  "FleetBuilderSelector  [Assembly-CSharp.dll]": 2,
+  "Corvette_Support  [Assembly-CSharp.dll]": 2,
+  "MainMenuNetworkingController  [Assembly-CSharp.dll]": 2,
+  "SettingsController  [Assembly-CSharp.dll]": 2,
+  "InitialMapLoader  [Assembly-CSharp.dll]": 2,
+  "Apex.Services.GameServicesInitializerComponent  [Assembly-CSharp.dll]": 2,
+  "Apex.Steering.NavigationSettingsComponent  [Assembly-CSharp.dll]": 2,
+  "Apex.WorldGeometry.GridComponent  [Assembly-CSharp.dll]": 2,
+  "Apex.LoadBalancing.LoadBalancerComponent  [ApexShared.dll]": 2,
+  "Apex.Steering.VectorFields.VectorFieldManagerComponent  [Assembly-CSharp.dll]": 2,
+  "Apex.Debugging.GridVisualizer  [Assembly-CSharp.dll]": 2,
+  "Apex.ApexComponentMaster  [ApexShared.dll]": 2,
+  "VRTK.VRTK_SDKManager  [Assembly-CSharp.dll]": 2,
+  "OVRManager  [Assembly-CSharp.dll]": 2,
+  "Devdog.SciFiDesign.UI.DragPreviewItem  [Assembly-CSharp.dll]": 2,
+  "Devdog.SciFiDesign.UI.UsageRequirementRowUI  [Assembly-CSharp.dll]": 2,
+  "Devdog.SciFiDesign.SciFiSceneLoaderInstantiator  [Assembly-CSharp.dll]": 2,
+  "UnityEngine.UI.InputField  [UnityEngine.UI.dll]": 2,
+  "Devdog.SciFiDesign.UI.StatRowUI  [Assembly-CSharp.dll]": 2,
+  "OVRCameraRig  [Assembly-CSharp.dll]": 2,
+  "SteamVR_Ears  [Assembly-CSharp.dll]": 2,
+  "SteamVR_Camera  [Assembly-CSharp.dll]": 2,
+  "SteamVR_PlayArea  [Assembly-CSharp.dll]": 2,
+  "Devdog.General.UI.UIWindowInputHandler  [Assembly-CSharp.dll]": 2,
+  "RightHand_triggerInstantOrder  [Assembly-CSharp.dll]": 2,
+  "LeftControl_Onehanddrag  [Assembly-CSharp.dll]": 2,
+  "Resizescript  [Assembly-CSharp.dll]": 2,
+  "simple.IOComponent  [Assembly-CSharp.dll]": 2,
+  "ControllerInteractable  [Assembly-CSharp.dll]": 2,
+  "PositinonRelativeToHeadset  [Assembly-CSharp.dll]": 2,
+  "Forge3D.F3DLightning  [Assembly-CSharp.dll]": 2,
+  "PhotonRigidbody2DView  [Assembly-CSharp.dll]": 2,
+  "OnClickRequestOwnership  [Assembly-CSharp.dll]": 2,
+  "MaterialPerOwner  [Assembly-CSharp.dll]": 2,
+  "OnAwakePhysicsSettings  [Assembly-CSharp.dll]": 2,
+  "ShowInfoOfPlayer  [Assembly-CSharp.dll]": 2,
+  "MoveByKeys  [Assembly-CSharp.dll]": 2,
+  "ClickAndDrag  [Assembly-CSharp.dll]": 2,
+  "HighlightOwnedGameObj  [Assembly-CSharp.dll]": 2,
+  "WeaponSlot  [Assembly-CSharp.dll]": 2,
+  "ControllerPositionTracker  [Assembly-CSharp.dll]": 2,
+  "Galaxia.GalaxyPrefab  [Galaxia.dll]": 2,
+  "Galaxia.DensityWaveDistributor  [Galaxia.dll]": 2,
+  "bliplinecontroller  [Assembly-CSharp.dll]": 2,
+  "MainMenuButtonControlScript  [Assembly-CSharp.dll]": 1,
+  "MainMenuSinglePlayerScript  [Assembly-CSharp.dll]": 1,
+  "MainMenuSettingsScript  [Assembly-CSharp.dll]": 1,
+  "MainMenuShipListController  [Assembly-CSharp.dll]": 1,
+  "MainMenuShipBuilderScript  [Assembly-CSharp.dll]": 1,
+  "MainMenuCampaignControlScript  [Assembly-CSharp.dll]": 1,
+  "FleetBuilderController  [Assembly-CSharp.dll]": 1,
+  "FleetNumControl  [Assembly-CSharp.dll]": 1,
+  "GunController  [Assembly-CSharp.dll]": 1,
+  "MainMenuMoneyController  [Assembly-CSharp.dll]": 1,
+  "MainMenuDisplayShipBuilder  [Assembly-CSharp.dll]": 1,
+  "ShipInfoController  [Assembly-CSharp.dll]": 1,
+  "MainMenuShipController  [Assembly-CSharp.dll]": 1,
+  "Grabable  [Assembly-CSharp.dll]": 1,
+  "LobbyScreenController  [Assembly-CSharp.dll]": 1,
+  "TutorialController  [Assembly-CSharp.dll]": 1,
+  "UnityEngine.EventSystems.EventSystem  [UnityEngine.UI.dll]": 1,
+  "SDP01_ClusterRandomizer  [Assembly-CSharp.dll]": 1,
+  "UnityEngine.EventSystems.TouchInputModule  [UnityEngine.UI.dll]": 1,
+  "UnityEngine.EventSystems.StandaloneInputModule  [UnityEngine.UI.dll]": 1,
+  "AssetPreLoadingScript  [Assembly-CSharp.dll]": 1,
+  "TutorialTextControlScript  [Assembly-CSharp.dll]": 1,
+  "Devdog.SciFiDesign.UI.UseButtonOnKey  [Assembly-CSharp.dll]": 1,
+  "Devdog.SciFiDesign.UI.PrimitiveShapeRadar  [Assembly-CSharp.dll]": 1,
+  "SDP01_DerelictStarship  [Assembly-CSharp.dll]": 1,
+  "Devdog.SciFiDesign.Spin  [Assembly-CSharp.dll]": 1,
+  "Devdog.SciFiDesign.SinBounce  [Assembly-CSharp.dll]": 1,
+  "Devdog.SciFiDesign.UI.UIWindowPageGroup  [Assembly-CSharp.dll]": 1,
+  "VRTK_SDK_CONTROLLER_MANAGER  [Assembly-CSharp.dll]": 1,
+  "MainMenuValueHolder  [Assembly-CSharp.dll]": 1,
+  "MainMenuControllerController  [Assembly-CSharp.dll]": 1,
+  "VoiceControlScript  [Assembly-CSharp.dll]": 1,
+  "PUNCharacterSpawner  [Assembly-CSharp.dll]": 1,
+  "BuildQueController  [Assembly-CSharp.dll]": 1,
+  "HelpButtonSender  [Assembly-CSharp.dll]": 1,
+  "SteamManager  [Assembly-CSharp.dll]": 1,
+  "MainMenuMapLoader2  [Assembly-CSharp.dll]": 1,
+  "SetQuality  [Assembly-CSharp.dll]": 1,
+  "simple.IORoot  [Assembly-CSharp.dll]": 1,
+  "ServerSettings  [Assembly-CSharp.dll]": 1,
+  "Oculus.Platform.PlatformSettings  [Assembly-CSharp.dll]": 1,
+  "OvrAvatarSettings  [Assembly-CSharp.dll]": 1,
+  "TrueSync.TrueSyncConfig  [Assembly-CSharp.dll]": 1,
+  "Apex.Input.SelectionRectangleComponent  [Assembly-CSharp.dll]": 1,
+  "Forge3D.F3DFlameThrower  [Assembly-CSharp.dll]": 1,
+  "JumpAndRunMovement  [Assembly-CSharp.dll]": 1,
+  "PlayerDiamond  [Assembly-CSharp.dll]": 1,
+  "PickupController  [Assembly-CSharp.dll]": 1,
+  "ThirdPersonCamera  [Assembly-CSharp.dll]": 1,
+  "ClickDetector  [Assembly-CSharp.dll]": 1,
+  "Forge3D.F3DParticleScale  [Assembly-CSharp.dll]": 1,
+  "OnDoubleclickDestroy  [Assembly-CSharp.dll]": 1,
+  "IdleRunJump  [Assembly-CSharp.dll]": 1,
+  "ThirdPersonController  [Assembly-CSharp.dll]": 1,
+  "myThirdPersonController  [Assembly-CSharp.dll]": 1,
+  "OnClickFlashRpc  [Assembly-CSharp.dll]": 1,
+  "OnClickDestroy  [Assembly-CSharp.dll]": 1,
+  "PickupCamera  [Assembly-CSharp.dll]": 1,
+  "NetworkCharacter  [Assembly-CSharp.dll]": 1,
+  "ColorPerPlayerApply  [Assembly-CSharp.dll]": 1,
+  "OnClickRightDestroy  [Assembly-CSharp.dll]": 1,
+  "RPGMovement  [Assembly-CSharp.dll]": 1,
+  "ThirdPersonNetwork  [Assembly-CSharp.dll]": 1,
+  "AudioRpc  [Assembly-CSharp.dll]": 1,
+  "VRTK.UICircle  [Assembly-CSharp.dll]": 1,
+  "HighlightSpeaker  [Assembly-CSharp.dll]": 1,
+  "VRTK.RadialButtonIcon  [Assembly-CSharp.dll]": 1,
+  "UnityEngine.UI.Slider  [UnityEngine.UI.dll]": 1,
+  "SteamVR_ExternalCamera  [Assembly-CSharp.dll]": 1,
+  "HighlightRecorder  [Assembly-CSharp.dll]": 1,
+  "Forge3D.F3DShotgun  [Assembly-CSharp.dll]": 1,
+  "PlayerPrefabVoiceControlScript  [Assembly-CSharp.dll]": 1,
+  "TrackHeadset  [Assembly-CSharp.dll]": 1,
+  "VRTK.SecondaryControllerGrabActions.VRTK_SwapControllerGrabAction  [Assembly-CSharp.dll]": 1,
+  "VRTK.GrabAttachMechanics.VRTK_FixedJointGrabAttach  [Assembly-CSharp.dll]": 1,
+  "Devdog.SciFiDesign.SciFiSceneLoaderHelper  [Assembly-CSharp.dll]": 1,
+  "Devdog.SciFiDesign.UI.LoadProgressImages  [Assembly-CSharp.dll]": 1,
+  "UnityEngine.GUISkin  [UnityEngine.dll]": 1
+ },
+ "textures": [
+  {
+   "file": "globalgamemanagers.assets",
+   "name": "store2",
+   "w": 2048,
+   "h": 1152,
+   "fmt": "10"
+  },
+  {
+   "file": "globalgamemanagers.assets",
+   "name": "store1",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Default-Checker",
+   "w": 64,
+   "h": 64,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "UISprite",
+   "w": 32,
+   "h": 32,
+   "fmt": "4"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Background",
+   "w": 32,
+   "h": 32,
+   "fmt": "4"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Knob",
+   "w": 64,
+   "h": 64,
+   "fmt": "4"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Noise3D",
+   "w": 256,
+   "h": 256,
+   "fmt": "5"
+  },
+  {
+   "file": "resources.assets",
+   "name": "blank",
+   "w": 1,
+   "h": 1,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "warpjump_ring",
+   "w": 512,
+   "h": 512,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "missile_004_color",
+   "w": 256,
+   "h": 256,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ZomBearEmission",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "CruiserWeaponsAO",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "laser_impulse_impact_ring_001",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ZomBearSpecular",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "solo_gun_trail",
+   "w": 512,
+   "h": 32,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "sniper_spark",
+   "w": 64,
+   "h": 32,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "exterior_Exterior_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Font Texture",
+   "w": 0,
+   "h": 0,
+   "fmt": "4"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_gun_trail_02",
+   "w": 256,
+   "h": 64,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "sniper_beam_001",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "warpjump_spark",
+   "w": 512,
+   "h": 512,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "CloudDiff1",
+   "w": 512,
+   "h": 512,
+   "fmt": "4"
+  },
+  {
+   "file": "resources.assets",
+   "name": "bar_basic_green",
+   "w": 256,
+   "h": 44,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "lightning_gun_bolt_008",
+   "w": 512,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Debris_001",
+   "w": 256,
+   "h": 256,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "laser_impulse_muzzle_flare_001",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "HellephantOcclusion",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "command_deck_commanddeck_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_beam_stream_red",
+   "w": 512,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_beam_heavy_blue",
+   "w": 512,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "vulcan_projectile",
+   "w": 512,
+   "h": 64,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiFrigateWyrmBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "solo_gun_flames_02",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "railgun_beam_005",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "solo_gun_muzzle",
+   "w": 256,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDreadnoughtExodusBlueAlbedoAO",
+   "w": 8192,
+   "h": 8192,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "PlanksDiffuse",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "HellephantSpecular",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "railgun_beam_006",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "shock_noise_001",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_gun_flames_03",
+   "w": 256,
+   "h": 64,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "seeker_bolt_flare",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDreadnoughtExodusAO",
+   "w": 8192,
+   "h": 8192,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "CruiserWeaponsPBRSpecular",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "laser_impulse_impact_star_001",
+   "w": 512,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "bulletline",
+   "w": 64,
+   "h": 64,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "lightning_gun_flare_003",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "HellephantNormals",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "sniper_beam_003",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "bar_basic_frame",
+   "w": 256,
+   "h": 44,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "command_deck_commanddeck_AlbedoTransparency",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDreadnoughtExodusGreenAlbedoAO",
+   "w": 8192,
+   "h": 8192,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "solo_gun_flare_03",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_beam_hit_red",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "muktarcolorgoed_1",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "PlanksSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ZomBearDiffuse",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "oudemanoogcolor_1",
+   "w": 512,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "field_charge_004",
+   "w": 128,
+   "h": 128,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "lightning_gun_beam",
+   "w": 512,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Explosion_003",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDestroyerVanguardYellowAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDreadnoughtExodusRedAlbedoAO",
+   "w": 8192,
+   "h": 8192,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Flare_Glow_001",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "lightning_gun_bolt_003",
+   "w": 512,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "railgun_wave",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "lightning_gun_bolt_004",
+   "w": 512,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "bar_basic_blue",
+   "w": 256,
+   "h": 44,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "bar_basic_white",
+   "w": 512,
+   "h": 87,
+   "fmt": "4"
+  },
+  {
+   "file": "resources.assets",
+   "name": "laser_impulse_001",
+   "w": 256,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "PickCharTexture",
+   "w": 16,
+   "h": 16,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "shot_gun_spark",
+   "w": 128,
+   "h": 64,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "constructor_normals",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "missile_004_normal",
+   "w": 256,
+   "h": 256,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "exterior_Exterior_AlbedoTransparency",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "UnitSelected001",
+   "w": 128,
+   "h": 128,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Ring4",
+   "w": 128,
+   "h": 128,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_beam_heavy_red",
+   "w": 512,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "sniper_flare",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Debris_003",
+   "w": 512,
+   "h": 512,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "shot_gun_flare_001",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "missile_004_glow",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDreadnoughtExodusIllumination",
+   "w": 8192,
+   "h": 8192,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "flames_impact_green",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "interior_details_interiordetails_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_beam_stream_green",
+   "w": 512,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "laser_impulse_001",
+   "w": 256,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "railgun_spark",
+   "w": 128,
+   "h": 32,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "shot_gun_smoke",
+   "w": 256,
+   "h": 256,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Flare_001",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "field_charge_001",
+   "w": 128,
+   "h": 128,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "vulcan_muzzle",
+   "w": 512,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "PlayerOcclusion",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_beam_flare_green",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "laser_impulse_muzzle_001",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiFrigateWyrmYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "CharacterSheet",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "4"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDreadnoughtExodusNormal",
+   "w": 8192,
+   "h": 8192,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "warpjump_tunnel",
+   "w": 512,
+   "h": 512,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "solo_gun_flare_01",
+   "w": 256,
+   "h": 64,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "exterior_Exterior_SpecularSmoothness",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_gun_bolt_01",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "PlanksNormals",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_gun_flames_01",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "sniper_beam_006",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDestroyerVanguardRedAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_beamflare_blue",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Explosion8",
+   "w": 4096,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "vulcan_spark",
+   "w": 128,
+   "h": 64,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "bar1_yellow",
+   "w": 256,
+   "h": 44,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "sniper_beam_002",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "interior_details_interiordetails_SpecularSmoothness",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "lightning_gun_bolt_001",
+   "w": 512,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "lightning_gun_bolt_005",
+   "w": 512,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDestroyerVanguardGreyAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ParticleTrail1",
+   "w": 64,
+   "h": 8,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_gun_flare_02",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "flames_flash_green",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_beam_hit_blue",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "muktarnormalhighq_1",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "sniper_beam_005",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "railgun_beam_002",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_gun_flames_02",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Font Texture",
+   "w": 0,
+   "h": 0,
+   "fmt": "4"
+  },
+  {
+   "file": "resources.assets",
+   "name": "constructor_diffuse",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "heat_005",
+   "w": 512,
+   "h": 512,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "particle_01",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiFrigateWyrmRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "flames_green_sprites",
+   "w": 2048,
+   "h": 768,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "sniper_beam_004",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "speaker",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "railgun_beam_004",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "line_particle",
+   "w": 128,
+   "h": 128,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "railgun_beam_003",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDreadnoughtExodusYellowAlbedoAO",
+   "w": 8192,
+   "h": 8192,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "galaxy_dist",
+   "w": 512,
+   "h": 512,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "PlayerDiffuse",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ThrustersExhaust",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "shot_gun_fragment_002",
+   "w": 128,
+   "h": 64,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_gun_trail_01",
+   "w": 256,
+   "h": 64,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "galaxy_2",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDreadnoughtExodusPBRSpecular",
+   "w": 8192,
+   "h": 8192,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "bar_basic_red",
+   "w": 256,
+   "h": 44,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "solo_gun_flames_01",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "galaxy",
+   "w": 512,
+   "h": 512,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Debris_002",
+   "w": 256,
+   "h": 256,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Noise3",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "sniper_smoke",
+   "w": 256,
+   "h": 256,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Noise1",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "lightning_gun_bolt_006",
+   "w": 512,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_beam_stream_blue",
+   "w": 512,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ZomBearNormals",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "spark",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "PlayerSpecular",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "solo_gun_flare_02",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "particle01-round",
+   "w": 128,
+   "h": 128,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "shot_gun_fragment_001",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "railgun_flare_002",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "command_deck_commanddeck_SpecularSmoothness",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDreadnoughtExodusGreyAlbedoAO",
+   "w": 8192,
+   "h": 8192,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "vulcan_heavy_impact",
+   "w": 1024,
+   "h": 512,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "lightning_gun_bolt_002",
+   "w": 512,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDestroyerVanguardBlueAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_beam_flare_red",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "lightning_gun_bolt",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "railgun_flare_001",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDestroyerVanguardWhiteAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Explosion_002",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Font Texture",
+   "w": 0,
+   "h": 0,
+   "fmt": "4"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Explosion_001",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiFrigateWyrmGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiFrigateWyrmGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "shot_gun_flare_002",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "warpjump_aura",
+   "w": 256,
+   "h": 256,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "PlayerNormals",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "railgun_flare_003",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDreadnoughtExodusWhiteAlbedoAO",
+   "w": 8192,
+   "h": 8192,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Box",
+   "w": 128,
+   "h": 128,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "speech-bubble",
+   "w": 1280,
+   "h": 1096,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "field_charge_002",
+   "w": 128,
+   "h": 128,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "UnitTexture",
+   "w": 128,
+   "h": 128,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Font Texture",
+   "w": 0,
+   "h": 0,
+   "fmt": "4"
+  },
+  {
+   "file": "resources.assets",
+   "name": "bar_basic_Grey",
+   "w": 256,
+   "h": 44,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDreadnoughtExodusBlackAlbedoAO",
+   "w": 8192,
+   "h": 8192,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "lightning_gun_flare_001",
+   "w": 256,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Robot_Color",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "HellephantDiffuse",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "plasma_beam_heavy_green",
+   "w": 512,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ColorPreview",
+   "w": 16,
+   "h": 16,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "solo_gun_sparks",
+   "w": 128,
+   "h": 64,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "PlanksOcclusion",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "heat_001",
+   "w": 512,
+   "h": 512,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "laser_impulse_impact_flare_001",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "railgun_beam_001",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "seeker_bolt_muzzle",
+   "w": 256,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiFrigateWyrmWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "interior_details_interiordetails_AlbedoTransparency",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "HellephantEmissive",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Noise0",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "CruiserWeaponsGreenAlbedoAO",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "heat_003",
+   "w": 256,
+   "h": 256,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "UnitTexture",
+   "w": 512,
+   "h": 512,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "flames_flash_red",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "CruiserWeaponsNormal",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDestroyerVanguardGreenAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "resources.assets",
+   "name": "ZomBearOcclusion",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "resources.assets",
+   "name": "flames_red_sprites",
+   "w": 2048,
+   "h": 768,
+   "fmt": "3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "lightning_gun_bolt_007",
+   "w": 512,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Default-Particle",
+   "w": 64,
+   "h": 64,
+   "fmt": "4"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterExcaliburBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarhammerAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "floor_small_Metallic",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "warp_tunnel_mask",
+   "w": 512,
+   "h": 512,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiBattleshipPrometheusRedAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiBattleshipPrometheusIllumination",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "2",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarhammerBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRhinoYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiHeavyDestroyerWolfhoundBlueAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiBattleshipPrometheusPBRSpecular",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerOlympusGreenAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarhammerBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Robot_Color",
+   "w": 512,
+   "h": 512,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterExcaliburWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigatePredatorNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerOlympusYellowAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerPhoenixRedAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiHeavyDestroyerWolfhoundWhiteAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Left",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigatePredatorIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiHeavyDestroyerWolfhoundRedAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterArrowBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerTitanGreyAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarhammerYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "wallpart_triang_Metallic",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateBarracudaGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserKingswordYellowAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerOlympusAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRapierBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerFalconAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Holo_001",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Wall_A06_Albedo",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateHammerheadGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCapitalShipWeaponsAlbedoAO",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "wallpart_triang_AO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Font Texture",
+   "w": 0,
+   "h": 0,
+   "fmt": "4"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateStarmasterPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "floor_small_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarfuryGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarfuryYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "wallpart_triang_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarfuryBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiHeavyDestroyerWolfhoundPBRSpecular",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserKingswordAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "strut_a_Emissive",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "wall_A_AO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRhinoBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRhinoPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateBarracudaRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerOlympusBlackAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserKingswordIllumination",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRhinoIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterExcaliburRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigatePredatorGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "floor_large_AO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarhammerGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateHammerheadIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "strut_a_Metallic",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterThunderboltNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterDevastatorGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRhinoGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarfuryGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRapierWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterDevastatorRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRapierRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerFalconNormal",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterArrowYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRapierYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Font Texture",
+   "w": 0,
+   "h": 0,
+   "fmt": "4"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarfuryBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerTitanNormal",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterExcaliburAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateCorsairGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserCerberusIllumination",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateBarracudaWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterArrowPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateWyrmPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "floor_large_Metallic",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerOlympusGreyAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateStarmasterGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "shelf_N",
+   "w": 512,
+   "h": 512,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserCerberusRedAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserArbiterGreyAlbedo",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterThunderboltGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarfuryAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterThunderboltPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarfuryIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Font Texture",
+   "w": 0,
+   "h": 0,
+   "fmt": "4"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerOlympusBlueAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerVanguardNormal",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigatePredatorBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateCorsairGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Wall_A06_AO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateStarmasterBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerTitanYellowAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigatePredatorAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateStarmasterAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterDevastatorWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterThunderboltGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerFalconYellowAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Font Texture",
+   "w": 0,
+   "h": 0,
+   "fmt": "4"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRapierGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "COM Albedo S1",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRapierIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Wall_A05_Metallic",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterArrowAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Font Texture",
+   "w": 0,
+   "h": 0,
+   "fmt": "4"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerOlympusRedAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerOlympusIllumination",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateHammerheadBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerFalconGreenAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "4",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiBattleshipPrometheusWhiteAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateCorsairAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterThunderboltIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerPhoenixYellowAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Font Texture",
+   "w": 0,
+   "h": 0,
+   "fmt": "4"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Up",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterArrowBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiHeavyDestroyerWolfhoundBlackAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerOlympusNormal",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateHammerheadGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigatePredatorWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "COM AO S1",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerVanguardAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Wall_A06_Metallic",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "5",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateStarmasterGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateBarracudaIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerOlympusWhiteAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarhammerGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserCerberusBlackAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserKingswordPBRSpecular",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterDevastatorBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateWyrmAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Wall_A05_AO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerOlympusPBRSpecular",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerVanguardBlackAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerPhoenixGreenAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateStarmasterIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateBarracudaBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterArrowWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "wall_A_Albedo",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterExcaliburIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiBattleshipPrometheusNormal",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterThunderboltYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "floor_large_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "6",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateHammerheadRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserKingswordGreyAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "wall_A_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRhinoNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "COM Normal S1",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserCerberusYellowAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterExcaliburGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateBarracudaAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiHeavyDestroyerWolfhoundGreyAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiHeavyDestroyerWolfhoundNormal",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerTitanPBRSpecular",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerFalconPBRSpecular",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "8",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarfuryRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateHammerheadYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateBarracudaYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserCerberusAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterThunderboltAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterDevastatorNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateWyrmIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCapitalShipWeaponsAO",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateCorsairRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterDevastatorAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateCorsairYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateWyrmBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterDevastatorGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerPhoenixBlackAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "CanopyGlass_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "4"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserKingswordRedAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterDevastatorYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerTitanBlueAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerPhoenixBlueAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerTitanAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "wallpart_triang_Albedo",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserKingswordNormal",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterDevastatorPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiBattleshipPrometheusBlackAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterExcaliburYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiBattleshipPrometheusGreenAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterThunderboltWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateBarracudaBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "wall_A_Emissive",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterArrowGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "3",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterDevastatorIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRhinoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarhammerWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterArrowIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "COM Emis S1",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "7",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarhammerPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateStarmasterWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerPhoenixIllumination",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "25"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRhinoRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterDevastatorBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserCerberusWhiteAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "DustParticle",
+   "w": 128,
+   "h": 128,
+   "fmt": "4"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerTitanBlackAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateCorsairBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiBattleshipPrometheusYellowAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerFalconBlackAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "strut_a_Albedo",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateStarmasterNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRhinoWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerPhoenixGreyAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRhinoBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateHammerheadNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterArrowGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRapierPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiHeavyDestroyerWolfhoundGreenAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "floor_large_Albedo",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Wall_A05_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterArrowRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserCerberusGreyAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateStarmasterRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiHeavyDestroyerWolfhoundAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "stars",
+   "w": 256,
+   "h": 256,
+   "fmt": "3"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRapierGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "floor_small_AO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Wall_A05_Albedo",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateBarracudaNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Right",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRapierBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateCorsairBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerPhoenixWhiteAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterThunderboltBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerTitanGreenAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserCerberusNormal",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateStarmasterYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Back",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserKingswordBlueAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarfuryWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterExcaliburBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCapitalShipWeaponsPBRSpecular",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarhammerRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarhammerNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterThunderboltBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Down",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerFalconGreyAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarhammerIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Front",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigatePredatorGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigatePredatorRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserCerberusBlueAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateStarmasterBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateWyrmNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "CanopyGlass_AlbedoTransparency",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiBattleshipPrometheusAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterExcaliburNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserCerberusPBRSpecular",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateCorsairWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerVanguardPBRSpecular",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateCorsairNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "shelf_D",
+   "w": 512,
+   "h": 512,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRapierAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerFalconIllumination",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateBarracudaPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerTitanRedAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerPhoenixPBRSpecular",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "25"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserKingswordGreenAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiBattleshipPrometheusGreyAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "laser_impulse_flare_001",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterArrowNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerVanguardIllumination",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserKingswordBlackAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiHeavyDestroyerWolfhoundIllumination",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigatePredatorBlackAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Spritemap",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateCorsairPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerPhoenixAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "25"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateHammerheadBlueAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "BgTimeline",
+   "w": 450,
+   "h": 68,
+   "fmt": "4"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterThunderboltRedAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "wall_A_Metallic",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiHeavyDestroyerWolfhoundYellowAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterExcaliburPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerFalconBlueAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserCerberusGreenAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigatePredatorPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "floor_small_Albedo",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRhinoGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateBarracudaGreenAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserKingswordWhiteAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerTitanWhiteAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterExcaliburGreyAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerFalconRedAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateHammerheadWhiteAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiBattleshipPrometheusBlueAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCapitalShipWeaponsNormal",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "COM Metal Smooth S1",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "StarParticle",
+   "w": 128,
+   "h": 128,
+   "fmt": "3"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Font Texture",
+   "w": 0,
+   "h": 0,
+   "fmt": "4"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateHammerheadAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerTitanIllumination",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigatePredatorYellowAlbedoAO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "1",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarfuryPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "strut_a_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerFalconWhiteAlbedoAO",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRapierNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarfuryNormal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "strut_a_AO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateHammerheadPBRSpecular",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Wall_A06_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Font Texture",
+   "w": 0,
+   "h": 0,
+   "fmt": "4"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateCorsairIllumination",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerPhoenixNormal",
+   "w": 4096,
+   "h": 4096,
+   "fmt": "25"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Right",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "ScreenScanlines",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "earth006003",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "3"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "map3",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Up",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Right",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "skybox3",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "earth006001",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "3"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Back",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "wall_a02_Metallic",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "map2",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Media-Controls-High-Volume-icon2",
+   "w": 512,
+   "h": 512,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Front",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "ScreenFrames",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Back",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "skybox2",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "map1",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "earth006005",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "3"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Left",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Front",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "ScreenFrames_metallic",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Left",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Back",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Front",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Front",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Up",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "ScreenFrames_emission",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Back",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Right",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "earth006000",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "3"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Skybox1",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Down",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "earth006004",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "3"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "wall_a02_AO",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "wall_a02_Albedo",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Down",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Up",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "ScreenFrames_normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "wall_a02_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "skybox4",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "skybox5",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Left",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "earth006002",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "3"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Left",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Right",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Up",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Down",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Down",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Base2forStats",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "ScreenFrames_ao",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets2.assets",
+   "name": "SpriteAtlasTexture-WorldSpaceUI-128x128-fmt12",
+   "w": 128,
+   "h": 128,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets2.assets",
+   "name": "Front",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets2.assets",
+   "name": "SmallRock_Albedo",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets2.assets",
+   "name": "Up",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets2.assets",
+   "name": "Right",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets2.assets",
+   "name": "Down",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets2.assets",
+   "name": "Left",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets2.assets",
+   "name": "SmallRock_Normal",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets2.assets",
+   "name": "Back",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SpriteAtlasTexture-SciFiHud-1024x256-fmt12",
+   "w": 1024,
+   "h": 256,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SpriteAtlasTexture-ItemIcons-128x256-fmt12",
+   "w": 128,
+   "h": 256,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SpriteAtlasTexture-RadialHud-512x512-fmt12",
+   "w": 512,
+   "h": 512,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SpriteAtlasTexture-CircleThing-2048x1024-fmt4",
+   "w": 2048,
+   "h": 1024,
+   "fmt": "4"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "cockpit_center_AlbedoTransparency",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "db_diffuse",
+   "w": 128,
+   "h": 128,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "CliffHeight",
+   "w": 512,
+   "h": 512,
+   "fmt": "1"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "cockpit_ambient_occlusion",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SpaceStation4Atlas_basecolor",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SpaceShip_MetallicSmoothness",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SpaceShip_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "display - Copy",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "cockpit_cockpit_AlbedoTransparency",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "hud",
+   "w": 512,
+   "h": 512,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "BG",
+   "w": 1600,
+   "h": 1067,
+   "fmt": "3"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "external_controller01_col",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "cockpit_center_Emission",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "cockpit_cockpit_MetallicSmoothness 1",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "cockpit_cockpit_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SpaceStation4Atlas_RoughnessMetallic",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "WaspInterdictor_Emission",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SCP_Texture02_D_N",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SpaceStation4Atlas_normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SCP_Texture01_D_N",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "center_ambient_occlusion",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "db_normal",
+   "w": 128,
+   "h": 128,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "cockpit_center_MetallicSmoothness",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "pulsewave_02",
+   "w": 128,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "placards",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "cockpit_center_Normal",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Noise",
+   "w": 32,
+   "h": 32,
+   "fmt": "3"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "CliffNormals",
+   "w": 512,
+   "h": 512,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SCP_Texture02_D1_MTGA",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SpaceShip_AlbedoTransparency",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SpaceStation4Atlas_Emissive",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "SCP_Texture01_D1_MTGA",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets4.assets",
+   "name": "Front",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets4.assets",
+   "name": "Down",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets4.assets",
+   "name": "Back",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets4.assets",
+   "name": "Right",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets4.assets",
+   "name": "Up",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets4.assets",
+   "name": "Left",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "ScreenContent_Frigates",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "pulsewave_01",
+   "w": 512,
+   "h": 256,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "BaseForVoiceMenu",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "onepointfive_texture",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "touch_controllers_Standard_Normal",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "ScreenContent_Capitals",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "BaseForStatsFighter",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "touch_controllers_Standard_AlbedoTransparency",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "10"
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "ScreenContent_Fighters",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "leavematchimage",
+   "w": 2048,
+   "h": 2048,
+   "fmt": "12"
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "touch_controllers_Standard_MetallicSmoothness",
+   "w": 1024,
+   "h": 1024,
+   "fmt": "12"
+  },
+  {
+   "file": "unity default resources",
+   "name": "Soft",
+   "w": 128,
+   "h": 128,
+   "fmt": "1"
+  },
+  {
+   "file": "unity default resources",
+   "name": "Font Texture",
+   "w": 0,
+   "h": 0,
+   "fmt": "4"
+  },
+  {
+   "file": "unity default resources",
+   "name": "UnityWatermark-small",
+   "w": 128,
+   "h": 58,
+   "fmt": "4"
+  },
+  {
+   "file": "unity default resources",
+   "name": "EscToExit_back",
+   "w": 74,
+   "h": 71,
+   "fmt": "4"
+  },
+  {
+   "file": "unity default resources",
+   "name": "EscToExit_Text",
+   "w": 267,
+   "h": 20,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "UnitySplash-cube",
+   "w": 1024,
+   "h": 256,
+   "fmt": "12"
+  },
+  {
+   "file": "unity default resources",
+   "name": "UnityWatermark-trial",
+   "w": 76,
+   "h": 14,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "UnityWatermark-beta",
+   "w": 127,
+   "h": 17,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "UnityWatermark-edu",
+   "w": 148,
+   "h": 17,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "UnityWatermark-dev",
+   "w": 115,
+   "h": 17,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "WarningSign",
+   "w": 64,
+   "h": 64,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "UnityWatermark-proto",
+   "w": 87,
+   "h": 13,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "UnityWatermarkPlugin-beta",
+   "w": 66,
+   "h": 17,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "box",
+   "w": 12,
+   "h": 12,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "button active",
+   "w": 12,
+   "h": 12,
+   "fmt": "4"
+  },
+  {
+   "file": "unity default resources",
+   "name": "button hover",
+   "w": 12,
+   "h": 12,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "button on hover",
+   "w": 12,
+   "h": 12,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "button on",
+   "w": 12,
+   "h": 12,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "button",
+   "w": 12,
+   "h": 12,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "horizontal scrollbar thumb",
+   "w": 12,
+   "h": 12,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "horizontal scrollbar",
+   "w": 18,
+   "h": 15,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "horizontalslider",
+   "w": 8,
+   "h": 7,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "slider thumb active",
+   "w": 8,
+   "h": 12,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "slider thumb",
+   "w": 8,
+   "h": 12,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "slidert humb hover",
+   "w": 8,
+   "h": 12,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "toggle active",
+   "w": 14,
+   "h": 14,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "toggle hover",
+   "w": 14,
+   "h": 14,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "toggle on hover",
+   "w": 14,
+   "h": 14,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "toggle on",
+   "w": 14,
+   "h": 14,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "toggle on active",
+   "w": 14,
+   "h": 14,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "toggle",
+   "w": 14,
+   "h": 14,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "vertical scrollbar thumb",
+   "w": 12,
+   "h": 12,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "vertical scrollbar",
+   "w": 15,
+   "h": 18,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "verticalslider",
+   "w": 7,
+   "h": 8,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "window on",
+   "w": 17,
+   "h": 27,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "window",
+   "w": 17,
+   "h": 27,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "textfield",
+   "w": 12,
+   "h": 12,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "textfield on",
+   "w": 12,
+   "h": 12,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "textfield hover",
+   "w": 12,
+   "h": 12,
+   "fmt": "2"
+  },
+  {
+   "file": "unity default resources",
+   "name": "UnitySplash-HolographicTrackingLoss",
+   "w": 32,
+   "h": 32,
+   "fmt": "10"
+  }
+ ],
+ "meshes": [
+  {
+   "file": "level0",
+   "name": "Combined Mesh (root: scene)",
+   "verts": 47911,
+   "submeshes": 8
+  },
+  {
+   "file": "level0",
+   "name": "ScifiHeavyDestroyerWolfhoundHullNoHangar Instance",
+   "verts": 24226,
+   "submeshes": 1
+  },
+  {
+   "file": "level1",
+   "name": "Combined Mesh (root: scene)",
+   "verts": 47911,
+   "submeshes": 8
+  },
+  {
+   "file": "level1",
+   "name": "ScifiHeavyDestroyerWolfhoundHullNoHangar Instance",
+   "verts": 24226,
+   "submeshes": 1
+  },
+  {
+   "file": "level3",
+   "name": "",
+   "verts": 8,
+   "submeshes": 1
+  },
+  {
+   "file": "level5",
+   "name": "Combined Mesh (root: scene)",
+   "verts": 47911,
+   "submeshes": 8
+  },
+  {
+   "file": "level5",
+   "name": "ScifiHeavyDestroyerWolfhoundHullNoHangar Instance",
+   "verts": 24226,
+   "submeshes": 1
+  },
+  {
+   "file": "level5",
+   "name": "",
+   "verts": 8,
+   "submeshes": 1
+  },
+  {
+   "file": "level6",
+   "name": "Combined Mesh (root: scene)",
+   "verts": 47911,
+   "submeshes": 8
+  },
+  {
+   "file": "level6",
+   "name": "ScifiHeavyDestroyerWolfhoundHullNoHangar Instance",
+   "verts": 24226,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "glass",
+   "verts": 860,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "Pointer",
+   "verts": 16,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "MediumTurretBarrelStatic",
+   "verts": 144,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "button_3",
+   "verts": 147,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "stick",
+   "verts": 443,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "Robot2",
+   "verts": 5701,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "construction_worker",
+   "verts": 3074,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "L_OOG",
+   "verts": 390,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "Quad",
+   "verts": 4,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "Plane001",
+   "verts": 4,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "Editable_Poly",
+   "verts": 468,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "headset",
+   "verts": 581,
+   "submeshes": 4
+  },
+  {
+   "file": "resources.assets",
+   "name": "whole_model_group1",
+   "verts": 11791,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDreadnoughtExodusHull",
+   "verts": 28792,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "missile_004_lod0",
+   "verts": 645,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "FlakTurretBody",
+   "verts": 148,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "default",
+   "verts": 4,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "Hellephant",
+   "verts": 1536,
+   "submeshes": 2
+  },
+  {
+   "file": "resources.assets",
+   "name": "Planks",
+   "verts": 17047,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "Zombunny",
+   "verts": 1301,
+   "submeshes": 2
+  },
+  {
+   "file": "resources.assets",
+   "name": "FlakTurretBarrelStatic",
+   "verts": 356,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "Zombear",
+   "verts": 1274,
+   "submeshes": 2
+  },
+  {
+   "file": "resources.assets",
+   "name": "ScifiDreadnoughtExodusCentralPart",
+   "verts": 1286,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "MediumTurretBody",
+   "verts": 130,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "exterior_hull.001",
+   "verts": 1348,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "button_2",
+   "verts": 147,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "primary_trigger",
+   "verts": 147,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "wrench",
+   "verts": 184,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "R_oog",
+   "verts": 390,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "clip_1",
+   "verts": 102,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "Player",
+   "verts": 1228,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "outer_details",
+   "verts": 765,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "button_1",
+   "verts": 147,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "grip_trigger",
+   "verts": 220,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "muktar_2",
+   "verts": 1209,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "Disc",
+   "verts": 7,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "commandstand.003",
+   "verts": 12909,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "stick",
+   "verts": 443,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "ring",
+   "verts": 842,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "boventanden",
+   "verts": 240,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "clip_2",
+   "verts": 102,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "primary_trigger",
+   "verts": 147,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "button_1",
+   "verts": 147,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "ondertanden",
+   "verts": 200,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "Disc_2",
+   "verts": 7,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "interior",
+   "verts": 396,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "body",
+   "verts": 1369,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "button_2",
+   "verts": 147,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "beltholder_1",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "commandstand",
+   "verts": 1846,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "hand_trigger",
+   "verts": 220,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "button_3",
+   "verts": 147,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "beldholder_2",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "ring",
+   "verts": 842,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "body",
+   "verts": 1369,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "belt_1",
+   "verts": 64,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "belt_2",
+   "verts": 128,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "text",
+   "verts": 147,
+   "submeshes": 1
+  },
+  {
+   "file": "resources.assets",
+   "name": "lens_1",
+   "verts": 67,
+   "submeshes": 2
+  },
+  {
+   "file": "resources.assets",
+   "name": "lens_2",
+   "verts": 67,
+   "submeshes": 2
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiBattleshipPrometheusHullNoHangar",
+   "verts": 21310,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserCerberusHullNoHangar",
+   "verts": 24728,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRhinoHull",
+   "verts": 16034,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCapitalTurretMKIIBody",
+   "verts": 1096,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerVanguardHullNoHangar",
+   "verts": 24783,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateBarracudaHullB",
+   "verts": 8356,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCruiserKingswordHullNoHangar",
+   "verts": 25694,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerOlympusHullNoHangar",
+   "verts": 19590,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateCorsairHull",
+   "verts": 8314,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCapitalTurretMKIIBarrelStatic",
+   "verts": 1561,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Shelf",
+   "verts": 212,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerFalconHullNoHangar",
+   "verts": 13002,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarhammerHull",
+   "verts": 10184,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateHammerheadHull",
+   "verts": 15083,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerTitanHullNoHangar",
+   "verts": 18574,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Large antenna_base",
+   "verts": 163,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCapitalMissileSiloMKICapLeft",
+   "verts": 60,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiHeavyDestroyerWolfhoundHullNoHangar",
+   "verts": 24226,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Circle",
+   "verts": 19,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterDevastatorHull",
+   "verts": 5939,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCapitalTurretMKIBarrel1Static",
+   "verts": 806,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterStarfuryHull",
+   "verts": 8266,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCapitalMissileSiloMKICapRight",
+   "verts": 62,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Box001",
+   "verts": 52,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCapitalTurretMKIIBarrelAnimated2",
+   "verts": 1241,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterThunderboltHull",
+   "verts": 7964,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Editable_Poly",
+   "verts": 876,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterArrowHull",
+   "verts": 8030,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "1node",
+   "verts": 10199,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiDestroyerPhoenixHullNoHangar",
+   "verts": 19645,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateBarracudaHullA",
+   "verts": 8556,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigatePredatorHull",
+   "verts": 15592,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFighterExcaliburHull",
+   "verts": 8152,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateStarmasterHull",
+   "verts": 10662,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateRapierHull",
+   "verts": 10096,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiFrigateWyrmHull",
+   "verts": 17243,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCapitalTurretMKIIBarrelAnimated1",
+   "verts": 320,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCapitalMissileSiloMKI",
+   "verts": 340,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "ScifiCapitalTurretMKIBody",
+   "verts": 314,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Large antenna_dish",
+   "verts": 340,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "L_door",
+   "verts": 128,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Sphere antenna",
+   "verts": 166,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "R_door",
+   "verts": 128,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "wall_A1",
+   "verts": 17616,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Wall_A2",
+   "verts": 14998,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Med antenna B_base",
+   "verts": 436,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Med antenna B_right part",
+   "verts": 94,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Med antenna B_left part",
+   "verts": 94,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Screen_Frame_03",
+   "verts": 352,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Screen_Content_01",
+   "verts": 8,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Screen_Scanlines_01",
+   "verts": 8,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets2.assets",
+   "name": "SmallRock",
+   "verts": 3087,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "default",
+   "verts": 8853,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Boulder1",
+   "verts": 66,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "polySurface2",
+   "verts": 694,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Cone",
+   "verts": 128,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisSection11",
+   "verts": 226,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "default",
+   "verts": 8853,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject01",
+   "verts": 124,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Pulsewave",
+   "verts": 144,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Circle.004",
+   "verts": 192,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "cockpit exterior",
+   "verts": 3264,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject01",
+   "verts": 134,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisSection01",
+   "verts": 564,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject02",
+   "verts": 124,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Circle.002",
+   "verts": 192,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "cockpit",
+   "verts": 8293,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject02",
+   "verts": 134,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisSection02",
+   "verts": 236,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject03",
+   "verts": 124,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Circle.003",
+   "verts": 192,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "throttle",
+   "verts": 176,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject03",
+   "verts": 134,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisSection03",
+   "verts": 432,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject04",
+   "verts": 124,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Circle.001",
+   "verts": 192,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "monitors",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject04",
+   "verts": 134,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisSection04",
+   "verts": 64,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject05",
+   "verts": 416,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Cube.002",
+   "verts": 2424,
+   "submeshes": 2
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "placards",
+   "verts": 16,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject05",
+   "verts": 512,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisSection05",
+   "verts": 292,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject06",
+   "verts": 132,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Cube.001",
+   "verts": 2424,
+   "submeshes": 2
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "pedal_L",
+   "verts": 97,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject06",
+   "verts": 132,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisSection06",
+   "verts": 70,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject07",
+   "verts": 132,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Circle",
+   "verts": 1676,
+   "submeshes": 2
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "steering",
+   "verts": 792,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject07",
+   "verts": 1242,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisSection07",
+   "verts": 70,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject08",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Cube",
+   "verts": 2424,
+   "submeshes": 2
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "center",
+   "verts": 10141,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject08",
+   "verts": 32,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisSection08",
+   "verts": 216,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject10",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "pedal_R",
+   "verts": 96,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject09",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisSection09",
+   "verts": 216,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject11",
+   "verts": 82,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "cockpit_glass",
+   "verts": 376,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject10",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisSection10",
+   "verts": 226,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject12",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject11",
+   "verts": 1242,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject13",
+   "verts": 82,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject12",
+   "verts": 32,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject14",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject22",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject15",
+   "verts": 82,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject13",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject16",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject14",
+   "verts": 32,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject17",
+   "verts": 82,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject15",
+   "verts": 32,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject18",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject16",
+   "verts": 32,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject19",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject17",
+   "verts": 32,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject20",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject18",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject21",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject19",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject22",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject20",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject23",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject21",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject24",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject25",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject26",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject27",
+   "verts": 56,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject28",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject29",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject030",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject31",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "DebrisObject32",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "Screen_Frame_01",
+   "verts": 308,
+   "submeshes": 1
+  },
+  {
+   "file": "unity default resources",
+   "name": "pSphere1",
+   "verts": 439,
+   "submeshes": 1
+  },
+  {
+   "file": "unity default resources",
+   "name": "Cube",
+   "verts": 24,
+   "submeshes": 1
+  },
+  {
+   "file": "unity default resources",
+   "name": "pCylinder1",
+   "verts": 124,
+   "submeshes": 1
+  },
+  {
+   "file": "unity default resources",
+   "name": "pPlane1",
+   "verts": 121,
+   "submeshes": 1
+  },
+  {
+   "file": "unity default resources",
+   "name": "polySurface2",
+   "verts": 410,
+   "submeshes": 1
+  },
+  {
+   "file": "unity default resources",
+   "name": "Cylinder",
+   "verts": 88,
+   "submeshes": 1
+  },
+  {
+   "file": "unity default resources",
+   "name": "Sphere",
+   "verts": 515,
+   "submeshes": 1
+  },
+  {
+   "file": "unity default resources",
+   "name": "Capsule",
+   "verts": 550,
+   "submeshes": 1
+  },
+  {
+   "file": "unity default resources",
+   "name": "Plane",
+   "verts": 121,
+   "submeshes": 1
+  },
+  {
+   "file": "unity default resources",
+   "name": "Quad",
+   "verts": 4,
+   "submeshes": 1
+  },
+  {
+   "file": "unity default resources",
+   "name": "Icosphere",
+   "verts": 42,
+   "submeshes": 1
+  },
+  {
+   "file": "unity default resources",
+   "name": "icosahedron",
+   "verts": 12,
+   "submeshes": 1
+  },
+  {
+   "file": "unity default resources",
+   "name": "pyramid",
+   "verts": 5,
+   "submeshes": 1
+  }
+ ],
+ "audio": [
+  {
+   "file": "resources.assets",
+   "name": "weapon_gatling_006",
+   "len": 1.1379592418670654,
+   "fmt": "0"
+  },
+  {
+   "file": "resources.assets",
+   "name": "weapon_shotgun_006",
+   "len": 0.6798185706138611,
+   "fmt": "0"
+  },
+  {
+   "file": "resources.assets",
+   "name": "machinegun",
+   "len": 1.436734676361084,
+   "fmt": "1"
+  },
+  {
+   "file": "resources.assets",
+   "name": "missile",
+   "len": 4.388571262359619,
+   "fmt": "1"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Polo",
+   "len": 0.8620408177375793,
+   "fmt": "1"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Marco",
+   "len": 0.7836734652519226,
+   "fmt": "1"
+  },
+  {
+   "file": "resources.assets",
+   "name": "footstep",
+   "len": 0.5,
+   "fmt": "1"
+  },
+  {
+   "file": "resources.assets",
+   "name": "weapon_energy_beam_003_loop",
+   "len": 2.5685713291168213,
+   "fmt": "0"
+  },
+  {
+   "file": "resources.assets",
+   "name": "engine_flyby_003",
+   "len": 3.2740135192871094,
+   "fmt": "0"
+  },
+  {
+   "file": "resources.assets",
+   "name": "engine_warp_005",
+   "len": 2.8763718605041504,
+   "fmt": "0"
+  },
+  {
+   "file": "resources.assets",
+   "name": "cannon",
+   "len": 0.9223356246948242,
+   "fmt": "0"
+  },
+  {
+   "file": "resources.assets",
+   "name": "weapon_railgun_003",
+   "len": 1.0312471389770508,
+   "fmt": "0"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Space Station SLOW LOOP",
+   "len": 139.63636779785156,
+   "fmt": "1"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "CapitalShipVR_Song1_Ver1 (3)",
+   "len": 96.65306091308594,
+   "fmt": "1"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "Long Range Combat LOOP",
+   "len": 107.5199966430664,
+   "fmt": "1"
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": "CapitalShipVR_Track1 (2)",
+   "len": 50.59918212890625,
+   "fmt": "1"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "select_soft",
+   "len": 0.11770974844694138,
+   "fmt": "1"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "173797__mojomills__tape-bass-27",
+   "len": 0.25,
+   "fmt": "1"
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "kick",
+   "len": 1.0710203647613525,
+   "fmt": "1"
+  },
+  {
+   "file": "sharedassets5.assets",
+   "name": "buttonUi",
+   "len": 0.11984127014875412,
+   "fmt": "1"
+  }
+ ],
+ "animation_clips": [
+  {
+   "file": "resources.assets",
+   "name": "Fall"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Idle"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Jump"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Land"
+  },
+  {
+   "file": "resources.assets",
+   "name": "LandToIdle"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Run"
+  },
+  {
+   "file": "resources.assets",
+   "name": "pick-idle"
+  },
+  {
+   "file": "resources.assets",
+   "name": "pick-run3"
+  },
+  {
+   "file": "resources.assets",
+   "name": "pick-walk"
+  },
+  {
+   "file": "resources.assets",
+   "name": "RapidStrafe_Left"
+  },
+  {
+   "file": "resources.assets",
+   "name": "RapidStrafe_Right"
+  },
+  {
+   "file": "resources.assets",
+   "name": "JogBackward_NtrlFaceFwd"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Jump_Land"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Move"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Move"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Jump_Start"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Move"
+  },
+  {
+   "file": "resources.assets",
+   "name": "idle"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Idle"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Idle"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Wave"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Jump_Air"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Idle"
+  },
+  {
+   "file": "resources.assets",
+   "name": "walk"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Death"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Death"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Death"
+  },
+  {
+   "file": "resources.assets",
+   "name": "run"
+  },
+  {
+   "file": "resources.assets",
+   "name": "jump"
+  },
+  {
+   "file": "resources.assets",
+   "name": "attack"
+  },
+  {
+   "file": "resources.assets",
+   "name": "idle"
+  },
+  {
+   "file": "resources.assets",
+   "name": "fall"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Jump"
+  },
+  {
+   "file": "resources.assets",
+   "name": "run"
+  },
+  {
+   "file": "resources.assets",
+   "name": "die"
+  },
+  {
+   "file": "resources.assets",
+   "name": "walk"
+  },
+  {
+   "file": "resources.assets",
+   "name": "gothit"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Med antenna B (+ 60 dg 2 wings to Front\u2013 Closed state)"
+  },
+  {
+   "file": "resources.assets",
+   "name": "jump_pose"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Med antenna B (- 60 dg 2 wings to Normal state)"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Med antenna B (- 45 dg 2 wings to Back \u2013 Wide Open state)"
+  },
+  {
+   "file": "resources.assets",
+   "name": "RunRight"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Med antenna B (+ 45 dg 2 wings to Normal state)"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Run"
+  },
+  {
+   "file": "resources.assets",
+   "name": "RunLeft"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "CircleThingAnimation1"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "TestLogo"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "WorldSpacePanelIntroAnimation"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "craftingSuccessUI"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "fadeIn90"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "fadeInCanvasGroup"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "fadeOutCanvasGroup"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "fadeOutFrom90"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "imageColorAlphaBounce"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Disabled"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Highlighted"
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": "Pressed"
+  }
+ ],
+ "text_assets": [
+  {
+   "file": "resources.assets",
+   "name": "eurof_tt",
+   "bytes": 1057
+  }
+ ],
+ "shaders": [
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "resources.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets1.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": ""
+  },
+  {
+   "file": "sharedassets3.assets",
+   "name": ""
+  },
+  {
+   "file": "unity default resources",
+   "name": ""
+  },
+  {
+   "file": "unity default resources",
+   "name": ""
+  },
+  {
+   "file": "unity default resources",
+   "name": ""
+  },
+  {
+   "file": "unity default resources",
+   "name": ""
+  },
+  {
+   "file": "unity default resources",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  },
+  {
+   "file": "unity_builtin_extra",
+   "name": ""
+  }
+ ],
+ "fonts": [
+  {
+   "file": "resources.assets",
+   "name": "PickupFont-eurof35"
+  },
+  {
+   "file": "resources.assets",
+   "name": "eurof35"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Days Sans Black"
+  },
+  {
+   "file": "resources.assets",
+   "name": "Jura-Medium"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Orbitron Black"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Orbitron-Regular"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Orbitron Black"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Orbitron-Medium"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Orbitron-Bold"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Orbitron-Medium"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "Orbitron-Black"
+  },
+  {
+   "file": "sharedassets0.assets",
+   "name": "SaranaiGame-Bold"
+  },
+  {
+   "file": "unity default resources",
+   "name": "Arial"
+  }
+ ],
+ "movies": [],
+ "errors": {}
+}

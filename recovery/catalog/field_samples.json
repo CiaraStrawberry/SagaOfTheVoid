@@ -1,0 +1,9727 @@
+{
+ "WeaponBaseClass": [
+  {
+   "file": "level0",
+   "path_id": 5415,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 197
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 868
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5459,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 44
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 42
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 1,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5467,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 282
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 473
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5480,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 307
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 33
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 1
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5486,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 317
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 797
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5496,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 95
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 1,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5499,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 22
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 20
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 1,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5501,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 331
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 392
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5514,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 348
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1120
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5518,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 357
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1307
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5529,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 379
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1010
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5633,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 585
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 311
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5697,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 707
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1201
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5733,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 754
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 143
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5734,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 755
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 88
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 1
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5772,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 828
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 341
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5778,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 844
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1273
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5816,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 909
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1478
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5851,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 967
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 428
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5857,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 976
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 888
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5886,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1040
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1273
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5901,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1073
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 343
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5935,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1125
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1147
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5969,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1179
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1297
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5975,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1190
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1266
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 23,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 6003,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1238
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1178
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 6046,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1312
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 179
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 1
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 6050,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1319
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 391
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 6055,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1329
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 374
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 6064,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1349
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 73
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 6094,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1411
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1347
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 6118,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1449
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1124
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 6144,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1501
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1170
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2418,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 51
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 5000,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2419,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 52
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 5000,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2425,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 55
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 800,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2442,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 69
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 5500,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2466,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 99
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 5500,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2476,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 110
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 5000,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2486,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 116
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 800,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2497,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 126
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 5500,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2508,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 147
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 5000,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2521,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 156
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 800,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2527,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 164
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 5000,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2542,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 180
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 5000,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2548,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 205
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 5000,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2625,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 610
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 5000,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2636,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 640
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 800,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2645,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 655
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 5500,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7309,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1372
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 2554
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 1
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7390,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1891
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1402
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 1
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7530,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2492
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 2718
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7545,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2245
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1924
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7730,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1824
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1674
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 1,
+    "special": 0
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7932,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1554
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 2423
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 1,
+    "special": 0
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7971,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1604
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 1839
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 0
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 8013,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1658
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 1,
+    "special": 0
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 8135,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2551
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 11207180288
+    },
+    "m_Name": "",
+    "Base": {
+     "m_FileID": 0,
+     "m_PathID": 2120
+    },
+    "childtext": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "cost": 0,
+    "equipment": 0,
+    "special": 1
+   }
+  }
+ ],
+ "Capital_Offense": [
+  {
+   "file": "level0",
+   "path_id": 5502,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 331
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 29091692544
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 1475
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 5,
+    "_ShipClass": 1,
+    "_PointsToDeploy": 5500,
+    "_Armor": 22500,
+    "_Shield": 22500,
+    "_MaxSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAngularAcceleration": 2,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAcceleration": 2,
+    "_MaxDeceleration": 2,
+    "_MinimumSpeed": 2,
+    "_Weapons": [
+     {
+      "m_FileID": 0,
+      "m_PathID": 0
+     }
+    ],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 2,
+     "m_PathID": 43
+    },
+    "_Blue": {
+     "m_FileID": 2,
+     "m_PathID": 44
+    },
+    "_Green": {
+     "m_FileID": 2,
+     "m_PathID": 45
+    },
+    "_Grey": {
+     "m_FileID": 2,
+     "m_PathID": 46
+    },
+    "_Red": {
+     "m_FileID": 2,
+     "m_PathID": 47
+    },
+    "_White": {
+     "m_FileID": 2,
+     "m_PathID": 48
+    },
+    "_Yellow": {
+     "m_FileID": 2,
+     "m_PathID": 49
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5777,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 842
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 29091692544
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 1188
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 1230
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 5,
+    "_ShipClass": 1,
+    "_PointsToDeploy": 5500,
+    "_Armor": 22500,
+    "_Shield": 22500,
+    "_MaxSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAngularAcceleration": 2,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAcceleration": 2,
+    "_MaxDeceleration": 2,
+    "_MinimumSpeed": 2,
+    "_Weapons": [
+     {
+      "m_FileID": 0,
+      "m_PathID": 0
+     }
+    ],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 2,
+     "m_PathID": 43
+    },
+    "_Blue": {
+     "m_FileID": 2,
+     "m_PathID": 44
+    },
+    "_Green": {
+     "m_FileID": 2,
+     "m_PathID": 45
+    },
+    "_Grey": {
+     "m_FileID": 2,
+     "m_PathID": 46
+    },
+    "_Red": {
+     "m_FileID": 2,
+     "m_PathID": 47
+    },
+    "_White": {
+     "m_FileID": 2,
+     "m_PathID": 48
+    },
+    "_Yellow": {
+     "m_FileID": 2,
+     "m_PathID": 49
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "level0",
+   "path_id": 5944,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1136
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 29091692544
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 439
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 5,
+    "_ShipClass": 1,
+    "_PointsToDeploy": 5500,
+    "_Armor": 22500,
+    "_Shield": 22500,
+    "_MaxSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAngularAcceleration": 2,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAcceleration": 2,
+    "_MaxDeceleration": 2,
+    "_MinimumSpeed": 2,
+    "_Weapons": [
+     {
+      "m_FileID": 0,
+      "m_PathID": 0
+     }
+    ],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 2,
+     "m_PathID": 43
+    },
+    "_Blue": {
+     "m_FileID": 2,
+     "m_PathID": 44
+    },
+    "_Green": {
+     "m_FileID": 2,
+     "m_PathID": 45
+    },
+    "_Grey": {
+     "m_FileID": 2,
+     "m_PathID": 46
+    },
+    "_Red": {
+     "m_FileID": 2,
+     "m_PathID": 47
+    },
+    "_White": {
+     "m_FileID": 2,
+     "m_PathID": 48
+    },
+    "_Yellow": {
+     "m_FileID": 2,
+     "m_PathID": 49
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2443,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 69
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 29091692544
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 94
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 5,
+    "_ShipClass": 1,
+    "_PointsToDeploy": 5500,
+    "_Armor": 22500,
+    "_Shield": 22500,
+    "_MaxSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAngularAcceleration": 2,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAcceleration": 2,
+    "_MaxDeceleration": 2,
+    "_MinimumSpeed": 2,
+    "_Weapons": [
+     {
+      "m_FileID": 0,
+      "m_PathID": 0
+     }
+    ],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 2,
+     "m_PathID": 43
+    },
+    "_Blue": {
+     "m_FileID": 2,
+     "m_PathID": 44
+    },
+    "_Green": {
+     "m_FileID": 2,
+     "m_PathID": 45
+    },
+    "_Grey": {
+     "m_FileID": 2,
+     "m_PathID": 46
+    },
+    "_Red": {
+     "m_FileID": 2,
+     "m_PathID": 47
+    },
+    "_White": {
+     "m_FileID": 2,
+     "m_PathID": 48
+    },
+    "_Yellow": {
+     "m_FileID": 2,
+     "m_PathID": 49
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2467,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 99
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 29091692544
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 150
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 5,
+    "_ShipClass": 1,
+    "_PointsToDeploy": 5500,
+    "_Armor": 22500,
+    "_Shield": 22500,
+    "_MaxSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAngularAcceleration": 2,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAcceleration": 2,
+    "_MaxDeceleration": 2,
+    "_MinimumSpeed": 2,
+    "_Weapons": [
+     {
+      "m_FileID": 0,
+      "m_PathID": 0
+     }
+    ],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 2,
+     "m_PathID": 43
+    },
+    "_Blue": {
+     "m_FileID": 2,
+     "m_PathID": 44
+    },
+    "_Green": {
+     "m_FileID": 2,
+     "m_PathID": 45
+    },
+    "_Grey": {
+     "m_FileID": 2,
+     "m_PathID": 46
+    },
+    "_Red": {
+     "m_FileID": 2,
+     "m_PathID": 47
+    },
+    "_White": {
+     "m_FileID": 2,
+     "m_PathID": 48
+    },
+    "_Yellow": {
+     "m_FileID": 2,
+     "m_PathID": 49
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2646,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 655
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 29091692544
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 409
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 5,
+    "_ShipClass": 1,
+    "_PointsToDeploy": 5500,
+    "_Armor": 22500,
+    "_Shield": 22500,
+    "_MaxSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAngularAcceleration": 2,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAcceleration": 2,
+    "_MaxDeceleration": 2,
+    "_MinimumSpeed": 2,
+    "_Weapons": [
+     {
+      "m_FileID": 0,
+      "m_PathID": 0
+     }
+    ],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 2,
+     "m_PathID": 43
+    },
+    "_Blue": {
+     "m_FileID": 2,
+     "m_PathID": 44
+    },
+    "_Green": {
+     "m_FileID": 2,
+     "m_PathID": 45
+    },
+    "_Grey": {
+     "m_FileID": 2,
+     "m_PathID": 46
+    },
+    "_Red": {
+     "m_FileID": 2,
+     "m_PathID": 47
+    },
+    "_White": {
+     "m_FileID": 2,
+     "m_PathID": 48
+    },
+    "_Yellow": {
+     "m_FileID": 2,
+     "m_PathID": 49
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7254,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1504
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 29091692544
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 1607
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 2093
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 2596
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 5,
+    "_ShipClass": 1,
+    "_PointsToDeploy": 5500,
+    "_Armor": 22500,
+    "_Shield": 22500,
+    "_MaxSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAngularAcceleration": 2,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAcceleration": 2,
+    "_MaxDeceleration": 2,
+    "_MinimumSpeed": 2,
+    "_Weapons": [
+     {
+      "m_FileID": 0,
+      "m_PathID": 0
+     }
+    ],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 3,
+     "m_PathID": 43
+    },
+    "_Blue": {
+     "m_FileID": 3,
+     "m_PathID": 44
+    },
+    "_Green": {
+     "m_FileID": 3,
+     "m_PathID": 45
+    },
+    "_Grey": {
+     "m_FileID": 3,
+     "m_PathID": 46
+    },
+    "_Red": {
+     "m_FileID": 3,
+     "m_PathID": 47
+    },
+    "_White": {
+     "m_FileID": 3,
+     "m_PathID": 48
+    },
+    "_Yellow": {
+     "m_FileID": 3,
+     "m_PathID": 49
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7756,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1364
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 29091692544
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 640
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 633
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 638
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 636
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 643
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 635
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 2448
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 1778
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 2004
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 1455
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 5,
+    "_ShipClass": 1,
+    "_PointsToDeploy": 5000,
+    "_Armor": 17000,
+    "_Shield": 17000,
+    "_MaxSpeed": {
+     "_serializedValue": 12884901888
+    },
+    "_MaxAngularAcceleration": 1,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 1073741824
+    },
+    "_MaxAcceleration": 1,
+    "_MaxDeceleration": 2,
+    "_MinimumSpeed": 2,
+    "_Weapons": [],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 3,
+     "m_PathID": 43
+    },
+    "_Blue": {
+     "m_FileID": 3,
+     "m_PathID": 44
+    },
+    "_Green": {
+     "m_FileID": 3,
+     "m_PathID": 45
+    },
+    "_Grey": {
+     "m_FileID": 3,
+     "m_PathID": 46
+    },
+    "_Red": {
+     "m_FileID": 3,
+     "m_PathID": 47
+    },
+    "_White": {
+     "m_FileID": 3,
+     "m_PathID": 48
+    },
+    "_Yellow": {
+     "m_FileID": 3,
+     "m_PathID": 49
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7792,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1967
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 29091692544
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 2602
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 640
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 633
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 638
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 636
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 643
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 635
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 5,
+    "_ShipClass": 1,
+    "_PointsToDeploy": 0,
+    "_Armor": 10000,
+    "_Shield": 10000,
+    "_MaxSpeed": {
+     "_serializedValue": 8589934592
+    },
+    "_MaxAngularAcceleration": 2,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 858993472
+    },
+    "_MaxAcceleration": 1,
+    "_MaxDeceleration": 2,
+    "_MinimumSpeed": 2,
+    "_Weapons": [],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 0,
+     "m_PathID": 196
+    },
+    "_Blue": {
+     "m_FileID": 0,
+     "m_PathID": 197
+    },
+    "_Green": {
+     "m_FileID": 0,
+     "m_PathID": 198
+    },
+    "_Grey": {
+     "m_FileID": 0,
+     "m_PathID": 199
+    },
+    "_Red": {
+     "m_FileID": 0,
+     "m_PathID": 200
+    },
+    "_White": {
+     "m_FileID": 0,
+     "m_PathID": 201
+    },
+    "_Yellow": {
+     "m_FileID": 0,
+     "m_PathID": 202
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 8078,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2007
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 29091692544
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 2376
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 2193
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 2066
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 2153
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 6667
+    },
+    "_HullType": 5,
+    "_ShipClass": 1,
+    "_PointsToDeploy": 5500,
+    "_Armor": 22500,
+    "_Shield": 22500,
+    "_MaxSpeed": {
+     "_serializedValue": 12884901888
+    },
+    "_MaxAngularAcceleration": 1,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAcceleration": 1,
+    "_MaxDeceleration": 2,
+    "_MinimumSpeed": 2,
+    "_Weapons": [],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 3,
+     "m_PathID": 43
+    },
+    "_Blue": {
+     "m_FileID": 3,
+     "m_PathID": 44
+    },
+    "_Green": {
+     "m_FileID": 3,
+     "m_PathID": 45
+    },
+    "_Grey": {
+     "m_FileID": 3,
+     "m_PathID": 46
+    },
+    "_Red": {
+     "m_FileID": 3,
+     "m_PathID": 47
+    },
+    "_White": {
+     "m_FileID": 3,
+     "m_PathID": 48
+    },
+    "_Yellow": {
+     "m_FileID": 3,
+     "m_PathID": 49
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  }
+ ],
+ "Frigate_Tank": [
+  {
+   "file": "level0",
+   "path_id": 6095,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1411
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 22733127680
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 837
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 230
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 1330
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 2,
+    "_ShipClass": 0,
+    "_PointsToDeploy": 800,
+    "_Armor": 1300,
+    "_Shield": 1300,
+    "_MaxSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAngularAcceleration": 0,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAcceleration": 0,
+    "_MaxDeceleration": 0,
+    "_MinimumSpeed": 0,
+    "_Weapons": [],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Blue": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Green": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Grey": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Red": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_White": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Yellow": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2424,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 55
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 22733127680
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 109
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 134
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 153
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 2,
+    "_ShipClass": 0,
+    "_PointsToDeploy": 800,
+    "_Armor": 1300,
+    "_Shield": 1300,
+    "_MaxSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAngularAcceleration": 0,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAcceleration": 0,
+    "_MaxDeceleration": 0,
+    "_MinimumSpeed": 0,
+    "_Weapons": [],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Blue": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Green": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Grey": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Red": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_White": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Yellow": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2485,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 116
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 22733127680
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 174
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 152
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 141
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 2,
+    "_ShipClass": 0,
+    "_PointsToDeploy": 800,
+    "_Armor": 1300,
+    "_Shield": 1300,
+    "_MaxSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAngularAcceleration": 0,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAcceleration": 0,
+    "_MaxDeceleration": 0,
+    "_MinimumSpeed": 0,
+    "_Weapons": [],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Blue": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Green": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Grey": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Red": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_White": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Yellow": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "level1",
+   "path_id": 2635,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 640
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 22733127680
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 238
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 554
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 473
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 2,
+    "_ShipClass": 0,
+    "_PointsToDeploy": 800,
+    "_Armor": 1300,
+    "_Shield": 1300,
+    "_MaxSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAngularAcceleration": 0,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAcceleration": 0,
+    "_MaxDeceleration": 0,
+    "_MinimumSpeed": 0,
+    "_Weapons": [],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Blue": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Green": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Grey": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Red": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_White": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_Yellow": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7814,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1522
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 22733127680
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "HealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "HealthBarinit": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "healthbarinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startmovepos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MoveTarget": {
+     "x": {
+      "_serializedValue": 0
+     },
+     "y": {
+      "_serializedValue": 0
+     },
+     "z": {
+      "_serializedValue": 0
+     }
+    },
+    "isbot": 0,
+    "spawnnum": 0,
+    "iscloacked": 0,
+    "isTracker": 0,
+    "targetmesh": [],
+    "startmeshpos": [],
+    "shiptarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "weaponry": [],
+    "objectsholder": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronly": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Healthbaronlyinterface": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "RedHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreenHealthBar": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "YellowSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WhiteSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "GreySprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "BlueSprite": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "outline": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "startshield": 0,
+    "_ShipObject": {
+     "m_FileID": 0,
+     "m_PathID": 2231
+    },
+    "_ShieldObject": {
+     "m_FileID": 0,
+     "m_PathID": 1848
+    },
+    "_WeaponsObject": {
+     "m_FileID": 0,
+     "m_PathID": 2185
+    },
+    "_EquipmentObject": {
+     "m_FileID": 0,
+     "m_PathID": 2012
+    },
+    "_EnginesObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_UIObject": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "_HullType": 2,
+    "_ShipClass": 0,
+    "_PointsToDeploy": 800,
+    "_Armor": 1300,
+    "_Shield": 1300,
+    "_MaxSpeed": {
+     "_serializedValue": 25769803776
+    },
+    "_MaxAngularAcceleration": 7,
+    "_MaxAngularSpeed": {
+     "_serializedValue": 0
+    },
+    "_MaxAcceleration": 1,
+    "_MaxDeceleration": 7,
+    "_MinimumSpeed": 7,
+    "_Weapons": [
+     {
+      "m_FileID": 0,
+      "m_PathID": 0
+     },
+     {
+      "m_FileID": 0,
+      "m_PathID": 0
+     },
+     {
+      "m_FileID": 0,
+      "m_PathID": 0
+     }
+    ],
+    "_ShipColor": 1,
+    "_Black": {
+     "m_FileID": 0,
+     "m_PathID": 190
+    },
+    "_Blue": {
+     "m_FileID": 3,
+     "m_PathID": 156
+    },
+    "_Green": {
+     "m_FileID": 0,
+     "m_PathID": 191
+    },
+    "_Grey": {
+     "m_FileID": 0,
+     "m_PathID": 192
+    },
+    "_Red": {
+     "m_FileID": 0,
+     "m_PathID": 193
+    },
+    "_White": {
+     "m_FileID": 0,
+     "m_PathID": 194
+    },
+    "_Yellow": {
+     "m_FileID": 0,
+     "m_PathID": 195
+    },
+    "meshes": [],
+    "meshesscripts": [],
+    "shieldmaterial": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "fac": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "World2": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "Lazer_Shot": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shipDestruction": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "forcefield": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "updatedtest": 0,
+    "isTrackingimproved": 0,
+    "timepassed1": 0.0,
+    "WeaponTarget": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "storedordercount": 0,
+    "engines": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "averagespeed": {
+     "_serializedValue": 0
+    },
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "Reptemp": [],
+    "started": 0,
+    "hitdebug": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  }
+ ],
+ "_Weapon": [
+  {
+   "file": "resources.assets",
+   "path_id": 7249,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2778
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 2295
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 1972
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 598
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 500000,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 2635
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 811
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 0,
+    "m_Range": 1800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 12884901888
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7294,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1822
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 1822
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 607
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 21474836480
+    },
+    "shotsperburst": 5,
+    "damage": 5000,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 1605
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 810
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 0,
+    "m_Range": 1800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 429496736
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7327,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1527
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 53
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 13,
+    "m_Range": 0,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 0
+    },
+    "timebetweenshots": {
+     "_serializedValue": 47244640256
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7350,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1960
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 2574
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 2820
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 598
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 500000,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 1446
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 811
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 0,
+    "m_Range": 1800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 12884901888
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7368,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2200
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 8,
+    "m_Range": 0,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 0
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7375,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1888
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 2083
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 2345
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 597
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 12884901888
+    },
+    "shotsperburst": 10,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 2072
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 2,
+    "m_Range": 900,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 429496736
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7389,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2358
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 54
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 5,
+    "m_Range": 0,
+    "m_OptimalRange": 2000,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 0
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 2690
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7394,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2642
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 2642
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 607
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 500000,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 810
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 0,
+    "m_Range": 1800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7398,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2450
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 2463
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 2159
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 599
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 2,
+    "m_Range": 900,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 1288490240
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7447,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1700
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 2229
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 1809
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 9,
+    "m_Range": 800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 3006477056
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7469,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1855
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 1728
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 57
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 2181
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 604
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 1728
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 13,
+    "m_Range": 2000,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 0
+    },
+    "timebetweenshots": {
+     "_serializedValue": 42949672960
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 2690
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7497,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1620
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 2406
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 1497
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 9,
+    "m_Range": 1200,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 3006477056
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7533,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2478
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 600
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 21474836480
+    },
+    "shotsperburst": 3,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 1300
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 1,
+    "m_Range": 4000,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 2147483648
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7546,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2693
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 2693
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 607
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 21474836480
+    },
+    "shotsperburst": 5,
+    "damage": 5000,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 2668
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 810
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 0,
+    "m_Range": 1800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 429496736
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7549,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1489
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 1489
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 608
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 12884901888
+    },
+    "shotsperburst": 0,
+    "damage": 5000,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 1667
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 809
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 0,
+    "m_Range": 1800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7552,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2548
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 53
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 3,
+    "m_Range": 0,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 0
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7555,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1528
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 1907
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 2703
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 597
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 8589934592
+    },
+    "shotsperburst": 2,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 9,
+    "m_Range": 800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 858993472
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7623,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2351
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 600
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 21474836480
+    },
+    "shotsperburst": 3,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 1300
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 1,
+    "m_Range": 4000,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 2147483648
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7656,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2704
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 1382
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 1935
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 11,
+    "m_Range": 800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 3006477056
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7720,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2793
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 600
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 12884901888
+    },
+    "shotsperburst": 3,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 1300
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 1,
+    "m_Range": 4000,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 1288490240
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7732,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2473
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 600
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 12884901888
+    },
+    "shotsperburst": 3,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 1300
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 1,
+    "m_Range": 4000,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 1288490240
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7740,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2824
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 1797
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 2828
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 2,
+    "m_Range": 1200,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 3006477056
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7796,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1976
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 2576
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 1594
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 9,
+    "m_Range": 800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 3006477056
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7838,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1461
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 1461
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 607
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 21474836480
+    },
+    "shotsperburst": 5,
+    "damage": 5000,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 1670
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 810
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 0,
+    "m_Range": 1800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 429496736
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7867,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1488
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 54
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 5,
+    "m_Range": 0,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 0
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7912,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1925
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 1531
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 2826
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 597
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 12884901888
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 11,
+    "m_Range": 800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 429496736
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7930,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2375
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 1483
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 2810
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 597
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 12884901888
+    },
+    "shotsperburst": 10,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 2721
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 2,
+    "m_Range": 1200,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 429496736
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7948,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2440
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 7,
+    "m_Range": 0,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 0
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7970,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1479
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 55
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 4,
+    "m_Range": 0,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 0
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7974,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1592
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 1592
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 607
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 21474836480
+    },
+    "shotsperburst": 5,
+    "damage": 5000,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 2789
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 810
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 0,
+    "m_Range": 1800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 429496736
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7981,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1586
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 2811
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 1599
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 597
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 8761733120
+    },
+    "shotsperburst": 6,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 9,
+    "m_Range": 1100,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 1288490240
+    },
+    "timebetweenshots": {
+     "_serializedValue": 429496736
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 7991,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2096
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 1983
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 1575
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 10,
+    "m_Range": 800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 3006477056
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 8020,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2795
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 2494
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 2538
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 10,
+    "m_Range": 1200,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 3006477056
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 8040,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2318
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 2318
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 607
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 500000,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 810
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 0,
+    "m_Range": 1800,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 8082,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2580
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 2770
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 1756
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 597
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 12884901888
+    },
+    "shotsperburst": 3,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 1300
+    },
+    "m_guntypemain": 10,
+    "m_Range": 1300,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 429496736
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 8122,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1920
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 53
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 300,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 3,
+    "m_Range": 2000,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 0
+    },
+    "timebetweenshots": {
+     "_serializedValue": 8589934592
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 2690
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 8234,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2716
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 6,
+    "m_Range": 0,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 0
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 8235,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 1776
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 1771
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 2395
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 812
+    },
+    "m_guntypemain": 9,
+    "m_Range": 1200,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 3006477056
+    },
+    "timebetweenshots": {
+     "_serializedValue": 4294967296
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  },
+  {
+   "file": "resources.assets",
+   "path_id": 8269,
+   "fields": {
+    "m_GameObject": {
+     "m_FileID": 0,
+     "m_PathID": 2184
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+     "m_FileID": 16777216,
+     "m_PathID": 24746393600
+    },
+    "m_Name": "",
+    "numberOfPlayers": 0,
+    "ownerIndex": -1,
+    "owner": {
+     "id": 0,
+     "name": ""
+    },
+    "localOwner": {
+     "id": 0,
+     "name": ""
+    },
+    "team": 0,
+    "verticalmovechild": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "shieldmatgam": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "horrizontalmovething": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "chanceout": {
+     "_serializedValue": 0
+    },
+    "FireSound": {
+     "m_FileID": 0,
+     "m_PathID": 600
+    },
+    "audiosource": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "WorldBase": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "lastfired": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debughitchance": {
+     "_serializedValue": 0
+    },
+    "burstfirewait": {
+     "_serializedValue": 0
+    },
+    "shotsperburst": 0,
+    "damage": 0,
+    "MuzzleFlash": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "MuzzlePos": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Cannon_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_Missile_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 1300
+    },
+    "m_MiniGun_Projectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "m_guntypemain": 1,
+    "m_Range": 4000,
+    "m_OptimalRange": 0,
+    "m_DecayRate": 0.0,
+    "m_Accuracy": {
+     "_serializedValue": 21474836480
+    },
+    "timebetweenshots": {
+     "_serializedValue": 21474836480
+    },
+    "Lazer_Proectile": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    },
+    "debugwaittime": 0.0,
+    "runnext": 0,
+    "timepassedforrun": 0,
+    "a": 0,
+    "teststring": "",
+    "timetilnextshot": {
+     "_serializedValue": 0
+    },
+    "shotsfiredinthisburst": 0,
+    "timepassed": {
+     "_serializedValue": 0
+    },
+    "debugfiredcontainercount": 0,
+    "test": {
+     "m_FileID": 0,
+     "m_PathID": 0
+    }
+   }
+  }
+ ]
+}

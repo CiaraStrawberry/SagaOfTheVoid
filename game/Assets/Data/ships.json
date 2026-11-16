@@ -1,0 +1,351 @@
+{
+ "ships": [
+  {
+   "id": "scout",
+   "name": "Scout",
+   "sprite": "Scout",
+   "hull": "light",
+   "cost": 650,
+   "buyable": true,
+   "armor": 30,
+   "shield": 30,
+   "speed": 450.0,
+   "turn_rate": 1.75,
+   "sprite_world_size": 23.997,
+   "squadron": true,
+   "turrets": [
+    {
+     "weapon": "fighter_gun",
+     "range": 800,
+     "time_between_shots": 1.0,
+     "shots_per_burst": 2,
+     "burst_wait": 2.0
+    }
+   ]
+  },
+  {
+   "id": "fighter",
+   "name": "Fighter",
+   "sprite": "Fighter",
+   "hull": "light",
+   "cost": 950,
+   "buyable": true,
+   "armor": 30,
+   "shield": 30,
+   "speed": 300.0,
+   "turn_rate": 1.75,
+   "sprite_world_size": 25.795,
+   "squadron": true,
+   "turrets": [
+    {
+     "weapon": "fighter_gun",
+     "range": 1100,
+     "time_between_shots": 0.1,
+     "shots_per_burst": 6,
+     "burst_wait": 2.04
+    }
+   ]
+  },
+  {
+   "id": "bomber",
+   "name": "Bomber",
+   "sprite": "Bomber",
+   "hull": "light",
+   "cost": 1050,
+   "buyable": true,
+   "armor": 36,
+   "shield": 36,
+   "speed": 300.0,
+   "turn_rate": 1.75,
+   "sprite_world_size": 24.503,
+   "squadron": true,
+   "turrets": [
+    {
+     "weapon": "bomber_gun",
+     "range": 1300,
+     "time_between_shots": 0.1,
+     "shots_per_burst": 3,
+     "burst_wait": 3.0
+    }
+   ]
+  },
+  {
+   "id": "attack_craft",
+   "name": "Attack Craft",
+   "sprite": "AttackCraft",
+   "hull": "light",
+   "cost": 1000,
+   "buyable": true,
+   "armor": 38,
+   "shield": 38,
+   "speed": 300.0,
+   "turn_rate": 1.75,
+   "sprite_world_size": 23.505,
+   "squadron": true,
+   "turrets": [
+    {
+     "weapon": "dual_role",
+     "range": 800,
+     "time_between_shots": 0.1,
+     "shots_per_burst": 0,
+     "burst_wait": 3.0
+    }
+   ]
+  },
+  {
+   "id": "missile_frigate",
+   "name": "Missile Frigate",
+   "sprite": "MissileFrigate",
+   "hull": "frigate",
+   "cost": 1100,
+   "buyable": true,
+   "armor": 5000,
+   "shield": 5000,
+   "speed": 120.0,
+   "turn_rate": 0.5,
+   "sprite_world_size": 52.54,
+   "squadron": false,
+   "turrets": [
+    {
+     "weapon": "missile",
+     "range": 4000,
+     "time_between_shots": 0.5,
+     "shots_per_burst": 3,
+     "burst_wait": 5.0
+    },
+    {
+     "weapon": "missile",
+     "range": 4000,
+     "time_between_shots": 0.5,
+     "shots_per_burst": 3,
+     "burst_wait": 5.0
+    }
+   ]
+  },
+  {
+   "id": "flak_frigate",
+   "name": "Flak Frigate",
+   "sprite": "FlackFrigate",
+   "hull": "frigate",
+   "cost": 1000,
+   "buyable": true,
+   "armor": 6000,
+   "shield": 6000,
+   "speed": 120.0,
+   "turn_rate": 0.5,
+   "sprite_world_size": 79.381,
+   "squadron": false,
+   "turrets": [
+    {
+     "weapon": "minigun",
+     "range": 1200,
+     "time_between_shots": 0.1,
+     "shots_per_burst": 10,
+     "burst_wait": 3.0
+    },
+    {
+     "weapon": "minigun",
+     "range": 900,
+     "time_between_shots": 0.1,
+     "shots_per_burst": 10,
+     "burst_wait": 3.0
+    }
+   ]
+  },
+  {
+   "id": "cannon_frigate",
+   "name": "Cannon Frigate",
+   "sprite": "CannonFrigate",
+   "hull": "frigate",
+   "cost": 1050,
+   "buyable": true,
+   "armor": 5000,
+   "shield": 5000,
+   "speed": 120.0,
+   "turn_rate": 0.5,
+   "sprite_world_size": 46.111,
+   "squadron": false,
+   "turrets": [
+    {
+     "weapon": "cannon",
+     "range": 1800,
+     "time_between_shots": 3.0,
+     "shots_per_burst": 0,
+     "burst_wait": 0.0
+    },
+    {
+     "weapon": "cannon",
+     "range": 1800,
+     "time_between_shots": 3.0,
+     "shots_per_burst": 0,
+     "burst_wait": 0.0
+    }
+   ]
+  },
+  {
+   "id": "laser_frigate",
+   "name": "Laser Frigate",
+   "sprite": "LazerFrigate",
+   "hull": "frigate",
+   "cost": 1200,
+   "buyable": true,
+   "armor": 6000,
+   "shield": 6000,
+   "speed": 120.0,
+   "turn_rate": 0.5,
+   "sprite_world_size": 81.693,
+   "squadron": false,
+   "turrets": [
+    {
+     "weapon": "laser",
+     "range": 2000,
+     "time_between_shots": 10.0,
+     "shots_per_burst": 0,
+     "burst_wait": 0.0
+    }
+   ]
+  },
+  {
+   "id": "support_frigate",
+   "name": "Support Frigate",
+   "sprite": "SupportFrigate",
+   "hull": "frigate",
+   "cost": 1100,
+   "buyable": true,
+   "armor": 6000,
+   "shield": 6000,
+   "speed": 150.0,
+   "turn_rate": 0.5,
+   "sprite_world_size": 86.83,
+   "squadron": false,
+   "turrets": [
+    {
+     "weapon": "shield_field",
+     "range": 0,
+     "time_between_shots": 1.0,
+     "shots_per_burst": 0,
+     "burst_wait": 0.0
+    }
+   ]
+  },
+  {
+   "id": "repair_frigate",
+   "name": "Repair Frigate",
+   "sprite": "RepairFrigate",
+   "hull": "frigate",
+   "cost": 900,
+   "buyable": true,
+   "armor": 5000,
+   "shield": 5000,
+   "speed": 150.0,
+   "turn_rate": 0.5,
+   "sprite_world_size": 43.8,
+   "squadron": false,
+   "turrets": [
+    {
+     "weapon": "shield_repair",
+     "range": 2000,
+     "time_between_shots": 2.0,
+     "shots_per_burst": 0,
+     "burst_wait": 0.0
+    }
+   ]
+  },
+  {
+   "id": "destroyer",
+   "name": "Destroyer",
+   "sprite": "Destroyer",
+   "hull": "capital",
+   "cost": 3000,
+   "buyable": true,
+   "armor": 11000,
+   "shield": 11000,
+   "speed": 90.0,
+   "turn_rate": 0.25,
+   "sprite_world_size": 131.346,
+   "squadron": false,
+   "turrets": [
+    {
+     "weapon": "cannon",
+     "range": 1800,
+     "time_between_shots": 0.1,
+     "shots_per_burst": 5,
+     "burst_wait": 5.0
+    },
+    {
+     "weapon": "cannon",
+     "range": 1800,
+     "time_between_shots": 0.1,
+     "shots_per_burst": 5,
+     "burst_wait": 5.0
+    },
+    {
+     "weapon": "cannon",
+     "range": 1800,
+     "time_between_shots": 0.1,
+     "shots_per_burst": 5,
+     "burst_wait": 5.0
+    },
+    {
+     "weapon": "cannon",
+     "range": 1800,
+     "time_between_shots": 0.1,
+     "shots_per_burst": 5,
+     "burst_wait": 5.0
+    }
+   ]
+  },
+  {
+   "id": "capital",
+   "name": "Capital",
+   "sprite": "Capital",
+   "hull": "capital",
+   "cost": 5000,
+   "buyable": true,
+   "armor": 17000,
+   "shield": 17000,
+   "speed": 90.0,
+   "turn_rate": 0.25,
+   "sprite_world_size": 181.053,
+   "squadron": false,
+   "turrets": [
+    {
+     "weapon": "missile",
+     "range": 4000,
+     "time_between_shots": 0.3,
+     "shots_per_burst": 3,
+     "burst_wait": 3.0
+    },
+    {
+     "weapon": "cannon",
+     "range": 1800,
+     "time_between_shots": 1.0,
+     "shots_per_burst": 0,
+     "burst_wait": 3.0
+    },
+    {
+     "weapon": "missile",
+     "range": 4000,
+     "time_between_shots": 0.3,
+     "shots_per_burst": 3,
+     "burst_wait": 3.0
+    }
+   ]
+  },
+  {
+   "id": "super_capital",
+   "name": "Super-Capital",
+   "sprite": "Super-Capital",
+   "hull": "super_capital",
+   "cost": 0,
+   "buyable": false,
+   "armor": 10000,
+   "shield": 10000,
+   "speed": 60.0,
+   "turn_rate": 0.2,
+   "sprite_world_size": 303.425,
+   "squadron": false,
+   "turrets": []
+  }
+ ]
+}

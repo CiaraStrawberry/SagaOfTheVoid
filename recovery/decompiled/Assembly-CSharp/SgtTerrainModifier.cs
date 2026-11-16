@@ -1,0 +1,29 @@
+using System;
+using UnityEngine;
+
+[ExecuteInEditMode]
+[RequireComponent(typeof(SgtTerrain))]
+public abstract class SgtTerrainModifier : MonoBehaviour
+{
+	[NonSerialized]
+	protected SgtTerrain terrain;
+
+	public void DirtyTerrain()
+	{
+		if (terrain == null)
+		{
+			terrain = GetComponent<SgtTerrain>();
+		}
+		terrain.DirtyMeshes();
+	}
+
+	protected virtual void OnEnable()
+	{
+		DirtyTerrain();
+	}
+
+	protected virtual void OnDisable()
+	{
+		DirtyTerrain();
+	}
+}

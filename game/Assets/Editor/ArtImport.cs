@@ -1,0 +1,33 @@
+using UnityEditor;
+
+// Import rules:
+//   Art/Icons        ship icons (the baked top-down renders), as UI sprites
+//   Art/Backgrounds  panoramic skies, as plain textures
+//   Imported/        textures recovered from the 2017 build, capped at 2048 (8K is wasted on an RTS camera)
+public class ArtImport : AssetPostprocessor
+{
+    void OnPreprocessTexture()
+    {
+        var ti = (TextureImporter)assetImporter;
+        if (assetPath.StartsWith("Assets/Art/Icons/"))
+        {
+            ti.textureType = TextureImporterType.Sprite;
+            ti.spriteImportMode = SpriteImportMode.Single;
+            ti.alphaIsTransparency = true;
+            ti.mipmapEnabled = true;
+            ti.maxTextureSize = 512;
+        }
+        else if (assetPath.StartsWith("Assets/Art/Backgrounds/"))
+        {
+            ti.textureType = TextureImporterType.Default;
+            ti.mipmapEnabled = false;
+            ti.maxTextureSize = 2048;
+            ti.wrapModeU = UnityEngine.TextureWrapMode.Repeat;
+            ti.wrapModeV = UnityEngine.TextureWrapMode.Clamp;
+        }
+        else if (assetPath.StartsWith("Assets/Imported/"))
+        {
+            if (ti.maxTextureSize > 2048) ti.maxTextureSize = 2048;
+        }
+    }
+}
