@@ -285,7 +285,6 @@ namespace Saga.Game
             if (Inspecting) return;
             if (Selected.Count == 0) return;
             World.OrderMove(Selected, BattleView.ToSim(worldPoint), queue, attack);
-            if (attack) SoundBoard.Current?.OrderAttack(); else SoundBoard.Current?.OrderMove();
             Reply(attack ? "attack" : "move");
             View.Ping(worldPoint, attack);
         }
@@ -298,7 +297,6 @@ namespace Saga.Game
             if (Inspecting) return;
             if (Selected.Count == 0 || target == null || target.Team == PlayerTeam) return;
             World.OrderAttack(Selected, target);
-            SoundBoard.Current?.OrderAttack();
             Reply("attack");
             var v = View.ViewOf(target);
             if (v != null) View.Ping(v.Go.transform.position, true, v.Length * 1.3f);
@@ -319,7 +317,6 @@ namespace Saga.Game
             if (Inspecting) return;
             if (Selected.Count == 0) return;
             World.OrderIntoFight(Selected, f, PlayerTeam);
-            SoundBoard.Current?.OrderAttack();
             Reply("attack");
             View.Ping(BattleView.ToWorld(f.Centre), true, (float)f.Radius * 2f);
         }

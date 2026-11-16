@@ -37,9 +37,9 @@ def radio(src, a, b, out):
     crunchy, a low static hiss throughout, and a burst of static as the channel opens and closes."""
     length = (b - a) + 2 * SQUELCH
     voice = (f"[0:a]atrim=start={a:.3f}:end={b:.3f},asetpts=PTS-STARTPTS,aformat=sample_rates=44100:channel_layouts=mono,"
-             f"highpass=f=320,lowpass=f=3300,acompressor=threshold=0.08:ratio=8:attack=5:release=60:makeup=2.2,"
+             f"highpass=f=380,lowpass=f=2400,lowpass=f=2600,acompressor=threshold=0.08:ratio=8:attack=5:release=60:makeup=2.2,"
              f"acrusher=bits=9:mix=0.35:mode=log,adelay={int(SQUELCH * 1000)},apad=whole_dur={length:.3f}[v]")
-    static = (f"anoisesrc=color=white:amplitude=1:sample_rate=44100:duration={length:.3f},highpass=f=900,lowpass=f=6500,"
+    static = (f"anoisesrc=color=white:amplitude=1:sample_rate=44100:duration={length:.3f},highpass=f=700,lowpass=f=4000,"
               f"volume='if(lt(t,{SQUELCH})+gt(t,{length - SQUELCH:.3f}),0.16,0.022)':eval=frame[n]")
     subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", src,
                     "-filter_complex", f"{voice};{static};[v][n]amix=inputs=2:duration=longest:normalize=0,alimiter=limit=0.95",

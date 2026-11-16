@@ -83,8 +83,6 @@ namespace Saga.Game
 
         public void Click() => Ui(lib.sfxClick, 0.5f);
         public void Select() => Ui(lib.sfxSelect, 0.45f);
-        public void OrderMove() => Ui(lib.sfxOrderMove, 0.45f);
-        public void OrderAttack() => Ui(lib.sfxOrderAttack, 0.45f);
 
         // ---------- unit voices ----------
         // Selecting ships and giving orders gets a spoken reply from that ship's crew (tools/split_voice.py):

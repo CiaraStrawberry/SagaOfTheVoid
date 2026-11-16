@@ -413,7 +413,11 @@ namespace Saga.Game
                     goal = Vector3.Lerp(c.Pos + v.StraightDir * 900f, goal, peel * peel);
                 float agility = v.StraightUntil > 0f ? Mathf.Lerp(0.3f, 1f, peel) : 1f;
 
-                if (!c.Placed || dt <= 0f)
+                if (c.Placed && dt <= 0f)
+                {
+                    // Paused (or a comms call / the pause menu): the craft hold still where they are.
+                }
+                else if (!c.Placed)
                 {
                     c.Pos = goal; c.Vel = lead; c.Placed = true;
                     c.Facing = yaw * Vector3.forward;
