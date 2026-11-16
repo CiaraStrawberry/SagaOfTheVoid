@@ -682,7 +682,7 @@ namespace Saga.Game
                 case "repair_beam": f = AddLine("beam", a, end, Hdr(new Color(0.4f, 1f, 0.6f), 1.6f), 9f, 0.5f); break;
                 case "missile": f = AddLine("missile", a, end, Hdr(new Color(1f, 0.85f, 0.6f), 2f), 8f, (float)e.TravelTime, 8); break;
                 case "shell": f = AddLine("shell", a, end, Hdr(new Color(1f, 0.65f, 0.25f), 2.0f), 7f, (float)e.TravelTime); break;
-                case "bomb": f = AddLine("bomb", a, end, Hdr(new Color(0.8f, 1f, 0.35f), 3f), 15f, (float)e.TravelTime); break;
+                case "bomb": f = AddLine("bomb", a, end, Hdr(new Color(0.8f, 1f, 0.35f), 3f), 10f, (float)e.TravelTime); break;
                 case "seeker":
                     f = AddLine("seeker", a, end, Hdr(new Color(1f, 0.28f, 0.04f), 1.8f), 6.5f, (float)e.TravelTime, 8);
                     f.Velocity = b.Craft != null ? b.Craft.Facing : (end - a).normalized; // leaves along the nose
@@ -702,7 +702,7 @@ namespace Saga.Game
                 foreach (var cr in from.Crafts.Where(x => x.R.enabled && x != b.Craft).Take(4))
                 {
                     var spread = UnityEngine.Random.insideUnitSphere * (to.Crafts != null ? 30f : to.Length * 0.12f);
-                    var g = AddLine("bomb", cr.T.position + cr.Facing * 10f, end + spread, f.Colour, 15f, (float)e.TravelTime);
+                    var g = AddLine("bomb", cr.T.position + cr.Facing * 10f, end + spread, f.Colour, 10f, (float)e.TravelTime);
                     if (f.Miss) { g.Miss = true; g.Flight = f.Flight; g.Life = f.Life; }
                     if (plan != null) { g.Anchor = plan.Anchor; g.Local = plan.Local + plan.Anchor.InverseTransformVector(spread); }
                 }
@@ -986,7 +986,7 @@ namespace Saga.Game
                         // Misses keep their speed and carry straight on past the target.
                         float ft = f.Miss ? f.Age / Mathf.Max(0.05f, f.Flight) : t;
                         var head = Vector3.LerpUnclamped(f.From, aim, ft);
-                        float tail = f.Kind == "tracer" ? 40f : f.Kind == "bomb" ? 110f : 18f; // short streaks, not long lines
+                        float tail = f.Kind == "tracer" ? 40f : f.Kind == "bomb" ? 80f : 18f; // short streaks, not long lines
                         var back = head - (f.To - f.From).normalized * tail;
                         f.Line.SetPosition(0, back); f.Line.SetPosition(1, head);
                         f.Line.startColor = f.Colour * 0.6f * MissFade(f);
