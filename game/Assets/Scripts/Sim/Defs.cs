@@ -22,6 +22,7 @@ namespace Saga.Sim
         public string id;
         public string name;
         public string sprite;
+        public string icon;        // build-menu / HUD icon name (Art/Icons/<icon>_Blue.png)
         public string hull;
         public int cost;
         public bool buyable;
@@ -35,6 +36,7 @@ namespace Saga.Sim
         public List<TurretDef> turrets = new List<TurretDef>();
 
         public Hull HullType => Hulls.Parse(hull);
+        public bool Immobile => speed <= 0;
     }
 
     [Serializable]

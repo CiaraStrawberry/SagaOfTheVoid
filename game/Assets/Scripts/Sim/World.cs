@@ -124,6 +124,9 @@ namespace Saga.Sim
         // Teams a person controls. The computer gives orders to every other team.
         public readonly HashSet<int> PlayerTeams = new HashSet<int>();
 
+        // Capital ship / base defence modes: each team's flagship or home base. Lose it and you lose the battle.
+        public readonly Dictionary<int, Ship> KeyShips = new Dictionary<int, Ship>();
+
         readonly Random rng;
         readonly List<PendingHit> pending = new List<PendingHit>();
         double secondTimer;
@@ -248,6 +251,12 @@ namespace Saga.Sim
                 Deaths.Add(s);
             }
             if (Mission != null) CheckMission();
+            else if (Winner < 0 && KeyShips.Values.Any(k => k.Dead))
+            {
+                var lost = KeyShips.First(kv => kv.Value.Dead).Key;
+                var others = KeyShips.Keys.Where(t => t != lost && !KeyShips[t].Dead).ToList();
+                Winner = others.Count > 0 ? others[0] : Alive.Select(x => x.Team).FirstOrDefault(t => t != lost);
+            }
             else if (Winner < 0)
             {
                 var teams = Alive.Select(s => s.Team).Distinct().ToList();
@@ -298,6 +307,7 @@ namespace Saga.Sim
         void Move(Ship s, double dt)
         {
             if (s.TurnRate < s.Def.turn_rate) s.TurnRate = Math.Min(s.Def.turn_rate, s.TurnRate + 0.003 * UpdateRate * dt);
+            if (s.Def.Immobile) { s.Speed = 0; return; }
             bool smallIdle = !s.HasMoveOrder && Hulls.IsSmall(s.Hull);
             if (!s.HasMoveOrder && !smallIdle) return;
             if (smallIdle)
@@ -363,7 +373,7 @@ namespace Saga.Sim
             foreach (var a in big)
                 foreach (var b in big)
                 {
-                    if (a == b) continue;
+                    if (a == b || a.Def.Immobile) continue;
                     var d = a.Pos - b.Pos;
                     if (d.Length < 300) a.Pos = a.Pos + d * (0.005 * UpdateRate * dt);
                 }

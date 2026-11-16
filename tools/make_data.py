@@ -96,6 +96,35 @@ for old, (sid, name, sprite) in BUYABLE.items():
         "turrets": turrets,
     })
 
+# ---- Skirmish mode structures (designed 2026-11-16, not in 2017) ----
+def gun(weapon, rng, tbs, spb=0, bw=0.0):
+    return {"weapon": weapon, "range": rng, "time_between_shots": tbs, "shots_per_burst": spb, "burst_wait": bw}
+
+for s in ships:
+    s["icon"] = s["sprite"]
+    if s["id"] == "super_capital":
+        # Capital ship mode: the flagship. Heavy guns, very slow. (2017 prefab had no guns; fitted at match start.)
+        s.update({"armor": 60000, "shield": 40000, "speed": 25, "turn_rate": 0.12, "turrets": [
+            gun("capital_main_gun", 3500, 4.0), gun("capital_main_gun", 3500, 4.0),
+            gun("missile", 4500, 0.4, 4, 5.0), gun("missile", 4500, 0.4, 4, 5.0),
+            gun("minigun", 1400, 0.1, 10, 3.0), gun("minigun", 1400, 0.1, 10, 3.0)]})
+
+ships.append({
+    # Base defence mode: the home base, built from the 2017 space station model. Never moves.
+    "id": "home_base", "name": "Home Base", "sprite": "SpaceStation", "icon": "HomeBase", "hull": "super_capital",
+    "cost": 0, "buyable": False, "build_time": 0, "armor": 90000, "shield": 60000, "speed": 0, "turn_rate": 0,
+    "sprite_world_size": 320, "squadron": False, "turrets": [
+        gun("capital_main_gun", 3800, 3.5), gun("capital_main_gun", 3800, 3.5), gun("capital_main_gun", 3800, 3.5),
+        gun("missile", 5000, 0.4, 4, 4.0), gun("missile", 5000, 0.4, 4, 4.0), gun("missile", 5000, 0.4, 4, 4.0),
+        gun("minigun", 1500, 0.1, 10, 2.5), gun("minigun", 1500, 0.1, 10, 2.5),
+        gun("minigun", 1500, 0.1, 10, 2.5), gun("minigun", 1500, 0.1, 10, 2.5)]})
+ships.append({
+    # Base defence mode: gun platforms around the base, made from the 2017 capital main-gun turret. Never move.
+    "id": "defence_platform", "name": "Defence Platform", "sprite": "turrets/CapitalMainGunInGame", "icon": "DefencePlatform",
+    "hull": "destroyer", "cost": 0, "buyable": False, "build_time": 0, "armor": 6000, "shield": 6000, "speed": 0,
+    "turn_rate": 0, "sprite_world_size": 60, "squadron": False, "turrets": [
+        gun("cannon", 2200, 2.5), gun("minigun", 1300, 0.1, 10, 3.0), gun("minigun", 1300, 0.1, 10, 3.0)]})
+
 out = os.path.join(ROOT, "game", "Assets", "Data")
 os.makedirs(out, exist_ok=True)
 with open(os.path.join(out, "ships.json"), "w") as f:

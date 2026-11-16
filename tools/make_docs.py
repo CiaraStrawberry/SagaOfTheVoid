@@ -33,9 +33,11 @@ CONTENT = {
         ["ok", "Start menu with skirmish options (full or quick, map, computer difficulty) and the campaign."],
         ["ok", "The 8 campaign missions are playable: objectives, time limits, build tiers, saved progress, next / retry."],
         ["next", "Fleet builder (2017: fit turrets to ships under a points limit); it will replace the campaign's stand-in starter fleets."],
-        ["next", "Turrets that turn to aim, sound, and the tutorial."],
+        ["next", "Turrets that turn to aim, and the tutorial."],
+        ["ok", "Sound from the 2017 game: menu and battle music, a sound per weapon, warp-ins, explosions, interface clicks and order cues. <kbd>M</kbd> mutes."],
+        ["ok", "Three skirmish modes: Free for all, Capital ship (each side has a slow, heavily armed flagship) and Base defence (each side has a fixed home base with 4 gun platforms). Lose the flagship or base, lose the battle."],
         ["warn", "Size scale between big and small ships is a stand-in (big ships shrink, small grow); not yet decided."],
-        ["ok", "Builds slimmed: Windows 882 MB to 249 MB; web download 65 MB to 19 MB (two team paints shipped, smaller detail maps, crunch and Brotli for the web, mesh compression)."],
+        ["ok", "Builds slimmed: Windows 882 MB to 255 MB; web download 65 MB to 23 MB with sound (two team paints shipped, smaller detail maps, crunch and Brotli for the web, mesh compression)."],
         ["ok", "Web page of our own: full-window game, loading screen, full-screen button, no browser menu on right-click."],
         ["ok", "Selected ships show a running tally: damage dealt, kills, and shields restored for repair ships."],
         ["ok", "Ships warp in through the 2017 warp portal; fighter craft fly individually with trails; built ships wait in a reserve and you choose where they warp in."],
@@ -71,10 +73,11 @@ CONTENT = {
         ["Focus", "<kbd>F</kbd> centres on the selection."],
         ["Build", "Click a ship in the build bar (bottom right) to buy it; right-click cancels one and refunds it. Hover for details."],
         ["Dogfights", "Fighter fights show as a faint gold ring. Right-click it: your fighters join, other ships attack the enemies in it. Left-click it: select all your ships in that fight."],
+        ["Strike zones", "Fighters and bombers attacking a big ship show a faint red ring around it. Click the ship itself as usual. Left-click the ring: select your craft attacking it. Right-click the ring: attack that ship (or, around your own ship, the craft attacking it)."],
         ["Reserve", "Built ships wait in the reserve (above the build bar). Click one, or press <kbd>R</kbd> for all, then click where it should warp in. <kbd>Shift</kbd> keeps placing; right-click or <kbd>Esc</kbd> cancels. Not within 1,000 of an enemy."],
         ["Leave a battle", "<b>Menu</b> button, top right. Click twice within 3 s to confirm."],
-        ["Menu", "Start screen: pick a skirmish (map, computer difficulty, full 18 v 18 or quick 8 v 8) or a campaign mission. After a battle: next mission, retry or play again, or back to the menu."],
-        ["Game", "<kbd>P</kbd> pause, <kbd>+</kbd> / <kbd>-</kbd> speed (¼× to 4×), <kbd>H</kbd> controls card, <kbd>F5</kbd> restart, <kbd>F10</kbd> quit."],
+        ["Menu", "Start screen: pick a skirmish (mode, map, computer difficulty, full 18 v 18 or quick 8 v 8) or a campaign mission. After a battle: next mission, retry or play again, or back to the menu."],
+        ["Game", "<kbd>P</kbd> pause, <kbd>+</kbd> / <kbd>-</kbd> speed (¼× to 4×), <kbd>H</kbd> controls card, <kbd>M</kbd> mute, <kbd>F5</kbd> restart, <kbd>F10</kbd> quit."],
     ],
     "decisions": [
         ["2026-11-16", "Rebuild in a fresh project instead of upgrading the 2017 one.", "About 7,000 of the 330,000 decompiled lines are game rules; the rest is VR, networking and libraries a 2D-plane game doesn't need."],
@@ -106,6 +109,11 @@ CONTENT = {
         ["2026-11-16", "Narrower windows than 16:9 (towards 1:1) scale the UI to the width and widen the camera view.", "Owner feedback: the menu looked squished at 1:1."],
         ["2026-11-16", "Ship only the Blue and Red paints in builds; detail maps smaller; crunch + Brotli for the web.", "Build size: textures were 97% of the build."],
         ["2026-11-16", "Use the intended 2017 build times (Scout 5 s ... Capital 20 s); the computer uses the build queue too; hard difficulty gets its intended 1.4× income.", "2017 bugs: the queue used list position as seconds, and hard got 1.0×. The 2017 computer spawned instantly, which is unfair against a queued player."],
+        ["2026-11-16", "Sound uses the 2017 clips. Battle sounds fade with distance from where the camera looks and pan left or right; each sound has a short minimum gap so big fights stay clear.", "Owner asked what happened to the original sound: it was recovered but not yet wired up."],
+        ["2026-11-16", "Dogfights spread out: each craft flies its own lane across the fight area and drifts between it and an enemy's tail.", "Owner feedback: every craft flew in one tight ball at the centre."],
+        ["2026-11-16", "Strike zones: craft attacking a big ship fly their own lanes around it and make attack runs. The big ship stays clickable and chooses its own targets.", "Owner request: bombers on a capital ship should look like the dogfights, without blocking the ship."],
+        ["2026-11-16", "Missiles speed up through their flight and dive steeply onto the target.", "Owner feedback: missiles slowed down as they arrived."],
+        ["2026-11-16", "Skirmish modes. Capital ship: the Super-Capital becomes each side's flagship (60,000 armour, 40,000 shield, speed 25, 2 main guns, 2 missile racks, 2 miniguns). Base defence: a home base from the 2017 space station model (90,000 armour, 60,000 shield, 3 main guns, 3 missile racks, 4 miniguns) with 4 platforms from the 2017 main-gun turret. These do not count toward the fleet limit.", "Owner request. New numbers, not from 2017; tune after playing."],
     ],
     "recovery_stats": [
         ["Build", "Unity 5.6.1f1, Mono"],
@@ -156,7 +164,10 @@ def main():
 
     icons = os.path.join(ROOT, "game", "Assets", "Art", "Icons")
     for s in ships:
-        Image.open(os.path.join(icons, s["sprite"] + "_Blue.png")).resize((160, 160), Image.LANCZOS).save(os.path.join(DOCS, "img", "icons", s["sprite"] + ".png"))
+        name = s.get("icon") or s["sprite"]
+        src = os.path.join(icons, name + "_Blue.png")
+        if os.path.exists(src):
+            Image.open(src).resize((160, 160), Image.LANCZOS).save(os.path.join(DOCS, "img", "icons", name + ".png"))
     skies = os.path.join(ROOT, "game", "Assets", "Art", "Backgrounds")
     for m in {m["sky"] for m in campaign["missions"]}:
         im = Image.open(os.path.join(skies, m + ".png")).convert("RGB")

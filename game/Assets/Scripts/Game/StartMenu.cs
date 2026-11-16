@@ -21,6 +21,8 @@ namespace Saga.Game
         int chosenMission = -1;
         int mapIndex;
         Difficulty difficulty = Difficulty.Normal;
+        SkirmishMode mode = SkirmishMode.FreeForAll;
+        readonly Text skirmishMode;
         static readonly string[] MapIds = { "asteroid_field", "space_station", "ship_graveyard" };
         static readonly string[] MapSkies = { "skybox5", "Skybox1", "skybox4" };
 
@@ -35,14 +37,15 @@ namespace Saga.Game
             UiKit.Label(root, "title", 64, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(80, -70), new Vector2(1200, 90), "<b>SAGA OF THE VOID</b>");
 
             // Skirmish column
-            var sk = UiKit.Box(root, "skirmish", new Vector2(0, 1), new Vector2(80, -220), new Vector2(520, 520), UiKit.Panel).transform;
+            var sk = UiKit.Box(root, "skirmish", new Vector2(0, 1), new Vector2(80, -220), new Vector2(520, 540), UiKit.Panel).transform;
             UiKit.Label(sk, "h", 30, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(24, -20), new Vector2(480, 40), "<b>Skirmish</b>");
             UiKit.Label(sk, "p", 20, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(24, -64), new Vector2(470, 60),
                 "<color=#8d98ab>You command Blue against the computer. Both sides earn credits and buy ships.</color>");
-            skirmishMap = UiKit.Button(sk, "", new Vector2(0, 1), new Vector2(24, -140), new Vector2(472, 56), () => { mapIndex = (mapIndex + 1) % MapIds.Length; Refresh(); }, 22);
-            skirmishDifficulty = UiKit.Button(sk, "", new Vector2(0, 1), new Vector2(24, -206), new Vector2(472, 56), () => { difficulty = (Difficulty)(((int)difficulty + 1) % 3); Refresh(); }, 22);
-            UiKit.Button(sk, "Full battle  ·  18 v 18", new Vector2(0, 1), new Vector2(24, -300), new Vector2(472, 64), () => StartSkirmish(false), 26);
-            UiKit.Button(sk, "Quick battle  ·  8 v 8", new Vector2(0, 1), new Vector2(24, -376), new Vector2(472, 64), () => StartSkirmish(true), 26);
+            skirmishMode = UiKit.Button(sk, "", new Vector2(0, 1), new Vector2(24, -140), new Vector2(472, 56), () => { mode = (SkirmishMode)(((int)mode + 1) % 3); Refresh(); }, 22);
+            skirmishMap = UiKit.Button(sk, "", new Vector2(0, 1), new Vector2(24, -206), new Vector2(472, 56), () => { mapIndex = (mapIndex + 1) % MapIds.Length; Refresh(); }, 22);
+            skirmishDifficulty = UiKit.Button(sk, "", new Vector2(0, 1), new Vector2(24, -272), new Vector2(472, 56), () => { difficulty = (Difficulty)(((int)difficulty + 1) % 3); Refresh(); }, 22);
+            UiKit.Button(sk, "Full battle  ·  18 v 18", new Vector2(0, 1), new Vector2(24, -366), new Vector2(472, 64), () => StartSkirmish(false), 26);
+            UiKit.Button(sk, "Quick battle  ·  8 v 8", new Vector2(0, 1), new Vector2(24, -442), new Vector2(472, 64), () => StartSkirmish(true), 26);
 
             // Campaign column
             var cp = UiKit.Box(root, "campaign", new Vector2(0, 1), new Vector2(640, -220), new Vector2(1200, 640), UiKit.Panel).transform;
@@ -72,6 +75,7 @@ namespace Saga.Game
 
         void Refresh()
         {
+            skirmishMode.text = "Mode:  " + (mode == SkirmishMode.FreeForAll ? "Free for all" : mode == SkirmishMode.CapitalShip ? "Capital ship" : "Base defence") + "   <color=#8d98ab>(click to change)</color>";
             skirmishMap.text = "Map:  " + Pretty(MapIds[mapIndex]) + "   <color=#8d98ab>(click to change)</color>";
             skirmishDifficulty.text = "Computer:  " + difficulty + "   <color=#8d98ab>(click to change)</color>";
         }
@@ -97,7 +101,7 @@ namespace Saga.Game
 
         void StartSkirmish(bool quick) => SkirmishController.Begin(new BattleConfig
         {
-            Quick = quick, Map = MapIds[mapIndex], Sky = MapSkies[mapIndex], Difficulty = difficulty,
+            Quick = quick, Map = MapIds[mapIndex], Sky = MapSkies[mapIndex], Difficulty = difficulty, Mode = mode,
         });
 
         void Launch()

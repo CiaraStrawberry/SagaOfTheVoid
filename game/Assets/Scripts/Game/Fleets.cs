@@ -28,6 +28,26 @@ namespace Saga.Game
         // Distance from the middle to each fleet's centre (owner asked for bigger maps: was 4,200 and 2,800).
         public const float FullGap = 6500f, QuickGap = 4500f;
 
+        // Adds each side's flagship or home base (behind its fleet) for the capital ship and base defence modes.
+        public static void SpawnMode(World w, SkirmishMode mode, float gap)
+        {
+            if (mode == SkirmishMode.FreeForAll) return;
+            for (int team = 0; team < 2; team++)
+            {
+                float side = team == 0 ? -1 : 1;
+                double heading = side < 0 ? -Math.PI / 2 : Math.PI / 2;
+                if (mode == SkirmishMode.CapitalShip)
+                    w.KeyShips[team] = w.Spawn("super_capital", team, new Vec2(side * (gap + 2000), 0), heading);
+                else
+                {
+                    var at = new Vec2(side * (gap + 2800), 0);
+                    w.KeyShips[team] = w.Spawn("home_base", team, at, heading);
+                    foreach (var (dx, dy) in new[] { (1200.0, 1200.0), (1200.0, -1200.0), (-1200.0, 1200.0), (-1200.0, -1200.0) })
+                        w.Spawn("defence_platform", team, at + new Vec2(dx * -side, dy), heading);
+                }
+            }
+        }
+
         // Team 0 starts on the left facing right, team 1 on the right facing left, `gap` from the middle.
         public static void Spawn(World w, (string id, float x, float y)[] fleet, float gap)
         {

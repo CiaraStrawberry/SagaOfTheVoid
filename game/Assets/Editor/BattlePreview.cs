@@ -29,6 +29,9 @@ public static class BattlePreview
         if (lib == null) throw new Exception("Assets/Resources/ShipLibrary.asset missing; run ShipModelBuilder.BuildShips");
         var world = new World(lib.Rules(), seed: 2017);
         Fleets.Spawn(world, quick ? Fleets.Quick : Fleets.Full, quick ? Fleets.QuickGap : Fleets.FullGap);
+        var mode = Arg("-mode", "ffa");
+        Fleets.SpawnMode(world, mode == "capital" ? SkirmishMode.CapitalShip : mode == "base" ? SkirmishMode.BaseDefence : SkirmishMode.FreeForAll,
+            quick ? Fleets.QuickGap : Fleets.FullGap);
         double maxSeconds = quick ? 75 : 300;
 
         var cam = new GameObject("Camera").AddComponent<Camera>();

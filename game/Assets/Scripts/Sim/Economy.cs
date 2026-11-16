@@ -81,7 +81,9 @@ namespace Saga.Sim
             if (Count(team) == 0) return "fleet destroyed";
             if (Mission != null && team == Mission.PlayerTeam && !Mission.Allowed.Contains(shipId)) return "not available in this mission";
             if (Mission?.Outcome != null) return "mission over";
-            if (Count(team) + t.Queued + t.Reserve.Count >= ShipCap - 1) return "fleet is full";
+            // Flagships, bases and platforms (not buyable) don't count toward the fleet limit.
+            int fleet = Alive.Count(x => x.Team == team && x.Def.buyable);
+            if (fleet + t.Queued + t.Reserve.Count >= ShipCap - 1) return "fleet is full";
             if (t.Money < def.cost) return "not enough credits";
             return null;
         }

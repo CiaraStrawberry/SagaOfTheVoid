@@ -89,7 +89,115 @@ public static class MapBuilder
             Log(string.Format("{0}: {1} parts, bounds centre {2} size {3}", map.id, made, b.center, b.size));
         }
         AssetDatabase.SaveAssets();
+        BuildBase();
+        RenderIcon("home_base", "HomeBase");
+        RenderIcon("defence_platform", "DefencePlatform");
         ShipModelBuilder.BuildLibrary(JsonUtility.FromJson<ShipDefList>(File.ReadAllText("Assets/Data/ships.json")));
+    }
+
+    // Base defence mode: the home base, built from the 2017 space station, scaled to flagship size (320 model
+    // units across, like the Super-Capital), centred, with brighter copies of the station materials.
+    const float BaseLength = 320f;
+
+    // Ships (including the defence platform), the home base, the two new icons, then the library.
+    public static void BuildModes()
+    {
+        ShipModelBuilder.BuildShips();
+        Resize("defence_platform", 70f); // the 2017 turret model is ship-mounted scale (0.1 units)
+        BuildBase();
+        RenderIcon("home_base", "HomeBase");
+        RenderIcon("defence_platform", "DefencePlatform");
+        ShipModelBuilder.BuildLibraryOnly();
+    }
+
+    // Scales a built ship prefab's parts so its model length becomes `length`.
+    static void Resize(string shipId, float length)
+    {
+        var path = "Assets/Ships/" + shipId + ".prefab";
+        var root = PrefabUtility.LoadPrefabContents(path);
+        var model = root.GetComponent<Saga.Game.ShipModel>();
+        float k = length / Mathf.Max(0.0001f, model.length);
+        foreach (Transform part in root.transform)
+        {
+            part.localPosition *= k;
+            part.localScale *= k;
+        }
+        model.length = length;
+        PrefabUtility.SaveAsPrefabAsset(root, path);
+        PrefabUtility.UnloadPrefabContents(root);
+        Log(shipId + " resized x" + k.ToString("F0"));
+    }
+
+    public static void BuildBase()
+    {
+        var src = AssetDatabase.LoadAssetAtPath<GameObject>(Out + "/space_station.prefab");
+        if (src == null) { Log("ERROR no space_station map to build the base from"); return; }
+        var tmp = Object.Instantiate(src);
+        var rs = tmp.GetComponentsInChildren<MeshRenderer>();
+        var b = rs[0].bounds; foreach (var r in rs) b.Encapsulate(r.bounds);
+        float scale = BaseLength / Mathf.Max(b.size.x, b.size.z);
+        var root = new GameObject("home_base");
+        var mats = new Dictionary<Material, Material>();
+        var parts = new List<MeshRenderer>();
+        foreach (var r in rs)
+        {
+            var part = new GameObject(r.name);
+            part.transform.SetParent(root.transform, false);
+            part.transform.position = (r.transform.position - b.center) * scale;
+            part.transform.rotation = r.transform.rotation;
+            part.transform.localScale = r.transform.lossyScale * scale;
+            part.AddComponent<MeshFilter>().sharedMesh = r.GetComponent<MeshFilter>().sharedMesh;
+            var mr = part.AddComponent<MeshRenderer>();
+            mr.shadowCastingMode = ShadowCastingMode.Off;
+            if (!mats.TryGetValue(r.sharedMaterial, out var m))
+            {
+                m = new Material(r.sharedMaterial) { name = "base_" + r.sharedMaterial.name };
+                m.SetColor("_BaseColor", r.sharedMaterial.GetColor("_BaseColor") * 1.7f);
+                AssetDatabase.CreateAsset(m, AssetDatabase.GenerateUniqueAssetPath(Out + "/Materials/" + m.name + ".mat"));
+                mats[r.sharedMaterial] = m;
+            }
+            mr.sharedMaterial = m;
+            parts.Add(mr);
+        }
+        Object.DestroyImmediate(tmp);
+        var model = root.AddComponent<Saga.Game.ShipModel>();
+        model.renderers = parts.ToArray();
+        model.length = BaseLength;
+        var ms = parts.Select(p => p.sharedMaterial).ToArray();
+        model.paints = ShipModelBuilder.ShippedPaints.Select(c => new Saga.Game.ShipModel.Paint { colour = c, materials = ms }).ToArray();
+        PrefabUtility.SaveAsPrefabAsset(root, "Assets/Ships/home_base.prefab");
+        Object.DestroyImmediate(root);
+        Log("base: " + parts.Count + " parts");
+    }
+
+    // Top-down icon for the build menu / HUD / docs: Assets/Art/Icons/<icon>_Blue.png
+    public static void RenderIcon(string shipId, string icon)
+    {
+        var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Ships/" + shipId + ".prefab");
+        if (prefab == null) { Log("no prefab for icon " + shipId); return; }
+        var go = Object.Instantiate(prefab);
+        go.GetComponent<Saga.Game.ShipModel>()?.ApplyPaint("Blue");
+        var rs = go.GetComponentsInChildren<Renderer>();
+        var b = rs[0].bounds; foreach (var r in rs) b.Encapsulate(r.bounds);
+        var cam = new GameObject("icon cam").AddComponent<Camera>();
+        cam.orthographic = true; cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = new Color(0, 0, 0, 0);
+        cam.orthographicSize = Mathf.Max(b.extents.x, b.extents.z) * 1.05f;
+        cam.transform.SetPositionAndRotation(new Vector3(b.center.x, b.max.y + 100f, b.center.z), Quaternion.LookRotation(Vector3.down, Vector3.forward));
+        cam.nearClipPlane = 1f; cam.farClipPlane = b.size.y + 300f;
+        var sun = new GameObject("icon sun").AddComponent<Light>();
+        sun.type = LightType.Directional; sun.intensity = 1.6f; sun.transform.rotation = Quaternion.Euler(60f, -35f, 0f);
+        RenderSettings.ambientMode = AmbientMode.Flat; RenderSettings.ambientLight = new Color(0.5f, 0.52f, 0.58f);
+        var rt = new RenderTexture(512, 512, 24, RenderTextureFormat.ARGB32) { antiAliasing = 8 };
+        cam.targetTexture = rt; cam.Render();
+        RenderTexture.active = rt;
+        var tex = new Texture2D(512, 512, TextureFormat.RGBA32, false);
+        tex.ReadPixels(new Rect(0, 0, 512, 512), 0, 0); tex.Apply();
+        RenderTexture.active = null;
+        var path = "Assets/Art/Icons/" + icon + "_Blue.png";
+        File.WriteAllBytes(path, tex.EncodeToPNG());
+        Object.DestroyImmediate(go); Object.DestroyImmediate(cam.gameObject); Object.DestroyImmediate(sun.gameObject);
+        AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
+        Log("icon " + path);
     }
 
     // Diagnostic: each map alone, from straight above, framed on its bounds -> tools/preview/map_<id>.png

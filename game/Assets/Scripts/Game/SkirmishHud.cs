@@ -201,6 +201,12 @@ namespace Saga.Game
                     : string.Format("Destroy every enemy ship  <color=#8d98ab>{0} left · {1}</color>", w.Count(w.Mission.EnemyTeam), clock);
                 objective.text = string.Format("<color=#e7b04c>MISSION {0}</color>  {1}   ·   {2}", mission.index + 1, mission.name, goal);
             }
+            else if (w.KeyShips.TryGetValue(SkirmishController.PlayerTeam, out var mine) && w.KeyShips.TryGetValue(1, out var theirs))
+            {
+                string what = mine.Def.id == "home_base" ? "base" : "flagship";
+                objective.text = string.Format("<color=#e7b04c>{0}</color>   Protect your {1}  <color=#8d98ab>({2:N0} armour)</color>   ·   Destroy theirs  <color=#8d98ab>({3:N0} armour)</color>",
+                    what == "base" ? "BASE DEFENCE" : "CAPITAL SHIP", what, System.Math.Max(0, mine.Armor), System.Math.Max(0, theirs.Armor));
+            }
             else objective.text = "";
 
             if (w.Winner < 0) banner.text = "";

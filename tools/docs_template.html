@@ -241,7 +241,7 @@ const fmt = n => typeof n === "number" ? n.toLocaleString("en-GB") : n;
 const title = s => s.split("_").map(w => w[0].toUpperCase() + w.slice(1)).join(" ");
 const ships = DATA.ships, weapons = Object.fromEntries(DATA.weapons.map(w => [w.id, w]));
 const shipById = Object.fromEntries(ships.map(s => [s.id, s]));
-const icon = id => `img/icons/${shipById[id].sprite}.png`;
+const icon = id => `img/icons/${shipById[id].icon || shipById[id].sprite}.png`;
 const HULLS = ["light", "corvette", "frigate", "cruiser", "destroyer", "capital", "super_capital"];
 
 // ---------- overview ----------

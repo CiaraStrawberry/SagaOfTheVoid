@@ -109,6 +109,7 @@ namespace Saga.Game
                 World.PlayerTeams.Add(PlayerTeam);
                 Fleets.Spawn(World, config.Quick ? Fleets.Quick : Fleets.Full, config.Quick ? Fleets.QuickGap : Fleets.FullGap);
                 World.TeamOf(1).Difficulty = config.Difficulty;
+                Fleets.SpawnMode(World, config.Mode, config.Quick ? Fleets.QuickGap : Fleets.FullGap);
             }
 
             BattleView.BuildStage(lib, cam, string.IsNullOrEmpty(map) ? null : map, sky);

@@ -166,7 +166,7 @@ public static class ShipModelBuilder
         {
             id = d.id,
             prefab = AssetDatabase.LoadAssetAtPath<GameObject>(OutDir + "/" + d.id + ".prefab"),
-            icon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Icons/" + d.sprite + "_Blue.png"),
+            icon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Icons/" + (string.IsNullOrEmpty(d.icon) ? d.sprite : d.icon) + "_Blue.png"),
         }).ToList();
         lib.maps = new[] { "asteroid_field", "space_station", "ship_graveyard" }
             .Select(id => new ShipLibrary.MapEntry { id = id, prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Maps/" + id + ".prefab") })

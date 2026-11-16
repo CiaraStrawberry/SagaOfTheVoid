@@ -52,6 +52,12 @@ MonoBehaviour:
   - id: super_capital
     prefab: {fileID: 8549239968160891932, guid: e553b0f9939a51246b7956214c7adebf, type: 3}
     icon: {fileID: 21300000, guid: 9443794253123df468dca03c5dc112f0, type: 3}
+  - id: home_base
+    prefab: {fileID: 579483559349034637, guid: 747bfc34e5394584bb1c2520d9a19b59, type: 3}
+    icon: {fileID: 21300000, guid: 07025111027d4ee468d8e6fb409b27fe, type: 3}
+  - id: defence_platform
+    prefab: {fileID: 1444779956029751351, guid: 3872804dab9e9494e91eefe62b1812af, type: 3}
+    icon: {fileID: 21300000, guid: 75887059ab3cbc8459e3617b2e2ecbd7, type: 3}
   maps:
   - id: asteroid_field
     prefab: {fileID: 6344107126215410629, guid: 59cfc18c1c925b04dbea707ce3a34ad6, type: 3}

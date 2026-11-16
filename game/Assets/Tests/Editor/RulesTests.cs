@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Saga.Sim;
@@ -24,11 +24,41 @@ namespace Saga.Tests
         [Test]
         public void DataLoads_AllShipsAndWeapons()
         {
-            Assert.AreEqual(13, rules.Ships.Count);
+            Assert.AreEqual(15, rules.Ships.Count); // 13 from 2017 + home base + defence platform
             Assert.AreEqual(10, rules.Weapons.Count);
             Assert.AreEqual(17000, rules.Ships["capital"].armor);
             Assert.AreEqual(3000, rules.Weapons["laser"].damage);
             Assert.IsFalse(rules.Weapons.ContainsKey("cloak"), "cloak was replaced by the shield field");
+        }
+
+        [Test]
+        public void KeyShip_LostMeansBattleLost_AndStructuresNeverMove()
+        {
+            var w = NewWorld();
+            var baseA = w.Spawn("home_base", 0, new Vec2(-3000, 0), 0);
+            var baseB = w.Spawn("home_base", 1, new Vec2(3000, 0), 0);
+            w.KeyShips[0] = baseA; w.KeyShips[1] = baseB;
+            w.Spawn("fighter", 0, new Vec2(-2500, 0), 0);
+            w.OrderMove(new[] { baseA }, new Vec2(0, 0), false);
+            for (int i = 0; i < 120; i++) w.Step(1.0 / 60);
+            Assert.AreEqual(-3000, baseA.Pos.X, 0.001, "base never moves");
+            Assert.AreEqual(-1, w.Winner);
+            w.TakeDamage(baseB, int.MaxValue / 2, Hull.Capital);
+            w.TakeDamage(baseB, int.MaxValue / 2, Hull.Capital);
+            for (int i = 0; i < 2; i++) w.Step(1.0 / 60);
+            Assert.AreEqual(0, w.Winner, "destroying the enemy base wins even with their other ships alive");
+        }
+
+        [Test]
+        public void KeyShips_DoNotCountTowardFleetLimit()
+        {
+            var w = NewWorld();
+            w.KeyShips[0] = w.Spawn("super_capital", 0, Vec2.Zero, 0);
+            for (int i = 0; i < 4; i++) w.Spawn("defence_platform", 0, new Vec2(500 * i, 900), 0);
+            for (int i = 0; i < w.ShipCap - 2; i++) w.Spawn("scout", 0, new Vec2(100 * i, -900), 0);
+            Assert.IsNull(w.CannotBuy(0, "scout") is string r && r.Contains("full") ? r : null);
+            w.Spawn("scout", 0, new Vec2(0, -1500), 0);
+            StringAssert.Contains("full", w.CannotBuy(0, "scout") ?? "");
         }
 
         [Test]
