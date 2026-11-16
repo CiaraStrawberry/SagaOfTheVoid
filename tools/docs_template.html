@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saga of the Void · Remake Docs</title>
+<style>
+/* Layout: fixed side index of sections, one content column; data views are tables and cards built from the game's own data files. */
+:root {
+  --void: #0b0e15; --hull: #121722; --plate: #1a2130; --line: #283246;
+  --text: #dfe5ef; --muted: #8d98ab; --signal: #6fb6ff; --red: #ff8a80;
+  --ok: #58c98f; --warn: #e7b04c; --bad: #ef6b5e;
+  --f-display: "Bahnschrift", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "Cascadia Mono", "Consolas", ui-monospace, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--void); color: var(--text); font: 15px/1.6 var(--f-body); }
+a { color: var(--signal); }
+.app { display: grid; grid-template-columns: 230px minmax(0, 1fr); min-height: 100vh; }
+nav { position: sticky; top: 0; height: 100vh; overflow-y: auto; border-right: 1px solid var(--line); background: var(--hull); padding: 22px 14px; display: flex; flex-direction: column; gap: 4px; }
+nav .brand { font: 600 17px/1.2 var(--f-display); letter-spacing: .02em; padding: 0 10px 4px; }
+nav .sub { font: 12px/1.4 var(--f-mono); color: var(--muted); padding: 0 10px 16px; }
+nav a { color: var(--muted); text-decoration: none; padding: 7px 10px; border-radius: 4px; font-size: 14px; }
+nav a:hover { color: var(--text); background: var(--plate); }
+nav a.on { color: var(--text); background: var(--plate); box-shadow: inset 2px 0 0 var(--signal); }
+nav .foot { margin-top: auto; padding: 16px 10px 0; font: 11px/1.5 var(--f-mono); color: var(--muted); }
+main { padding: 34px clamp(16px, 4vw, 48px) 80px; max-width: 1180px; width: 100%; }
+section { display: none; flex-direction: column; gap: 18px; }
+section.on { display: flex; }
+h1 { font: 600 clamp(26px, 3.4vw, 36px)/1.15 var(--f-display); margin: 0; letter-spacing: .01em; }
+h2 { font: 600 20px/1.25 var(--f-display); margin: 14px 0 0; }
+h3 { font: 600 16px/1.3 var(--f-display); margin: 6px 0 0; }
+p { margin: 0; max-width: 72ch; }
+.lede { color: var(--muted); font-size: 16px; }
+.eyebrow { font: 500 12px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--signal); }
+code, kbd { font: 13px var(--f-mono); background: var(--plate); padding: 1px 6px; border-radius: 3px; }
+kbd { border: 1px solid var(--line); border-bottom-width: 2px; }
+pre { font: 13px/1.5 var(--f-mono); background: var(--hull); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; overflow-x: auto; margin: 0; }
+.grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+.card { background: var(--hull); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.card .k { font: 500 11px/1.3 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.card .v { font: 600 22px/1.2 var(--f-display); }
+.tablebox { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 8px 11px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { font: 500 11px/1.3 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--hull); position: sticky; top: 0; white-space: nowrap; }
+th.sort { cursor: pointer; user-select: none; }
+th.sort:hover { color: var(--text); }
+th .dir { color: var(--signal); }
+tr:last-child td { border-bottom: 0; }
+tbody tr.pick { cursor: pointer; }
+tbody tr.pick:hover, tbody tr.sel { background: var(--plate); }
+td.n { text-align: right; font-family: var(--f-mono); font-size: 13px; }
+td.m { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+.icon { width: 44px; height: 44px; object-fit: contain; display: block; }
+.icon.big { width: 120px; height: 120px; }
+.pill { display: inline-block; font: 500 11px/1 var(--f-mono); padding: 4px 7px; border-radius: 3px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.pill.new { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); }
+.pill.ok { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+input[type=search], select { background: var(--hull); color: var(--text); border: 1px solid var(--line); border-radius: 4px; padding: 7px 10px; font: inherit; }
+input[type=search] { min-width: 220px; }
+button { background: var(--plate); color: var(--text); border: 1px solid var(--line); border-radius: 4px; padding: 6px 12px; font: inherit; cursor: pointer; }
+button.on { border-color: var(--signal); color: var(--signal); }
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+.detail { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 18px; background: var(--hull); border: 1px solid var(--line); border-radius: 6px; padding: 18px; }
+.statrow { display: grid; grid-template-columns: 110px minmax(0, 1fr) 80px; gap: 10px; align-items: center; font-size: 13px; }
+.meter { height: 8px; background: var(--plate); border-radius: 4px; overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--signal); }
+.heat td.h { text-align: center; font-family: var(--f-mono); font-size: 13px; }
+.notes { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.notes li { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.tag { font: 600 11px/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; }
+.tag.ok { color: var(--ok); } .tag.warn { color: var(--warn); } .tag.next { color: var(--signal); } .tag.bad { color: var(--bad); }
+.fleet { display: flex; flex-wrap: wrap; gap: 6px; }
+.fleet figure { margin: 0; display: grid; justify-items: center; gap: 2px; width: 74px; font-size: 11px; color: var(--muted); text-align: center; }
+.story { white-space: pre-line; font-style: italic; color: var(--text); border-left: 2px solid var(--line); padding-left: 12px; }
+.media img, .media video { width: 100%; height: auto; display: block; border-radius: 6px; border: 1px solid var(--line); background: #000; }
+@media (max-width: 820px) { .app { grid-template-columns: 1fr; } nav { position: static; height: auto; flex-direction: row; flex-wrap: wrap; } nav .foot { display: none; } .detail { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="app">
+<nav aria-label="Sections">
+  <div class="brand">Saga of the Void</div>
+  <div class="sub">remake docs · built __BUILT__</div>
+  <a href="#overview">Overview</a>
+  <a href="#run">How to run</a>
+  <a href="#ships">Ships</a>
+  <a href="#weapons">Weapons &amp; hit chances</a>
+  <a href="#campaign">Campaign</a>
+  <a href="#rules">Battle rules</a>
+  <a href="#controls">Controls</a>
+  <a href="#decisions">Decisions</a>
+  <a href="#recovery">Recovery record</a>
+  <a href="#media">Media</a>
+  <div class="foot">Generated by <code>tools/make_docs.py</code> from <code>game/Assets/Data</code>. Edit the template, not this file.</div>
+</nav>
+<main>
+
+<section id="overview">
+  <div class="eyebrow">Project record</div>
+  <h1>Saga of the Void, remade</h1>
+  <p class="lede">A 2017 VR space strategy game, recovered from its shipped build after the project files were lost, and rebuilt in Unity 6 LTS as a mouse-and-keyboard game: real 3D ships fighting on a flat battlefield under an angled strategy camera.</p>
+  <div class="grid" id="ov-stats"></div>
+  <h2>Status</h2>
+  <ul class="notes" id="status"></ul>
+</section>
+
+<section id="run">
+  <div class="eyebrow">Day to day</div>
+  <h1>How to run things</h1>
+  <h3>Play the skirmish</h3>
+  <p>Editor: open the <code>game</code> folder in Unity Hub with Unity 6000.3.28f1, open <code>Assets/Scenes/Skirmish.unity</code>, press Play. Test build: <code>builds/Skirmish/SagaRemake.exe</code>.</p>
+  <h3>Build the test executable</h3>
+  <pre>"C:\Program Files\Unity\Hub\Editor\6000.3.28f1\Editor\Unity.exe" -batchmode -quit -projectPath game -executeMethod BuildScript.BuildWindows -logFile tools/build.log</pre>
+  <h3>Run the tests</h3>
+  <pre>Unity.exe -batchmode -projectPath game -runTests -testPlatform EditMode -testResults tools/tests_edit.xml
+Unity.exe -batchmode -projectPath game -runTests -testPlatform PlayMode -testResults tools/tests_play.xml</pre>
+  <p>Edit-mode tests check the battle rules. The Play-mode test plays a real skirmish and saves screenshots to <code>tools/preview/skirmish_*.png</code>.</p>
+  <h3>Record a battle video</h3>
+  <pre>Unity.exe -batchmode -quit -projectPath game -executeMethod BattlePreview.Record -quick
+ffmpeg -framerate 60 -i tools/preview/frames/%05d.jpg -c:v libx264 -crf 26 -pix_fmt yuv420p -r 30 tools/preview/battle.mp4</pre>
+  <p><code>-quick</code> is an 8 v 8 fight capped at 75 s, for fast checks. Without it, 18 v 18 for showcase videos.</p>
+  <h3>Rebuild data, ships and these docs</h3>
+  <pre>python tools/make_data.py        # ships.json, weapons.json from the recovery catalog
+python tools/make_campaign.py    # campaign.json from the 2017 mission list
+Unity.exe -batchmode -quit -projectPath game -executeMethod ShipModelBuilder.BuildShips   # ship prefabs + ShipLibrary
+python tools/make_docs.py        # this page</pre>
+  <h3>Where things are</h3>
+  <div class="tablebox"><table><tbody id="repo-map"></tbody></table></div>
+</section>
+
+<section id="ships">
+  <div class="eyebrow">From the data file</div>
+  <h1>Ships</h1>
+  <p>Every ship in <code>ships.json</code>, recovered from the 2017 prefabs. Click a row for details. Shield equals armour on every ship.</p>
+  <div class="controls">
+    <input type="search" id="ship-q" placeholder="Filter by name, size or weapon" aria-label="Filter ships">
+    <select id="ship-hull" aria-label="Size class"><option value="">All sizes</option></select>
+  </div>
+  <div class="tablebox"><table id="ship-table"><thead></thead><tbody></tbody></table></div>
+  <div id="ship-detail"></div>
+</section>
+
+<section id="weapons">
+  <div class="eyebrow">From the data file</div>
+  <h1>Weapons &amp; hit chances</h1>
+  <p>Damage and hit chance are fixed per weapon type, as in 2017 (<code>_Weapon.Calculate_damage</code>, <code>getmodifyer</code>). Each shot rolls against the table below for the target's size class. Missiles always hit anything bigger than a fighter.</p>
+  <div class="tablebox"><table id="weapon-table"></table></div>
+  <h2>Hit chance by target size</h2>
+  <div class="tablebox heat"><table id="heat"></table></div>
+</section>
+
+<section id="campaign">
+  <div class="eyebrow">From the data file</div>
+  <h1>Campaign</h1>
+  <p>The eight 2017 missions, recovered from code. Each plays on one of three scenery maps. Choose a mission.</p>
+  <div class="controls" id="mission-tabs"></div>
+  <div id="mission"></div>
+  <h2>Maps</h2>
+  <div class="grid" id="maps"></div>
+</section>
+
+<section id="rules">
+  <div class="eyebrow">How battles work</div>
+  <h1>Battle rules</h1>
+  <p>The rules run in <code>game/Assets/Scripts/Sim</code> (no Unity dependency), sixty steps a second, on a flat plane. They follow the 2017 code, with the changes listed under Decisions.</p>
+  <div class="grid">
+    <div class="card"><div class="k">Movement</div><p>Ships turn toward their goal and thrust forward. Big ships only thrust when the goal is within 45° of the nose, accelerate at 240 units/s², and brake inside 300 units. Fighters and corvettes always fly flat out, so they loop around their target. Big ships push apart inside 300 units.</p></div>
+    <div class="card"><div class="k">Holding at range</div><p>Big ships stop just inside the range of their shortest gun when an enemy is near, so every gun fires. A plain move order from the player goes exactly where told.</p></div>
+    <div class="card"><div class="k">Targeting</div><p>Once a second each ship picks a target with its first gun: the ordered target if it's in range, else the nearest ship of the size the gun prefers, else the nearest enemy. Missiles and bombs never target fighters. Shield repair targets the nearest damaged friend.</p></div>
+    <div class="card"><div class="k">Firing</div><p>Each gun fires in bursts: <i>shots per burst</i> shots, <i>time between shots</i> apart, then waits <i>burst wait</i>. A shot that rolls a hit lands after its travel time (distance ÷ 440 + 0.5 s; lasers 3 s).</p></div>
+    <div class="card"><div class="k">Damage</div><p>While shields are up they soak whole hits, and overflow is lost. Then armour takes the damage. Fighters and corvettes ignore the number: each hit knocks out a step (fighters 70/50/30/10%, then gone).</p></div>
+    <div class="card"><div class="k">Shield field</div><p>A Support Frigate recharges friendly non-fighter ships within 1,500 units at 1% of their maximum shield per second, even from broken. Fields don't stack.</p></div>
+    <div class="card"><div class="k">Computer player</div><p>Once a second: the whole fleet heads for the enemy nearest its first ship, keeping formation. Fighters chase their own targets. Buying ships is still to come.</p></div>
+    <div class="card"><div class="k">Economy (2017, not yet built)</div><p>Start with 1,500 (campaign: mission's money). +30 a second, cap 7,000. Kills pay a third of the ship's cost. Ship limit 23 (1v1), 14 (2v2), 9 (3v3).</p></div>
+  </div>
+</section>
+
+<section id="controls">
+  <div class="eyebrow">Mouse and keyboard</div>
+  <h1>Controls</h1>
+  <div class="tablebox"><table><thead><tr><th>Do this</th><th>Like this</th></tr></thead><tbody id="controls-body"></tbody></table></div>
+</section>
+
+<section id="decisions">
+  <div class="eyebrow">Record</div>
+  <h1>Decisions</h1>
+  <p>What was decided, when, and why. Newest last.</p>
+  <div class="tablebox"><table><thead><tr><th>Date</th><th>Decision</th><th>Why</th></tr></thead><tbody id="decisions-body"></tbody></table></div>
+</section>
+
+<section id="recovery">
+  <div class="eyebrow">Record</div>
+  <h1>Recovery record</h1>
+  <p>The 2017 project files were lost. Everything here was pulled back out of the shipped build (<code>saga_original/</code>, Unity 5.6.1f1, Mono). The build is only ever read, never changed.</p>
+  <div class="grid" id="rec-stats"></div>
+  <h2>How</h2>
+  <div class="tablebox"><table><thead><tr><th>What</th><th>Tool</th><th>Result</th></tr></thead><tbody id="rec-body"></tbody></table></div>
+  <h2>What's in the build</h2>
+  <div class="tablebox"><table><thead><tr><th>Scene</th><th>2017 path</th><th>Contents</th></tr></thead><tbody id="scenes-body"></tbody></table></div>
+  <h2>Old bugs found in the 2017 rules</h2>
+  <ul class="notes" id="bugs"></ul>
+</section>
+
+<section id="media">
+  <div class="eyebrow">Captures</div>
+  <h1>Media</h1>
+  <div class="media" id="media-list"></div>
+</section>
+
+</main>
+</div>
+
+<script>
+const DATA = /*DATA*/null;
+
+// ---------- hash routing ----------
+function show() {
+  const id = (location.hash || "#overview").slice(1);
+  document.querySelectorAll("main section").forEach(s => s.classList.toggle("on", s.id === id));
+  document.querySelectorAll("nav a").forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + id));
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", show);
+
+const el = (tag, attrs = {}, ...kids) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) { if (k === "class") e.className = v; else if (k === "html") e.innerHTML = v; else e.setAttribute(k, v); }
+  for (const k of kids) e.append(k);
+  return e;
+};
+const fmt = n => typeof n === "number" ? n.toLocaleString("en-GB") : n;
+const title = s => s.split("_").map(w => w[0].toUpperCase() + w.slice(1)).join(" ");
+const ships = DATA.ships, weapons = Object.fromEntries(DATA.weapons.map(w => [w.id, w]));
+const shipById = Object.fromEntries(ships.map(s => [s.id, s]));
+const icon = id => `img/icons/${shipById[id].sprite}.png`;
+const HULLS = ["light", "corvette", "frigate", "cruiser", "destroyer", "capital", "super_capital"];
+
+// ---------- overview ----------
+for (const [k, v] of DATA.overview) document.getElementById("ov-stats").append(el("div", { class: "card" }, el("div", { class: "k" }, k), el("div", { class: "v" }, v)));
+for (const [tag, text] of DATA.status) document.getElementById("status").append(el("li", {}, el("span", { class: "tag " + tag }, { ok: "Works", warn: "Open", next: "Next", bad: "Broken" }[tag]), el("p", { html: text })));
+for (const [path, what] of DATA.repo) document.getElementById("repo-map").append(el("tr", {}, el("td", { class: "m" }, path), el("td", {}, what)));
+
+// ---------- ships ----------
+const cols = [
+  ["", null], ["Ship", "name"], ["Size", "hull"], ["Cost", "cost"], ["Armour", "armor"], ["Speed", "speed"],
+  ["Turn", "turn_rate"], ["Longest range", "range"], ["Weapons", null]];
+let sortKey = "cost", sortDir = 1, selShip = null;
+const rangeOf = s => Math.max(0, ...s.turrets.map(t => t.range));
+const weaponText = s => {
+  const counts = {}; s.turrets.forEach(t => counts[t.weapon] = (counts[t.weapon] || 0) + 1);
+  return Object.entries(counts).map(([w, n]) => (n > 1 ? n + " × " : "") + title(w)).join(", ") || "—";
+};
+const hullSel = document.getElementById("ship-hull");
+[...new Set(ships.map(s => s.hull))].sort((a, b) => HULLS.indexOf(a) - HULLS.indexOf(b)).forEach(h => hullSel.append(el("option", { value: h }, title(h))));
+function drawShips() {
+  const q = document.getElementById("ship-q").value.toLowerCase(), hull = hullSel.value;
+  const t = document.getElementById("ship-table");
+  const head = el("tr");
+  cols.forEach(([label, key]) => {
+    const th = el("th", key ? { class: "sort", tabindex: "0", "aria-sort": sortKey === key ? (sortDir > 0 ? "ascending" : "descending") : "none" } : {}, label);
+    if (key) {
+      if (sortKey === key) th.append(el("span", { class: "dir" }, sortDir > 0 ? " ▲" : " ▼"));
+      const go = () => { sortDir = sortKey === key ? -sortDir : 1; sortKey = key; drawShips(); };
+      th.addEventListener("click", go); th.addEventListener("keydown", e => { if (e.key === "Enter") go(); });
+    }
+    head.append(th);
+  });
+  t.tHead.replaceChildren(head);
+  const val = (s, k) => k === "range" ? rangeOf(s) : k === "hull" ? HULLS.indexOf(s.hull) : s[k];
+  const rows = ships.filter(s => (!hull || s.hull === hull) && (!q || (s.name + " " + s.hull + " " + weaponText(s)).toLowerCase().includes(q)))
+    .sort((a, b) => (val(a, sortKey) > val(b, sortKey) ? 1 : val(a, sortKey) < val(b, sortKey) ? -1 : 0) * sortDir);
+  t.tBodies[0].replaceChildren(...rows.map(s => {
+    const tr = el("tr", { class: "pick" + (selShip === s.id ? " sel" : ""), tabindex: "0" },
+      el("td", {}, el("img", { class: "icon", src: icon(s.id), alt: "" })),
+      el("td", {}, s.name, s.buyable ? "" : el("span", { class: "pill", style: "margin-left:8px" }, "not for sale")),
+      el("td", {}, el("span", { class: "pill" }, title(s.hull))),
+      el("td", { class: "n" }, s.buyable ? fmt(s.cost) : "—"), el("td", { class: "n" }, fmt(s.armor)),
+      el("td", { class: "n" }, fmt(s.speed)), el("td", { class: "n" }, s.turn_rate), el("td", { class: "n" }, fmt(rangeOf(s)) || "—"),
+      el("td", {}, weaponText(s)));
+    const pick = () => { selShip = s.id; drawShips(); drawShipDetail(s); };
+    tr.addEventListener("click", pick); tr.addEventListener("keydown", e => { if (e.key === "Enter") pick(); });
+    return tr;
+  }));
+}
+function drawShipDetail(s) {
+  const box = document.getElementById("ship-detail");
+  const maxA = Math.max(...ships.map(x => x.armor)), maxS = Math.max(...ships.map(x => x.speed)), maxR = Math.max(...ships.map(rangeOf));
+  const stat = (k, v, max, txt) => el("div", { class: "statrow" }, el("span", {}, k), el("div", { class: "meter" }, el("i", { style: `width:${Math.max(2, 100 * v / max)}%` })), el("span", { class: "m" }, txt));
+  const guns = el("div", { class: "tablebox" }, el("table", {},
+    el("thead", {}, el("tr", {}, ...["Weapon", "Range", "Damage", "Between shots", "Per burst", "Burst wait"].map(h => el("th", {}, h)))),
+    el("tbody", {}, ...s.turrets.map(t => { const w = weapons[t.weapon]; return el("tr", {},
+      el("td", {}, title(t.weapon)), el("td", { class: "n" }, fmt(t.range)), el("td", { class: "n" }, w.damage ? fmt(w.damage) : w.shield_restore ? "+" + w.shield_restore + " shield" : "—"),
+      el("td", { class: "n" }, t.time_between_shots + " s"), el("td", { class: "n" }, t.shots_per_burst || "∞"), el("td", { class: "n" }, t.burst_wait ? t.burst_wait + " s" : "—")); }))));
+  box.replaceChildren(el("div", { class: "detail" },
+    el("img", { class: "icon big", src: icon(s.id), alt: s.name + " seen from above" }),
+    el("div", { style: "display:grid;gap:10px;min-width:0" },
+      el("h2", { style: "margin:0" }, s.name),
+      el("p", { class: "lede" }, `${title(s.hull)} · ${s.buyable ? fmt(s.cost) + " points" : "not for sale"}${s.squadron ? " · flies as a squadron of five" : ""}`),
+      stat("Armour", s.armor, maxA, fmt(s.armor)), stat("Shield", s.shield, maxA, fmt(s.shield)),
+      stat("Speed", s.speed, maxS, fmt(s.speed)), stat("Reach", rangeOf(s), maxR, fmt(rangeOf(s))),
+      s.turrets.length ? guns : el("p", {}, "No guns on the 2017 prefab; fitted at match start."))));
+}
+document.getElementById("ship-q").addEventListener("input", drawShips);
+hullSel.addEventListener("change", drawShips);
+drawShips();
+
+// ---------- weapons ----------
+(() => {
+  const t = document.getElementById("weapon-table");
+  t.append(el("thead", {}, el("tr", {}, ...["Weapon", "Damage", "Prefers", "Notes", "Carried by"].map(h => el("th", {}, h)))));
+  const tb = el("tbody");
+  for (const w of DATA.weapons) {
+    const notes = [w.always_hits_non_light && "always hits non-fighters", w.never_targets_light && "never targets fighters",
+      w.targets_friends && "targets damaged friends", w.damage_vs_capital_hull_owner && `${w.damage_vs_capital_hull_owner} when fired from a capital`,
+      w.aura_radius && `field: ${w.aura_radius} range, ${w.shield_regen_pct}%/s`, w.travel_time && `lands after ${w.travel_time} s`].filter(Boolean).join("; ");
+    const by = ships.filter(s => s.turrets.some(x => x.weapon === w.id)).map(s => s.name).join(", ");
+    tb.append(el("tr", {}, el("td", {}, title(w.id), w.id === "shield_field" ? el("span", { class: "pill new", style: "margin-left:8px" }, "new") : ""),
+      el("td", { class: "n" }, w.damage ? fmt(w.damage) : w.shield_restore ? "+" + w.shield_restore : "—"),
+      el("td", {}, w.prefers ? title(w.prefers) : "—"), el("td", { class: "m" }, notes || "—"), el("td", {}, by || "—")));
+  }
+  t.append(tb);
+  const h = document.getElementById("heat");
+  const sizes = ["light", "corvette", "frigate", "cruiser", "destroyer", "capital"];
+  h.append(el("thead", {}, el("tr", {}, el("th", {}, "Weapon"), ...sizes.map(s => el("th", {}, title(s))))));
+  const hb = el("tbody");
+  for (const w of DATA.weapons.filter(w => w.damage > 0)) {
+    hb.append(el("tr", {}, el("td", {}, title(w.id)), ...sizes.map(sz => {
+      const v = w.always_hits_non_light && sz !== "light" ? 1 : w.hit[sz];
+      return el("td", { class: "h", style: `background: color-mix(in srgb, #58c98f ${Math.round(v * 70)}%, #121722)` }, Math.round(v * 100) + "%");
+    })));
+  }
+  h.append(hb);
+})();
+
+// ---------- campaign ----------
+let mission = 0;
+function drawMission() {
+  const m = DATA.campaign.missions[mission];
+  const counts = {}; m.enemy_fleet.forEach(id => counts[id] = (counts[id] || 0) + 1);
+  const map = DATA.campaign.maps.find(x => x.id === m.map);
+  document.getElementById("mission").replaceChildren(el("div", { class: "detail", style: "grid-template-columns: minmax(0,1fr) 300px" },
+    el("div", { style: "display:grid;gap:10px;min-width:0" },
+      el("h2", { style: "margin:0" }, `${m.index + 1}. ${m.name}`),
+      el("div", { class: "controls" }, el("span", { class: "pill" }, title(m.objective)), el("span", { class: "pill" }, title(m.map)),
+        el("span", { class: "pill" }, fmt(m.start_money) + " start money"), el("span", { class: "pill" }, Math.round(m.time_limit / 60) + " min"),
+        el("span", { class: "pill" }, "build: " + title(m.ships_allowed))),
+      el("p", { class: "story" }, m.story),
+      el("h3", {}, "Enemy fleet"),
+      el("div", { class: "fleet" }, ...Object.entries(counts).map(([id, n]) => el("figure", {}, el("img", { class: "icon", src: icon(id), alt: "" }), el("figcaption", {}, (n > 1 ? n + " × " : "") + shipById[id].name))))),
+    el("figure", { style: "margin:0;display:grid;gap:6px" }, el("img", { src: `img/skies/${m.sky}.jpg`, alt: "Mission sky", style: "width:100%;border-radius:4px" }),
+      el("figcaption", { class: "m", style: "font-size:12px;color:var(--muted)" }, `Sky: ${m.sky} · Map: ${map ? map.contents : m.map}`))));
+  document.querySelectorAll("#mission-tabs button").forEach((b, i) => b.classList.toggle("on", i === mission));
+}
+DATA.campaign.missions.forEach((m, i) => { const b = el("button", {}, `${i + 1}. ${m.name}`); b.addEventListener("click", () => { mission = i; drawMission(); }); document.getElementById("mission-tabs").append(b); });
+drawMission();
+for (const mp of DATA.campaign.maps) document.getElementById("maps").append(el("div", { class: "card" }, el("div", { class: "k" }, mp.scene_2017), el("div", { class: "v", style: "font-size:18px" }, title(mp.id)), el("p", {}, mp.contents),
+  el("p", { class: "m", style: "font-size:12px;color:var(--muted)" }, "Used by: " + DATA.campaign.missions.filter(m => m.map === mp.id).map(m => m.name).join(", "))));
+
+// ---------- tables from content ----------
+for (const [a, b] of DATA.controls) document.getElementById("controls-body").append(el("tr", {}, el("td", {}, a), el("td", { html: b })));
+for (const [d, what, why] of DATA.decisions) document.getElementById("decisions-body").append(el("tr", {}, el("td", { class: "m" }, d), el("td", { html: what }), el("td", { html: why })));
+for (const [k, v] of DATA.recovery_stats) document.getElementById("rec-stats").append(el("div", { class: "card" }, el("div", { class: "k" }, k), el("div", { class: "v" }, v)));
+for (const r of DATA.recovery) document.getElementById("rec-body").append(el("tr", {}, ...r.map((c, i) => el("td", i === 1 ? { class: "m" } : { html: c }, c))));
+for (const r of DATA.scenes) document.getElementById("scenes-body").append(el("tr", {}, el("td", { class: "m" }, r[0]), el("td", { class: "m" }, r[1]), el("td", {}, r[2])));
+for (const [state, text] of DATA.bugs) document.getElementById("bugs").append(el("li", {}, el("span", { class: "tag " + (state === "fixed" ? "ok" : "warn") }, state), el("p", { html: text })));
+for (const m of DATA.media) {
+  const box = el("figure", { style: "margin:0 0 22px;display:grid;gap:8px" });
+  box.append(m.src.endsWith(".mp4") ? el("video", { src: m.src, controls: "", muted: "", preload: "metadata", poster: m.poster || "" }) : el("img", { src: m.src, alt: m.caption }));
+  box.append(el("figcaption", { class: "lede", style: "font-size:13px" }, m.caption));
+  document.getElementById("media-list").append(box);
+}
+show();
+</script>
+</body>
+</html>

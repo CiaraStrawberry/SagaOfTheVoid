@@ -65,7 +65,7 @@ namespace Saga.Game
             detail = MakeText(selectionPanel, "detail", 20, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(110, -14), new Vector2(630, 170));
 
             // Controls card, shown at the start and on H.
-            helpPanel = MakeRect(root, "help", new Vector2(1, 0), new Vector2(-24, 24), new Vector2(560, 330));
+            helpPanel = MakeRect(root, "help", new Vector2(1, 0), new Vector2(-24, 24), new Vector2(560, 352));
             helpPanel.gameObject.AddComponent<Image>().color = Panel;
             help = MakeText(helpPanel, "text", 20, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(20, -16), new Vector2(520, 300));
             help.text =
@@ -77,6 +77,7 @@ namespace Saga.Game
                 "<color=#a8d4ff>Groups</color>   Ctrl+1..9 saves, 1..9 selects, press twice to jump.\n" +
                 "<color=#a8d4ff>Camera</color>   WASD / arrows / screen edge, wheel zoom,\n" +
                 "            Q/E or middle-drag to turn, F to focus.\n" +
+                "<color=#a8d4ff>Game</color>       P pause, + / - speed, F5 restart, F10 quit.\n" +
                 "<color=#8d98ab>H hides this card.</color>";
             helpUntil = 15f;
         }

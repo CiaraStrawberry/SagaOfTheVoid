@@ -3,6 +3,9 @@ saga_original/
 recovery/assetripper/
 recovery/export/
 
+# Game builds
+builds/
+
 # Tool output (rebuildable)
 tools/preview/frames/
 tools/*.xml

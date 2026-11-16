@@ -137,6 +137,8 @@ namespace Saga.Game
 
         void HandleKeys()
         {
+            if (Input.GetKeyDown(KeyCode.F5)) UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+            if (Input.GetKeyDown(KeyCode.F10)) Application.Quit();
             if (Input.GetKeyDown(KeyCode.P)) Paused = !Paused;
             if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.KeypadPlus)) GameSpeed = Mathf.Min(4f, GameSpeed * 2f);
             if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.KeypadMinus)) GameSpeed = Mathf.Max(0.25f, GameSpeed / 2f);
@@ -226,8 +228,8 @@ namespace Saga.Game
                 }
                 else
                 {
-                    var hit = View.Pick(cam.ScreenPointToRay(mouse));
-                    if (hit != null && hit.Team == PlayerTeam)
+                    var hit = PickAt(mouse, s => s.Team == PlayerTeam);
+                    if (hit != null)
                     {
                         if (hit == lastClicked && Time.unscaledTime - lastClickTime < 0.35f)
                             Select(Own.Where(s => s.Def.id == hit.Def.id && OnScreen(s, out _)), shift);
@@ -242,14 +244,40 @@ namespace Saga.Game
 
             if (Input.GetMouseButtonDown(1) && Selected.Count > 0)
             {
-                var hit = View.Pick(cam.ScreenPointToRay(mouse));
-                if (hit != null && hit.Team != PlayerTeam) CommandAttack(hit);
+                var hit = PickAt(mouse, s => s.Team != PlayerTeam);
+                if (hit != null) CommandAttack(hit);
                 else
                 {
                     var g = GroundUnderMouse();
                     if (g.HasValue) CommandMove(g.Value, shift);
                 }
             }
+        }
+
+        // Generous click target: an exact hull hit first; otherwise the nearest matching ship whose
+        // on-screen footprint (at least ClickRadius pixels) contains the cursor.
+        public const float ClickRadius = 30f;
+
+        public Ship PickAt(Vector2 mouse, System.Func<Ship, bool> which)
+        {
+            var exact = View.Pick(cam.ScreenPointToRay(mouse));
+            if (exact != null && which(exact)) return exact;
+            Ship best = null;
+            float bestD = float.MaxValue;
+            foreach (var s in World.Alive)
+            {
+                if (!which(s)) continue;
+                var v = View.ViewOf(s);
+                var centre = v.Go.transform.position + Vector3.up * v.Height;
+                var p = cam.WorldToScreenPoint(centre);
+                if (p.z <= 0) continue;
+                // Half the ship's shown length, measured on screen.
+                var edge = cam.WorldToScreenPoint(centre + cam.transform.right * v.Length * 0.5f);
+                float radius = Mathf.Max(ClickRadius, Vector2.Distance(p, edge));
+                float d = Vector2.Distance(p, mouse);
+                if (d <= radius && d < bestD) { best = s; bestD = d; }
+            }
+            return best;
         }
 
         public bool DragRect(out Rect rect)

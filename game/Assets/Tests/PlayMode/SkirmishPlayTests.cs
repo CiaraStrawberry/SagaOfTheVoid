@@ -49,6 +49,15 @@ namespace Saga.Tests
 
             // Attack the enemy capital.
             var capital = game.World.Alive.First(s => s.Team == 1 && s.Def.id == "capital");
+
+            // Clicks a little off an enemy still pick it (generous attack click target).
+            var cv = game.View.ViewOf(capital);
+            game.Focus(new[] { capital });
+            yield return null;
+            var sp = (Vector2)cam.WorldToScreenPoint(cv.Go.transform.position + Vector3.up * cv.Height);
+            Assert.AreEqual(capital, game.PickAt(sp + new Vector2(20, 12), s => s.Team != SkirmishController.PlayerTeam), "near-miss click picks the enemy");
+            Assert.IsNull(game.PickAt(sp + new Vector2(20, 12), s => s.Team == SkirmishController.PlayerTeam && s == capital), "own-ship filter is respected");
+
             game.CommandAttack(capital);
             Assert.IsTrue(game.Selected.All(s => s.OrderedTarget == capital));
             game.Focus(new[] { capital });
