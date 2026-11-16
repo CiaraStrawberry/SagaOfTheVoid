@@ -300,6 +300,9 @@ namespace Saga.Sim
                 var offset = s.Pos - centre;
                 if (offset.Length > 900) offset = offset.Normalized * 900;
                 Order(s, !t.Retreating && Hulls.IsSmall(s.Hull) && s.Target != null ? s.Target.Pos : goal + offset);
+                // Mopping up: against a beaten fleet (3 ships or fewer) big ships close in instead of holding at
+                // range, so the last few craft can't hold out at the edge of gun range forever.
+                if (!t.Retreating && enemies.Count <= 3) s.Holds = false;
             }
         }
 

@@ -124,7 +124,7 @@ namespace Saga.Game
                 Transform part = small ? v.Crafts[i].T : v.Model;
                 if (small)
                 {
-                    v.Crafts[i].R.enabled = visible && i < World.CraftLeft(v.Ship);
+                    v.Crafts[i].R.enabled = visible && !v.Crafts[i].Lost;
                     part.position += offset;
                 }
                 else
@@ -270,7 +270,7 @@ namespace Saga.Game
             public Vector3 Offset;       // formation slot, relative to the squadron, unrotated
             public Vector3 Pos, Vel, Facing;
             public float Phase, Dir, RadiusK, Bank;
-            public bool Placed;
+            public bool Placed, Lost; // Lost: shot down (the squadron fights on with the rest)
             public LineRenderer Trail;
             public readonly Vector3[] Hist = new Vector3[TrailPoints];
             public int HistCount;

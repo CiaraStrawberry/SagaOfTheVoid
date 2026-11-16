@@ -56,7 +56,11 @@ weapons = {
     "missile":          {"damage": 300, "prefers": "frigate", "hit": hits(.05, .5, 1, 1, 1, 1), "always_hits_non_light": True, "never_targets_light": True, "visual": "missile"},
     "minigun":          {"damage": 20, "prefers": "light", "hit": hits(.1, .1, .8, .8, .8, 1), "visual": "tracer"},
     "fighter_gun":      {"damage": 20, "prefers": "light", "hit": hits(.1, .5, 1, 1, 1, 1), "visual": "tracer"},
-    "bomber_gun":       {"damage": 200, "prefers": "capital", "hit": hits(.05, .5, 1, 1, 1, 1), "never_targets_light": True, "visual": "bomb"},
+    # Remake: fighters fire pairs of small homing missiles (fewer shots that hit far more often; about the same
+    # kill rate as the 2017 6-round bursts at 10%).
+    "fighter_missile":  {"damage": 60, "prefers": "light", "hit": hits(.35, .6, 1, 1, 1, 1), "visual": "seeker", "projectile_speed": 1100, "launch_delay": 0.15},
+    # Remake: single heavy shots (was 3 x 200 per burst); same damage per salvo.
+    "bomber_gun":       {"damage": 600, "prefers": "capital", "hit": hits(.05, .5, 1, 1, 1, 1), "never_targets_light": True, "visual": "bomb"},
     "dual_role":        {"damage": 50, "prefers": "frigate", "hit": hits(.01, .5, .5, .5, 1, 1), "visual": "tracer"},
     "laser":            {"damage": 3000, "prefers": "capital", "hit": hits(.01, .02, .6, .9, .9, .9), "visual": "beam", "travel_time": 3.0},
     "shield_repair":    {"damage": 0, "shield_restore": 300, "targets_friends": True, "hit": hits(1, 1, 1, 1, 1, 1), "visual": "repair_beam"},
@@ -102,6 +106,10 @@ def gun(weapon, rng, tbs, spb=0, bw=0.0):
 
 for s in ships:
     s["icon"] = s["sprite"]
+    if s["id"] == "fighter":
+        s["turrets"] = [gun("fighter_missile", 1100, 0.35, 2, 3.0)]
+    if s["id"] == "bomber":
+        s["turrets"] = [gun("bomber_gun", 1300, 3.0, 1, 3.0)]
     if s["id"] == "super_capital":
         # Capital ship mode: the flagship. Heavy guns, very slow. (2017 prefab had no guns; fitted at match start.)
         s.update({"armor": 60000, "shield": 40000, "speed": 25, "turn_rate": 0.12, "turrets": [

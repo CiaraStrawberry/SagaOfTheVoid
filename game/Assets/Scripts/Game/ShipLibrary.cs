@@ -46,7 +46,7 @@ namespace Saga.Game
         public Texture2D warpSpark;
         [Header("Audio (2017 clips)")]
         public AudioClip musicMenu, musicBattle;
-        public AudioClip sfxCannon, sfxMachinegun, sfxGatling, sfxMissile, sfxBeam, sfxShotgun;
+        public AudioClip sfxCannon, sfxMachinegun, sfxGatling, sfxMissile, sfxBeam, sfxShotgun, sfxRailgun;
         public AudioClip sfxWarp, sfxExplosion, sfxKick;
         public AudioClip sfxClick, sfxSelect, sfxOrderMove, sfxOrderAttack;
 

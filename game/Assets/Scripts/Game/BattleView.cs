@@ -36,6 +36,7 @@ namespace Saga.Game
             public bool Selected;
             public Craft[] Crafts;   // squadrons: each craft flies on its own (BattleView.Motion.cs)
             public Warp Warp;        // arriving through a warp portal
+            public Craft LastHitCraft; public float LastHitAt = -9f; // squadrons: the craft a hull hit last struck
             // Squadrons after a warp: fly straight ahead in formation until StraightUntil (Pulse time).
             public float StraightUntil = -1f, StraightFrom;
             public Vector3 StraightAnchor, StraightDir;
@@ -53,6 +54,8 @@ namespace Saga.Game
             public bool Flat;
             public Transform Anchor;   // shot end point follows this ship part...
             public Vector3 Local;      // ...at this local point
+            public bool Led;           // gun hit on a fighter craft: flies straight at where the craft will be...
+            public Vector3 LeadPoint;  // ...this point, joining the live craft only at the very end
             public Quaternion? Facing; // fixed orientation instead of facing the camera
         }
 
@@ -310,7 +313,8 @@ namespace Saga.Game
             // Squadron craft blink out as the squadron is whittled down.
             if (small)
             {
-                for (int i = 0; i < v.Paint.renderers.Length; i++) v.Paint.renderers[i].enabled = i < craft;
+                LoseCraft(v, craft);
+                for (int i = 0; i < v.Crafts.Length; i++) v.Crafts[i].R.enabled = !v.Crafts[i].Lost;
                 UpdateCrafts(v, dt);
             }
             ApplyWarp(v, dt);
@@ -324,7 +328,7 @@ namespace Saga.Game
             for (int i = 0; i < v.Engines.Length; i++)
             {
                 var e = v.Engines[i];
-                e.enabled = !small || i < craft;
+                e.enabled = !small || v.Crafts == null || i >= v.Crafts.Length || !v.Crafts[i].Lost;
                 float flicker = 0.85f + 0.15f * Mathf.Sin(v.Pulse * 37f + i * 1.7f);
                 float size = v.Length * (small ? 0.09f : 0.12f) * (0.6f + 0.6f * throttle) / Mathf.Max(0.0001f, e.transform.lossyScale.x / e.transform.localScale.x);
                 e.transform.localScale = Vector3.one * size;
@@ -546,11 +550,22 @@ namespace Saga.Game
                 case "repair_beam": f = AddLine("beam", a, end, Hdr(new Color(0.4f, 1f, 0.6f), 1.6f), 9f, 0.5f); break;
                 case "missile": f = AddLine("missile", a, end, Hdr(new Color(1f, 0.85f, 0.6f), 2f), 8f, (float)e.TravelTime, 8); break;
                 case "shell": f = AddLine("shell", a, end, Hdr(new Color(1f, 0.65f, 0.25f), 2.0f), 7f, (float)e.TravelTime); break;
-                case "bomb": f = AddLine("shell", a, end, Hdr(new Color(0.8f, 1f, 0.35f), 2f), 7f, (float)e.TravelTime); break;
+                case "bomb": f = AddLine("bomb", a, end, Hdr(new Color(0.8f, 1f, 0.35f), 2.6f), 16f, (float)e.TravelTime); break;
+                case "seeker":
+                    f = AddLine("seeker", a, end, Hdr(new Color(1f, 0.9f, 0.7f), 2.2f), 5f, (float)e.TravelTime, 8);
+                    f.Velocity = b.Craft != null ? b.Craft.Facing : (end - a).normalized; // leaves along the nose
+                    break;
                 default: f = AddLine("tracer", a, end, Hdr(Color.Lerp(c, Color.white, 0.5f), 2f), 4f, Mathf.Min(0.6f, (float)e.TravelTime)); break;
             }
             // Hits follow the moving target so they land on the spot they were aimed at.
             if (plan != null) { f.Anchor = plan.Anchor; f.Local = plan.Local; }
+            // Hits on fighter craft: missiles home in on the craft (they follow the anchor). Gun shots fly in a
+            // straight line to where the craft will be when the shot lands. Misses fly straight past.
+            if (plan != null && to.Crafts != null && e.Visual != "missile" && e.Visual != "seeker" && e.Visual != "beam")
+            {
+                var craft = to.Crafts.Where(x => !x.Lost).OrderBy(x => (x.T.position - end).sqrMagnitude).FirstOrDefault();
+                if (craft != null) { f.Led = true; f.LeadPoint = end + craft.Vel * f.Life; }
+            }
 
             // Barrel flash at the gun.
             float flash; float life; Color fc;
@@ -560,7 +575,8 @@ namespace Saga.Game
                 case "repair_beam": flash = 30f; life = 0.2f; fc = new Color(0.5f, 1f, 0.65f); break;
                 case "missile": flash = 40f; life = 0.18f; fc = new Color(1f, 0.75f, 0.45f); break;
                 case "shell": flash = 50f; life = 0.12f; fc = new Color(1f, 0.7f, 0.35f); break;
-                case "bomb": flash = 28f; life = 0.1f; fc = new Color(0.85f, 1f, 0.5f); break;
+                case "bomb": flash = 44f; life = 0.16f; fc = new Color(0.85f, 1f, 0.5f); break;
+                case "seeker": flash = 14f; life = 0.08f; fc = new Color(1f, 0.85f, 0.6f); break;
                 default: flash = from.Crafts != null ? 16f : 22f; life = 0.07f; fc = Color.Lerp(c, Color.white, 0.6f); break;
             }
             AddSprite("flash", glow, a, Hdr(fc, 1.6f), flash, life, Vector3.zero, false);
@@ -575,7 +591,7 @@ namespace Saga.Game
             lr.sharedMaterial = addMat;
             lr.positionCount = points;
             lr.useWorldSpace = true;
-            lr.startWidth = kind == "missile" ? width * 0.2f : width;
+            lr.startWidth = kind == "missile" || kind == "seeker" ? width * 0.2f : width;
             lr.endWidth = width;
             lr.numCapVertices = 2;
             lr.shadowCastingMode = ShadowCastingMode.Off;
@@ -597,9 +613,46 @@ namespace Saga.Game
             return u * u * u * from + 3f * u * u * t * p1 + 3f * u * t * t * p2 + t * t * t * to;
         }
 
-        // Launch is slow, then the motor kicks in.
         // Launch is slow, then the motor kicks in and the missile keeps accelerating into the target.
         static float MissileProgress(float t) => t < 0.15f ? t * t / 0.15f * 0.5f : 0.075f + Mathf.Pow((t - 0.15f) / 0.85f, 1.7f) * 0.925f;
+
+        static Vector3 SeekerPath(Vector3 from, Vector3 launchDir, Vector3 to, float t)
+        {
+            float dist = Vector3.Distance(from, to);
+            var p1 = from + launchDir * dist * 0.45f;
+            float u = 1f - t;
+            return u * u * from + 2f * u * t * p1 + t * t * to;
+        }
+
+        // Squadrons: when the rules take a craft away, the one that goes is the craft that was just hit,
+        // and it goes out with a small explosion.
+        void LoseCraft(ShipView v, int left)
+        {
+            if (v.Crafts == null || v.Warp != null) return;
+            int alive = v.Crafts.Count(c => !c.Lost);
+            while (alive > Math.Max(0, left))
+            {
+                var near = v.LastHitCraft != null ? v.LastHitCraft.T.position : Centre(v);
+                var victim = v.LastHitCraft != null && !v.LastHitCraft.Lost && v.Pulse - v.LastHitAt < 1.5f
+                    ? v.LastHitCraft
+                    : v.Crafts.Where(c => !c.Lost).OrderBy(c => (c.T.position - near).sqrMagnitude).First();
+                victim.Lost = true; alive--;
+                v.LastHitCraft = null;
+                if (left > 0) CraftExplosion(victim);
+            }
+        }
+
+        void CraftExplosion(Craft c)
+        {
+            var p = c.T.position;
+            AddSprite("flash", glow, p, Hdr(new Color(1f, 0.65f, 0.3f), 1.8f), 60f, 0.35f, Vector3.zero, false);
+            for (int i = 0; i < 6; i++)
+            {
+                var d = (c.Vel.normalized * 0.6f + UnityEngine.Random.insideUnitSphere).normalized;
+                AddSprite("debris", dot, p, Hdr(new Color(1f, 0.6f, 0.25f), 1.4f), UnityEngine.Random.Range(5f, 10f), UnityEngine.Random.Range(0.4f, 0.8f), d * UnityEngine.Random.Range(60f, 160f), false);
+            }
+            SoundBoard.Current?.Explosion(p, false);
+        }
 
         // ---------- impacts and explosions ----------
 
@@ -607,7 +660,7 @@ namespace Saga.Game
         {
             var v = ViewOf(e.Target);
             if (v == null) return;
-            bool heavy = e.Visual == "beam" || e.Visual == "shell" || e.Visual == "missile" || e.Visual == "bomb";
+            bool heavy = e.Visual == "beam" || e.Visual == "shell" || e.Visual == "missile" || e.Visual == "bomb" || e.Visual == "seeker";
             plans.TryGetValue(e.ShotId, out var plan);
             plans.Remove(e.ShotId);
             var sv = e.Source != null ? ViewOf(e.Source) : null;
@@ -628,6 +681,11 @@ namespace Saga.Game
                 AddSprite("arc", arc, Centre(v), new Color(0.35f, 0.65f, 1f, heavy ? 0.6f : 0.3f), v.Length * 1.25f, heavy ? 0.3f : 0.18f, Vector3.zero, true, yaw);
                 AddSprite("flash", glow, at, Hdr(new Color(0.5f, 0.75f, 1f), 1.2f), heavy ? 38f : 18f, 0.12f, Vector3.zero, false);
                 return;
+            }
+            if (v.Crafts != null)
+            {
+                var struck = v.Crafts.Where(c => !c.Lost).OrderBy(c => (c.T.position - at).sqrMagnitude).FirstOrDefault();
+                if (struck != null) { v.LastHitCraft = struck; v.LastHitAt = v.Pulse; }
             }
             // Hull hit: a flash on the plating, and for heavy hits a few sparks thrown back toward the shooter.
             AddSprite("flash", glow, at, Hdr(new Color(1f, 0.6f, 0.25f), 1.4f), heavy ? 48f : 18f, heavy ? 0.3f : 0.12f, Vector3.zero, false);
@@ -692,6 +750,15 @@ namespace Saga.Game
                         f.Line.widthMultiplier = (1f - t * 0.6f) * (0.85f + 0.15f * Mathf.Sin(f.Age * 40f));
                         f.Line.startColor = f.Line.endColor = f.Colour * (1f - t);
                     }
+                    else if (f.Kind == "seeker")
+                    {
+                        // Small homing missile: leaves along the fighter's nose, then curves onto the target.
+                        float head = Mathf.Pow(t, 1.3f), tail = Mathf.Max(0f, head - 0.12f);
+                        int n = f.Line.positionCount;
+                        for (int k = 0; k < n; k++) f.Line.SetPosition(k, SeekerPath(f.From, f.Velocity, f.To, Mathf.Lerp(tail, head, k / (float)(n - 1))));
+                        f.Line.startColor = new Color(0, 0, 0, 0);
+                        f.Line.endColor = f.Colour;
+                    }
                     else if (f.Kind == "missile")
                     {
                         // A short curved smoke-and-flame trail behind the missile along its path.
@@ -703,8 +770,9 @@ namespace Saga.Game
                     }
                     else
                     {
-                        var head = Vector3.Lerp(f.From, f.To, t);
-                        float tail = f.Kind == "tracer" ? 40f : 18f; // short streaks, not long lines
+                        var aim = f.Led ? Vector3.Lerp(f.LeadPoint, f.To, Mathf.Pow(t, 6f)) : f.To;
+                        var head = Vector3.Lerp(f.From, aim, t);
+                        float tail = f.Kind == "tracer" ? 40f : f.Kind == "bomb" ? 70f : 18f; // short streaks, not long lines
                         var back = head - (f.To - f.From).normalized * tail;
                         f.Line.SetPosition(0, back); f.Line.SetPosition(1, head);
                         f.Line.startColor = f.Colour * 0.6f;

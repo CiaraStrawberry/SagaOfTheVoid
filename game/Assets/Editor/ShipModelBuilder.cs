@@ -191,6 +191,7 @@ public static class ShipModelBuilder
         lib.sfxMissile = A("Sfx/missile.ogg");
         lib.sfxBeam = A("Sfx/weapon_energy_beam_003_loop.wav");
         lib.sfxShotgun = A("Sfx/weapon_shotgun_006.wav");
+        lib.sfxRailgun = A("Sfx/weapon_railgun_003.wav");
         lib.sfxWarp = A("Sfx/engine_warp_005.wav");
         lib.sfxExplosion = A("Sfx/173797__mojomills__tape-bass-27.ogg");
         lib.sfxKick = A("Sfx/kick.ogg");

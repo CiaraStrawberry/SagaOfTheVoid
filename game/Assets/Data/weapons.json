@@ -89,8 +89,25 @@
    "launch_delay": 0.5
   },
   {
+   "id": "fighter_missile",
+   "damage": 60,
+   "prefers": "light",
+   "hit": {
+    "light": 0.35,
+    "corvette": 0.6,
+    "frigate": 1,
+    "cruiser": 1,
+    "destroyer": 1,
+    "capital": 1,
+    "super_capital": 1
+   },
+   "visual": "seeker",
+   "projectile_speed": 1100,
+   "launch_delay": 0.15
+  },
+  {
    "id": "bomber_gun",
-   "damage": 200,
+   "damage": 600,
    "prefers": "capital",
    "hit": {
     "light": 0.05,

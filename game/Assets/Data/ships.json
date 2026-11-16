@@ -41,11 +41,11 @@
    "squadron": true,
    "turrets": [
     {
-     "weapon": "fighter_gun",
+     "weapon": "fighter_missile",
      "range": 1100,
-     "time_between_shots": 0.1,
-     "shots_per_burst": 6,
-     "burst_wait": 2.04
+     "time_between_shots": 0.35,
+     "shots_per_burst": 2,
+     "burst_wait": 3.0
     }
    ],
    "icon": "Fighter"
@@ -68,8 +68,8 @@
     {
      "weapon": "bomber_gun",
      "range": 1300,
-     "time_between_shots": 0.1,
-     "shots_per_burst": 3,
+     "time_between_shots": 3.0,
+     "shots_per_burst": 1,
      "burst_wait": 3.0
     }
    ],

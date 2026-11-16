@@ -93,6 +93,7 @@ MonoBehaviour:
   sfxMissile: {fileID: 8300000, guid: 1ec8b0b175fc214469d97ba6d3a6367f, type: 3}
   sfxBeam: {fileID: 8300000, guid: 00939a5b2e822794e9e0698779e179d0, type: 3}
   sfxShotgun: {fileID: 8300000, guid: 01fb4a5e84cabe647a85ea2e3733098f, type: 3}
+  sfxRailgun: {fileID: 8300000, guid: 58ec8c225002c0a499af4280a72b424f, type: 3}
   sfxWarp: {fileID: 8300000, guid: 602c7f2bef859e64a9e511dc0bb7ad83, type: 3}
   sfxExplosion: {fileID: 8300000, guid: 28465efecd1ecb449940e27ace52e79e, type: 3}
   sfxKick: {fileID: 8300000, guid: f99a2a69addbe5f4aa037e599d10b910, type: 3}

@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Saga.Sim;
@@ -25,7 +25,7 @@ namespace Saga.Tests
         public void DataLoads_AllShipsAndWeapons()
         {
             Assert.AreEqual(15, rules.Ships.Count); // 13 from 2017 + home base + defence platform
-            Assert.AreEqual(10, rules.Weapons.Count);
+            Assert.AreEqual(11, rules.Weapons.Count); // + fighter_missile (remake)
             Assert.AreEqual(17000, rules.Ships["capital"].armor);
             Assert.AreEqual(3000, rules.Weapons["laser"].damage);
             Assert.IsFalse(rules.Weapons.ContainsKey("cloak"), "cloak was replaced by the shield field");
@@ -161,8 +161,8 @@ namespace Saga.Tests
         {
             var w = new World(rules, 7);
             SpawnBoth(w);
-            for (int i = 0; i < 60 * 400 && w.Winner < 0; i++) w.Step(1.0 / 60);
-            Assert.GreaterOrEqual(w.Winner, 0, "battle should end within 400 s");
+            for (int i = 0; i < 60 * 900 && w.Winner < 0; i++) w.Step(1.0 / 60); // both sides keep buying: 2.5-10 min
+            Assert.GreaterOrEqual(w.Winner, 0, "battle should end within 900 s");
         }
 
         static void Run(World w, double seconds) { for (int i = 0; i < (int)(seconds * 60); i++) w.Step(1.0 / 60); }

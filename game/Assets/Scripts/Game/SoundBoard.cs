@@ -61,7 +61,8 @@ namespace Saga.Game
                 case "shell": At(lib.sfxCannon, at, 0.55f, 0.06f, 0.08f); break;
                 case "missile": At(lib.sfxMissile, at, 0.4f, 0.08f, 0.1f); break;
                 case "beam": At(lib.sfxBeam, at, 0.5f, 0.2f, 0.05f); break;
-                case "bomb": At(lib.sfxShotgun, at, 0.3f, 0.1f, 0.1f); break;
+                case "bomb": At(lib.sfxRailgun != null ? lib.sfxRailgun : lib.sfxShotgun, at, 0.4f, 0.1f, 0.08f); break;
+                case "seeker": At(lib.sfxMissile, at, 0.18f, 0.08f, 0.15f, 1.5f); break;
                 case "repair_beam": At(lib.sfxSelect, at, 0.12f, 0.3f, 0f, 0.7f); break;
                 default:
                     if (fromCraft) At(lib.sfxMachinegun, at, 0.22f, 0.07f, 0.12f);
