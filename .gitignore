@@ -6,6 +6,19 @@ recovery/export/
 # Game builds
 builds/
 
+# Recovered art (~2 GB) stays off GitHub (free LFS is 1 GB). Its .meta files ARE tracked, so
+# `python tools/art_pack.py restore` puts it back with the same GUIDs. See tools/art_pack.py.
+game/Assets/Imported/**/*.png
+game/Assets/Imported/**/*.jpg
+game/Assets/Imported/**/*.tga
+game/Assets/Imported/**/*.psd
+game/Assets/Imported/**/*.wav
+game/Assets/Imported/**/*.ogg
+game/Assets/Imported/**/*.mp3
+game/Assets/Imported/**/*.ttf
+game/Assets/Imported/**/*.otf
+art_pack/
+
 # Tool output (rebuildable)
 tools/preview/frames/
 tools/*.xml
