@@ -203,6 +203,14 @@ public static class ShipModelBuilder
         lib.sfxSelect = A("Sfx/select_soft.ogg");
         lib.sfxOrderMove = A("Sfx/Marco.ogg");
         lib.sfxOrderAttack = A("Sfx/Polo.ogg");
+        // Unit voice replies: Voice/<crew>_<kind>_<n>.ogg, grouped by <crew>_<kind>.
+        lib.unitVoices = AssetDatabase.FindAssets("t:AudioClip", new[] { "Assets/Art/Audio/Voice" })
+            .Select(AssetDatabase.GUIDToAssetPath).OrderBy(p => p)
+            .Select(p => new ShipLibrary.VoiceEntry
+            {
+                set = System.Text.RegularExpressions.Regex.Replace(System.IO.Path.GetFileNameWithoutExtension(p), "_\\d+$", ""),
+                clip = AssetDatabase.LoadAssetAtPath<AudioClip>(p),
+            }).ToList();
         lib.skybox = sky;
         const string backdropPath = "Assets/Settings/SkyBackdrop.mat";
         var backdrop = AssetDatabase.LoadAssetAtPath<Material>(backdropPath);

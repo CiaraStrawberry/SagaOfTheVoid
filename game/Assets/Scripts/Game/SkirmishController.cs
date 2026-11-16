@@ -33,6 +33,21 @@ namespace Saga.Game
         public readonly List<Ship> Selected = new List<Ship>();
         public float GameSpeed = 1f;
         public bool Paused;
+        // Pause menu (Menu button, or Escape with nothing selected): the battle stops until it closes.
+        public bool MenuOpen { get; private set; }
+        bool pausedBeforeMenu;
+        public void OpenMenu()
+        {
+            if (MenuOpen || World == null) return;
+            MenuOpen = true; pausedBeforeMenu = Paused; Paused = true;
+            hud.ShowPauseMenu(true);
+        }
+        public void CloseMenu()
+        {
+            if (!MenuOpen) return;
+            MenuOpen = false; Paused = pausedBeforeMenu;
+            hud.ShowPauseMenu(false);
+        }
 
         Camera cam;
         SkirmishHud hud;
@@ -165,6 +180,14 @@ namespace Saga.Game
                 }
             }
             if (comms != null && UpdateStory(dt)) return;
+            if (MenuOpen)
+            {
+                if (Input.GetKeyDown(KeyCode.Escape)) CloseMenu();
+                PlaceCamera();
+                View.Sync(shots, impacts, deaths, 0f, World.Time);
+                hud.Refresh();
+                return;
+            }
             HandleKeys();
             HandleCamera(dt);
             HandleMouse();
@@ -236,7 +259,11 @@ namespace Saga.Game
             int before = Selected.Count;
             foreach (var s in ships)
                 if (!s.Dead && (inspect ? s.Team != PlayerTeam : s.Team == PlayerTeam) && !Selected.Contains(s)) { Selected.Add(s); View.SetSelected(s, true); }
-            if (Selected.Count > 0 && (Selected.Count != before || !add)) SoundBoard.Current?.Select();
+            if (Selected.Count > 0 && (Selected.Count != before || !add))
+            {
+                SoundBoard.Current?.Select();
+                if (!inspect) Reply("select");
+            }
         }
 
         // The selection is enemy ships being looked at, not commanded.
@@ -259,6 +286,7 @@ namespace Saga.Game
             if (Selected.Count == 0) return;
             World.OrderMove(Selected, BattleView.ToSim(worldPoint), queue, attack);
             if (attack) SoundBoard.Current?.OrderAttack(); else SoundBoard.Current?.OrderMove();
+            Reply(attack ? "attack" : "move");
             View.Ping(worldPoint, attack);
         }
 
@@ -271,8 +299,16 @@ namespace Saga.Game
             if (Selected.Count == 0 || target == null || target.Team == PlayerTeam) return;
             World.OrderAttack(Selected, target);
             SoundBoard.Current?.OrderAttack();
+            Reply("attack");
             var v = View.ViewOf(target);
             if (v != null) View.Ping(v.Go.transform.position, true, v.Length * 1.3f);
+        }
+
+        // A spoken reply from the crew of the biggest selected ship (SoundBoard.Reply).
+        void Reply(string kind)
+        {
+            if (Selected.Count == 0 || Inspecting) return;
+            SoundBoard.Current?.Reply(Selected.Max(s => s.Hull), kind);
         }
 
         public void CommandStop() { if (!Inspecting) World.OrderStop(Selected); }
@@ -284,6 +320,7 @@ namespace Saga.Game
             if (Selected.Count == 0) return;
             World.OrderIntoFight(Selected, f, PlayerTeam);
             SoundBoard.Current?.OrderAttack();
+            Reply("attack");
             View.Ping(BattleView.ToWorld(f.Centre), true, (float)f.Radius * 2f);
         }
 
@@ -358,7 +395,12 @@ namespace Saga.Game
             if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.KeypadPlus)) GameSpeed = Mathf.Min(4f, GameSpeed * 2f);
             if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.KeypadMinus)) GameSpeed = Mathf.Max(0.25f, GameSpeed / 2f);
             if (Input.GetKeyDown(KeyCode.H)) hud.ToggleHelp();
-            if (Input.GetKeyDown(KeyCode.Escape) && !Deploying) Select(new Ship[0]);
+            // Escape backs out one step: cancel attack-move or deploying, else clear the selection, else the menu.
+            if (Input.GetKeyDown(KeyCode.Escape) && !Deploying && !AttackMoveArmed)
+            {
+                if (Selected.Count > 0) Select(new Ship[0]);
+                else { OpenMenu(); return; }
+            }
             if (Input.GetKeyDown(KeyCode.R) && !Deploying) BeginDeploy("*");
             if (Input.GetKeyDown(KeyCode.F)) Focus(Selected);
             bool ctrl = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);

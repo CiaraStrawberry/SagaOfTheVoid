@@ -141,6 +141,16 @@ namespace Saga.Tests
             yield return null;
             Shot(cam, rt, "mission_1_briefing");
             game.Comms.Close();
+            // The pause menu stops the battle too.
+            yield return null;
+            game.OpenMenu();
+            double atPause = game.World.Time;
+            yield return null; yield return null;
+            Assert.IsTrue(game.MenuOpen);
+            Assert.AreEqual(atPause, game.World.Time, 1e-9, "the battle waits while the pause menu is open");
+            Shot(cam, rt, "pause_menu");
+            game.CloseMenu();
+            Assert.IsFalse(game.Paused, "closing the menu resumes");
             game.SelectAllOwn();
             game.GameSpeed = 4f;
             yield return RunUntil(game, 8);

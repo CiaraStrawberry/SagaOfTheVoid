@@ -54,6 +54,10 @@ namespace Saga.Game
         public AudioClip sfxClick, sfxSelect, sfxOrderMove, sfxOrderAttack;
 
         [Serializable] public class PortraitEntry { public string id; public Sprite sprite; }
+        // Unit voice replies, by set: <crew>_<kind>, e.g. pilot_move (tools/split_voice.py).
+        [Serializable] public class VoiceEntry { public string set; public AudioClip clip; }
+        public List<VoiceEntry> unitVoices = new List<VoiceEntry>();
+        public List<AudioClip> VoiceLines(string set) => unitVoices.FindAll(v => v.set == set && v.clip != null).ConvertAll(v => v.clip);
         public Sprite Portrait(string id) => portraits.Find(p => p.id == id)?.sprite;
 
         public GameObject Map(string id) => maps.Find(m => m.id == id)?.prefab;

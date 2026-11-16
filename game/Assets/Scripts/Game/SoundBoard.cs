@@ -86,6 +86,39 @@ namespace Saga.Game
         public void OrderMove() => Ui(lib.sfxOrderMove, 0.45f);
         public void OrderAttack() => Ui(lib.sfxOrderAttack, 0.45f);
 
+        // ---------- unit voices ----------
+        // Selecting ships and giving orders gets a spoken reply from that ship's crew (tools/split_voice.py):
+        // fighter pilots, a frigate bridge officer, or a capital ship's captain. One reply at a time; a new one cuts
+        // off the last unless it only just started, and the same line is not used twice in a row.
+
+        AudioSource speech;
+        AudioClip lastLine;
+        float speechStarted = -9f;
+
+        public static string Crew(Saga.Sim.Hull hull) =>
+            hull == Saga.Sim.Hull.Light || hull == Saga.Sim.Hull.Corvette ? "pilot"
+            : hull == Saga.Sim.Hull.Capital || hull == Saga.Sim.Hull.SuperCapital ? "capital" : "bridge";
+
+        // kind: select, move or attack.
+        public void Reply(Saga.Sim.Hull hull, string kind)
+        {
+            var lines = lib.VoiceLines(Crew(hull) + "_" + kind);
+            if (lines.Count == 0) return;
+            float now = Time.unscaledTime;
+            if (speech == null)
+            {
+                speech = music.gameObject.AddComponent<AudioSource>();
+                speech.playOnAwake = false; speech.spatialBlend = 0f;
+            }
+            if (speech.isPlaying && now - speechStarted < 0.6f) return;
+            AudioClip pick = lines[Random.Range(0, lines.Count)];
+            if (pick == lastLine && lines.Count > 1) pick = lines[(lines.IndexOf(pick) + 1 + Random.Range(0, lines.Count - 1)) % lines.Count];
+            speech.Stop();
+            speech.clip = pick; speech.volume = 0.8f;
+            speech.Play();
+            lastLine = pick; speechStarted = now;
+        }
+
         void Ui(AudioClip clip, float volume)
         {
             if (clip == null) return;

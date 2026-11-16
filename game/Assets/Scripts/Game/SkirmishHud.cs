@@ -55,12 +55,9 @@ namespace Saga.Game
             var root = canvasGo.transform;
 
             status = MakeText(root, "status", 26, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(28, -22), new Vector2(900, 40));
-            // Back to the menu mid-battle: the first click asks, a second within 3 s leaves.
-            menuLabel = UiKit.Button(root, "Menu", new Vector2(1, 1), new Vector2(-24, -16), new Vector2(150, 38), () =>
-            {
-                if (Time.unscaledTime < menuConfirmUntil) SkirmishController.BackToMenu();
-                else { menuConfirmUntil = Time.unscaledTime + 3f; menuLabel.text = "<color=#ffb0a8>Leave battle?</color>"; }
-            }, 20);
+            // Menu: pauses the battle and opens the pause menu (also Escape with nothing selected).
+            menuLabel = UiKit.Button(root, "Menu", new Vector2(1, 1), new Vector2(-24, -16), new Vector2(150, 38), game.OpenMenu, 20);
+            BuildPauseMenu(cam);
             MakeText(root, "hint", 20, TextAnchor.UpperRight, new Vector2(1, 1), new Vector2(-190, -24), new Vector2(600, 40)).text =
                 "<color=#8d98ab>H  controls     P  pause     + / -  speed</color>";
 
@@ -171,7 +168,32 @@ namespace Saga.Game
         }
 
         Text menuLabel;
-        float menuConfirmUntil = -1f;
+        GameObject pauseMenu;
+
+        // The pause menu: the battle stops beneath a dimmed screen until Resume (or Escape).
+        void BuildPauseMenu(Camera cam)
+        {
+            var c = UiKit.Canvas("Pause menu", cam, 25);
+            pauseMenu = c.gameObject;
+            var r = c.transform;
+            var dim = UiKit.Box(r, "dim", new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(4000, 3000), new Color(0f, 0.01f, 0.03f, 0.6f));
+            dim.raycastTarget = true;
+            var panel = UiKit.Box(r, "panel", new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(440, 520), UiKit.Panel).transform;
+            var title = UiKit.Label(panel, "title", 44, TextAnchor.UpperCenter, new Vector2(0.5f, 1f), new Vector2(0, -28), new Vector2(400, 60), "Paused");
+            title.fontStyle = FontStyle.Bold;
+            float y = -110;
+            void Add(string label, System.Action a) { UiKit.Button(panel, label, new Vector2(0.5f, 1f), new Vector2(0, y), new Vector2(360, 60), a, 24); y -= 74; }
+            Add("Resume", game.CloseMenu);
+            Add("Restart battle", () => SkirmishController.Begin(game.Config));
+            Add("Controls", () => { game.CloseMenu(); helpUntil = Time.unscaledTime + 30f; });
+            Add("Main menu", SkirmishController.BackToMenu);
+            if (Application.platform != RuntimePlatform.WebGLPlayer) Add("Quit game", Application.Quit);
+            var hintText = UiKit.Label(panel, "hint", 18, TextAnchor.LowerCenter, new Vector2(0.5f, 0f), new Vector2(0, 16), new Vector2(400, 26), "Escape to resume");
+            hintText.color = UiKit.Muted;
+            pauseMenu.SetActive(false);
+        }
+
+        public void ShowPauseMenu(bool show) => pauseMenu.SetActive(show);
 
         public void ToggleHelp() => helpUntil = helpPanel.gameObject.activeSelf ? 0f : float.MaxValue;
 
@@ -227,8 +249,7 @@ namespace Saga.Game
 
             // The controls card waits until a transmission is over (it would sit behind the comms panel).
             if (game.StoryBusy && Time.unscaledTime < helpUntil) helpUntil = Time.unscaledTime + 12f;
-            helpPanel.gameObject.SetActive(Time.unscaledTime < helpUntil && !game.StoryBusy);
-            if (menuConfirmUntil > 0 && Time.unscaledTime >= menuConfirmUntil) { menuConfirmUntil = -1f; menuLabel.text = "Menu"; }
+            helpPanel.gameObject.SetActive(Time.unscaledTime < helpUntil && !game.StoryBusy && !game.MenuOpen);
             RefreshSelection();
             RefreshBuild();
             RefreshReserve();

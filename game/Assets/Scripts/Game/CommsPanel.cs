@@ -10,8 +10,7 @@ namespace Saga.Game
     // speaker's name and channel, and their lines type out beside it. Click, Space or Enter: finish the line, then
     // the next one. Esc skips the rest of the transmission (never a decision). The opening briefing also shows a
     // title card (act, mission, premise, objective). After the last mission: the ending choice, then its epilogue.
-    // Portraits (tools/portraits.py) have transparent backgrounds; the panel supplies the frame, faction colour and
-    // scanlines, as the narrative package asks.
+    // Portraits (tools/portraits.py) have transparent backgrounds and are shown with nothing behind them.
     public class CommsPanel
     {
         const float TypeSpeed = 70f;            // characters per second
@@ -29,8 +28,7 @@ namespace Saga.Game
         readonly Queue<Step> queue = new Queue<Step>();
         readonly GameObject root;
         readonly RectTransform plate, titleCard, textBox;
-        readonly Image portrait, stripe;
-        readonly RawImage backdrop, scan;
+        readonly Image portrait;
         readonly Text name, channel, body, hint, act, missionName, premise, cardTitle, cardText;
         readonly RectTransform choices;
         Step current;
@@ -58,32 +56,16 @@ namespace Saga.Game
             missionName.fontStyle = FontStyle.Bold;
             premise = UiKit.Label(titleCard, "premise", 26, TextAnchor.UpperCenter, new Vector2(0.5f, 1f), new Vector2(0, -132), new Vector2(1100, 190));
 
-            // Portrait plate: faction-coloured backdrop, scanlines, the portrait, a colour stripe along the bottom.
-            plate = UiKit.Rect(r, "plate", new Vector2(0f, 0f), new Vector2(70, 60), new Vector2(470, 640));
-            backdrop = new GameObject("backdrop", typeof(RectTransform)).AddComponent<RawImage>();
-            backdrop.transform.SetParent(plate, false);
-            Stretch(backdrop.rectTransform);
-            backdrop.texture = Gradient();
-            var mask = new GameObject("mask", typeof(RectTransform), typeof(RectMask2D));
-            mask.transform.SetParent(plate, false);
-            Stretch((RectTransform)mask.transform);
+            // The portrait itself, with no box behind it: the transparent cut-out stands on the bottom edge of the
+            // screen over the dimmed battlefield (owner request: blend in with the display).
+            plate = UiKit.Rect(r, "plate", new Vector2(0f, 0f), new Vector2(30, 0), new Vector2(520, 780));
             portrait = new GameObject("portrait", typeof(RectTransform)).AddComponent<Image>();
-            portrait.transform.SetParent(mask.transform, false);
+            portrait.transform.SetParent(plate, false);
             var pr = portrait.rectTransform;
             pr.anchorMin = new Vector2(0.5f, 0f); pr.anchorMax = new Vector2(0.5f, 0f); pr.pivot = new Vector2(0.5f, 0f);
-            pr.sizeDelta = new Vector2(470, 705);
+            pr.sizeDelta = new Vector2(520, 780);
             portrait.preserveAspect = true;
             portrait.raycastTarget = false;
-            scan = new GameObject("scanlines", typeof(RectTransform)).AddComponent<RawImage>();
-            scan.transform.SetParent(plate, false);
-            Stretch(scan.rectTransform);
-            scan.texture = Scanlines();
-            scan.uvRect = new Rect(0, 0, 1, 640f / 4f);
-            scan.raycastTarget = false;
-            stripe = UiKit.Box(plate, "stripe", new Vector2(0.5f, 0f), Vector2.zero, new Vector2(470, 6), Blue);
-            var frame = backdrop.gameObject.AddComponent<Outline>();
-            frame.effectColor = new Color(0.6f, 0.75f, 0.95f, 0.35f);
-            frame.effectDistance = new Vector2(2, -2);
 
             // Text box beside the plate.
             textBox = UiKit.Box(r, "text", new Vector2(0f, 0f), new Vector2(560, 60), new Vector2(1180, 270), UiKit.Panel).rectTransform;
@@ -93,7 +75,7 @@ namespace Saga.Game
             channel.color = UiKit.Muted;
             body = UiKit.Label(textBox, "body", 30, TextAnchor.UpperLeft, new Vector2(0f, 1f), new Vector2(32, -78), new Vector2(1116, 150));
             hint = UiKit.Label(textBox, "hint", 18, TextAnchor.LowerRight, new Vector2(1f, 0f), new Vector2(-24, 14), new Vector2(700, 26),
-                "Click or Space to continue  ·  Esc skips");
+                "Click or Space to continue  ·  Escape to skip");
             hint.color = UiKit.Muted;
             choices = UiKit.Rect(r, "choices", new Vector2(0f, 0f), new Vector2(560, 350), new Vector2(1180, 160));
 
@@ -226,8 +208,6 @@ namespace Saga.Game
             name.color = colour;
             channel.text = hidden ? "UNKNOWN RELAY" : c != null ? c.faction : "";
             name.text += hidden || c == null ? "" : "   <size=20><color=#8d98ab>" + c.role + "</color></size>";
-            stripe.color = colour;
-            backdrop.color = Color.Lerp(colour, Color.black, 0.55f);
             if (id != currentSpeaker) { portraitAge = 0f; currentSpeaker = id; }
             portrait.sprite = lib.Portrait(id);
             portrait.enabled = portrait.sprite != null;
@@ -244,38 +224,9 @@ namespace Saga.Game
             {
                 // A black silhouette only: no face until she names herself.
                 float f = 0.8f + 0.2f * Mathf.PerlinNoise(Time.unscaledTime * 9f, 0.3f);
-                portrait.color = new Color(0f, 0f, 0f, ease * f);
-                scan.color = new Color(1f, 0.5f, 0.5f, 0.35f + 0.2f * Mathf.PerlinNoise(Time.unscaledTime * 21f, 1.7f));
+                portrait.color = new Color(0.03f, 0f, 0.01f, ease * f);
             }
-            else
-            {
-                portrait.color = new Color(1f, 1f, 1f, ease);
-                scan.color = new Color(1f, 1f, 1f, 0.16f);
-            }
-        }
-
-        // Faction backdrop: light at the top, falling to black (tinted per speaker via the image colour).
-        static Texture2D Gradient()
-        {
-            var t = new Texture2D(1, 64, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp };
-            for (int y = 0; y < 64; y++)
-            {
-                float v = Mathf.Pow(y / 63f, 1.6f);
-                t.SetPixel(0, y, new Color(v * 0.9f + 0.1f, v * 0.9f + 0.1f, v * 0.9f + 0.1f, 1f));
-            }
-            t.Apply();
-            return t;
-        }
-
-        static Texture2D Scanlines()
-        {
-            var t = new Texture2D(1, 4, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Repeat, filterMode = FilterMode.Point };
-            t.SetPixel(0, 0, new Color(0, 0, 0, 0.9f));
-            t.SetPixel(0, 1, new Color(0, 0, 0, 0f));
-            t.SetPixel(0, 2, new Color(0, 0, 0, 0f));
-            t.SetPixel(0, 3, new Color(0, 0, 0, 0.3f));
-            t.Apply();
-            return t;
+            else portrait.color = new Color(1f, 1f, 1f, ease);
         }
     }
 }
