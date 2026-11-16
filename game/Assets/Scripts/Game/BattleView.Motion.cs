@@ -274,11 +274,13 @@ namespace Saga.Game
             public LineRenderer Trail;
             public readonly Vector3[] Hist = new Vector3[TrailPoints];
             public int HistCount;
+            public float SampleAge;
         }
 
         // Fading engine trail behind each craft (2017 fighters had trails). Drawn from recent positions so it
         // also works in the frame-by-frame recorder, where Unity's own trail timing doesn't run.
-        const int TrailPoints = 28;
+        const int TrailPoints = 30;
+        const float TrailStep = 0.04f;
 
         void SetUpCrafts(ShipView v)
         {
@@ -429,12 +431,18 @@ namespace Saga.Game
             // Contrails start the moment the craft is out of the jump (it flies straight on from there).
             bool show = c.R.enabled && (v.Warp == null || v.Pulse >= v.StraightFrom);
             if (!show) { c.HistCount = 0; c.Trail.positionCount = 0; return; }
-            if (dt > 0f)
+            // A trail point every TrailStep seconds (not every frame), so the contrail is the same length
+            // (TrailPoints x TrailStep = 1.2 s of flight) at any frame rate. The newest end follows the craft live.
+            var tail = c.Pos - c.Facing * 12f;
+            if (c.HistCount == 0) { c.Hist[0] = tail; c.HistCount = 1; c.SampleAge = 0f; }
+            c.SampleAge += dt;
+            if (c.SampleAge >= TrailStep)
             {
+                c.SampleAge = 0f;
                 for (int k = Mathf.Min(c.HistCount, TrailPoints - 1); k > 0; k--) c.Hist[k] = c.Hist[k - 1];
-                c.Hist[0] = c.Pos - c.Facing * 12f;
                 c.HistCount = Mathf.Min(c.HistCount + 1, TrailPoints);
             }
+            c.Hist[0] = tail;
             int n = c.HistCount;
             c.Trail.positionCount = n;
             for (int k = 0; k < n; k++) c.Trail.SetPosition(k, c.Hist[n - 1 - k]); // oldest first
