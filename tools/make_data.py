@@ -31,6 +31,11 @@ GUN_IDS = {"Cannon": "cannon", "Missile": "missile", "MiniGun": "minigun", "Shie
            "Cloak": "shield_field",  # the 2017 cloak, redesigned as a shield support field (decided 2026-11-16)
            "FighterGun": "fighter_gun", "BomberGun": "bomber_gun", "Dual_Role": "dual_role",
            "CapitalMainGun": "capital_main_gun", "Lazer": "laser"}
+# Build times in seconds, as the 2017 build menu passed them (PositinonRelativeToHeadset.cs:258-316).
+# The 2017 queue then ignored them and used the ship's list number instead (a bug); the remake uses these.
+BUILD_TIME = {"scout": 5, "fighter": 7, "bomber": 7, "attack_craft": 8, "missile_frigate": 6, "flak_frigate": 6,
+              "cannon_frigate": 7, "laser_frigate": 6, "support_frigate": 6, "repair_frigate": 8,
+              "destroyer": 15, "capital": 20, "super_capital": 0}
 HULLS = ["light", "corvette", "frigate", "cruiser", "destroyer", "capital", "super_capital"]
 
 
@@ -79,7 +84,7 @@ for old, (sid, name, sprite) in BUYABLE.items():
         hull = "super_capital"
     ships.append({
         "id": sid, "name": name, "sprite": sprite, "hull": hull,
-        "cost": s["cost"], "buyable": sid != "super_capital",
+        "cost": s["cost"], "buyable": sid != "super_capital", "build_time": BUILD_TIME[sid],
         "armor": s["armor"], "shield": s["armor"],
         "speed": round(s["max_speed"] * 30, 2), "turn_rate": s["max_turn"],
         "sprite_world_size": man[sprite]["world_size"],

@@ -37,6 +37,8 @@ namespace Saga.Sim
         public Ship OrderedTarget;                           // player/AI attack order (2017: shiptarget)
         public readonly Queue<Vec2> Waypoints = new Queue<Vec2>(); // queued move points (2017: StoredOrders)
         public bool Holds = true;                            // HoldAtRange applies; off for plain move orders
+        public int LastHitByTeam = -1;                       // who gets the kill bounty
+        public double Arrived = -1;                          // world time a bought ship arrived (-1: started on the field)
         public readonly List<Gun> Guns = new List<Gun>();
 
         public Gun MainGun => Guns.FirstOrDefault(g => !g.Weapon.module);
@@ -86,7 +88,7 @@ namespace Saga.Sim
     //   shield field  new: replaces the 2017 visual-only cloak (decided 2026-11-16)
     //   computer  AIController (attack with more than 4 ships, else regroup)
     // Known old bugs fixed here: lasers hit once, and shots land after their travel time.
-    public class World
+    public partial class World
     {
         public const double UpdateRate = 60;            // the old game moved ships once per 60th of a second
         const double Acceleration = 4 * UpdateRate;      // CustomPathfinding.acceleration, per second
@@ -204,7 +206,7 @@ namespace Saga.Sim
             {
                 secondTimer -= 1.0;
                 foreach (var team in Alive.Select(s => s.Team).Distinct().ToList())
-                    if (!PlayerTeams.Contains(team)) ComputerOrders(team);
+                    if (!PlayerTeams.Contains(team)) { ComputerBuys(team); ComputerOrders(team); }
                 foreach (var s in Alive)
                 {
                     if (s.OrderedTarget != null && s.OrderedTarget.Dead) { s.OrderedTarget = null; s.HasMoveOrder = false; }
@@ -217,6 +219,7 @@ namespace Saga.Sim
                 }
             }
             ApplyShieldFields(dt);
+            StepEconomy(dt);
 
             foreach (var s in Alive) Move(s, dt);
             PushApart(dt);
@@ -226,6 +229,7 @@ namespace Saga.Sim
             foreach (var s in Ships.Where(s => !s.Dead && s.Armor < 0).ToList())
             {
                 s.Dead = true;
+                PayBounty(s);
                 Deaths.Add(s);
             }
             if (Winner < 0)
@@ -249,15 +253,25 @@ namespace Saga.Sim
             var mine = Alive.Where(s => s.Team == team).ToList();
             var enemies = Alive.Where(s => s.Team != team).ToList();
             if (mine.Count == 0 || enemies.Count == 0) return;
+            var t = TeamOf(team);
             var lead = mine[0];
             var nearest = enemies.OrderBy(e => Vec2.Distance(e.Pos, lead.Pos)).First();
-            // Whole fleet charges the enemy nearest its first ship, keeping its formation.
+            double nearestDist = Vec2.Distance(nearest.Pos, lead.Pos);
+
+            // AIController states, simplified: attacking (> 4 ships), retreating home (<= 3), and a
+            // retreat turns back into an attack when an enemy gets within 1,000 of the lead ship.
+            if (mine.Count > 4) t.Retreating = false;
+            else if (mine.Count <= 3 && nearestDist >= 1000) t.Retreating = true;
+            if (t.Retreating && nearestDist < 1000) t.Retreating = false;
+
+            var goal = t.Retreating ? t.Home : nearest.Pos;
+            // Whole fleet moves together, keeping its formation; fighters chase their own targets when attacking.
             var centre = new Vec2(mine.Average(s => s.Pos.X), mine.Average(s => s.Pos.Y));
             foreach (var s in mine)
             {
                 var offset = s.Pos - centre;
                 if (offset.Length > 900) offset = offset.Normalized * 900;
-                Order(s, Hulls.IsSmall(s.Hull) && s.Target != null ? s.Target.Pos : nearest.Pos + offset);
+                Order(s, !t.Retreating && Hulls.IsSmall(s.Hull) && s.Target != null ? s.Target.Pos : goal + offset);
             }
         }
 
@@ -413,6 +427,7 @@ namespace Saga.Sim
                     continue;
                 }
                 bool onShield = p.Target.Shield > 0;
+                p.Target.LastHitByTeam = p.Source.Team;
                 TakeDamage(p.Target, p.Damage, p.Source.Hull);
                 Impacts.Add(new ImpactEvent { ShotId = p.ShotId, Target = p.Target, Source = p.Source, OnShield = onShield, Visual = p.Visual });
             }

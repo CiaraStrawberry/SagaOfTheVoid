@@ -233,6 +233,12 @@ namespace Saga.Game
             v.ShowBarsUntil = -1;
             views[s] = v;
             UpdateShipView(v, 0);
+            if (s.Arrived >= 0)
+            {
+                // Bought ship arriving: a warp flash and a ring in team colour.
+                AddSprite("flash", glow, Centre(v), Hdr(Color.Lerp(tint, Color.white, 0.5f), 1.6f), v.Length * 1.4f, 0.6f, Vector3.zero, false);
+                AddSprite("ring", ring, Centre(v), new Color(tint.r, tint.g, tint.b, 0.6f), v.Length * 1.8f, 0.8f, Vector3.zero, true);
+            }
             Tint(v.Disc, new Color(tint.r, tint.g, tint.b, 0.25f));
             return v;
         }

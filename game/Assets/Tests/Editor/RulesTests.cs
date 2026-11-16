@@ -135,6 +135,101 @@ namespace Saga.Tests
             Assert.GreaterOrEqual(w.Winner, 0, "battle should end within 400 s");
         }
 
+        static void Run(World w, double seconds) { for (int i = 0; i < (int)(seconds * 60); i++) w.Step(1.0 / 60); }
+
+        static World Duel()
+        {
+            var w = NewWorld();
+            w.PlayerTeams.Add(0); w.PlayerTeams.Add(1); // nobody moves on their own
+            w.Spawn("capital", 0, new Vec2(-20000, 0), 0);
+            w.Spawn("capital", 1, new Vec2(20000, 0), 0);
+            return w;
+        }
+
+        [Test]
+        public void Economy_IncomeIs30PerSecond_FromStartMoney()
+        {
+            var w = Duel();
+            Run(w, 10);
+            Assert.AreEqual(World.StartMoney + 300, w.TeamOf(0).Money, 1.0);
+        }
+
+        [Test]
+        public void Economy_BuyPaysNow_QueueStacks_ShipArrivesAfterBuildTime()
+        {
+            var w = Duel();
+            Run(w, 0.1);
+            double before = w.TeamOf(0).Money;
+            Assert.IsTrue(w.TryBuy(0, "scout"));
+            Assert.IsTrue(w.TryBuy(0, "scout"));
+            Assert.AreEqual(before - 2 * 650, w.TeamOf(0).Money, 0.01);
+            Assert.AreEqual(1, w.TeamOf(0).Queue.Count, "same kind stacks into one order");
+            Assert.AreEqual(2, w.TeamOf(0).Queued);
+            Run(w, 4.9);
+            Assert.AreEqual(1, w.Count(0), "not yet: scouts take 5 s");
+            Run(w, 0.2);
+            Assert.AreEqual(2, w.Count(0));
+            var arrived = w.Alive.First(s => s.Def.id == "scout");
+            Assert.GreaterOrEqual(arrived.Arrived, 0);
+            Assert.Less(Vec2.Distance(arrived.Pos, new Vec2(-20000, 0)), 1500, "arrives beside the fleet");
+            Run(w, 5);
+            Assert.AreEqual(3, w.Count(0));
+            Assert.AreEqual(0, w.TeamOf(0).Queued);
+        }
+
+        [Test]
+        public void Economy_CantOverspend_CancelRefunds()
+        {
+            var w = Duel();
+            Run(w, 0.1);
+            Assert.AreEqual("not enough credits", w.CannotBuy(0, "capital"));
+            Assert.IsFalse(w.TryBuy(0, "capital"));
+            Assert.AreEqual("not for sale", w.CannotBuy(0, "super_capital"));
+            double before = w.TeamOf(0).Money;
+            Assert.IsTrue(w.TryBuy(0, "fighter"));
+            Assert.IsTrue(w.CancelBuy(0, "fighter"));
+            Assert.AreEqual(before, w.TeamOf(0).Money, 0.01);
+            Assert.AreEqual(0, w.TeamOf(0).Queued);
+        }
+
+        [Test]
+        public void Economy_FleetCapStopsBuying()
+        {
+            var w = Duel();
+            w.ShipCap = 3;
+            Run(w, 0.1);
+            w.TeamOf(0).Money = 100000;
+            Assert.IsTrue(w.TryBuy(0, "scout"));
+            Assert.AreEqual("fleet is full", w.CannotBuy(0, "scout"), "cap 3 means two ships, counting the queue");
+        }
+
+        [Test]
+        public void Economy_KillPaysAThirdOfTheCost()
+        {
+            var w = Duel();
+            Run(w, 0.1);
+            var victim = w.Spawn("cannon_frigate", 1, new Vec2(0, 0), 0);
+            w.Spawn("laser_frigate", 0, new Vec2(0, 1500), 0);
+            w.TeamOf(0).IncomePerSecond = 0; // only the bounty changes the balance
+            double before = w.TeamOf(0).Money;
+            victim.Shield = -1; victim.Armor = 10;
+            for (int i = 0; i < 60 * 30 && !victim.Dead; i++) w.Step(1.0 / 60);
+            Assert.IsTrue(victim.Dead, "laser frigate killed it");
+            Assert.AreEqual(before + 1050 / 3.0, w.TeamOf(0).Money, 0.01);
+        }
+
+        [Test]
+        public void Computer_BuysShipsOverTime()
+        {
+            var w = NewWorld();
+            w.PlayerTeams.Add(0);
+            w.Spawn("capital", 0, new Vec2(-30000, 0), 0);
+            w.Spawn("capital", 1, new Vec2(30000, 0), 0);
+            w.TeamOf(1).Difficulty = Difficulty.Hard;
+            Run(w, 120);
+            Assert.Greater(w.Count(1), 3, "computer bought ships with its income");
+        }
+
         // Mirrors Saga.Game.Fleets.Quick (that assembly is not referenced here to keep these tests engine-light).
         static void SpawnBoth(World w)
         {

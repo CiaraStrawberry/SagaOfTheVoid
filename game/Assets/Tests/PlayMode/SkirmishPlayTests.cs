@@ -66,6 +66,20 @@ namespace Saga.Tests
                 "the ordered target took fire");
             Shot(cam, rt, "skirmish_3_attack");
 
+            // Buy a fighter: paid now, arrives after its build time beside the fleet.
+            if (game.World.Winner < 0)
+            {
+                int before = game.World.Count(SkirmishController.PlayerTeam);
+                game.World.TeamOf(SkirmishController.PlayerTeam).Money = 5000;
+                Assert.IsTrue(game.Buy("fighter"), "can buy a fighter with 5,000 credits");
+                Assert.IsTrue(game.Buy("missile_frigate"));
+                yield return null;
+                Shot(cam, rt, "skirmish_5_building");
+                double until = game.World.Time + 15;
+                yield return RunUntil(game, until);
+                Assert.Greater(game.World.Count(SkirmishController.PlayerTeam) + (game.World.Winner >= 0 ? 99 : 0), before, "bought ships arrived");
+            }
+
             // Select a single ship to show the detail panel.
             var one = game.Own.FirstOrDefault(s => !Hulls.IsSmall(s.Hull));
             if (one != null) { game.Select(new[] { one }); game.Focus(new[] { one }); }

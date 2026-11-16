@@ -25,6 +25,7 @@ namespace Saga.Sim
         public string hull;
         public int cost;
         public bool buyable;
+        public float build_time;   // seconds in the build queue (2017 build menu values)
         public int armor;
         public int shield;
         public float speed;

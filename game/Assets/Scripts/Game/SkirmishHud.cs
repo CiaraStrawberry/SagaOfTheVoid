@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Saga.Sim;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Saga.Game
@@ -20,7 +21,11 @@ namespace Saga.Game
         readonly Camera cam;
         readonly Font font;
         readonly Text status, banner, detail, help;
-        readonly RectTransform selectionPanel, helpPanel;
+        readonly RectTransform selectionPanel, helpPanel, buildPanel;
+        readonly Text tooltip, queueText;
+        readonly Image queueFill;
+        readonly List<(string id, Image icon, Text cost, Text count, Image shade)> buildButtons = new List<(string, Image, Text, Text, Image)>();
+        string hovered;
         readonly List<(GameObject cell, Image icon, Image hp, Image sh)> cells = new List<(GameObject, Image, Image, Image)>();
         float helpUntil;
 
@@ -29,7 +34,9 @@ namespace Saga.Game
             this.game = game; this.lib = lib; this.cam = cam;
             font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
-            var canvasGo = new GameObject("HUD", typeof(Canvas), typeof(CanvasScaler));
+            if (EventSystem.current == null)
+                new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
+            var canvasGo = new GameObject("HUD", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             var canvas = canvasGo.GetComponent<Canvas>();
             // Screen-space-camera so the HUD is also in camera captures (tests, recordings).
             canvas.renderMode = RenderMode.ScreenSpaceCamera;
@@ -64,8 +71,43 @@ namespace Saga.Game
             }
             detail = MakeText(selectionPanel, "detail", 20, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(110, -14), new Vector2(630, 170));
 
+            // Build bar, bottom right: two rows of six ships. Left-click buys, right-click cancels one.
+            var buyable = lib.ships.Where(e => game.World.Rules.Ships.TryGetValue(e.id, out var d) && d.buyable)
+                                   .OrderBy(e => System.Array.IndexOf(Saga.Sim.World.BuyOrder, e.id)).ToList();
+            buildPanel = MakeRect(root, "build", new Vector2(1, 0), new Vector2(-24, 24), new Vector2(12 + 6 * 92, 12 + 2 * 108 + 54));
+            buildPanel.gameObject.AddComponent<Image>().color = Panel;
+            queueText = MakeText(buildPanel, "queue", 18, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(14, -10), new Vector2(520, 24));
+            var qbar = MakeRect(buildPanel, "queue bar", new Vector2(0, 1), new Vector2(14, -38), new Vector2(528, 5));
+            qbar.gameObject.AddComponent<Image>().color = new Color(1, 1, 1, 0.08f);
+            queueFill = MakeRect(qbar, "fill", new Vector2(0, 0.5f), Vector2.zero, new Vector2(0, 5)).gameObject.AddComponent<Image>();
+            queueFill.rectTransform.pivot = new Vector2(0, 0.5f);
+            queueFill.color = new Color(0.45f, 0.75f, 1f);
+            for (int i = 0; i < buyable.Count; i++)
+            {
+                var id = buyable[i].id;
+                int col = i % 6, row = i / 6;
+                var b = MakeRect(buildPanel, id, new Vector2(0, 1), new Vector2(12 + col * 92, -54 - row * 108), new Vector2(84, 100));
+                b.gameObject.AddComponent<Image>().color = new Color(1, 1, 1, 0.06f);
+                var ic = MakeRect(b, "icon", new Vector2(0.5f, 1), new Vector2(0, -4), new Vector2(64, 64)).gameObject.AddComponent<Image>();
+                ic.sprite = lib.Icon(id); ic.preserveAspect = true; ic.raycastTarget = false;
+                var cost = MakeText(b, "cost", 17, TextAnchor.LowerCenter, new Vector2(0.5f, 0), new Vector2(0, 6), new Vector2(84, 24));
+                cost.text = game.World.Rules.Ships[id].cost.ToString("N0");
+                cost.raycastTarget = false;
+                var count = MakeText(b, "count", 18, TextAnchor.UpperRight, new Vector2(1, 1), new Vector2(-6, -4), new Vector2(40, 24));
+                count.color = new Color(0.65f, 0.85f, 1f); count.raycastTarget = false;
+                var shade = MakeRect(b, "shade", new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(84, 100)).gameObject.AddComponent<Image>();
+                shade.color = new Color(0.02f, 0.03f, 0.05f, 0.6f); shade.raycastTarget = false;
+                var hooks = b.gameObject.AddComponent<UiHooks>();
+                hooks.OnLeft = () => game.Buy(id);
+                hooks.OnRight = () => game.CancelBuy(id);
+                hooks.OnEnter = () => hovered = id;
+                hooks.OnExit = () => { if (hovered == id) hovered = null; };
+                buildButtons.Add((id, ic, cost, count, shade));
+            }
+            tooltip = MakeText(root, "tooltip", 18, TextAnchor.LowerRight, new Vector2(1, 0), new Vector2(-28, 24 + 12 + 2 * 108 + 54 + 10), new Vector2(560, 60));
+
             // Controls card, shown at the start and on H.
-            helpPanel = MakeRect(root, "help", new Vector2(1, 0), new Vector2(-24, 24), new Vector2(560, 352));
+            helpPanel = MakeRect(root, "help", new Vector2(1, 1), new Vector2(-24, -64), new Vector2(560, 352));
             helpPanel.gameObject.AddComponent<Image>().color = Panel;
             help = MakeText(helpPanel, "text", 20, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(20, -16), new Vector2(520, 300));
             help.text =
@@ -87,8 +129,10 @@ namespace Saga.Game
         public bool PointerOverPanel()
         {
             var m = (Vector2)Input.mousePosition;
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return true;
             return (selectionPanel.gameObject.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(selectionPanel, m, cam))
-                || (helpPanel.gameObject.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(helpPanel, m, cam));
+                || (helpPanel.gameObject.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(helpPanel, m, cam))
+                || RectTransformUtility.RectangleContainsScreenPoint(buildPanel, m, cam);
         }
 
         public void Refresh()
@@ -96,7 +140,9 @@ namespace Saga.Game
             var w = game.World;
             int t = (int)w.Time;
             var sb = new StringBuilder();
-            sb.AppendFormat("<color=#a8d4ff>BLUE  {0}</color>      <color=#ffb0a8>RED  {1}</color>      {2:00}:{3:00}", w.Count(0), w.Count(1), t / 60, t % 60);
+            var me = w.TeamOf(SkirmishController.PlayerTeam);
+            sb.AppendFormat("<color=#e7d38c>CREDITS  {0:N0}</color>  <color=#8d98ab>+{1:0}/s</color>      ", System.Math.Floor(me.Money), me.Money < Saga.Sim.World.MoneyCap ? me.IncomePerSecond : 0);
+            sb.AppendFormat("<color=#a8d4ff>BLUE  {0}</color><color=#8d98ab>/{4}</color>      <color=#ffb0a8>RED  {1}</color>      {2:00}:{3:00}", w.Count(0), w.Count(1), t / 60, t % 60, w.ShipCap - 1);
             if (game.Paused) sb.Append("      <color=#e7b04c>PAUSED</color>");
             else if (game.GameSpeed != 1f) sb.AppendFormat("      <color=#e7b04c>×{0:0.##}</color>", game.GameSpeed);
             status.text = sb.ToString();
@@ -106,6 +152,7 @@ namespace Saga.Game
 
             helpPanel.gameObject.SetActive(Time.unscaledTime < helpUntil);
             RefreshSelection();
+            RefreshBuild();
         }
 
         void RefreshSelection()
@@ -141,6 +188,44 @@ namespace Saga.Game
                     s.Def.speed, s.InShieldField ? "in shield field" : "",
                     string.Join(",  ", guns));
             }
+        }
+
+        void RefreshBuild()
+        {
+            var w = game.World;
+            var me = w.TeamOf(SkirmishController.PlayerTeam);
+            foreach (var (id, icon, cost, count, shade) in buildButtons)
+            {
+                int queued = me.Queue.Where(o => o.ShipId == id).Sum(o => o.Count);
+                count.text = queued > 0 ? "×" + queued : "";
+                bool can = w.CannotBuy(SkirmishController.PlayerTeam, id) == null;
+                shade.enabled = !can;
+                cost.color = can ? TextColour : new Color(0.9f, 0.5f, 0.45f);
+            }
+            var b = me.Building;
+            if (b != null)
+            {
+                double total = w.BuildTime(b.ShipId);
+                queueText.text = string.Format("Building  <b>{0}</b>{1}   <color=#8d98ab>{2:0}s</color>{3}",
+                    w.Rules.Ships[b.ShipId].name, b.Count > 1 ? " ×" + b.Count : "", total - b.Progress,
+                    me.Queue.Count > 1 ? "   <color=#8d98ab>then " + string.Join(", ", me.Queue.Skip(1).Select(o => w.Rules.Ships[o.ShipId].name + (o.Count > 1 ? " ×" + o.Count : ""))) + "</color>" : "");
+                queueFill.rectTransform.sizeDelta = new Vector2(528f * (float)(b.Progress / total), 5);
+            }
+            else
+            {
+                queueText.text = "<color=#8d98ab>Build: left-click buys, right-click cancels one</color>";
+                queueFill.rectTransform.sizeDelta = new Vector2(0, 5);
+            }
+            if (hovered != null)
+            {
+                var d = w.Rules.Ships[hovered];
+                var why = w.CannotBuy(SkirmishController.PlayerTeam, hovered);
+                tooltip.text = string.Format("<b>{0}</b>   {1:N0} credits · {2:0} s to build\n<color=#8d98ab>{3} · armour {4:N0} · {5}</color>{6}",
+                    d.name, d.cost, d.build_time, Pretty(d.hull), d.armor,
+                    string.Join(", ", d.turrets.GroupBy(x => x.weapon).Select(g => (g.Count() > 1 ? g.Count() + " × " : "") + Pretty(g.Key))),
+                    why != null ? "\n<color=#ef8a80>" + why + "</color>" : "");
+            }
+            else tooltip.text = "";
         }
 
         static string Pretty(string id) => string.Join(" ", id.Split('_').Select(w => char.ToUpper(w[0]) + w.Substring(1)));
@@ -183,6 +268,7 @@ namespace Saga.Game
             var t = r.gameObject.AddComponent<Text>();
             t.font = font; t.fontSize = size; t.alignment = align; t.color = TextColour; t.supportRichText = true;
             t.horizontalOverflow = HorizontalWrapMode.Overflow; t.verticalOverflow = VerticalWrapMode.Overflow;
+            t.raycastTarget = false; // text never blocks clicks on the battlefield
             return t;
         }
     }

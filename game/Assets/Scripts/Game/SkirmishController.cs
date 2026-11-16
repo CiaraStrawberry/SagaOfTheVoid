@@ -127,6 +127,9 @@ namespace Saga.Game
 
         public void CommandStop() => World.OrderStop(Selected);
 
+        public bool Buy(string shipId) => World.TryBuy(PlayerTeam, shipId);
+        public bool CancelBuy(string shipId) => World.CancelBuy(PlayerTeam, shipId);
+
         public void Focus(IEnumerable<Ship> ships)
         {
             var list = ships.Where(s => !s.Dead).ToList();
