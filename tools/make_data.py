@@ -54,14 +54,16 @@ weapons = {
     "cannon":           {"damage": 800, "damage_vs_capital_hull_owner": 275, "prefers": "capital", "hit": hits(.02, .05, .8, .8, .8, 1), "visual": "shell", "projectile_speed": 1500, "launch_delay": 0.1},
     "capital_main_gun": {"damage": 2000, "prefers": "frigate", "hit": hits(.02, .05, .8, .8, .8, 1), "visual": "shell", "projectile_speed": 1500, "launch_delay": 0.1},
     "missile":          {"damage": 300, "prefers": "frigate", "hit": hits(.05, .5, 1, 1, 1, 1), "always_hits_non_light": True, "never_targets_light": True, "visual": "missile"},
-    "minigun":          {"damage": 20, "prefers": "light", "hit": hits(.1, .1, .8, .8, .8, 1), "visual": "tracer"},
-    "fighter_gun":      {"damage": 20, "prefers": "light", "hit": hits(.1, .5, 1, 1, 1, 1), "visual": "tracer"},
+    # Remake: gun rounds (tracers) fly at 1,600/s after 0.1 s (2017: 440/s after 0.5 s), so the drawn tracer is the
+    # real flight and hits land when it arrives; bombs at 900/s after 0.2 s.
+    "minigun":          {"damage": 20, "prefers": "light", "hit": hits(.1, .1, .8, .8, .8, 1), "visual": "tracer", "projectile_speed": 1600, "launch_delay": 0.1},
+    "fighter_gun":      {"damage": 20, "prefers": "light", "hit": hits(.1, .5, 1, 1, 1, 1), "visual": "tracer", "projectile_speed": 1600, "launch_delay": 0.1},
     # Remake: fighters fire volleys of 6 small homing missiles (fewer shots that hit far more often; about the same
     # kill rate as the 2017 6-round bursts at 10%).
     "fighter_missile":  {"damage": 20, "prefers": "light", "hit": hits(.12, .35, 1, 1, 1, 1), "visual": "seeker", "projectile_speed": 650, "launch_delay": 0.15},
     # Remake: single heavy shots (was 3 x 200 per burst); same damage per salvo.
-    "bomber_gun":       {"damage": 600, "prefers": "capital", "hit": hits(.05, .5, 1, 1, 1, 1), "never_targets_light": True, "visual": "bomb"},
-    "dual_role":        {"damage": 50, "prefers": "frigate", "hit": hits(.01, .5, .5, .5, 1, 1), "visual": "tracer"},
+    "bomber_gun":       {"damage": 600, "prefers": "capital", "hit": hits(.05, .5, 1, 1, 1, 1), "never_targets_light": True, "visual": "bomb", "projectile_speed": 900, "launch_delay": 0.2},
+    "dual_role":        {"damage": 50, "prefers": "frigate", "hit": hits(.01, .5, .5, .5, 1, 1), "visual": "tracer", "projectile_speed": 1600, "launch_delay": 0.1},
     "laser":            {"damage": 3000, "prefers": "capital", "hit": hits(.01, .02, .6, .9, .9, .9), "visual": "beam", "travel_time": 3.0},
     "shield_repair":    {"damage": 0, "shield_restore": 300, "targets_friends": True, "hit": hits(1, 1, 1, 1, 1, 1), "visual": "repair_beam"},
     # Not in 2017 (it was a visual-only cloak): friendly non-fighter ships within aura_radius recharge

@@ -125,6 +125,8 @@ CONTENT = {
         ["2026-11-16", "Contrails are 1.2 s of flight at any frame rate (points by time, not per frame).", "At 60-144 fps they were only 0.2-0.5 s long."],
         ["2026-11-16", "Computer fleets close in on a beaten enemy (3 ships or fewer) instead of holding at gun range.", "Battles stalled with the last few craft out at the edge of range."],
         ["2026-11-16", "Squadron markers, selection rings and click targets follow the squadron's craft, not its rules position; warp portals stay where the ship arrived.", "Owner feedback: portals and selection rings spun while fighters flew straight out of the jump."],
+        ["2026-11-16", "Every drawn shot ends exactly when its hit lands. Gun rounds (miniguns, fighter and scout guns, attack craft) fly at 1,600/s after 0.1 s and bombs at 900/s after 0.2 s (2017: 440/s after 0.5 s), so the tracer you see is the real flight.", "Owner feedback: craft exploded before the shot reached them (tracers were drawn for 0.6 s while hits took 2-3 s)."],
+        ["2026-11-16", "Fighter missiles are smaller; misses fly on past the target and fade; missile hits end in a fireball with a shock ring and debris.", "Owner request."],
     ],
     "recovery_stats": [
         ["Build", "Unity 5.6.1f1, Mono"],
