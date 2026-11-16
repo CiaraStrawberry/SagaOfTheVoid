@@ -75,3 +75,7 @@ MonoBehaviour:
   campaignJson: {fileID: 4900000, guid: 0f4284937ec4ab5438df0f0396585f1a, type: 3}
   fxShader: {fileID: 4800000, guid: 897beb3a6a88af1488b117f147670858, type: 3}
   skybox: {fileID: 2100000, guid: cf32db390983d614a8c26a8036f44b26, type: 2}
+  warpTunnel: {fileID: 2800000, guid: 1e2f9c47c36a83f4bba47da8abd53dfd, type: 3}
+  warpRing: {fileID: 2800000, guid: 8651d31b9cb6a944881bc4537262c831, type: 3}
+  warpAura: {fileID: 2800000, guid: e924738e683733d42bc185ba7c189f61, type: 3}
+  warpSpark: {fileID: 2800000, guid: 8d8f4c34ff436d641849dd7f18f05043, type: 3}

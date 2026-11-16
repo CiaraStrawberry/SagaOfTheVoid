@@ -24,6 +24,10 @@ namespace Saga.Game
         readonly RectTransform selectionPanel, helpPanel, buildPanel;
         readonly Text tooltip, queueText, objective;
         GameObject endPanel;
+        RectTransform reservePanel;
+        Text reserveHint;
+        readonly List<(string id, RectTransform slot, Text count, Image frame)> reserveSlots = new List<(string, RectTransform, Text, Image)>();
+        float buildPanelTop;
         readonly Image queueFill;
         readonly List<(string id, Image icon, Text cost, Text count, Image shade)> buildButtons = new List<(string, Image, Text, Text, Image)>();
         string hovered;
@@ -106,7 +110,33 @@ namespace Saga.Game
                 hooks.OnExit = () => { if (hovered == id) hovered = null; };
                 buildButtons.Add((id, ic, cost, count, shade));
             }
-            tooltip = MakeText(root, "tooltip", 18, TextAnchor.LowerRight, new Vector2(1, 0), new Vector2(-28, 24 + 12 + 2 * 108 + 54 + 10), new Vector2(560, 60));
+            buildPanelTop = 24 + 12 + 2 * 108 + 54;
+            tooltip = MakeText(root, "tooltip", 18, TextAnchor.LowerRight, new Vector2(1, 0), new Vector2(-28, buildPanelTop + 10), new Vector2(560, 60));
+
+            // Reserve, above the build bar: built ships waiting to warp in. Click one, then click the battlefield.
+            reservePanel = MakeRect(root, "reserve", new Vector2(1, 0), new Vector2(-24, buildPanelTop + 8), new Vector2(12 + 6 * 92, 128));
+            reservePanel.gameObject.AddComponent<Image>().color = Panel;
+            MakeText(reservePanel, "title", 18, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(14, -8), new Vector2(300, 24)).text =
+                "<b>Reserve</b>  <color=#8d98ab>click a ship, then where it warps in</color>";
+            var all = UiKit.Button(reservePanel, "Deploy all  (R)", new Vector2(1, 1), new Vector2(-10, -6), new Vector2(170, 30), () => game.BeginDeploy("*"), 17);
+            all.transform.parent.GetComponent<RectTransform>().pivot = new Vector2(1, 1);
+            foreach (var e in buyable)
+            {
+                var id = e.id;
+                var slot = MakeRect(reservePanel, "reserve " + id, new Vector2(0, 1), new Vector2(12, -40), new Vector2(84, 80));
+                var frame = slot.gameObject.AddComponent<Image>();
+                frame.color = new Color(1, 1, 1, 0.06f);
+                var ic = MakeRect(slot, "icon", new Vector2(0.5f, 0.5f), new Vector2(0, 2), new Vector2(66, 66)).gameObject.AddComponent<Image>();
+                ic.sprite = lib.Icon(id); ic.preserveAspect = true; ic.raycastTarget = false;
+                var count = MakeText(slot, "count", 20, TextAnchor.UpperRight, new Vector2(1, 1), new Vector2(-6, -4), new Vector2(50, 26));
+                count.color = new Color(0.65f, 0.85f, 1f);
+                var hooks = slot.gameObject.AddComponent<UiHooks>();
+                hooks.OnLeft = () => game.BeginDeploy(id);
+                hooks.OnEnter = () => hovered = id;
+                hooks.OnExit = () => { if (hovered == id) hovered = null; };
+                reserveSlots.Add((id, slot, count, frame));
+            }
+            reserveHint = MakeText(root, "deploy hint", 24, TextAnchor.MiddleCenter, new Vector2(0.5f, 0), new Vector2(0, 150), new Vector2(1100, 40));
 
             // Controls card, shown at the start and on H.
             helpPanel = MakeRect(root, "help", new Vector2(1, 1), new Vector2(-24, -64), new Vector2(560, 352));
@@ -144,6 +174,7 @@ namespace Saga.Game
             var sb = new StringBuilder();
             var me = w.TeamOf(SkirmishController.PlayerTeam);
             sb.AppendFormat("<color=#e7d38c>CREDITS  {0:N0}</color>  <color=#8d98ab>+{1:0}/s</color>      ", System.Math.Floor(me.Money), me.Money < Saga.Sim.World.MoneyCap ? me.IncomePerSecond : 0);
+            if (me.Reserve.Count > 0) sb.AppendFormat("<color=#a8ffc0>RESERVE  {0}</color>      ", me.Reserve.Count);
             sb.AppendFormat("<color=#a8d4ff>BLUE  {0}</color><color=#8d98ab>/{4}</color>      <color=#ffb0a8>RED  {1}</color>      {2:00}:{3:00}", w.Count(0), w.Count(1), t / 60, t % 60, w.ShipCap - 1);
             if (game.Paused) sb.Append("      <color=#e7b04c>PAUSED</color>");
             else if (game.GameSpeed != 1f) sb.AppendFormat("      <color=#e7b04c>×{0:0.##}</color>", game.GameSpeed);
@@ -174,6 +205,7 @@ namespace Saga.Game
             helpPanel.gameObject.SetActive(Time.unscaledTime < helpUntil);
             RefreshSelection();
             RefreshBuild();
+            RefreshReserve();
         }
 
         void RefreshSelection()
@@ -247,6 +279,32 @@ namespace Saga.Game
                     why != null ? "\n<color=#ef8a80>" + why + "</color>" : "");
             }
             else tooltip.text = "";
+        }
+
+        void RefreshReserve()
+        {
+            var me = game.World.TeamOf(SkirmishController.PlayerTeam);
+            bool any = me.Reserve.Count > 0;
+            reservePanel.gameObject.SetActive(any);
+            int x = 0;
+            foreach (var (id, slot, count, frame) in reserveSlots)
+            {
+                int n = me.InReserve(id);
+                slot.gameObject.SetActive(n > 0);
+                if (n == 0) continue;
+                slot.anchoredPosition = new Vector2(12 + x * 92, -40);
+                count.text = "×" + n;
+                frame.color = game.DeployType == id ? new Color(0.45f, 1f, 0.6f, 0.35f) : new Color(1, 1, 1, 0.06f);
+                x++;
+            }
+            var tp = tooltip.rectTransform.anchoredPosition;
+            tooltip.rectTransform.anchoredPosition = new Vector2(tp.x, buildPanelTop + 10 + (any ? 140 : 0));
+            if (game.Deploying)
+            {
+                string what = game.DeployType == "*" ? "the whole reserve (" + me.Reserve.Count + ")" : game.World.Rules.Ships[game.DeployType].name;
+                reserveHint.text = "<color=#a8ffc0>Click to warp in " + what + "</color>   <color=#8d98ab>Shift keeps placing · right-click or Esc cancels</color>";
+            }
+            else reserveHint.text = "";
         }
 
         void ShowEndButtons(bool won)

@@ -134,6 +134,8 @@ public static class ShipModelBuilder
         BuildLibrary(defs);
     }
 
+    public static void BuildLibraryOnly() => BuildLibrary(JsonUtility.FromJson<ShipDefList>(File.ReadAllText("Assets/Data/ships.json")));
+
     // The runtime's one entry point to ships, data, the effects shader and the sky.
     public static void BuildLibrary(ShipDefList defs)
     {
@@ -173,6 +175,10 @@ public static class ShipModelBuilder
         lib.shipsJson = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/ships.json");
         lib.weaponsJson = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/weapons.json");
         lib.fxShader = Shader.Find("Saga/Fx");
+        lib.warpTunnel = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Art/Fx/warpjump_tunnel.png");
+        lib.warpRing = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Art/Fx/warpjump_ring.png");
+        lib.warpAura = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Art/Fx/warpjump_aura.png");
+        lib.warpSpark = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Art/Fx/warpjump_spark.png");
         lib.skybox = sky;
         EditorUtility.SetDirty(lib);
         AssetDatabase.SaveAssets();

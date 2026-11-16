@@ -33,8 +33,6 @@ namespace Saga.Game
             rules = lib.Rules();
             var root = UiKit.Canvas("Start menu", cam, 10).transform;
             UiKit.Label(root, "title", 64, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(80, -70), new Vector2(1200, 90), "<b>SAGA OF THE VOID</b>");
-            UiKit.Label(root, "sub", 22, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(84, -150), new Vector2(1200, 40),
-                "<color=#8d98ab>Remake preview · Unity 6 · F10 quits</color>");
 
             // Skirmish column
             var sk = UiKit.Box(root, "skirmish", new Vector2(0, 1), new Vector2(80, -220), new Vector2(520, 520), UiKit.Panel).transform;

@@ -195,6 +195,45 @@ namespace Saga.Game
 
         public void CommandStop() => World.OrderStop(Selected);
 
+        // ---------- reserve: built ships wait until you choose where they warp in ----------
+
+        public string DeployType { get; private set; }   // ship being placed, or "*" for the whole reserve
+        public bool Deploying => DeployType != null;
+
+        public void BeginDeploy(string shipId)
+        {
+            var me = World.TeamOf(PlayerTeam);
+            if (shipId == "*" ? me.Reserve.Count > 0 : me.InReserve(shipId) > 0) DeployType = shipId;
+        }
+
+        public void CancelDeploy() { DeployType = null; View?.ShowDeployMarker(null, false, 0); }
+
+        // Warps the chosen reserve ships in at a point on the play plane. Returns what arrived.
+        public List<Ship> DeployAt(Vector3 worldPoint, string shipId)
+        {
+            var me = World.TeamOf(PlayerTeam);
+            var ids = shipId == "*" ? me.Reserve.ToList() : new List<string> { shipId };
+            var made = World.Deploy(PlayerTeam, ids, BattleView.ToSim(worldPoint));
+            if (made.Count > 0) Select(made);
+            return made;
+        }
+
+        void HandleDeploy(Vector2 mouse, bool shift)
+        {
+            var me = World.TeamOf(PlayerTeam);
+            if (DeployType != "*" && me.InReserve(DeployType) == 0 || DeployType == "*" && me.Reserve.Count == 0) { CancelDeploy(); return; }
+            var g = GroundUnderMouse();
+            bool ok = g.HasValue && World.CannotDeploy(PlayerTeam, BattleView.ToSim(g.Value)) == null;
+            float size = DeployType == "*" ? 1400f : 700f;
+            View.ShowDeployMarker(g, ok, size);
+            if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) { CancelDeploy(); return; }
+            if (Input.GetMouseButtonDown(0) && g.HasValue && ok)
+            {
+                DeployAt(g.Value, DeployType);
+                if (!shift || DeployType == "*") CancelDeploy();
+            }
+        }
+
         public bool Buy(string shipId) => World.TryBuy(PlayerTeam, shipId);
         public bool CancelBuy(string shipId) => World.CancelBuy(PlayerTeam, shipId);
 
@@ -214,7 +253,8 @@ namespace Saga.Game
             if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.KeypadPlus)) GameSpeed = Mathf.Min(4f, GameSpeed * 2f);
             if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.KeypadMinus)) GameSpeed = Mathf.Max(0.25f, GameSpeed / 2f);
             if (Input.GetKeyDown(KeyCode.H)) hud.ToggleHelp();
-            if (Input.GetKeyDown(KeyCode.Escape)) Select(new Ship[0]);
+            if (Input.GetKeyDown(KeyCode.Escape) && !Deploying) Select(new Ship[0]);
+            if (Input.GetKeyDown(KeyCode.R) && !Deploying) BeginDeploy("*");
             if (Input.GetKeyDown(KeyCode.F)) Focus(Selected);
             bool ctrl = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
             if (Input.GetKeyDown(KeyCode.X)) CommandStop();
@@ -283,9 +323,15 @@ namespace Saga.Game
 
         void HandleMouse()
         {
-            if (hud.PointerOverPanel()) return;
             var mouse = (Vector2)Input.mousePosition;
             bool shift = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+            if (Deploying)
+            {
+                if (hud.PointerOverPanel()) View.ShowDeployMarker(null, false, 0);
+                else HandleDeploy(mouse, shift);
+                return;
+            }
+            if (hud.PointerOverPanel()) return;
 
             if (Input.GetMouseButtonDown(0)) { leftDown = true; dragStart = mouse; dragging = false; }
             if (leftDown && (mouse - dragStart).magnitude > 8f) dragging = true;

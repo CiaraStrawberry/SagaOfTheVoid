@@ -23,6 +23,8 @@ namespace Saga.Sim
         public double IncomePerSecond = World.Income;
         public Difficulty Difficulty = Difficulty.Normal;
         public readonly List<BuildOrder> Queue = new List<BuildOrder>();
+        // Built ships waiting to be deployed (players only; the computer deploys straight to its fleet).
+        public readonly List<string> Reserve = new List<string>();
         public Vec2 Home;            // where the fleet started; retreat point and fallback spawn point
         public bool HomeSet;
         public bool Retreating;
@@ -35,6 +37,7 @@ namespace Saga.Sim
         public string LastBuy = "scout";
 
         public int Queued => Queue.Sum(o => o.Count);
+        public int InReserve(string shipId) => Reserve.Count(x => x == shipId);
         public BuildOrder Building => Queue.Count > 0 ? Queue[0] : null;
     }
 
@@ -44,6 +47,8 @@ namespace Saga.Sim
         public const int ShipCap1v1 = 23;  // 2017 getmaxshipnumbers: 23 (1v1), 14 (2v2), 9 (3v3); buying stops one short
 
         public bool EconomyEnabled = true;
+        public bool UseReserve = true;            // players' built ships wait in reserve until deployed
+        public const double DeployMinEnemyDistance = 1000; // can't warp in right on top of the enemy
         public int ShipCap = ShipCap1v1;
         readonly Dictionary<int, TeamState> teams = new Dictionary<int, TeamState>();
 
@@ -76,7 +81,7 @@ namespace Saga.Sim
             if (Count(team) == 0) return "fleet destroyed";
             if (Mission != null && team == Mission.PlayerTeam && !Mission.Allowed.Contains(shipId)) return "not available in this mission";
             if (Mission?.Outcome != null) return "mission over";
-            if (Count(team) + t.Queued >= ShipCap - 1) return "fleet is full";
+            if (Count(team) + t.Queued + t.Reserve.Count >= ShipCap - 1) return "fleet is full";
             if (t.Money < def.cost) return "not enough credits";
             return null;
         }
@@ -131,8 +136,40 @@ namespace Saga.Sim
                 b.Progress = 0;
                 b.Count--;
                 if (b.Count <= 0) t.Queue.RemoveAt(0);
-                SpawnBought(team, b.ShipId);
+                if (PlayerTeams.Contains(team) && UseReserve) t.Reserve.Add(b.ShipId);
+                else SpawnBought(team, b.ShipId);
             }
+        }
+
+        // Why ships from the reserve can't warp in at this point, or null if they can.
+        public string CannotDeploy(int team, Vec2 at)
+        {
+            if (Mission?.Outcome != null || Winner >= 0) return "battle over";
+            if (Alive.Any(s => s.Team != team && Vec2.Distance(s.Pos, at) < DeployMinEnemyDistance)) return "too close to the enemy";
+            return null;
+        }
+
+        // Warps reserve ships in at a point (a spread-out group if several), facing the enemy. Returns the new ships.
+        public List<Ship> Deploy(int team, IList<string> shipIds, Vec2 at)
+        {
+            var made = new List<Ship>();
+            var t = TeamOf(team);
+            if (CannotDeploy(team, at) != null) return made;
+            var enemies = Alive.Where(s => s.Team != team).ToList();
+            var toward = enemies.Count > 0 ? new Vec2(enemies.Average(s => s.Pos.X), enemies.Average(s => s.Pos.Y)) - at : new Vec2(1, 0);
+            var side = new Vec2(-toward.Normalized.Y, toward.Normalized.X);
+            int n = 0;
+            foreach (var id in shipIds)
+            {
+                if (!t.Reserve.Remove(id)) continue;
+                // Rows of four across the line of advance, 450 apart.
+                var offset = side * ((n % 4 - 1.5) * 450) + toward.Normalized * (-(n / 4) * 450);
+                var s = Spawn(id, team, at + offset, Vec2.HeadingOf(toward));
+                s.Arrived = Time;
+                made.Add(s);
+                n++;
+            }
+            return made;
         }
 
         // New ships appear beside the fleet (2017 getspawnpos: the fleet's average position), facing the enemy.

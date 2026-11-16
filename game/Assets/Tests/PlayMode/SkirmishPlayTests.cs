@@ -79,6 +79,17 @@ namespace Saga.Tests
                 Shot(cam, rt, "skirmish_5_building");
                 double until = game.World.Time + 15;
                 yield return RunUntil(game, until);
+                // Built ships wait in reserve; warp them in behind the fleet.
+                Assert.AreEqual(2, game.World.TeamOf(SkirmishController.PlayerTeam).Reserve.Count + (game.World.Winner >= 0 ? 2 : 0), "both wait in reserve");
+                var behind = Centre(game.Own.ToList()) + new Vector3(-1500, 0, 0);
+                game.Focus(game.Own);
+                game.BeginDeploy("*");
+                var deployed = game.DeployAt(behind, game.DeployType);
+                game.CancelDeploy();
+                yield return null; yield return null; yield return null;
+                yield return new WaitForSecondsRealtime(0.9f); // mid-warp
+                Shot(cam, rt, "skirmish_6_warp");
+                yield return RunUntil(game, game.World.Time + 2);
                 int arrived = game.World.Ships.Count(x => x.Team == SkirmishController.PlayerTeam && x.Arrived >= 0) - before;
                 Assert.AreEqual(2, arrived + (game.World.Winner >= 0 ? 2 : 0), "both bought ships arrived (losses in combat do not matter)");
             }

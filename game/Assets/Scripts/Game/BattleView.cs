@@ -13,7 +13,7 @@ namespace Saga.Game
     // Shared by the playable skirmish and the editor's battle recorder. Never changes the World.
     //
     // Sim plane (X, Y) is world (X, 0, Z). Sim heading turns anticlockwise seen from above; Unity yaw turns clockwise.
-    public class BattleView
+    public partial class BattleView
     {
         public const float SizeK = 30f, SizePow = 0.6f;  // shown length = 30 * modelLength^0.6 (big ships shrink, small grow)
         public const float SquadronBoost = 1.8f;
@@ -34,6 +34,8 @@ namespace Saga.Game
             public double LastHeading, ShowBarsUntil;
             public int LastArmor, LastShield;
             public bool Selected;
+            public Craft[] Crafts;   // squadrons: each craft flies on its own (BattleView.Motion.cs)
+            public Warp Warp;        // arriving through a warp portal
         }
 
         class Fx
@@ -48,6 +50,7 @@ namespace Saga.Game
             public bool Flat;
             public Transform Anchor;   // shot end point follows this ship part...
             public Vector3 Local;      // ...at this local point
+            public Quaternion? Facing; // fixed orientation instead of facing the camera
         }
 
         // Where a shot will land, decided when it is fired, kept so the impact appears at the same spot.
@@ -72,6 +75,7 @@ namespace Saga.Game
             World = world; lib = library; Cam = cam;
             root = new GameObject("Battle").transform;
             MakeShared();
+            MakeWarpSprites();
             foreach (var s in world.Ships) GetView(s);
         }
 
@@ -167,6 +171,22 @@ namespace Saga.Game
             AddSprite("ring", ring, new Vector3(at.x, 5f, at.z), c, size, 0.45f, Vector3.zero, true);
         }
 
+        // Ring under the cursor while placing reserve ships: green where they can warp in, red where they can't.
+        SpriteRenderer deployMarker;
+        public void ShowDeployMarker(Vector3? at, bool ok, float size)
+        {
+            if (deployMarker == null)
+            {
+                deployMarker = FlatSprite("deploy marker", ring, root, 1f, 0f);
+            }
+            deployMarker.gameObject.SetActive(at.HasValue);
+            if (!at.HasValue) return;
+            deployMarker.transform.position = new Vector3(at.Value.x, 8f, at.Value.z);
+            float pulse = 1f + 0.06f * Mathf.Sin(Time.unscaledTime * 6f);
+            deployMarker.transform.localScale = Vector3.one * size * pulse;
+            Tint(deployMarker, ok ? new Color(0.45f, 1f, 0.6f, 0.75f) : new Color(1f, 0.35f, 0.3f, 0.75f));
+        }
+
         // The live ship whose hull a screen ray hits first, if any.
         public Ship Pick(Ray ray)
         {
@@ -228,6 +248,8 @@ namespace Saga.Game
                 return e;
             }).ToArray();
 
+            if (small) SetUpCrafts(v);
+
             var field = s.ShieldField;
             if (field != null)
             {
@@ -239,12 +261,9 @@ namespace Saga.Game
             v.ShowBarsUntil = -1;
             views[s] = v;
             UpdateShipView(v, 0);
-            if (s.Arrived >= 0)
-            {
-                // Bought ship arriving: a warp flash and a ring in team colour.
-                AddSprite("flash", glow, Centre(v), Hdr(Color.Lerp(tint, Color.white, 0.5f), 1.6f), v.Length * 1.4f, 0.6f, Vector3.zero, false);
-                AddSprite("ring", ring, Centre(v), new Color(tint.r, tint.g, tint.b, 0.6f), v.Length * 1.8f, 0.8f, Vector3.zero, true);
-            }
+            // Ships deployed from the reserve warp in at once; the starting fleets warp in staggered at the start.
+            if (s.Arrived >= 0) StartWarp(v, 0f);
+            else if (World.Time < 0.5) StartWarp(v, 0.2f + (float)rng.NextDouble() * 1.4f);
             Tint(v.Disc, new Color(tint.r, tint.g, tint.b, 0.25f));
             return v;
         }
@@ -285,7 +304,11 @@ namespace Saga.Game
             int craft = World.CraftLeft(s);
             // Squadron craft blink out as the squadron is whittled down.
             if (small)
+            {
                 for (int i = 0; i < v.Paint.renderers.Length; i++) v.Paint.renderers[i].enabled = i < craft;
+                UpdateCrafts(v, dt);
+            }
+            ApplyWarp(v, dt);
 
             var tint = TeamTint[s.Team % TeamTint.Length];
             Tint(v.Disc, new Color(tint.r, tint.g, tint.b, (small ? 0.22f : 0.25f) * (0.6f + 0.4f * craft / 5f)));
@@ -353,12 +376,15 @@ namespace Saga.Game
 
         Vector3 Muzzle(ShipView v)
         {
+            if (v.Crafts != null) return AnyCraft(v).T.position;
             float r = v.Length * 0.3f;
             return Centre(v) + new Vector3((float)(rng.NextDouble() - 0.5) * r, 0, (float)(rng.NextDouble() - 0.5) * r);
         }
 
         Vector3 MissPoint(ShipView target)
         {
+            if (target.Crafts != null)
+                return AnyCraft(target).T.position + UnityEngine.Random.insideUnitSphere * 160f;
             var d = UnityEngine.Random.insideUnitCircle.normalized * (target.Length * 0.7f + 180f);
             return Centre(target) + new Vector3(d.x, 0, d.y);
         }
@@ -401,6 +427,15 @@ namespace Saga.Game
         ShotPlan PlanShot(ShipView target, Vector3 muzzle, bool onShield)
         {
             var dir = FlatDir(target.Go.transform.position, muzzle);
+            if (target.Crafts != null)
+            {
+                // Squadrons: the shot goes to one craft (its shield edge, or the craft itself), following it.
+                var c = AnyCraft(target);
+                if (onShield) ShieldHits++; else HullHits++;
+                var toShooter = (muzzle - c.T.position).normalized;
+                var at = onShield ? c.T.position + toShooter * 35f : c.T.position;
+                return new ShotPlan { Anchor = c.T, Local = c.T.InverseTransformPoint(at), OnShield = onShield, Dir = FlatDir(c.T.position, muzzle) };
+            }
             if (onShield)
             {
                 // Shield bubble: the point on its rim facing the shooter, a little jittered.
@@ -535,13 +570,18 @@ namespace Saga.Game
         }
 
         void AddSprite(string kind, Sprite sp, Vector3 p, Color c, float size, float life, Vector3 vel, bool flat, float yaw = 0f)
+            => AddSpriteGet(kind, sp, p, c, size, life, vel, flat, yaw);
+
+        Fx AddSpriteGet(string kind, Sprite sp, Vector3 p, Color c, float size, float life, Vector3 vel, bool flat, float yaw = 0f)
         {
             var go = new GameObject(kind);
             go.transform.SetParent(root, false);
             var r = go.AddComponent<SpriteRenderer>();
             r.sprite = sp; r.sharedMaterial = addMat; Tint(r, c);
             go.transform.position = p;
-            fx.Add(new Fx { Go = go, Sprite = r, Kind = kind, Life = life, Colour = c, Size = size, From = p, Velocity = vel, Flat = flat, Yaw = yaw });
+            var f = new Fx { Go = go, Sprite = r, Kind = kind, Life = life, Colour = c, Size = size, From = p, Velocity = vel, Flat = flat, Yaw = yaw };
+            fx.Add(f);
+            return f;
         }
 
         void UpdateFx(float dt)
@@ -589,7 +629,7 @@ namespace Saga.Game
                 float grow = f.Kind == "arc" ? 1f : f.Kind == "ring" ? Mathf.Lerp(0.5f, 1.15f, Mathf.Sqrt(t)) : f.Kind == "flash" ? Mathf.Lerp(0.5f, 1.2f, Mathf.Sqrt(t)) : 1f - t * 0.5f;
                 f.Go.transform.localScale = Vector3.one * f.Size * grow;
                 f.Go.transform.position = f.From + f.Velocity * Mathf.Sqrt(t);
-                f.Go.transform.rotation = f.Flat ? Quaternion.Euler(0, f.Yaw, 0) * Quaternion.Euler(90, 0, 0) : Cam.transform.rotation;
+                f.Go.transform.rotation = f.Facing ?? (f.Flat ? Quaternion.Euler(0, f.Yaw, 0) * Quaternion.Euler(90, 0, 0) : Cam.transform.rotation);
                 var c = f.Colour; c.a *= (1f - t) * (1f - t);
                 Tint(f.Sprite, c);
             }

@@ -155,7 +155,7 @@ namespace Saga.Tests
         }
 
         [Test]
-        public void Economy_BuyPaysNow_QueueStacks_ShipArrivesAfterBuildTime()
+        public void Economy_BuyPaysNow_QueueStacks_BuiltShipsWaitInReserve()
         {
             var w = Duel();
             Run(w, 0.1);
@@ -166,15 +166,51 @@ namespace Saga.Tests
             Assert.AreEqual(1, w.TeamOf(0).Queue.Count, "same kind stacks into one order");
             Assert.AreEqual(2, w.TeamOf(0).Queued);
             Run(w, 4.9);
-            Assert.AreEqual(1, w.Count(0), "not yet: scouts take 5 s");
+            Assert.AreEqual(0, w.TeamOf(0).Reserve.Count, "not yet: scouts take 5 s");
             Run(w, 0.2);
-            Assert.AreEqual(2, w.Count(0));
-            var arrived = w.Alive.First(s => s.Def.id == "scout");
-            Assert.GreaterOrEqual(arrived.Arrived, 0);
-            Assert.Less(Vec2.Distance(arrived.Pos, new Vec2(-20000, 0)), 1500, "arrives beside the fleet");
+            Assert.AreEqual(1, w.TeamOf(0).InReserve("scout"), "built ship waits in reserve");
+            Assert.AreEqual(1, w.Count(0), "not on the field until deployed");
             Run(w, 5);
-            Assert.AreEqual(3, w.Count(0));
+            Assert.AreEqual(2, w.TeamOf(0).InReserve("scout"));
             Assert.AreEqual(0, w.TeamOf(0).Queued);
+        }
+
+        [Test]
+        public void Reserve_DeployWarpsInAtThePoint_NotNextToTheEnemy()
+        {
+            var w = Duel();
+            Run(w, 0.1);
+            w.TeamOf(0).Reserve.AddRange(new[] { "fighter", "cannon_frigate", "cannon_frigate" });
+            Assert.AreEqual("too close to the enemy", w.CannotDeploy(0, new Vec2(20000, 500)));
+            Assert.AreEqual(0, w.Deploy(0, new[] { "fighter" }, new Vec2(20000, 500)).Count);
+            var one = w.Deploy(0, new[] { "fighter" }, new Vec2(0, 0));
+            Assert.AreEqual(1, one.Count);
+            Assert.Less(Vec2.Distance(one[0].Pos, Vec2.Zero), 700);
+            Assert.GreaterOrEqual(one[0].Arrived, 0);
+            var both = w.Deploy(0, new[] { "cannon_frigate", "cannon_frigate", "capital" }, new Vec2(-5000, 0));
+            Assert.AreEqual(2, both.Count, "only ships actually in reserve deploy");
+            Assert.AreEqual(0, w.TeamOf(0).Reserve.Count);
+        }
+
+        [Test]
+        public void Reserve_CountsTowardTheFleetCap_ComputerSkipsIt()
+        {
+            var w = Duel();
+            w.ShipCap = 4;
+            Run(w, 0.1);
+            w.TeamOf(0).Money = 100000;
+            w.TeamOf(0).Reserve.Add("scout");
+            Assert.IsTrue(w.TryBuy(0, "scout"));
+            Assert.AreEqual("fleet is full", w.CannotBuy(0, "scout"), "1 on field + 1 reserve + 1 queued = cap - 1");
+
+            var c = NewWorld();
+            c.PlayerTeams.Add(0);
+            c.Spawn("capital", 0, new Vec2(-30000, 0), 0);
+            c.Spawn("capital", 1, new Vec2(30000, 0), 0);
+            c.TeamOf(1).Difficulty = Difficulty.Hard;
+            Run(c, 90);
+            Assert.AreEqual(0, c.TeamOf(1).Reserve.Count, "the computer deploys straight to its fleet");
+            Assert.Greater(c.Count(1), 1);
         }
 
         [Test]

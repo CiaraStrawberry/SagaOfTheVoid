@@ -39,6 +39,11 @@ namespace Saga.Game
         public TextAsset campaignJson;
         public Shader fxShader;
         public Material skybox;
+        [Header("Warp-in (2017 Forge3D WarpJump textures)")]
+        public Texture2D warpTunnel;
+        public Texture2D warpRing;
+        public Texture2D warpAura;
+        public Texture2D warpSpark;
 
         public GameObject Map(string id) => maps.Find(m => m.id == id)?.prefab;
         public Texture2D Sky(string id) => skies.Find(s => string.Equals(s.id, id, StringComparison.OrdinalIgnoreCase))?.texture;
