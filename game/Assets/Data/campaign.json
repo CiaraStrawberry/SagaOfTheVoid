@@ -1,0 +1,172 @@
+{
+ "maps": [
+  {
+   "id": "asteroid_field",
+   "scene_2017": "MapsPack1",
+   "contents": "16 big asteroids"
+  },
+  {
+   "id": "space_station",
+   "scene_2017": "MapsPack2",
+   "contents": "SpaceStation4"
+  },
+  {
+   "id": "ship_graveyard",
+   "scene_2017": "MapsPack3",
+   "contents": "derelict starship and a debris field (86 pieces)"
+  }
+ ],
+ "missions": [
+  {
+   "index": 0,
+   "name": "Basic Training",
+   "enemy_fleet": [
+    "scout",
+    "scout",
+    "scout",
+    "scout"
+   ],
+   "map": "asteroid_field",
+   "sky": "skybox3",
+   "start_money": 2000,
+   "objective": "destroy_all",
+   "time_limit": 1200,
+   "ships_allowed": "fighters",
+   "story": "Practice your skills against drones in preperation for defense of the empire.",
+   "story_2017": "Practice your skills \nagainst drones in \npreperation for \ndefense of the  \nempire."
+  },
+  {
+   "index": 1,
+   "name": "Core Outskirts",
+   "enemy_fleet": [
+    "bomber",
+    "bomber",
+    "bomber"
+   ],
+   "map": "space_station",
+   "sky": "Skybox1",
+   "start_money": 2000,
+   "objective": "destroy_all",
+   "time_limit": 1200,
+   "ships_allowed": "fighters",
+   "story": "Rebels have been sending sorties into civilian shiping lanes.\n\nDestroy their ships and protect our economic interests.",
+   "story_2017": "Rebels have been \nsending sorties into \ncivilian shiping lanes. \n\nDestroy their ships \nand protect our \neconomic interests."
+  },
+  {
+   "index": 2,
+   "name": "System Patrol",
+   "enemy_fleet": [
+    "cannon_frigate",
+    "cannon_frigate",
+    "cannon_frigate",
+    "super_capital"
+   ],
+   "map": "ship_graveyard",
+   "sky": "skybox4",
+   "start_money": 4000,
+   "objective": "kill_target",
+   "time_limit": 1200,
+   "ships_allowed": "fighters",
+   "story": "The outskirts have always been a pit of despair and piracy.\n\nA Famed Pirate boss has been located conducting a raid. end him.",
+   "story_2017": "The outskirts have \nalways been a pit \nof despair and piracy. \n\n A Famed Pirate boss \nhas been located \nconducting a raid. \nend him."
+  },
+  {
+   "index": 3,
+   "name": "Pirate Base",
+   "enemy_fleet": [
+    "flak_frigate",
+    "fighter",
+    "fighter",
+    "fighter",
+    "fighter"
+   ],
+   "map": "asteroid_field",
+   "sky": "skybox5",
+   "start_money": 5500,
+   "objective": "destroy_all",
+   "time_limit": 1200,
+   "ships_allowed": "fighters_and_frigates",
+   "story": "Our intelligence has located one of their dens. Destroy it.",
+   "story_2017": "Our intelligence has \nlocated one of their \ndens. \nDestroy it."
+  },
+  {
+   "index": 4,
+   "name": "Military Excursion",
+   "enemy_fleet": [
+    "cannon_frigate",
+    "cannon_frigate"
+   ],
+   "map": "asteroid_field",
+   "sky": "skybox3",
+   "start_money": 4000,
+   "objective": "survive",
+   "time_limit": 300,
+   "ships_allowed": "fighters_and_frigates",
+   "story": "We need you to make a full excursion into rebel territory and recorver a high ranking prisoner.",
+   "story_2017": "We need you to make \na full excursion into \nrebel territory \nand recorver a high \nranking prisoner."
+  },
+  {
+   "index": 5,
+   "name": "All out war",
+   "enemy_fleet": [
+    "bomber",
+    "bomber",
+    "bomber",
+    "fighter",
+    "fighter",
+    "fighter",
+    "destroyer",
+    "support_frigate"
+   ],
+   "map": "space_station",
+   "sky": "skybox4",
+   "start_money": 8000,
+   "objective": "destroy_all",
+   "time_limit": 1200,
+   "ships_allowed": "fighters_and_frigates",
+   "story": "The rebels have launched an all out assault on the Capital.\n\nDestroy one of their en-route fleets.",
+   "story_2017": "The rebels have \nlaunched an all out \nassault on the \nCapital. \n\nDestroy one of their \nen-route fleets."
+  },
+  {
+   "index": 6,
+   "name": "Final Assault",
+   "enemy_fleet": [
+    "destroyer",
+    "destroyer"
+   ],
+   "map": "ship_graveyard",
+   "sky": "skybox3",
+   "start_money": 6000,
+   "objective": "survive",
+   "time_limit": 300,
+   "ships_allowed": "all",
+   "story": "The Imperial palace is under siege!\n\nyou need to survive against the rebel fleets!",
+   "story_2017": "The Imperial palace \nis under siege! \n\nyou need to survive \nagainst the rebel \nfleets!"
+  },
+  {
+   "index": 7,
+   "name": "Last Hope",
+   "enemy_fleet": [
+    "capital",
+    "destroyer",
+    "destroyer",
+    "bomber",
+    "bomber",
+    "bomber",
+    "bomber",
+    "bomber",
+    "fighter",
+    "fighter",
+    "super_capital"
+   ],
+   "map": "asteroid_field",
+   "sky": "skybox4",
+   "start_money": 12000,
+   "objective": "kill_target",
+   "time_limit": 1200,
+   "ships_allowed": "all",
+   "story": "The rebel flagship is exposed.\n\nstrike now and end the rebellion.",
+   "story_2017": "The rebel flagship is \nexposed. \n\nstrike now and \nend the rebellion."
+  }
+ ]
+}

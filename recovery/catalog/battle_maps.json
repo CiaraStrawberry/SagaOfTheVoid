@@ -1,0 +1,1798 @@
+{
+ "map1area": [
+  {
+   "depth": 0,
+   "name": "MapsPack1",
+   "components": [],
+   "pos_scale": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "mesh": null
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    -3586.0,
+    0.0,
+    7836.0,
+    1000.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid 2",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    2427.0,
+    0.0,
+    -10037.0,
+    1000.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    -4823.7,
+    -816.4,
+    -11239.0,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone) (1)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    -6193.7,
+    6975.1,
+    15221.3,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone) (2)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    9021.5,
+    3308.2,
+    2990.8,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone) (3)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    -30663.5,
+    785.4,
+    18296.5,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone) (4)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    19249.8,
+    -48342.4,
+    30315.4,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone) (5)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    2848.6,
+    12134.8,
+    -5905.4,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone) (6)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    3309.4,
+    -2367.1,
+    10766.5,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone) (7)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    -5217.1,
+    13318.4,
+    -19831.0,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone) (8)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    -26328.5,
+    18367.4,
+    23044.0,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone) (9)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    -34697.0,
+    11856.4,
+    -87.4,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone) (10)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    112.5,
+    -3879.0,
+    22959.1,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone) (11)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    -36594.5,
+    -34985.9,
+    16577.2,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone) (12)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    57765.8,
+    35600.7,
+    -38489.0,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  },
+  {
+   "depth": 1,
+   "name": "Big Asteroid(Clone) (13)",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer",
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    8260.3,
+    32190.5,
+    9953.5,
+    500.0
+   ],
+   "mesh": "ext:4:13"
+  }
+ ],
+ "map2area": [
+  {
+   "depth": 0,
+   "name": "MapsPack2",
+   "components": [],
+   "pos_scale": [
+    0.0,
+    0.0,
+    -3752.0,
+    1.0
+   ],
+   "mesh": null
+  },
+  {
+   "depth": 1,
+   "name": "SpaceStation4",
+   "components": [],
+   "pos_scale": [
+    -44.0,
+    -3090.0,
+    -12855.0,
+    300.0
+   ],
+   "mesh": null
+  },
+  {
+   "depth": 2,
+   "name": "Circle",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "mesh": "ext:3:95"
+  },
+  {
+   "depth": 2,
+   "name": "Circle.001",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "mesh": "ext:3:80"
+  },
+  {
+   "depth": 2,
+   "name": "Circle.002",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "mesh": "ext:3:70"
+  },
+  {
+   "depth": 2,
+   "name": "Circle.003",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "mesh": "ext:3:75"
+  },
+  {
+   "depth": 2,
+   "name": "Circle.004",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "mesh": "ext:3:65"
+  },
+  {
+   "depth": 2,
+   "name": "Cube",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "mesh": "ext:3:100"
+  },
+  {
+   "depth": 2,
+   "name": "Cube.001",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "mesh": "ext:3:90"
+  },
+  {
+   "depth": 2,
+   "name": "Cube.002",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "mesh": "ext:3:85"
+  }
+ ],
+ "map3area": [
+  {
+   "depth": 0,
+   "name": "MapsPack3",
+   "components": [],
+   "pos_scale": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "mesh": null
+  },
+  {
+   "depth": 1,
+   "name": "DerelictStarship01Prefab",
+   "components": [
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    -13658.0,
+    4624.0,
+    4343.0,
+    1000.0
+   ],
+   "mesh": null
+  },
+  {
+   "depth": 2,
+   "name": "SDP01_DebrisCluster01_Group",
+   "components": [],
+   "pos_scale": [
+    0.0,
+    0.0,
+    -2.3,
+    1.0
+   ],
+   "mesh": null
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject01",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.2,
+    0.7,
+    -1.1,
+    1.0
+   ],
+   "mesh": "ext:3:67"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject02",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.2,
+    0.7,
+    -1.1,
+    1.0
+   ],
+   "mesh": "ext:3:72"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject03",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.7,
+    -0.1,
+    0.1,
+    1.0
+   ],
+   "mesh": "ext:3:77"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject04",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.7,
+    -0.1,
+    0.1,
+    1.0
+   ],
+   "mesh": "ext:3:82"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject05",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.4,
+    -0.0,
+    1.0
+   ],
+   "mesh": "ext:3:87"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject06",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.4,
+    1.2,
+    1.0
+   ],
+   "mesh": "ext:3:92"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject07",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.7,
+    -0.3,
+    -1.4,
+    1.0
+   ],
+   "mesh": "ext:3:97"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject08",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    2.1,
+    -1.6,
+    -0.9,
+    1.0
+   ],
+   "mesh": "ext:3:102"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject09",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.7,
+    1.3,
+    -2.0,
+    1.0
+   ],
+   "mesh": "ext:3:106"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject10",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.8,
+    1.3,
+    -2.0,
+    1.0
+   ],
+   "mesh": "ext:3:110"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject11",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.7,
+    -0.3,
+    -1.4,
+    1.0
+   ],
+   "mesh": "ext:3:113"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject12",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -2.1,
+    -1.7,
+    -0.9,
+    1.0
+   ],
+   "mesh": "ext:3:115"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject13",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.2,
+    -0.8,
+    -0.8,
+    1.0
+   ],
+   "mesh": "ext:3:119"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject14",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.7,
+    -1.5,
+    -1.2,
+    1.0
+   ],
+   "mesh": "ext:3:121"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject15",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.7,
+    -1.1,
+    -1.0,
+    1.0
+   ],
+   "mesh": "ext:3:123"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject16",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.7,
+    -1.5,
+    -1.2,
+    1.0
+   ],
+   "mesh": "ext:3:125"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject17",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.7,
+    -1.1,
+    -1.0,
+    1.0
+   ],
+   "mesh": "ext:3:127"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject18",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.3,
+    1.0,
+    -2.1,
+    1.0
+   ],
+   "mesh": "ext:3:129"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject19",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.3,
+    1.0,
+    -2.1,
+    1.0
+   ],
+   "mesh": "ext:3:131"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject20",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.8,
+    -0.5,
+    -0.9,
+    1.0
+   ],
+   "mesh": "ext:3:133"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject21",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.8,
+    -0.5,
+    -0.9,
+    1.0
+   ],
+   "mesh": "ext:3:135"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject22",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.2,
+    -0.8,
+    -0.8,
+    1.0
+   ],
+   "mesh": "ext:3:117"
+  },
+  {
+   "depth": 2,
+   "name": "SDP01_DebrisCluster04_Group",
+   "components": [],
+   "pos_scale": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "mesh": null
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject01",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.9,
+    0.4,
+    -0.3,
+    1.0
+   ],
+   "mesh": "ext:3:63"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject02",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.9,
+    0.4,
+    -0.3,
+    1.0
+   ],
+   "mesh": "ext:3:69"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject03",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.9,
+    -0.4,
+    -0.3,
+    1.0
+   ],
+   "mesh": "ext:3:74"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject04",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.9,
+    -0.4,
+    -0.3,
+    1.0
+   ],
+   "mesh": "ext:3:79"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject05",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.0,
+    -0.0,
+    1.0
+   ],
+   "mesh": "ext:3:84"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject06",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    -0.0,
+    -1.2,
+    1.0
+   ],
+   "mesh": "ext:3:89"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject07",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    0.0,
+    1.2,
+    1.0
+   ],
+   "mesh": "ext:3:94"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject08",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    0.6,
+    -0.9,
+    1.0
+   ],
+   "mesh": "ext:3:99"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject09",
+   "components": [],
+   "pos_scale": [
+    -0.0,
+    0.0,
+    -0.5,
+    1.0
+   ],
+   "mesh": null
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject10",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    -0.6,
+    -0.9,
+    1.0
+   ],
+   "mesh": "ext:3:104"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject11",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.0,
+    0.9,
+    -0.3,
+    1.0
+   ],
+   "mesh": "ext:3:108"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject12",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.2,
+    0.2,
+    -0.6,
+    1.0
+   ],
+   "mesh": "ext:3:112"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject13",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.0,
+    0.9,
+    -0.3,
+    1.0
+   ],
+   "mesh": "ext:3:114"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject14",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.2,
+    0.2,
+    -0.6,
+    1.0
+   ],
+   "mesh": "ext:3:116"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject15",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.0,
+    -0.9,
+    -0.3,
+    1.0
+   ],
+   "mesh": "ext:3:118"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject16",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.2,
+    -0.2,
+    -0.6,
+    1.0
+   ],
+   "mesh": "ext:3:120"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject17",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.0,
+    -0.9,
+    -0.3,
+    1.0
+   ],
+   "mesh": "ext:3:122"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject18",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.2,
+    -0.2,
+    -0.6,
+    1.0
+   ],
+   "mesh": "ext:3:124"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject19",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.3,
+    0.2,
+    -0.2,
+    1.0
+   ],
+   "mesh": "ext:3:126"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject20",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.3,
+    0.2,
+    -0.2,
+    1.0
+   ],
+   "mesh": "ext:3:128"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject21",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    0.6,
+    0.3,
+    1.0
+   ],
+   "mesh": "ext:3:130"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject22",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    0.6,
+    0.0,
+    1.0
+   ],
+   "mesh": "ext:3:132"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject23",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    0.6,
+    -0.2,
+    1.0
+   ],
+   "mesh": "ext:3:134"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject24",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    0.6,
+    -0.5,
+    1.0
+   ],
+   "mesh": "ext:3:136"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject25",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    0.6,
+    -0.7,
+    1.0
+   ],
+   "mesh": "ext:3:137"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject26",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.3,
+    -0.2,
+    -0.2,
+    1.0
+   ],
+   "mesh": "ext:3:138"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject27",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.3,
+    -0.2,
+    -0.2,
+    1.0
+   ],
+   "mesh": "ext:3:139"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject28",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    -0.6,
+    0.3,
+    1.0
+   ],
+   "mesh": "ext:3:140"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject29",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    -0.6,
+    0.0,
+    1.0
+   ],
+   "mesh": "ext:3:141"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject030",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    -0.6,
+    -0.2,
+    1.0
+   ],
+   "mesh": "ext:3:142"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject31",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    -0.6,
+    -0.5,
+    1.0
+   ],
+   "mesh": "ext:3:143"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisObject32",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.0,
+    -0.6,
+    -0.7,
+    1.0
+   ],
+   "mesh": "ext:3:144"
+  },
+  {
+   "depth": 2,
+   "name": "SDP01_DebrisCluster06_Group",
+   "components": [],
+   "pos_scale": [
+    0.0,
+    0.0,
+    3.1,
+    1.0
+   ],
+   "mesh": null
+  },
+  {
+   "depth": 3,
+   "name": "DebrisSection01",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    -0.1,
+    0.6,
+    1.0
+   ],
+   "mesh": "ext:3:68"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisSection02",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.3,
+    -0.0,
+    1.0
+   ],
+   "mesh": "ext:3:73"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisSection03",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.0,
+    -1.4,
+    1.0
+   ],
+   "mesh": "ext:3:78"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisSection04",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    -0.0,
+    0.0,
+    1.0
+   ],
+   "mesh": "ext:3:83"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisSection05",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.4,
+    -0.0,
+    1.0
+   ],
+   "mesh": "ext:3:88"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisSection06",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.7,
+    -0.4,
+    0.0,
+    1.0
+   ],
+   "mesh": "ext:3:93"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisSection07",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.7,
+    -0.4,
+    0.0,
+    1.0
+   ],
+   "mesh": "ext:3:98"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisSection08",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.7,
+    0.3,
+    -1.4,
+    1.0
+   ],
+   "mesh": "ext:3:103"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisSection09",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.7,
+    0.3,
+    -1.4,
+    1.0
+   ],
+   "mesh": "ext:3:107"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisSection10",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    2.0,
+    -0.6,
+    -0.9,
+    1.0
+   ],
+   "mesh": "ext:3:111"
+  },
+  {
+   "depth": 3,
+   "name": "DebrisSection11",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -2.0,
+    -0.6,
+    -0.9,
+    1.0
+   ],
+   "mesh": "ext:3:61"
+  },
+  {
+   "depth": 1,
+   "name": "SDP01_DebrisCluster01",
+   "components": [
+    "MonoBehaviour"
+   ],
+   "pos_scale": [
+    13685.0,
+    0.0,
+    1099.0,
+    1000.0
+   ],
+   "mesh": null
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject01",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.2,
+    0.7,
+    -1.1,
+    1.0
+   ],
+   "mesh": "ext:3:67"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject02",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.2,
+    0.7,
+    -1.1,
+    1.0
+   ],
+   "mesh": "ext:3:72"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject03",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.7,
+    -0.1,
+    0.1,
+    1.0
+   ],
+   "mesh": "ext:3:77"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject04",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.7,
+    -0.1,
+    0.1,
+    1.0
+   ],
+   "mesh": "ext:3:82"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject05",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.4,
+    -0.0,
+    1.0
+   ],
+   "mesh": "ext:3:87"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject06",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.0,
+    0.4,
+    1.2,
+    1.0
+   ],
+   "mesh": "ext:3:92"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject07",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.7,
+    -0.3,
+    -1.4,
+    1.0
+   ],
+   "mesh": "ext:3:97"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject08",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    2.1,
+    -1.6,
+    -0.9,
+    1.0
+   ],
+   "mesh": "ext:3:102"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject09",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.7,
+    1.3,
+    -2.0,
+    1.0
+   ],
+   "mesh": "ext:3:106"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject10",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.8,
+    1.3,
+    -2.0,
+    1.0
+   ],
+   "mesh": "ext:3:110"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject11",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.7,
+    -0.3,
+    -1.4,
+    1.0
+   ],
+   "mesh": "ext:3:113"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject12",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -2.1,
+    -1.7,
+    -0.9,
+    1.0
+   ],
+   "mesh": "ext:3:115"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject13",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.2,
+    -0.8,
+    -0.8,
+    1.0
+   ],
+   "mesh": "ext:3:119"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject14",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.7,
+    -1.5,
+    -1.2,
+    1.0
+   ],
+   "mesh": "ext:3:121"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject15",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.7,
+    -1.1,
+    -1.0,
+    1.0
+   ],
+   "mesh": "ext:3:123"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject16",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.7,
+    -1.5,
+    -1.2,
+    1.0
+   ],
+   "mesh": "ext:3:125"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject17",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.7,
+    -1.1,
+    -1.0,
+    1.0
+   ],
+   "mesh": "ext:3:127"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject18",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -1.3,
+    1.0,
+    -2.1,
+    1.0
+   ],
+   "mesh": "ext:3:129"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject19",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    1.3,
+    1.0,
+    -2.1,
+    1.0
+   ],
+   "mesh": "ext:3:131"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject20",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.8,
+    -0.5,
+    -0.9,
+    1.0
+   ],
+   "mesh": "ext:3:133"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject21",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    0.8,
+    -0.5,
+    -0.9,
+    1.0
+   ],
+   "mesh": "ext:3:135"
+  },
+  {
+   "depth": 2,
+   "name": "DebrisObject22",
+   "components": [
+    "MeshFilter",
+    "MeshRenderer"
+   ],
+   "pos_scale": [
+    -0.2,
+    -0.8,
+    -0.8,
+    1.0
+   ],
+   "mesh": "ext:3:117"
+  }
+ ]
+}
