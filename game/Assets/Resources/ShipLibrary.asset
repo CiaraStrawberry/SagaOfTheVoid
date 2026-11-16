@@ -117,6 +117,30 @@ MonoBehaviour:
   sfxOrderMove: {fileID: 8300000, guid: 4cba70f586a19114181414354f984424, type: 3}
   sfxOrderAttack: {fileID: 8300000, guid: 579e27f2fe75c1f4eb8e3b4e4e984350, type: 3}
   unitVoices:
+  - set: bridge_attack
+    clip: {fileID: 8300000, guid: 200dc2396a1ee2d4bae11231c152797c, type: 3}
+  - set: bridge_attack
+    clip: {fileID: 8300000, guid: fdb37401d4bd1b04596dc008ddb34342, type: 3}
+  - set: bridge_attack
+    clip: {fileID: 8300000, guid: 6219d2a932164b24da65e2f146bf005e, type: 3}
+  - set: bridge_attack
+    clip: {fileID: 8300000, guid: 2e7740e48b8bd8f499f1e406f7369b96, type: 3}
+  - set: bridge_move
+    clip: {fileID: 8300000, guid: db58e93b479f7544c87fa86eb6ea126e, type: 3}
+  - set: bridge_move
+    clip: {fileID: 8300000, guid: 8f128bc9e4574ca499b1feabd6b23816, type: 3}
+  - set: bridge_move
+    clip: {fileID: 8300000, guid: ed4007ee3d79989459e1d919cd4878e8, type: 3}
+  - set: bridge_move
+    clip: {fileID: 8300000, guid: 586072215e3f1bb47afdbdc012444004, type: 3}
+  - set: bridge_select
+    clip: {fileID: 8300000, guid: 68f349706c67f8d4590045f9c27e04a8, type: 3}
+  - set: bridge_select
+    clip: {fileID: 8300000, guid: 283d25824fc86114c87fb749a87e1f9c, type: 3}
+  - set: bridge_select
+    clip: {fileID: 8300000, guid: 0b281c88aa4391f4797f19b4712980f0, type: 3}
+  - set: bridge_select
+    clip: {fileID: 8300000, guid: d742f8468dc425743a2812d3720c7ff7, type: 3}
   - set: capital_attack
     clip: {fileID: 8300000, guid: 47384d4faf012dc47b13965fba4cc62e, type: 3}
   - set: capital_attack
@@ -125,6 +149,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c4abd30d752990a43948f381ea718552, type: 3}
   - set: capital_attack
     clip: {fileID: 8300000, guid: f12529021c86dec4c9cad1d41aa25700, type: 3}
+  - set: capital_move
+    clip: {fileID: 8300000, guid: f193a5eba5030f642abed867134d73fa, type: 3}
+  - set: capital_move
+    clip: {fileID: 8300000, guid: 0142a258d37538d47916d929d8b490ee, type: 3}
+  - set: capital_move
+    clip: {fileID: 8300000, guid: 27f160f8692caff49ade73927e428a61, type: 3}
+  - set: capital_move
+    clip: {fileID: 8300000, guid: b0fc6ff6a8066464f9509b089e6f5c46, type: 3}
+  - set: capital_select
+    clip: {fileID: 8300000, guid: d6bc1afd8169e8843981f736efda8700, type: 3}
+  - set: capital_select
+    clip: {fileID: 8300000, guid: 9cdbfc3ab6be764468abcd7ebe481e09, type: 3}
+  - set: capital_select
+    clip: {fileID: 8300000, guid: 4207f61cdb60ebe4581e9dc9665f1b42, type: 3}
+  - set: capital_select
+    clip: {fileID: 8300000, guid: 8d6efda26526891409aa7e2c41860900, type: 3}
   - set: pilot_attack
     clip: {fileID: 8300000, guid: 802139a89e8f591459a492caedb8dc2b, type: 3}
   - set: pilot_attack
