@@ -121,3 +121,27 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c4abd30d752990a43948f381ea718552, type: 3}
   - set: capital_attack
     clip: {fileID: 8300000, guid: f12529021c86dec4c9cad1d41aa25700, type: 3}
+  - set: pilot_attack
+    clip: {fileID: 8300000, guid: 802139a89e8f591459a492caedb8dc2b, type: 3}
+  - set: pilot_attack
+    clip: {fileID: 8300000, guid: c5486c606d1018d408e8694fa4ccafcc, type: 3}
+  - set: pilot_attack
+    clip: {fileID: 8300000, guid: 54e2e55314e2e0e45aa7cd71f4068c50, type: 3}
+  - set: pilot_attack
+    clip: {fileID: 8300000, guid: 4b1346e94fb355b47badab7b570a0933, type: 3}
+  - set: pilot_move
+    clip: {fileID: 8300000, guid: e6f4bda1757de5144b6cbb60f43f6796, type: 3}
+  - set: pilot_move
+    clip: {fileID: 8300000, guid: 88f7d934195c33c4983dc9786471ecbb, type: 3}
+  - set: pilot_move
+    clip: {fileID: 8300000, guid: e0d000d982089f248907992ca91aa1da, type: 3}
+  - set: pilot_move
+    clip: {fileID: 8300000, guid: 8d70a918872105e4f94a0baa85f25aed, type: 3}
+  - set: pilot_select
+    clip: {fileID: 8300000, guid: 4558b58f00ebabe48a045aaf2f7395d0, type: 3}
+  - set: pilot_select
+    clip: {fileID: 8300000, guid: 2d182304d12bc0c448e519f808e625a7, type: 3}
+  - set: pilot_select
+    clip: {fileID: 8300000, guid: ed6dd293c670d744ba42dc981a4d98c9, type: 3}
+  - set: pilot_select
+    clip: {fileID: 8300000, guid: 603659a80be021c438ddc9ac763e311a, type: 3}
