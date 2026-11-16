@@ -17,7 +17,10 @@ public static class BattlePreview
 
     public static void Record()
     {
-        bool quick = Environment.GetCommandLineArgs().Contains("-quick");
+        var args = Environment.GetCommandLineArgs();
+        bool quick = args.Contains("-quick");
+        string Arg(string name, string fallback) { int i = Array.IndexOf(args, name); return i >= 0 && i + 1 < args.Length ? args[i + 1] : fallback; }
+        string mapId = Arg("-map", "asteroid_field"), skyId = Arg("-sky", "skybox5");
         var outDir = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Application.dataPath)), "tools", "preview", "frames");
         if (Directory.Exists(outDir)) Directory.Delete(outDir, true);
         Directory.CreateDirectory(outDir);
@@ -31,12 +34,12 @@ public static class BattlePreview
         var cam = new GameObject("Camera").AddComponent<Camera>();
         cam.fieldOfView = CamFov;
         cam.nearClipPlane = 50f;
-        BattleView.BuildStage(lib, cam);
+        BattleView.BuildStage(lib, cam, mapId == "none" ? null : mapId, skyId);
         var view = new BattleView(world, lib, cam);
         var hud = MakeText("hud", 22, TextAnchor.UpperLeft);
         var title = MakeText("title", 24, TextAnchor.UpperRight);
         title.text = "SAGA OF THE VOID  ·  preview";
-        Log((quick ? "quick" : "full") + " battle, " + world.Ships.Count + " ships");
+        Log((quick ? "quick" : "full") + " battle, " + world.Ships.Count + " ships, map " + mapId + ", sky " + skyId);
 
         var rt = new RenderTexture(Width, Height, 24, RenderTextureFormat.ARGB32) { antiAliasing = 4 };
         cam.targetTexture = rt;

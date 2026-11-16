@@ -230,6 +230,82 @@ namespace Saga.Tests
             Assert.Greater(w.Count(1), 3, "computer bought ships with its income");
         }
 
+        static CampaignDef Campaign() => JsonUtility.FromJson<CampaignDef>(File.ReadAllText("Assets/Data/campaign.json"));
+
+        [Test]
+        public void Campaign_EightMissions_SetUpFromData()
+        {
+            var c = Campaign();
+            Assert.AreEqual(8, c.missions.Count);
+            foreach (var m in c.missions)
+            {
+                var w = NewWorld();
+                w.SetUpMission(m);
+                Assert.AreEqual(m.enemy_fleet.Count, w.Count(1), m.name + ": enemy fleet");
+                Assert.Greater(w.Count(0), 0, m.name + ": player has a starting fleet");
+                Assert.AreEqual(m.start_money, w.TeamOf(0).Money, 0.01, m.name + ": start money");
+                if (m.objective == "kill_target") Assert.NotNull(w.Mission.Target, m.name + ": has a flagship to kill");
+            }
+        }
+
+        [Test]
+        public void Campaign_NoIncomeOutsideSurvive_AndBuildTiersApply()
+        {
+            var c = Campaign();
+            var w = NewWorld();
+            w.SetUpMission(c.missions[0]); // Basic Training: destroy all, fighters only
+            Run(w, 5);
+            Assert.AreEqual(2000, w.TeamOf(0).Money, 0.01, "no income");
+            Assert.AreEqual("not available in this mission", w.CannotBuy(0, "cannon_frigate"));
+            Assert.IsNull(w.CannotBuy(0, "fighter"));
+            var s = NewWorld();
+            s.SetUpMission(c.missions[4]); // Military Excursion: survive
+            Run(s, 5);
+            Assert.Greater(s.TeamOf(0).Money, 4000, "survive missions pay income");
+        }
+
+        [Test]
+        public void Campaign_KillTarget_WinsWhenFlagshipDies()
+        {
+            var w = NewWorld();
+            w.SetUpMission(Campaign().missions[2]); // System Patrol
+            Run(w, 1);
+            Assert.Less(w.Winner, 0);
+            w.Mission.Target.Armor = -10;
+            Run(w, 0.1);
+            Assert.AreEqual(0, w.Winner);
+            Assert.AreEqual("victory", w.Mission.Outcome);
+        }
+
+        [Test]
+        public void Campaign_Survive_WinsWhenTimeRunsOut_LosesIfFleetDies()
+        {
+            var c = Campaign();
+            var w = NewWorld();
+            w.SetUpMission(c.missions[4]);
+            w.Mission.TimeLimit = 3;
+            Run(w, 3.1);
+            Assert.AreEqual(0, w.Winner, "survived");
+            var l = NewWorld();
+            l.SetUpMission(c.missions[4]);
+            foreach (var s in l.Ships.Where(s => s.Team == 0)) s.Armor = -10;
+            Run(l, 0.1);
+            Assert.AreEqual(1, l.Winner);
+            Assert.AreEqual("your fleet was destroyed", l.Mission.Outcome);
+        }
+
+        [Test]
+        public void Campaign_DestroyAll_TimeOutIsADefeat()
+        {
+            var w = NewWorld();
+            w.SetUpMission(Campaign().missions[0]);
+            w.Mission.TimeLimit = 2;
+            foreach (var s in w.Ships) s.Pos = s.Pos * 10; // too far apart to fight in time
+            Run(w, 2.1);
+            Assert.AreEqual(1, w.Winner);
+            Assert.AreEqual("time ran out", w.Mission.Outcome);
+        }
+
         // Mirrors Saga.Game.Fleets.Quick (that assembly is not referenced here to keep these tests engine-light).
         static void SpawnBoth(World w)
         {

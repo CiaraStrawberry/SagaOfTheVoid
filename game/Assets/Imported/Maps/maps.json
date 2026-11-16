@@ -1,0 +1,3209 @@
+{
+    "maps": [
+        {
+            "id": "asteroid_field",
+            "parts": [
+                {
+                    "name": "Big Asteroid",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        -3585.999755859375,
+                        0.0,
+                        7836.0
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.0,
+                        1000.0,
+                        1000.0
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid 2",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        2427.0,
+                        0.0,
+                        -10037.0
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.0,
+                        1000.0,
+                        1000.0
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        -4823.6923828125,
+                        -816.3622436523438,
+                        -11238.9765625
+                    ],
+                    "rot": [
+                        -0.448512464761734,
+                        0.21411430835723878,
+                        -0.5615807175636292,
+                        0.6615276336669922
+                    ],
+                    "scale": [
+                        499.99993896484377,
+                        499.9997253417969,
+                        400.0
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone) (1)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        -6193.7490234375,
+                        6975.06787109375,
+                        15221.255859375
+                    ],
+                    "rot": [
+                        0.6602327227592468,
+                        -0.5487846732139587,
+                        0.13089504837989808,
+                        -0.4957767426967621
+                    ],
+                    "scale": [
+                        500.0,
+                        499.9999694824219,
+                        400.0
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone) (2)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        9021.4560546875,
+                        3308.175537109375,
+                        2990.810791015625
+                    ],
+                    "rot": [
+                        0.7241581678390503,
+                        -0.5482593178749085,
+                        0.37560996413230898,
+                        0.18418455123901368
+                    ],
+                    "scale": [
+                        499.9999694824219,
+                        500.0,
+                        400.00030517578127
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone) (3)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        -30663.45703125,
+                        785.3640747070313,
+                        18296.5078125
+                    ],
+                    "rot": [
+                        0.5389162302017212,
+                        0.6390778422355652,
+                        0.46982142329216006,
+                        -0.28357839584350588
+                    ],
+                    "scale": [
+                        500.000732421875,
+                        500.0007629394531,
+                        400.000732421875
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone) (4)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        19249.8359375,
+                        -48342.3515625,
+                        30315.388671875
+                    ],
+                    "rot": [
+                        -0.13442522287368775,
+                        0.5265041589736939,
+                        -0.2978475093841553,
+                        0.7848631143569946
+                    ],
+                    "scale": [
+                        500.0001525878906,
+                        500.0001220703125,
+                        400.0001220703125
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone) (5)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        2848.613525390625,
+                        12134.75390625,
+                        -5905.37548828125
+                    ],
+                    "rot": [
+                        0.5940281748771668,
+                        0.3723069727420807,
+                        0.19791054725646974,
+                        0.685090959072113
+                    ],
+                    "scale": [
+                        500.000244140625,
+                        500.0003356933594,
+                        400.0001220703125
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone) (6)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        3309.360595703125,
+                        -2367.072021484375,
+                        10766.462890625
+                    ],
+                    "rot": [
+                        -0.4897921085357666,
+                        0.6286703944206238,
+                        -0.494723379611969,
+                        0.3465920686721802
+                    ],
+                    "scale": [
+                        499.999755859375,
+                        499.99981689453127,
+                        399.99969482421877
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone) (7)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        -5217.07421875,
+                        13318.3798828125,
+                        -19831.02734375
+                    ],
+                    "rot": [
+                        -0.39529889822006228,
+                        0.17060542106628419,
+                        0.15713240206241609,
+                        0.888786792755127
+                    ],
+                    "scale": [
+                        499.9999694824219,
+                        499.9999694824219,
+                        400.0000915527344
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone) (8)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        -26328.45703125,
+                        18367.43359375,
+                        23043.98046875
+                    ],
+                    "rot": [
+                        0.0868397206068039,
+                        0.6879023909568787,
+                        -0.6695746183395386,
+                        -0.2663062512874603
+                    ],
+                    "scale": [
+                        500.0005187988281,
+                        500.0004577636719,
+                        400.00030517578127
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone) (9)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        -34696.9765625,
+                        11856.419921875,
+                        -87.3813247680664
+                    ],
+                    "rot": [
+                        -0.16903486847877503,
+                        0.6825936436653137,
+                        0.7030839920043945,
+                        0.10566974431276322
+                    ],
+                    "scale": [
+                        500.0008850097656,
+                        500.0008544921875,
+                        400.00067138671877
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone) (10)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        112.45562744140625,
+                        -3879.01513671875,
+                        22959.10546875
+                    ],
+                    "rot": [
+                        0.8953860998153687,
+                        0.25045955181121828,
+                        0.1578841656446457,
+                        0.3326055109500885
+                    ],
+                    "scale": [
+                        500.0000305175781,
+                        500.0009460449219,
+                        400.0008850097656
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone) (11)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        -36594.47265625,
+                        -34985.85546875,
+                        16577.17578125
+                    ],
+                    "rot": [
+                        -0.46521690487861636,
+                        0.17705200612545014,
+                        -0.6300956010818481,
+                        0.5959910750389099
+                    ],
+                    "scale": [
+                        500.00042724609377,
+                        500.0004577636719,
+                        400.0001525878906
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone) (12)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        57765.84765625,
+                        35600.6640625,
+                        -38488.953125
+                    ],
+                    "rot": [
+                        -0.19318842887878419,
+                        -0.01091855764389038,
+                        0.8623132109642029,
+                        0.4679476022720337
+                    ],
+                    "scale": [
+                        500.0008544921875,
+                        500.00067138671877,
+                        399.9999694824219
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Big Asteroid(Clone) (13)",
+                    "mesh": "Assets/Imported/Maps/Mesh/SmallRock 15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SmallRock_Albedo 15.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SmallRock_Normal 15.png",
+                    "emission": "",
+                    "pos": [
+                        8260.3427734375,
+                        32190.46484375,
+                        9953.46484375
+                    ],
+                    "rot": [
+                        0.20280314981937409,
+                        -0.16266697645187379,
+                        -0.25825637578964236,
+                        0.9304375648498535
+                    ],
+                    "scale": [
+                        499.9999694824219,
+                        500.000244140625,
+                        400.0001220703125
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "space_station",
+            "parts": [
+                {
+                    "name": "Circle",
+                    "mesh": "Assets/Imported/Maps/Mesh/Circle.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_basecolor 7.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_normal 7.png",
+                    "emission": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_Emissive 7.png",
+                    "pos": [
+                        -44.0,
+                        -3090.0,
+                        -12855.001953125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.2588191032409668,
+                        0.0,
+                        0.9659258127212524
+                    ],
+                    "scale": [
+                        300.00006103515627,
+                        300.00006103515627,
+                        300.00006103515627
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Circle.001",
+                    "mesh": "Assets/Imported/Maps/Mesh/Circle.001.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_basecolor 7.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_normal 7.png",
+                    "emission": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_Emissive 7.png",
+                    "pos": [
+                        -44.0,
+                        -3090.0,
+                        -12855.001953125
+                    ],
+                    "rot": [
+                        5.3367538316425648e-18,
+                        -0.5735764503479004,
+                        -9.243529932682046e-18,
+                        0.8191519975662231
+                    ],
+                    "scale": [
+                        300.0000915527344,
+                        300.00006103515627,
+                        300.0000915527344
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Circle.002",
+                    "mesh": "Assets/Imported/Maps/Mesh/Circle.002.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_basecolor 7.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_normal 7.png",
+                    "emission": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_Emissive 7.png",
+                    "pos": [
+                        -44.0,
+                        -3090.0,
+                        -12855.001953125
+                    ],
+                    "rot": [
+                        -6.099932915942466e-17,
+                        0.9063078165054321,
+                        1.0565395322660571e-16,
+                        0.4226182699203491
+                    ],
+                    "scale": [
+                        300.00006103515627,
+                        300.00006103515627,
+                        300.00006103515627
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Circle.003",
+                    "mesh": "Assets/Imported/Maps/Mesh/Circle.003.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_basecolor 7.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_normal 7.png",
+                    "emission": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_Emissive 7.png",
+                    "pos": [
+                        -44.0,
+                        -3090.0,
+                        -12855.001953125
+                    ],
+                    "rot": [
+                        2.5877897131829468e-17,
+                        -0.8191519975662231,
+                        -4.482184359109232e-17,
+                        0.5735765099525452
+                    ],
+                    "scale": [
+                        300.0000305175781,
+                        300.00006103515627,
+                        300.0000305175781
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Circle.004",
+                    "mesh": "Assets/Imported/Maps/Mesh/Circle.004.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_basecolor 7.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_normal 7.png",
+                    "emission": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_Emissive 7.png",
+                    "pos": [
+                        -44.0,
+                        -3090.0,
+                        -12855.001953125
+                    ],
+                    "rot": [
+                        -5.5495345464113166e-17,
+                        0.9961947202682495,
+                        9.612076945882597e-17,
+                        0.08715588599443436
+                    ],
+                    "scale": [
+                        300.0000915527344,
+                        300.00006103515627,
+                        300.0000915527344
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Cube",
+                    "mesh": "Assets/Imported/Maps/Mesh/Cube.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_basecolor 7.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_normal 7.png",
+                    "emission": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_Emissive 7.png",
+                    "pos": [
+                        -44.0,
+                        -3090.0,
+                        -12855.001953125
+                    ],
+                    "rot": [
+                        0.2256641983985901,
+                        0.1396346390247345,
+                        0.6701309680938721,
+                        0.6931828260421753
+                    ],
+                    "scale": [
+                        300.0000305175781,
+                        300.0,
+                        300.00006103515627
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Cube.001",
+                    "mesh": "Assets/Imported/Maps/Mesh/Cube.001.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_basecolor 7.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_normal 7.png",
+                    "emission": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_Emissive 7.png",
+                    "pos": [
+                        -44.0,
+                        -3090.0,
+                        -12855.001953125
+                    ],
+                    "rot": [
+                        0.6931827664375305,
+                        0.6701309680938721,
+                        0.1396344006061554,
+                        0.2256643921136856
+                    ],
+                    "scale": [
+                        300.00006103515627,
+                        300.00006103515627,
+                        300.00006103515627
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Cube.002",
+                    "mesh": "Assets/Imported/Maps/Mesh/Cube.002.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_basecolor 7.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_normal 7.png",
+                    "emission": "Assets/Imported/Maps/Texture2D/SpaceStation4Atlas_Emissive 7.png",
+                    "pos": [
+                        -44.0,
+                        -3090.0,
+                        -12855.001953125
+                    ],
+                    "rot": [
+                        -0.46751850843429568,
+                        -0.5304962992668152,
+                        0.5304965972900391,
+                        0.46751853823661806
+                    ],
+                    "scale": [
+                        300.0000915527344,
+                        300.0000915527344,
+                        300.0000915527344
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ship_graveyard",
+            "parts": [
+                {
+                    "name": "DebrisObject01",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject01_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -12450.421875,
+                        5303.431640625,
+                        928.0339965820313
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject02",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject02_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -14878.25390625,
+                        5303.0673828125,
+                        928.0339965820313
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject03",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject03_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -14344.2529296875,
+                        4476.40673828125,
+                        2144.063720703125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject04",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject04_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -12984.416015625,
+                        4476.40673828125,
+                        2144.063720703125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject05",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject05_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13664.333984375,
+                        4987.0673828125,
+                        2012.999755859375
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject06",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject06_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13664.333984375,
+                        4987.0673828125,
+                        3204.078369140625
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject07",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject07_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -11980.3427734375,
+                        4339.935546875,
+                        605.3434448242188
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.9099612236022949,
+                        -0.41469329595565798
+                    ],
+                    "scale": [
+                        1000.0001831054688,
+                        1000.0001831054688,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject08",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject08_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -11568.1474609375,
+                        2974.1572265625,
+                        1077.85986328125
+                    ],
+                    "rot": [
+                        -7.72216495192879e-8,
+                        2.7485418740980096e-7,
+                        0.9099614024162293,
+                        -0.41469302773475649
+                    ],
+                    "scale": [
+                        1000.0001831054688,
+                        1000.0001831054688,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject09",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject09 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -12910.3125,
+                        5954.455078125,
+                        40.3603515625
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject10",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject10_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -14418.365234375,
+                        5954.09033203125,
+                        40.3603515625
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject11",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject11_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -15348.0390625,
+                        4339.72802734375,
+                        605.3434448242188
+                    ],
+                    "rot": [
+                        4.131831232712102e-8,
+                        -1.882983724499354e-8,
+                        0.9099612236022949,
+                        0.41469329595565798
+                    ],
+                    "scale": [
+                        1000.0001831054688,
+                        1000.0001831054688,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject12",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject12_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -15760.2333984375,
+                        2973.949462890625,
+                        1077.8603515625
+                    ],
+                    "rot": [
+                        1.8569757287423273e-7,
+                        2.2541883026860888e-7,
+                        0.9099611639976502,
+                        0.4146934747695923
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject13",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject13_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13444.3046875,
+                        3825.38330078125,
+                        1256.389892578125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject14",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject14_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -11994.22265625,
+                        3155.82275390625,
+                        797.8724975585938
+                    ],
+                    "rot": [
+                        -1.2665688586821489e-7,
+                        3.833300183941901e-7,
+                        0.9099614024162293,
+                        -0.41469302773475649
+                    ],
+                    "scale": [
+                        1000.0001831054688,
+                        1000.0001831054688,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject15",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject15_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -11951.662109375,
+                        3483.082763671875,
+                        1029.628662109375
+                    ],
+                    "rot": [
+                        -1.2665688586821489e-7,
+                        3.833300183941901e-7,
+                        0.9099614024162293,
+                        -0.41469302773475649
+                    ],
+                    "scale": [
+                        1000.0001831054688,
+                        1000.0001831054688,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject16",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject16_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -15334.1572265625,
+                        3155.61474609375,
+                        797.8731079101563
+                    ],
+                    "rot": [
+                        1.8569757287423273e-7,
+                        2.2541883026860888e-7,
+                        0.9099611639976502,
+                        0.4146934747695923
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject17",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject17_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -15376.7177734375,
+                        3482.874755859375,
+                        1029.629150390625
+                    ],
+                    "rot": [
+                        1.8569757287423273e-7,
+                        2.2541883026860888e-7,
+                        0.9099611639976502,
+                        0.4146934747695923
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject18",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject18_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -14981.58984375,
+                        5648.60595703125,
+                        -135.04248046875
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject19",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject19_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -12347.0849609375,
+                        5648.970703125,
+                        -135.04248046875
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject20",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject20_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -14447.5908203125,
+                        4130.86767578125,
+                        1080.9866943359375
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject21",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject21_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -12881.078125,
+                        4130.86767578125,
+                        1080.9866943359375
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject22",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject22 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13884.3642578125,
+                        3825.38330078125,
+                        1256.389892578125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject01",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject01.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -14586.7890625,
+                        5047.4853515625,
+                        4016.141845703125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject02",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject02.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -12729.212890625,
+                        5047.4853515625,
+                        4016.141845703125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject03",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject03.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -14586.7890625,
+                        4200.51416015625,
+                        4016.141845703125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject04",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject04.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -12729.212890625,
+                        4200.51416015625,
+                        4016.141845703125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject05",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject05.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        4624.0,
+                        4342.8134765625
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject06",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject06.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        4624.0,
+                        3151.673583984375
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject07",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject07.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        4624.0,
+                        5534.078125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject08",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject08.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        5211.4873046875,
+                        3401.1884765625
+                    ],
+                    "rot": [
+                        -6.883941949809014e-8,
+                        -2.6833546939997179e-7,
+                        -0.7071068286895752,
+                        0.7071067690849304
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject10",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject10.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        4036.511474609375,
+                        3401.18896484375
+                    ],
+                    "rot": [
+                        -1.1098627084038526e-7,
+                        -2.2618860384682194e-7,
+                        -0.7071068286895752,
+                        0.7071067690849304
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject11",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject11.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -14669.90234375,
+                        5517.1064453125,
+                        4001.44970703125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject12",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject12.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -14906.9248046875,
+                        4816.03466796875,
+                        3746.791259765625
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject13",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject13.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -12646.0986328125,
+                        5517.1064453125,
+                        4001.44970703125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject14",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject14.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -12409.0751953125,
+                        4816.03466796875,
+                        3746.791259765625
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject15",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject15.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -14669.90234375,
+                        3730.894287109375,
+                        4001.4501953125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject16",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject16.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -14906.9248046875,
+                        4431.96533203125,
+                        3746.791259765625
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject17",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject17.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -12646.0986328125,
+                        3730.894287109375,
+                        4001.4501953125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject18",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject18.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -12409.0751953125,
+                        4431.96533203125,
+                        3746.791259765625
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject19",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject19.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -12394.1416015625,
+                        4791.26416015625,
+                        4129.57275390625
+                    ],
+                    "rot": [
+                        7.867458151622486e-8,
+                        -7.867454598908808e-8,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject20",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject20.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -14921.857421875,
+                        4791.26318359375,
+                        4129.57275390625
+                    ],
+                    "rot": [
+                        7.867458151622486e-8,
+                        -7.867454598908808e-8,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject21",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject21.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        5211.48828125,
+                        4601.18896484375
+                    ],
+                    "rot": [
+                        -7.375694366373864e-8,
+                        -2.634178031257761e-7,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject22",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject22_0.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        5211.48828125,
+                        4361.1884765625
+                    ],
+                    "rot": [
+                        -7.375694366373864e-8,
+                        -2.634178031257761e-7,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject23",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject23.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        5211.48828125,
+                        4121.18798828125
+                    ],
+                    "rot": [
+                        -7.375694366373864e-8,
+                        -2.634178031257761e-7,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject24",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject24.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        5211.48828125,
+                        3881.188720703125
+                    ],
+                    "rot": [
+                        -7.375694366373864e-8,
+                        -2.634178031257761e-7,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject25",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject25.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        5211.4873046875,
+                        3641.1884765625
+                    ],
+                    "rot": [
+                        -7.375694366373864e-8,
+                        -2.634178031257761e-7,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject26",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject26.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -14921.857421875,
+                        4456.736328125,
+                        4129.57275390625
+                    ],
+                    "rot": [
+                        7.867458151622486e-8,
+                        -7.867454598908808e-8,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject27",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject27.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -12394.1416015625,
+                        4456.73681640625,
+                        4129.57275390625
+                    ],
+                    "rot": [
+                        7.867458151622486e-8,
+                        -7.867454598908808e-8,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject28",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject28.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        4036.511962890625,
+                        4601.18896484375
+                    ],
+                    "rot": [
+                        8.429372400087232e-8,
+                        -1.4611089227400954e-7,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject29",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject29.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        4036.511962890625,
+                        4361.18896484375
+                    ],
+                    "rot": [
+                        8.429372400087232e-8,
+                        -1.4611089227400954e-7,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject030",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject030.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        4036.511962890625,
+                        4121.18896484375
+                    ],
+                    "rot": [
+                        8.429372400087232e-8,
+                        -1.4611089227400954e-7,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject31",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject31.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        4036.511962890625,
+                        3881.18896484375
+                    ],
+                    "rot": [
+                        8.429372400087232e-8,
+                        -1.4611089227400954e-7,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject32",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject32.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        4036.511962890625,
+                        3641.18896484375
+                    ],
+                    "rot": [
+                        8.429372400087232e-8,
+                        -1.4611089227400954e-7,
+                        -0.7071066498756409,
+                        0.70710688829422
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisSection01",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisSection01.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D1_MTGA 10.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D_N 10.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        4482.22998046875,
+                        8036.18994140625
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisSection02",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisSection02.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D1_MTGA 10.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D_N 10.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        4905.73291015625,
+                        7450.8662109375
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisSection03",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisSection03.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D1_MTGA 10.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D_N 10.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        4664.38330078125,
+                        6031.642578125
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisSection04",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisSection04.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D1_MTGA 10.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D_N 10.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        4591.546875,
+                        7496.31982421875
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisSection05",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisSection05.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D1_MTGA 10.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D_N 10.png",
+                    "emission": "",
+                    "pos": [
+                        -13658.0009765625,
+                        5055.9931640625,
+                        7417.82275390625
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisSection06",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisSection06.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D1_MTGA 10.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D_N 10.png",
+                    "emission": "",
+                    "pos": [
+                        -12966.0205078125,
+                        4190.4228515625,
+                        7472.02734375
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisSection07",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisSection07.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D1_MTGA 10.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D_N 10.png",
+                    "emission": "",
+                    "pos": [
+                        -14349.9814453125,
+                        4190.4228515625,
+                        7472.02734375
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisSection08",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisSection08.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D1_MTGA 10.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D_N 10.png",
+                    "emission": "",
+                    "pos": [
+                        -11978.982421875,
+                        4940.26708984375,
+                        6023.16015625
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisSection09",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisSection09.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D1_MTGA 10.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D_N 10.png",
+                    "emission": "",
+                    "pos": [
+                        -15337.017578125,
+                        4940.26708984375,
+                        6023.16015625
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisSection10",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisSection10.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D1_MTGA 10.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D_N 10.png",
+                    "emission": "",
+                    "pos": [
+                        -11689.759765625,
+                        4018.5966796875,
+                        6566.0419921875
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisSection11",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisSection11.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D1_MTGA 10.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture02_D_N 10.png",
+                    "emission": "",
+                    "pos": [
+                        -15626.240234375,
+                        4018.5966796875,
+                        6566.0419921875
+                    ],
+                    "rot": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        0.5882353186607361,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject01",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject01_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        14892.578125,
+                        679.4319458007813,
+                        14.034302711486817
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject02",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject02_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        12464.748046875,
+                        679.0673828125,
+                        14.034302711486817
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject03",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject03_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        12998.7470703125,
+                        -147.59335327148438,
+                        1230.0638427734375
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject04",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject04_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        14358.5849609375,
+                        -147.59335327148438,
+                        1230.0638427734375
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject05",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject05_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        13678.666015625,
+                        363.0675048828125,
+                        1099.0
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject06",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject06_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        13678.666015625,
+                        363.0673522949219,
+                        2290.078369140625
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject07",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject07_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        15362.6572265625,
+                        -284.0643615722656,
+                        -308.6563720703125
+                    ],
+                    "rot": [
+                        -3.3781059727289178e-8,
+                        -7.412575087073492e-8,
+                        0.9099612236022949,
+                        -0.41469329595565798
+                    ],
+                    "scale": [
+                        1000.0001831054688,
+                        1000.0001831054688,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject08",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject08_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        15774.8525390625,
+                        -1649.8427734375,
+                        163.85980224609376
+                    ],
+                    "rot": [
+                        -1.1100268437758132e-7,
+                        2.007284081173566e-7,
+                        0.9099614024162293,
+                        -0.41469302773475649
+                    ],
+                    "scale": [
+                        1000.0001831054688,
+                        1000.0001831054688,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject09",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject09 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        14432.6884765625,
+                        1330.4552001953125,
+                        -873.6392822265625
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject10",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject10_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        12924.6357421875,
+                        1330.0908203125,
+                        -873.6392822265625
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject11",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject11_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        11994.9619140625,
+                        -284.271728515625,
+                        -308.6563720703125
+                    ],
+                    "rot": [
+                        7.509936494898284e-8,
+                        -9.295559522115582e-8,
+                        0.9099612236022949,
+                        0.41469329595565798
+                    ],
+                    "scale": [
+                        1000.0001831054688,
+                        1000.0001831054688,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject12",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject12_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        11582.767578125,
+                        -1650.050537109375,
+                        163.8602294921875
+                    ],
+                    "rot": [
+                        2.194786503650903e-7,
+                        1.5129309360872868e-7,
+                        0.9099611639976502,
+                        0.4146934747695923
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject13",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject13_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        13898.6962890625,
+                        -798.6165771484375,
+                        342.3900146484375
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject14",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject14_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        15348.77734375,
+                        -1468.17724609375,
+                        -116.12732696533203
+                    ],
+                    "rot": [
+                        -1.604379065156536e-7,
+                        3.0920423910174579e-7,
+                        0.9099614024162293,
+                        -0.41469302773475649
+                    ],
+                    "scale": [
+                        1000.0001831054688,
+                        1000.0001831054688,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject15",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject15_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        15391.337890625,
+                        -1140.9171142578125,
+                        115.62860107421875
+                    ],
+                    "rot": [
+                        -1.604379065156536e-7,
+                        3.0920423910174579e-7,
+                        0.9099614024162293,
+                        -0.41469302773475649
+                    ],
+                    "scale": [
+                        1000.0001831054688,
+                        1000.0001831054688,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject16",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject16_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        12008.84375,
+                        -1468.3848876953125,
+                        -116.1268310546875
+                    ],
+                    "rot": [
+                        2.194786503650903e-7,
+                        1.5129309360872868e-7,
+                        0.9099611639976502,
+                        0.4146934747695923
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject17",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject17_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        11966.283203125,
+                        -1141.1251220703125,
+                        115.629150390625
+                    ],
+                    "rot": [
+                        2.194786503650903e-7,
+                        1.5129309360872868e-7,
+                        0.9099611639976502,
+                        0.4146934747695923
+                    ],
+                    "scale": [
+                        1000.0001220703125,
+                        1000.0001220703125,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject18",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject18_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        12361.41015625,
+                        1024.6063232421875,
+                        -1049.042236328125
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject19",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject19_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        14995.9150390625,
+                        1024.9708251953125,
+                        -1049.042236328125
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject20",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject20_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        12895.41015625,
+                        -493.1319885253906,
+                        166.987060546875
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject21",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject21_0 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        14461.9228515625,
+                        -493.1319885253906,
+                        166.987060546875
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "DebrisObject22",
+                    "mesh": "Assets/Imported/Maps/Mesh/DebrisObject22 1.asset",
+                    "albedo": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D1_MTGA 74.png",
+                    "normal": "Assets/Imported/Maps/Texture2D/SCP_Texture01_D_N 74.png",
+                    "emission": "",
+                    "pos": [
+                        13458.63671875,
+                        -798.6165771484375,
+                        342.3900146484375
+                    ],
+                    "rot": [
+                        8.146034247147327e-8,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1000.000244140625,
+                        1000.000244140625,
+                        1000.000244140625
+                    ],
+                    "colour": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -17,11 +17,31 @@ namespace Saga.Game
             public Sprite icon;
         }
 
+        [Serializable]
+        public class MapEntry
+        {
+            public string id;
+            public GameObject prefab;
+        }
+
+        [Serializable]
+        public class SkyEntry
+        {
+            public string id;          // as in campaign.json: Skybox1, skybox2 ... skybox5
+            public Texture2D texture;
+        }
+
         public List<Entry> ships = new List<Entry>();
+        public List<MapEntry> maps = new List<MapEntry>();
+        public List<SkyEntry> skies = new List<SkyEntry>();
         public TextAsset shipsJson;
         public TextAsset weaponsJson;
+        public TextAsset campaignJson;
         public Shader fxShader;
         public Material skybox;
+
+        public GameObject Map(string id) => maps.Find(m => m.id == id)?.prefab;
+        public Texture2D Sky(string id) => skies.Find(s => string.Equals(s.id, id, StringComparison.OrdinalIgnoreCase))?.texture;
 
         public GameObject Prefab(string id)
         {

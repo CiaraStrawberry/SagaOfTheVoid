@@ -26,6 +26,9 @@ namespace Saga.Sim
         public Vec2 Home;            // where the fleet started; retreat point and fallback spawn point
         public bool HomeSet;
         public bool Retreating;
+        public double HoldUntil;        // computer waits at home until this time (campaign: 30 s)
+        public bool BuysShips = true;   // computer buys (campaign: only in Survive missions)
+        public bool IgnoreDifficulty;   // campaign income is fixed, not scaled by difficulty
 
         // computer buying plan (AIController)
         public string NextBuy;
@@ -71,6 +74,8 @@ namespace Saga.Sim
             if (!Rules.Ships.TryGetValue(shipId, out var def) || !def.buyable) return "not for sale";
             var t = TeamOf(team);
             if (Count(team) == 0) return "fleet destroyed";
+            if (Mission != null && team == Mission.PlayerTeam && !Mission.Allowed.Contains(shipId)) return "not available in this mission";
+            if (Mission?.Outcome != null) return "mission over";
             if (Count(team) + t.Queued >= ShipCap - 1) return "fleet is full";
             if (t.Money < def.cost) return "not enough credits";
             return null;
@@ -116,7 +121,7 @@ namespace Saga.Sim
                 if (!EconomyEnabled) continue;
 
                 // Income: +30 a second while under the 7,000 cap (2017 addmoney checks before adding).
-                double rate = PlayerTeams.Contains(team) ? t.IncomePerSecond : t.IncomePerSecond * DifficultyIncome(t.Difficulty);
+                double rate = PlayerTeams.Contains(team) || t.IgnoreDifficulty ? t.IncomePerSecond : t.IncomePerSecond * DifficultyIncome(t.Difficulty);
                 if (t.Money < MoneyCap) t.Money += rate * dt;
 
                 var b = t.Building;
@@ -149,6 +154,7 @@ namespace Saga.Sim
         void PayBounty(Ship dead)
         {
             if (!EconomyEnabled || dead.LastHitByTeam < 0 || dead.LastHitByTeam == dead.Team) return;
+            if (Mission != null && dead.LastHitByTeam == Mission.PlayerTeam) return; // 2017: no bounty for the player in the campaign
             TeamOf(dead.LastHitByTeam).Money += dead.Def.cost / 3.0;
         }
 
@@ -158,6 +164,7 @@ namespace Saga.Sim
         {
             if (!EconomyEnabled) return;
             var t = TeamOf(team);
+            if (!t.BuysShips) return;
             if (t.NextBuy == null)
             {
                 int roll = rng.Next(0, 200);

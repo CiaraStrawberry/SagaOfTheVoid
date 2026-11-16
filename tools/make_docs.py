@@ -22,14 +22,18 @@ CONTENT = {
         ["Engine", "Unity 6000.3.28f1 LTS, URP"],
         ["Ships", "13 recovered, 7 paints each"],
         ["Campaign", "8 missions, 3 maps"],
-        ["Tests", "14 rules + 1 play-mode"],
+        ["Tests", "19 rules + 3 play-mode"],
     ],
     "status": [
         ["ok", "Recovery of the 2017 build: code, models, textures, sounds, stats, levels and campaign."],
         ["ok", "3D ships on a flat battlefield, angled strategy camera, effects (shots land on hulls or shield rims, vertical missile launch, engine glow)."],
         ["ok", "Playable skirmish against the computer: selection, move in formation, attack, waypoints, groups, HUD. Windows test build: <code>builds/Skirmish/SagaRemake.exe</code>."],
         ["ok", "Money and buying ships during the fight (2017 economy): build bar, queue, refunds, kill bounties; the computer buys too and falls back when beaten down."],
-        ["next", "The three battle maps as scenery, then the campaign missions on top of them."],
+        ["ok", "The three 2017 battle maps (asteroid field, space station, ship graveyard) as scenery, and all 5 skies."],
+        ["ok", "Start menu with skirmish options (full or quick, map, computer difficulty) and the campaign."],
+        ["ok", "The 8 campaign missions are playable: objectives, time limits, build tiers, saved progress, next / retry."],
+        ["next", "Fleet builder (2017: fit turrets to ships under a points limit); it will replace the campaign's stand-in starter fleets."],
+        ["next", "Turrets that turn to aim, sound, and the tutorial."],
         ["warn", "Size scale between big and small ships is a stand-in (big ships shrink, small grow); not yet decided."],
         ["warn", "Test build is 814 MB because ship textures are stored uncompressed; to be compressed."],
     ],
@@ -62,6 +66,7 @@ CONTENT = {
         ["Turn camera", "<kbd>Q</kbd> / <kbd>E</kbd>, or hold the middle button and drag."],
         ["Focus", "<kbd>F</kbd> centres on the selection."],
         ["Build", "Click a ship in the build bar (bottom right) to buy it; right-click cancels one and refunds it. Hover for details."],
+        ["Menu", "Start screen: pick a skirmish (map, computer difficulty, full 18 v 18 or quick 8 v 8) or a campaign mission. After a battle: next mission, retry or play again, or back to the menu."],
         ["Game", "<kbd>P</kbd> pause, <kbd>+</kbd> / <kbd>-</kbd> speed (¼× to 4×), <kbd>H</kbd> controls card, <kbd>F5</kbd> restart, <kbd>F10</kbd> quit."],
     ],
     "decisions": [
@@ -77,6 +82,9 @@ CONTENT = {
         ["2026-11-16", "Missiles launch vertically, then arc onto the target.", "Owner request: look like vertical launch cells."],
         ["2026-11-16", "Docs live in this repo as a generated site, not as hosted pages.", "A lasting project record."],
         ["2026-11-16", "Bigger click target for ships: anywhere in the ship's on-screen footprint, at least 30 px.", "Owner feedback: attack clicks were too fiddly."],
+        ["2026-11-16", "Battle maps re-placed for the strategy camera: asteroids pulled in to 30% and 3.5× bigger; station half size and moved under the battle; graveyard pulled in to 30%. All scenery sits below the battle plane and is darkened.", "In 2017 the scenery surrounded a VR player and sat off-screen or far below an RTS camera."],
+        ["2026-11-16", "Campaign keeps the 2017 rules: no income except Survive missions, no kill bounty for the player, computer holds 30 s before attacking (not in Survive), build tiers by mission. Destroy-all missions lost on time-out.", "Faithful to MainMenuCampaignControlScript / AIController / UnitMovementcommandcontroller."],
+        ["2026-11-16", "Campaign starter fleets are a stand-in by tier (fighters / frigates / all).", "In 2017 the starting fleet came from the player's fleet builder, which is not rebuilt yet."],
         ["2026-11-16", "Use the intended 2017 build times (Scout 5 s ... Capital 20 s); the computer uses the build queue too; hard difficulty gets its intended 1.4× income.", "2017 bugs: the queue used list position as seconds, and hard got 1.0×. The 2017 computer spawned instantly, which is unfair against a queued player."],
     ],
     "recovery_stats": [
@@ -110,7 +118,7 @@ CONTENT = {
         ["fixed", "Build time used the ship's list position as seconds; the intended times are used now."],
         ["open", "Shield overflow damage is thrown away instead of reaching armour (kept as 2017 for now)."],
         ["fixed", "Cloak and fog only hid ships on screen (cloak removed)."],
-        ["open", "Losing a campaign mission did nothing (campaign not built yet)."],
+        ["fixed", "Losing a campaign mission did nothing; now a defeat screen offers a retry."],
         ["open", "The 13-step tutorial never advanced past step 1 (tutorial not built yet)."],
         ["fixed", "The world edge check tested one direction three times (no world edge in the remake yet)."],
     ],
@@ -142,11 +150,17 @@ def main():
         ("skirmish_3_attack.png", "Playable skirmish: the Blue fleet on an attack order against the Red Capital."),
         ("skirmish_4_single.png", "One ship selected: armour, shield, speed, shield-field status and guns."),
         ("skirmish_2_moved.png", "The Blue fleet moving in formation, with the controls card."),
+        ("menu_1_start.png", "Start menu: skirmish options and the campaign, missions unlocking as you win."),
+        ("mission_1_basic_training.png", "Mission 1, Basic Training, on the asteroid field: objective line, mission credits, fighters-only build bar."),
+        ("skirmish_5_building.png", "Buying ships: credits, fleet size, the build queue and the build bar."),
+        ("map_view_asteroid_field.jpg", "Map: asteroid field."),
+        ("map_view_space_station.jpg", "Map: space station, under the battle, Earth in the sky."),
+        ("map_view_ship_graveyard.jpg", "Map: ship graveyard, a derelict and a debris field flanking the fleets."),
     ]:
         src = os.path.join(prev, name)
         if not os.path.exists(src):
             continue
-        dst_name = name if name.endswith(".mp4") else name.replace(".png", ".jpg")
+        dst_name = name if name.endswith((".mp4", ".jpg")) else name.replace(".png", ".jpg")
         if name.endswith(".png"):
             Image.open(src).convert("RGB").save(os.path.join(DOCS, "media", dst_name), quality=88)
         else:

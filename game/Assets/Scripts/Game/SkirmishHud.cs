@@ -22,7 +22,8 @@ namespace Saga.Game
         readonly Font font;
         readonly Text status, banner, detail, help;
         readonly RectTransform selectionPanel, helpPanel, buildPanel;
-        readonly Text tooltip, queueText;
+        readonly Text tooltip, queueText, objective;
+        GameObject endPanel;
         readonly Image queueFill;
         readonly List<(string id, Image icon, Text cost, Text count, Image shade)> buildButtons = new List<(string, Image, Text, Text, Image)>();
         string hovered;
@@ -52,6 +53,7 @@ namespace Saga.Game
             MakeText(root, "hint", 20, TextAnchor.UpperRight, new Vector2(1, 1), new Vector2(-28, -24), new Vector2(600, 40)).text =
                 "<color=#8d98ab>H  controls     P  pause     + / -  speed</color>";
 
+            objective = MakeText(root, "objective", 22, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(28, -60), new Vector2(1100, 36));
             banner = MakeText(root, "banner", 72, TextAnchor.MiddleCenter, new Vector2(0.5f, 0.62f), Vector2.zero, new Vector2(1200, 120));
             banner.fontStyle = FontStyle.Bold;
 
@@ -147,8 +149,27 @@ namespace Saga.Game
             else if (game.GameSpeed != 1f) sb.AppendFormat("      <color=#e7b04c>×{0:0.##}</color>", game.GameSpeed);
             status.text = sb.ToString();
 
-            banner.text = w.Winner < 0 ? "" : w.Winner == SkirmishController.PlayerTeam
-                ? "<color=#a8ffc0>VICTORY</color>" : "<color=#ffb0a8>DEFEAT</color>";
+            var mission = game.MissionDef;
+            if (mission != null && w.Mission != null)
+            {
+                double left = System.Math.Max(0, w.Mission.TimeLimit - w.Time);
+                string clock = string.Format("{0}:{1:00}", (int)left / 60, (int)left % 60);
+                string goal = w.Mission.Objective == Saga.Sim.Objective.Survive ? "Survive  " + clock
+                    : w.Mission.Objective == Saga.Sim.Objective.KillTarget ? "Destroy the enemy flagship"
+                        + (w.Mission.Target != null && !w.Mission.Target.Dead ? string.Format("  <color=#8d98ab>({0:N0} armour left)</color>", w.Mission.Target.Armor) : "")
+                    : string.Format("Destroy every enemy ship  <color=#8d98ab>{0} left · {1}</color>", w.Count(w.Mission.EnemyTeam), clock);
+                objective.text = string.Format("<color=#e7b04c>MISSION {0}</color>  {1}   ·   {2}", mission.index + 1, mission.name, goal);
+            }
+            else objective.text = "";
+
+            if (w.Winner < 0) banner.text = "";
+            else
+            {
+                bool won = w.Winner == SkirmishController.PlayerTeam;
+                string why = w.Mission?.Outcome != null && w.Mission.Outcome != "victory" ? "\n<size=30>" + w.Mission.Outcome + "</size>" : "";
+                banner.text = won ? "<color=#a8ffc0>VICTORY</color>" : "<color=#ffb0a8>DEFEAT</color>" + why;
+                if (endPanel == null) ShowEndButtons(won);
+            }
 
             helpPanel.gameObject.SetActive(Time.unscaledTime < helpUntil);
             RefreshSelection();
@@ -226,6 +247,20 @@ namespace Saga.Game
                     why != null ? "\n<color=#ef8a80>" + why + "</color>" : "");
             }
             else tooltip.text = "";
+        }
+
+        void ShowEndButtons(bool won)
+        {
+            var root = banner.canvas.transform;
+            endPanel = UiKit.Rect(root, "end", new Vector2(0.5f, 0.45f), Vector2.zero, new Vector2(700, 80)).gameObject;
+            var m = game.MissionDef;
+            var cfg = game.Config;
+            System.Action first; string firstLabel;
+            if (m != null && won && m.index + 1 < 8) { firstLabel = "Next mission"; first = () => SkirmishController.Begin(new BattleConfig { Mission = m.index + 1 }); }
+            else if (m != null && !won) { firstLabel = "Retry mission"; first = () => SkirmishController.Begin(cfg); }
+            else { firstLabel = "Play again"; first = () => SkirmishController.Begin(cfg); }
+            UiKit.Button(endPanel.transform, firstLabel, new Vector2(0, 0.5f), new Vector2(0, 0), new Vector2(330, 72), first, 28);
+            UiKit.Button(endPanel.transform, "Menu", new Vector2(1, 0.5f), new Vector2(0, 0), new Vector2(330, 72), SkirmishController.BackToMenu, 28);
         }
 
         static string Pretty(string id) => string.Join(" ", id.Split('_').Select(w => char.ToUpper(w[0]) + w.Substring(1)));

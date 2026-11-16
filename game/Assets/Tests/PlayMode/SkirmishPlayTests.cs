@@ -18,6 +18,7 @@ namespace Saga.Tests
         [UnityTest]
         public IEnumerator Skirmish_SelectMoveAttack()
         {
+            Clean();
             var go = new GameObject("Main Camera", typeof(Camera), typeof(AudioListener));
             go.tag = "MainCamera";
             var cam = go.GetComponent<Camera>();
@@ -25,6 +26,7 @@ namespace Saga.Tests
             cam.targetTexture = rt; // the HUD lays itself out for this size
             var game = go.AddComponent<SkirmishController>();
             game.quickFleets = true;
+            game.showMenu = false;
             yield return null;
             yield return null;
             Assert.NotNull(game.World, "skirmish started");
@@ -69,7 +71,7 @@ namespace Saga.Tests
             // Buy a fighter: paid now, arrives after its build time beside the fleet.
             if (game.World.Winner < 0)
             {
-                int before = game.World.Count(SkirmishController.PlayerTeam);
+                int before = game.World.Ships.Count(x => x.Team == SkirmishController.PlayerTeam && x.Arrived >= 0);
                 game.World.TeamOf(SkirmishController.PlayerTeam).Money = 5000;
                 Assert.IsTrue(game.Buy("fighter"), "can buy a fighter with 5,000 credits");
                 Assert.IsTrue(game.Buy("missile_frigate"));
@@ -77,7 +79,8 @@ namespace Saga.Tests
                 Shot(cam, rt, "skirmish_5_building");
                 double until = game.World.Time + 15;
                 yield return RunUntil(game, until);
-                Assert.Greater(game.World.Count(SkirmishController.PlayerTeam) + (game.World.Winner >= 0 ? 99 : 0), before, "bought ships arrived");
+                int arrived = game.World.Ships.Count(x => x.Team == SkirmishController.PlayerTeam && x.Arrived >= 0) - before;
+                Assert.AreEqual(2, arrived + (game.World.Winner >= 0 ? 2 : 0), "both bought ships arrived (losses in combat do not matter)");
             }
 
             // Select a single ship to show the detail panel.
@@ -87,6 +90,58 @@ namespace Saga.Tests
             Shot(cam, rt, "skirmish_4_single");
 
             Object.Destroy(go);
+        }
+
+        [UnityTest]
+        public IEnumerator StartMenu_Shows()
+        {
+            var (go, cam, rt) = MakeCamera();
+            var game = go.AddComponent<SkirmishController>();
+            yield return null; yield return null;
+            Assert.IsNull(game.World, "no battle until something is chosen");
+            Assert.NotNull(GameObject.Find("Start menu"), "menu canvas exists");
+            Shot(cam, rt, "menu_1_start");
+            Object.Destroy(go); Object.Destroy(GameObject.Find("Start menu"));
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator Campaign_Mission1_StartsWithItsFleets()
+        {
+            var (go, cam, rt) = MakeCamera();
+            SkirmishController.Pending = new BattleConfig { Mission = 0 };
+            var game = go.AddComponent<SkirmishController>();
+            yield return null; yield return null;
+            Assert.NotNull(game.World);
+            Assert.AreEqual("Basic Training", game.MissionDef.name);
+            Assert.AreEqual(4, game.World.Count(1), "four enemy scouts");
+            Assert.AreEqual(2000, game.World.TeamOf(0).Money, 1, "mission start money");
+            Assert.IsNotNull(game.World.CannotBuy(0, "cannon_frigate"), "frigates are not available in mission 1");
+            game.SelectAllOwn();
+            game.GameSpeed = 4f;
+            yield return RunUntil(game, 8);
+            Shot(cam, rt, "mission_1_basic_training");
+            Object.Destroy(go);
+            yield return null;
+        }
+
+        // Each test starts from an empty scene (earlier tests leave lights, maps and canvases behind).
+        static void Clean()
+        {
+            foreach (var g in UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects())
+                if (!g.name.Contains("tests runner")) Object.DestroyImmediate(g);
+            SkirmishController.Pending = null;
+        }
+
+        static (GameObject, Camera, RenderTexture) MakeCamera()
+        {
+            Clean();
+            var go = new GameObject("Main Camera", typeof(Camera), typeof(AudioListener));
+            go.tag = "MainCamera";
+            var cam = go.GetComponent<Camera>();
+            var rt = new RenderTexture(W, H, 24, RenderTextureFormat.ARGB32) { antiAliasing = 4 };
+            cam.targetTexture = rt;
+            return (go, cam, rt);
         }
 
         static IEnumerator RunUntil(SkirmishController game, double seconds)

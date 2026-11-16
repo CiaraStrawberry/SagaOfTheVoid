@@ -111,11 +111,14 @@ Still open: the scale between big and small ships.
 
 ## Status (16 Nov 2026)
 
-- Playable skirmish: `game\Assets\Scenes\Skirmish.unity`. You command Blue against the computer. Selection, move with formation, attack, waypoints, groups, RTS camera, HUD.
-- Tests: `game\Assets\Tests\` — 8 rules tests (no Play mode) and 1 Play-mode skirmish test, all passing. Run with `-runTests -testPlatform EditMode` or `PlayMode`.
-- Battle recorder: `BattlePreview.Record` (`-quick` for an 8 v 8, 75 s run) writes frames to `tools\preview\frames`.
-- Recovered levels: all 7 2017 scenes in `recovery\assetripper\ExportedProject\Assets\_Scenes\`; not yet brought into the new game.
-- Next: money and buying ships mid-fight (2017 economy), computer buying, turrets aiming, the 3 battle maps.
+The full, current record is the docs site: `docs\index.html` (regenerate with `python tools/make_docs.py`).
+
+- Playable: start menu, skirmish (map, difficulty, full or quick), and the 8 campaign missions with saved progress. `game\Assets\Scenes\Skirmish.unity`, or the test build `builds\Skirmish\SagaRemake.exe` (`BuildScript.BuildWindows`).
+- Economy: credits, build bar and queue, kill bounties, computer buying.
+- Maps: the three 2017 battle maps, re-placed for the strategy camera (`MapBuilder`, from `tools\mapbake`).
+- Tests: `game\Assets\Tests\` — 19 rules tests and 3 Play-mode tests, all passing.
+- Battle recorder: `BattlePreview.Record` (`-quick`, `-map <id>`, `-sky <id>`) writes frames to `tools\preview\frames`.
+- Next: fleet builder (replaces the campaign's stand-in starter fleets), turrets that aim, sound, tutorial, compressing textures (build is 882 MB).
 
 ## Decisions needed from you (original list, kept for reference)
 

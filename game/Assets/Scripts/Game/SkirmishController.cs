@@ -23,6 +23,10 @@ namespace Saga.Game
         [Tooltip("Use the small 8-ship fleets.")]
         public bool quickFleets;
         public int seed = 2017;
+        [Tooltip("asteroid_field, space_station, ship_graveyard, or empty for open space")]
+        public string mapId = "asteroid_field";
+        [Tooltip("Skybox1, skybox2 ... skybox5")]
+        public string skyId = "skybox5";
 
         public World World { get; private set; }
         public BattleView View { get; private set; }
@@ -47,19 +51,66 @@ namespace Saga.Game
         Vector2 dragStart; bool dragging; bool leftDown;
         float lastClickTime; Ship lastClicked;
 
+        [Tooltip("Show the start menu first. Tests turn this off to go straight into a battle.")]
+        public bool showMenu = true;
+
+        // The battle to start after the scene reloads (set by the menu and the end-of-battle buttons).
+        public static BattleConfig Pending;
+        public BattleConfig Config { get; private set; }
+        public MissionDef MissionDef { get; private set; }
+        StartMenu menu;
+        bool resultSaved;
+
+        public static void Begin(BattleConfig config)
+        {
+            Pending = config;
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public static void BackToMenu()
+        {
+            Pending = null;
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        }
+
         void Start()
         {
             cam = GetComponent<Camera>();
             cam.fieldOfView = 35f;
             cam.nearClipPlane = 30f;
             cam.farClipPlane = 60000f;
-
             var lib = ShipLibrary.Load();
-            World = new World(lib.Rules(), seed);
-            World.PlayerTeams.Add(PlayerTeam);
-            Fleets.Spawn(World, quickFleets ? Fleets.Quick : Fleets.Full, quickFleets ? 2800f : 4200f);
+            var campaign = JsonUtility.FromJson<CampaignDef>(lib.campaignJson.text);
 
-            BattleView.BuildStage(lib, cam);
+            var config = Pending ?? (showMenu ? null : new BattleConfig { Quick = quickFleets, Map = mapId, Sky = skyId });
+            Pending = null;
+            if (config == null)
+            {
+                // Menu over a quiet backdrop: the station map, slowly turning.
+                BattleView.BuildStage(lib, cam, "space_station", "Skybox1");
+                pivot = new Vector3(0, 0, 2000); distance = 13000f;
+                PlaceCamera();
+                menu = new StartMenu(this, lib, cam, campaign);
+                return;
+            }
+            Config = config;
+
+            World = new World(lib.Rules(), seed);
+            string map = config.Map, sky = config.Sky;
+            if (config.Mission >= 0)
+            {
+                MissionDef = campaign.missions[config.Mission];
+                World.SetUpMission(MissionDef, PlayerTeam, 1);
+                map = MissionDef.map; sky = MissionDef.sky;
+            }
+            else
+            {
+                World.PlayerTeams.Add(PlayerTeam);
+                Fleets.Spawn(World, config.Quick ? Fleets.Quick : Fleets.Full, config.Quick ? 2800f : 4200f);
+                World.TeamOf(1).Difficulty = config.Difficulty;
+            }
+
+            BattleView.BuildStage(lib, cam, string.IsNullOrEmpty(map) ? null : map, sky);
             View = new BattleView(World, lib, cam);
             hud = new SkirmishHud(this, lib, cam);
 
@@ -71,6 +122,23 @@ namespace Saga.Game
         void Update()
         {
             float dt = Time.unscaledDeltaTime;
+            if (World == null)
+            {
+                // Menu backdrop: turn slowly.
+                yaw += 3f * dt;
+                PlaceCamera();
+                if (Input.GetKeyDown(KeyCode.F10)) Application.Quit();
+                return;
+            }
+            if (World.Winner >= 0 && !resultSaved)
+            {
+                resultSaved = true;
+                if (MissionDef != null && World.Winner == PlayerTeam && MissionDef.index > StartMenu.Completed)
+                {
+                    PlayerPrefs.SetInt(StartMenu.ProgressKey, MissionDef.index);
+                    PlayerPrefs.Save();
+                }
+            }
             HandleKeys();
             HandleCamera(dt);
             HandleMouse();
@@ -140,7 +208,7 @@ namespace Saga.Game
 
         void HandleKeys()
         {
-            if (Input.GetKeyDown(KeyCode.F5)) UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+            if (Input.GetKeyDown(KeyCode.F5)) Begin(Config);
             if (Input.GetKeyDown(KeyCode.F10)) Application.Quit();
             if (Input.GetKeyDown(KeyCode.P)) Paused = !Paused;
             if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.KeypadPlus)) GameSpeed = Mathf.Min(4f, GameSpeed * 2f);

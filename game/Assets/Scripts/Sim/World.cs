@@ -232,7 +232,8 @@ namespace Saga.Sim
                 PayBounty(s);
                 Deaths.Add(s);
             }
-            if (Winner < 0)
+            if (Mission != null) CheckMission();
+            else if (Winner < 0)
             {
                 var teams = Alive.Select(s => s.Team).Distinct().ToList();
                 if (teams.Count == 1 && Time > 1) Winner = teams[0];
@@ -264,7 +265,8 @@ namespace Saga.Sim
             else if (mine.Count <= 3 && nearestDist >= 1000) t.Retreating = true;
             if (t.Retreating && nearestDist < 1000) t.Retreating = false;
 
-            var goal = t.Retreating ? t.Home : nearest.Pos;
+            bool holding = Time < t.HoldUntil && nearestDist >= 1000;
+            var goal = t.Retreating || holding ? t.Home : nearest.Pos;
             // Whole fleet moves together, keeping its formation; fighters chase their own targets when attacking.
             var centre = new Vec2(mine.Average(s => s.Pos.X), mine.Average(s => s.Pos.Y));
             foreach (var s in mine)

@@ -35,3 +35,10 @@ game/*.csproj
 game/*.sln
 game/.vs/
 *.log
+
+# map bake project: a copy of recovery output; keep only its tool script
+tools/mapbake/*
+!tools/mapbake/Assets/
+tools/mapbake/Assets/*
+!tools/mapbake/Assets/Editor/
+tools/mapbake/Assets/Editor/*.meta

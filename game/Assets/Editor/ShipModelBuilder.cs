@@ -163,15 +163,22 @@ public static class ShipModelBuilder
             prefab = AssetDatabase.LoadAssetAtPath<GameObject>(OutDir + "/" + d.id + ".prefab"),
             icon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Icons/" + d.sprite + "_Blue.png"),
         }).ToList();
+        lib.maps = new[] { "asteroid_field", "space_station", "ship_graveyard" }
+            .Select(id => new ShipLibrary.MapEntry { id = id, prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Maps/" + id + ".prefab") })
+            .Where(m => m.prefab != null).ToList();
+        lib.skies = new[] { "Skybox1", "skybox2", "skybox3", "skybox4", "skybox5" }
+            .Select(id => new ShipLibrary.SkyEntry { id = id, texture = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Art/Backgrounds/" + id + ".png") })
+            .Where(s => s.texture != null).ToList();
+        lib.campaignJson = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/campaign.json");
         lib.shipsJson = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/ships.json");
         lib.weaponsJson = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/weapons.json");
         lib.fxShader = Shader.Find("Saga/Fx");
         lib.skybox = sky;
         EditorUtility.SetDirty(lib);
         AssetDatabase.SaveAssets();
-        Log(string.Format("library: {0} ships, {1} with prefab, {2} with icon, data {3}, shader {4}",
-            lib.ships.Count, lib.ships.Count(e => e.prefab != null), lib.ships.Count(e => e.icon != null),
-            lib.shipsJson != null && lib.weaponsJson != null, lib.fxShader != null));
+        Log(string.Format("library: {0} ships, {1} with prefab, {2} with icon, {3} maps, {4} skies, data {5}, campaign {6}, shader {7}",
+            lib.ships.Count, lib.ships.Count(e => e.prefab != null), lib.ships.Count(e => e.icon != null), lib.maps.Count, lib.skies.Count,
+            lib.shipsJson != null && lib.weaponsJson != null, lib.campaignJson != null, lib.fxShader != null));
     }
 
     // Splits one submesh out so each part has exactly one material slot.

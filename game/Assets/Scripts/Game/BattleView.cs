@@ -83,7 +83,8 @@ namespace Saga.Game
 
         // ---------- stage: sky, lights, post-processing ----------
 
-        public static void BuildStage(ShipLibrary lib, Camera cam)
+        // mapId: asteroid_field, space_station or ship_graveyard (null for empty space). skyId: Skybox1, skybox2 ... skybox5.
+        public static void BuildStage(ShipLibrary lib, Camera cam, string mapId = null, string skyId = null)
         {
             cam.clearFlags = CameraClearFlags.Skybox;
             cam.allowHDR = true;
@@ -91,7 +92,12 @@ namespace Saga.Game
             camData.renderPostProcessing = true;
             camData.antialiasing = AntialiasingMode.None;
 
-            RenderSettings.skybox = lib.skybox;
+            var sky = new Material(lib.skybox);
+            var skyTex = skyId != null ? lib.Sky(skyId) : null;
+            if (skyTex != null) sky.SetTexture("_MainTex", skyTex);
+            RenderSettings.skybox = sky;
+            var mapPrefab = mapId != null ? lib.Map(mapId) : null;
+            if (mapPrefab != null) UnityEngine.Object.Instantiate(mapPrefab).name = "Map: " + mapId;
             RenderSettings.ambientMode = AmbientMode.Trilight;
             RenderSettings.ambientSkyColor = new Color(0.5f, 0.55f, 0.65f);
             RenderSettings.ambientEquatorColor = new Color(0.35f, 0.36f, 0.4f);
