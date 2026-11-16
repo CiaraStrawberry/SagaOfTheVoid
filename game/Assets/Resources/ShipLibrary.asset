@@ -96,8 +96,12 @@ MonoBehaviour:
   warpRing: {fileID: 2800000, guid: 8651d31b9cb6a944881bc4537262c831, type: 3}
   warpAura: {fileID: 2800000, guid: e924738e683733d42bc185ba7c189f61, type: 3}
   warpSpark: {fileID: 2800000, guid: 8d8f4c34ff436d641849dd7f18f05043, type: 3}
-  musicMenu: {fileID: 8300000, guid: d8202c5661129554bbba10102b301660, type: 3}
+  musicMenu: {fileID: 8300000, guid: 0ca8651bbf951ee448531e471e807c18, type: 3}
   musicBattle: {fileID: 8300000, guid: 90f13af14270bb945b641e41fc7b4bc4, type: 3}
+  battlePlaylist:
+  - {fileID: 8300000, guid: 5dc4eb62be16dda46b355b89e82002b1, type: 3}
+  - {fileID: 8300000, guid: 7905ea067ffb22c42a31397eaf871ce7, type: 3}
+  - {fileID: 8300000, guid: 2b0907cccaa944e4b9882bf89ecf6b54, type: 3}
   sfxCannon: {fileID: 8300000, guid: a3cf5bf31fec6684e9bf472b8a5eab8f, type: 3}
   sfxMachinegun: {fileID: 8300000, guid: 382eb78c179891c4f8a8aabaefa82d4a, type: 3}
   sfxGatling: {fileID: 8300000, guid: 1dd2d5053ef54e548a9cdeeff0e557ff, type: 3}

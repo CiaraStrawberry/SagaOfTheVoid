@@ -187,8 +187,11 @@ public static class ShipModelBuilder
         lib.warpAura = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Art/Fx/warpjump_aura.png");
         lib.warpSpark = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Art/Fx/warpjump_spark.png");
         AudioClip A(string file) => AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Art/Audio/" + file);
-        lib.musicMenu = A("Music/Space Station SLOW LOOP.ogg");
+        // Remake music (Stable Audio, tools/music.py); the 2017 loops stay as fallbacks.
+        lib.musicMenu = A("Music/Remake/deep_space_calm.mp3") ?? A("Music/Space Station SLOW LOOP.ogg");
         lib.musicBattle = A("Music/Long Range Combat LOOP.ogg");
+        lib.battlePlaylist = new[] { "battle_lines", "drift_of_the_fleet", "fleet_engagement" }
+            .Select(n => A("Music/Remake/" + n + ".mp3")).Where(c => c != null).ToList();
         lib.sfxCannon = A("Sfx/cannon.wav");
         lib.sfxMachinegun = A("Sfx/machinegun.ogg");
         lib.sfxGatling = A("Sfx/weapon_gatling_006.wav");

@@ -49,6 +49,7 @@ namespace Saga.Game
         public Texture2D warpSpark;
         [Header("Audio (2017 clips)")]
         public AudioClip musicMenu, musicBattle;
+        public List<AudioClip> battlePlaylist = new List<AudioClip>(); // remake tracks (tools/music.py), crossfaded in turn
         public AudioClip sfxCannon, sfxMachinegun, sfxGatling, sfxMissile, sfxBeam, sfxShotgun, sfxRailgun;
         public AudioClip sfxWarp, sfxExplosion, sfxKick;
         public AudioClip sfxClick, sfxSelect, sfxOrderMove, sfxOrderAttack;

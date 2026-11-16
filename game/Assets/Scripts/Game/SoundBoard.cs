@@ -52,6 +52,14 @@ namespace Saga.Game
             music.Play();
         }
 
+        // Several tracks in turn, from a random one, each crossfading into the next near its end.
+        public void PlayPlaylist(List<AudioClip> clips)
+        {
+            if (clips == null || clips.Count == 0) return;
+            var p = music.gameObject.AddComponent<MusicPlaylist>();
+            p.Begin(music, clips);
+        }
+
         // ---------- battle ----------
 
         public void Shot(string visual, bool fromCraft, Vector3 at)

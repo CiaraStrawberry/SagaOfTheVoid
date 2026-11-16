@@ -141,7 +141,8 @@ namespace Saga.Game
 
             BattleView.BuildStage(lib, cam, string.IsNullOrEmpty(map) ? null : map, sky);
             View = new BattleView(World, lib, cam);
-            new SoundBoard(lib, gameObject, cam).PlayMusic(lib.musicBattle);
+            var board = new SoundBoard(lib, gameObject, cam);
+            if (lib.battlePlaylist.Count > 0) board.PlayPlaylist(lib.battlePlaylist); else board.PlayMusic(lib.musicBattle);
             hud = new SkirmishHud(this, lib, cam);
             if (MissionDef != null && lib.narrativeJson != null)
             {
