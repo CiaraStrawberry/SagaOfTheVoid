@@ -180,6 +180,7 @@ namespace Saga.Game
                     PlayerPrefs.Save();
                 }
             }
+            SoundBoard.Current?.DuckMusic(comms != null && comms.Open);
             if (comms != null && UpdateStory(dt)) return;
             if (MenuOpen)
             {

@@ -30,9 +30,15 @@ namespace Saga.Game
             a.Play();
         }
 
+        const float DuckFade = 1f;   // seconds to fade between full and half volume (story calls)
+        float level = 1f;
+
         void Update()
         {
             if (a == null || a.clip == null) return;
+            float target = SoundBoard.Current != null ? SoundBoard.Current.MusicTarget : 1f;
+            level = Mathf.MoveTowards(level, target, Time.unscaledDeltaTime * 0.5f / DuckFade);
+            if (fade < 0f) a.volume = volume * level;
             // Start the next track as this one nears its end.
             if (fade < 0f && (!a.isPlaying || a.time >= a.clip.length - Crossfade))
             {
@@ -46,8 +52,8 @@ namespace Saga.Game
             {
                 fade += Time.unscaledDeltaTime / Crossfade;
                 float k = Mathf.Clamp01(fade);
-                a.volume = volume * (1f - k);
-                b.volume = volume * k;
+                a.volume = volume * level * (1f - k);
+                b.volume = volume * level * k;
                 if (k >= 1f)
                 {
                     a.Stop();

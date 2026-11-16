@@ -52,6 +52,10 @@ namespace Saga.Game
             music.Play();
         }
 
+        // Music level the playlist fades towards: half volume during story calls, full otherwise.
+        public float MusicTarget { get; private set; } = 1f;
+        public void DuckMusic(bool duck) => MusicTarget = duck ? 0.5f : 1f;
+
         // Several tracks in turn, from a random one, each crossfading into the next near its end.
         public void PlayPlaylist(List<AudioClip> clips)
         {
