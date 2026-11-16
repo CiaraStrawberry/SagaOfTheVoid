@@ -79,3 +79,18 @@ MonoBehaviour:
   warpRing: {fileID: 2800000, guid: 8651d31b9cb6a944881bc4537262c831, type: 3}
   warpAura: {fileID: 2800000, guid: e924738e683733d42bc185ba7c189f61, type: 3}
   warpSpark: {fileID: 2800000, guid: 8d8f4c34ff436d641849dd7f18f05043, type: 3}
+  musicMenu: {fileID: 8300000, guid: d8202c5661129554bbba10102b301660, type: 3}
+  musicBattle: {fileID: 8300000, guid: 90f13af14270bb945b641e41fc7b4bc4, type: 3}
+  sfxCannon: {fileID: 8300000, guid: a3cf5bf31fec6684e9bf472b8a5eab8f, type: 3}
+  sfxMachinegun: {fileID: 8300000, guid: 382eb78c179891c4f8a8aabaefa82d4a, type: 3}
+  sfxGatling: {fileID: 8300000, guid: 1dd2d5053ef54e548a9cdeeff0e557ff, type: 3}
+  sfxMissile: {fileID: 8300000, guid: 1ec8b0b175fc214469d97ba6d3a6367f, type: 3}
+  sfxBeam: {fileID: 8300000, guid: 00939a5b2e822794e9e0698779e179d0, type: 3}
+  sfxShotgun: {fileID: 8300000, guid: 01fb4a5e84cabe647a85ea2e3733098f, type: 3}
+  sfxWarp: {fileID: 8300000, guid: 602c7f2bef859e64a9e511dc0bb7ad83, type: 3}
+  sfxExplosion: {fileID: 8300000, guid: 28465efecd1ecb449940e27ace52e79e, type: 3}
+  sfxKick: {fileID: 8300000, guid: f99a2a69addbe5f4aa037e599d10b910, type: 3}
+  sfxClick: {fileID: 8300000, guid: bebc979db0ee85b489cb8baf611ec858, type: 3}
+  sfxSelect: {fileID: 8300000, guid: 23b0cc5fb6733d2488aac81e9ffb90c0, type: 3}
+  sfxOrderMove: {fileID: 8300000, guid: 4cba70f586a19114181414354f984424, type: 3}
+  sfxOrderAttack: {fileID: 8300000, guid: 579e27f2fe75c1f4eb8e3b4e4e984350, type: 3}

@@ -90,6 +90,7 @@ namespace Saga.Game
                 BattleView.BuildStage(lib, cam, "space_station", "Skybox1");
                 pivot = new Vector3(0, 0, 2000); distance = 13000f;
                 PlaceCamera();
+                new SoundBoard(lib, gameObject, cam).PlayMusic(lib.musicMenu);
                 menu = new StartMenu(this, lib, cam, campaign);
                 return;
             }
@@ -112,6 +113,7 @@ namespace Saga.Game
 
             BattleView.BuildStage(lib, cam, string.IsNullOrEmpty(map) ? null : map, sky);
             View = new BattleView(World, lib, cam);
+            new SoundBoard(lib, gameObject, cam).PlayMusic(lib.musicBattle);
             hud = new SkirmishHud(this, lib, cam);
 
             var mine = World.Alive.Where(s => s.Team == PlayerTeam).ToList();
@@ -172,8 +174,10 @@ namespace Saga.Game
         public void Select(IEnumerable<Ship> ships, bool add = false)
         {
             if (!add) { foreach (var s in Selected) View.SetSelected(s, false); Selected.Clear(); }
+            int before = Selected.Count;
             foreach (var s in ships)
                 if (!s.Dead && s.Team == PlayerTeam && !Selected.Contains(s)) { Selected.Add(s); View.SetSelected(s, true); }
+            if (Selected.Count > 0 && (Selected.Count != before || !add)) SoundBoard.Current?.Select();
         }
 
         public void SelectAllOwn() => Select(Own);
@@ -182,6 +186,7 @@ namespace Saga.Game
         {
             if (Selected.Count == 0) return;
             World.OrderMove(Selected, BattleView.ToSim(worldPoint), queue);
+            SoundBoard.Current?.OrderMove();
             View.Ping(worldPoint, false);
         }
 
@@ -189,6 +194,7 @@ namespace Saga.Game
         {
             if (Selected.Count == 0 || target == null || target.Team == PlayerTeam) return;
             World.OrderAttack(Selected, target);
+            SoundBoard.Current?.OrderAttack();
             var v = View.ViewOf(target);
             if (v != null) View.Ping(v.Go.transform.position, true, v.Length * 1.3f);
         }
@@ -200,7 +206,14 @@ namespace Saga.Game
         {
             if (Selected.Count == 0) return;
             World.OrderIntoFight(Selected, f, PlayerTeam);
+            SoundBoard.Current?.OrderAttack();
             View.Ping(BattleView.ToWorld(f.Centre), true, (float)f.Radius * 2f);
+        }
+
+        (Ship big, List<Ship> attackers)? StrikeUnderMouse()
+        {
+            var g = GroundUnderMouse();
+            return g.HasValue ? View.StrikeZoneAt(g.Value) : null;
         }
 
         Furball FightUnderMouse()
@@ -264,6 +277,7 @@ namespace Saga.Game
             if (Input.GetKeyDown(KeyCode.F5)) Begin(Config);
             if (Input.GetKeyDown(KeyCode.F10)) Application.Quit();
             if (Input.GetKeyDown(KeyCode.P)) Paused = !Paused;
+            if (Input.GetKeyDown(KeyCode.M)) SoundBoard.Current?.ToggleMute();
             if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.KeypadPlus)) GameSpeed = Mathf.Min(4f, GameSpeed * 2f);
             if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.KeypadMinus)) GameSpeed = Mathf.Max(0.25f, GameSpeed / 2f);
             if (Input.GetKeyDown(KeyCode.H)) hud.ToggleHelp();
@@ -372,8 +386,11 @@ namespace Saga.Game
                 {
                     var hit = PickAt(mouse, s => s.Team == PlayerTeam);
                     var fight = hit == null ? FightUnderMouse() : null;
+                    var strike = hit == null && fight == null ? StrikeUnderMouse() : null;
                     if (fight != null && fight.Alive.Any(s => s.Team == PlayerTeam))
                         Select(fight.Alive.Where(s => s.Team == PlayerTeam), shift);
+                    else if (strike.HasValue && strike.Value.attackers.Any(s => s.Team == PlayerTeam))
+                        Select(strike.Value.attackers.Where(s => s.Team == PlayerTeam), shift);
                     else if (hit != null)
                     {
                         if (hit == lastClicked && Time.unscaledTime - lastClickTime < 0.35f)
@@ -392,7 +409,16 @@ namespace Saga.Game
                 var exact = View.Pick(cam.ScreenPointToRay(mouse));
                 var fight = FightUnderMouse();
                 var hit = exact != null && exact.Team != PlayerTeam && !Hulls.IsSmall(exact.Hull) ? exact : null;
+                var strike = hit == null && fight == null ? StrikeUnderMouse() : null;
                 if (hit == null && fight != null && fight.Alive.Any(s => s.Team != PlayerTeam)) CommandFight(fight);
+                else if (hit == null && strike.HasValue && strike.Value.big.Team != PlayerTeam) CommandAttack(strike.Value.big);
+                else if (hit == null && strike.HasValue && strike.Value.attackers.Any(s => s.Team != PlayerTeam))
+                {
+                    // Our ship is under attack: go after the craft attacking it (fighters on fighters start a dogfight).
+                    var g = GroundUnderMouse().Value;
+                    CommandAttack(strike.Value.attackers.Where(s => s.Team != PlayerTeam)
+                        .OrderBy(s => (BattleView.ToWorld(s.Pos) - g).sqrMagnitude).First());
+                }
                 else if ((hit ??= PickAt(mouse, s => s.Team != PlayerTeam)) != null) CommandAttack(hit);
                 else
                 {

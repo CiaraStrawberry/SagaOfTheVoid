@@ -78,7 +78,7 @@ namespace Saga.Game
             colours.pressedColor = new Color(0.8f, 0.8f, 0.9f);
             colours.disabledColor = new Color(0.5f, 0.5f, 0.5f, 0.6f);
             b.colors = colours;
-            b.onClick.AddListener(() => onClick());
+            b.onClick.AddListener(() => { SoundBoard.Current?.Click(); onClick(); });
             return Label(bg.transform, "label", fontSize, TextAnchor.MiddleCenter, new Vector2(0.5f, 0.5f), Vector2.zero, size, label);
         }
     }

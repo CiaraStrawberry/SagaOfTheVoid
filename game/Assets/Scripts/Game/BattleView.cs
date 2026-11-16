@@ -154,6 +154,7 @@ namespace Saga.Game
             }
             foreach (var v in views.Values) if (!v.Ship.Dead) PlaceBars(v, now);
             UpdateFurballRings();
+            UpdateStrikeRings();
             UpdateFx(dt);
         }
 
@@ -541,6 +542,7 @@ namespace Saga.Game
                 default: flash = from.Crafts != null ? 16f : 22f; life = 0.07f; fc = Color.Lerp(c, Color.white, 0.6f); break;
             }
             AddSprite("flash", glow, a, Hdr(fc, 1.6f), flash, life, Vector3.zero, false);
+            SoundBoard.Current?.Shot(e.Visual, from.Crafts != null, a);
         }
 
         Fx AddLine(string kind, Vector3 a, Vector3 b, Color c, float width, float life, int points = 2)
@@ -567,13 +569,15 @@ namespace Saga.Game
             float dist = Vector3.Distance(from, to);
             float climb = Mathf.Clamp(dist * 0.18f, 220f, 650f);
             var p1 = from + Vector3.up * climb * 1.6f;         // pulls the start vertical
-            var p2 = to + Vector3.up * climb * 0.6f + (from - to).normalized * dist * 0.15f;
+            // Second control point well back and high: a steep, fast dive onto the target.
+            var p2 = to + Vector3.up * climb * 1.1f + (from - to).normalized * dist * 0.35f;
             float u = 1f - t;
             return u * u * u * from + 3f * u * u * t * p1 + 3f * u * t * t * p2 + t * t * t * to;
         }
 
         // Launch is slow, then the motor kicks in.
-        static float MissileProgress(float t) => t < 0.15f ? t * t / 0.15f * 0.5f : 0.075f + (t - 0.15f) / 0.85f * 0.925f;
+        // Launch is slow, then the motor kicks in and the missile keeps accelerating into the target.
+        static float MissileProgress(float t) => t < 0.15f ? t * t / 0.15f * 0.5f : 0.075f + Mathf.Pow((t - 0.15f) / 0.85f, 1.7f) * 0.925f;
 
         // ---------- impacts and explosions ----------
 
@@ -616,6 +620,7 @@ namespace Saga.Game
         void SpawnExplosion(ShipView v)
         {
             var p = Centre(v);
+            SoundBoard.Current?.Explosion(p, !Hulls.IsSmall(v.Ship.Hull));
             float size = Hulls.IsSmall(v.Ship.Hull) ? 300f : v.Length * 1.7f;
             AddSprite("flash", glow, p, Hdr(new Color(1f, 0.6f, 0.25f), 1.5f), size, 1.0f, Vector3.zero, false);
             AddSprite("ring", ring, p, new Color(1f, 0.45f, 0.15f, 0.5f), size * 1.6f, 1.2f, Vector3.zero, true);

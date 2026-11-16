@@ -44,6 +44,11 @@ namespace Saga.Game
         public Texture2D warpRing;
         public Texture2D warpAura;
         public Texture2D warpSpark;
+        [Header("Audio (2017 clips)")]
+        public AudioClip musicMenu, musicBattle;
+        public AudioClip sfxCannon, sfxMachinegun, sfxGatling, sfxMissile, sfxBeam, sfxShotgun;
+        public AudioClip sfxWarp, sfxExplosion, sfxKick;
+        public AudioClip sfxClick, sfxSelect, sfxOrderMove, sfxOrderAttack;
 
         public GameObject Map(string id) => maps.Find(m => m.id == id)?.prefab;
         public Texture2D Sky(string id) => skies.Find(s => string.Equals(s.id, id, StringComparison.OrdinalIgnoreCase))?.texture;

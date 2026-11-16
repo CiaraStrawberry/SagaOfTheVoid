@@ -73,6 +73,7 @@ namespace Saga.Game
                 w.Streaks[i] = lr;
             }
             v.Warp = w;
+            if (v.Ship.Arrived >= 0) SoundBoard.Current?.Warp(Centre(v));
             ApplyWarp(v, 0f);
         }
 
@@ -194,6 +195,63 @@ namespace Saga.Game
             }
         }
 
+        // ---------- strike zones (small craft attacking a big ship) ----------
+
+        public static float StrikeZoneRadius(ShipView big) => big.Length * 1.1f + 520f;
+
+        readonly Dictionary<Ship, SpriteRenderer> strikeRings = new Dictionary<Ship, SpriteRenderer>();
+
+        // Big ships under attack by small craft, with the craft attacking each.
+        public Dictionary<Ship, List<Ship>> StrikeZones()
+        {
+            var zones = new Dictionary<Ship, List<Ship>>();
+            foreach (var s in World.Alive)
+            {
+                var t = s.Target;
+                if (!Hulls.IsSmall(s.Hull) || t == null || t.Dead || Hulls.IsSmall(t.Hull)) continue;
+                var tv = ViewOf(t);
+                if (tv == null || Vector3.Distance(ViewOf(s).Go.transform.position, tv.Go.transform.position) > 2400f) continue;
+                if (!zones.TryGetValue(t, out var list)) zones[t] = list = new List<Ship>();
+                list.Add(s);
+            }
+            return zones;
+        }
+
+        // The strike zone under a point on the play plane, if any (the big ship and its attackers).
+        public (Ship big, List<Ship> attackers)? StrikeZoneAt(Vector3 ground)
+        {
+            foreach (var kv in StrikeZones())
+            {
+                var v = ViewOf(kv.Key);
+                var p = v.Go.transform.position;
+                if (new Vector2(ground.x - p.x, ground.z - p.z).magnitude <= StrikeZoneRadius(v)) return (kv.Key, kv.Value);
+            }
+            return null;
+        }
+
+        void UpdateStrikeRings()
+        {
+            var zones = StrikeZones();
+            foreach (var kv in zones)
+            {
+                var v = ViewOf(kv.Key);
+                if (!strikeRings.TryGetValue(kv.Key, out var r))
+                {
+                    r = FlatSprite("strike zone", ring, root, 1f, 0f);
+                    strikeRings[kv.Key] = r;
+                }
+                r.transform.position = v.Go.transform.position + Vector3.up * 120f;
+                r.transform.localScale = Vector3.one * StrikeZoneRadius(v) * 2f / 0.85f;
+                float pulse = 0.08f + 0.035f * Mathf.Sin(Time.unscaledTime * 3.4f + kv.Key.Id);
+                Tint(r, new Color(1f, 0.4f, 0.3f, pulse));
+            }
+            foreach (var ship in strikeRings.Keys.Where(k => !zones.ContainsKey(k)).ToList())
+            {
+                Kill(strikeRings[ship].gameObject);
+                strikeRings.Remove(ship);
+            }
+        }
+
         // ---------- independent craft ----------
 
         public class Craft
@@ -259,12 +317,18 @@ namespace Saga.Game
                 Vector3 goal, lead;
                 if (orbit)
                 {
-                    // Each craft circles the big ship at its own radius, height and direction, aiming a little
-                    // ahead on the circle so it chases smoothly.
-                    float r = (target.Length * 0.75f + 280f) * c.RadiusK;
-                    float th = c.Phase + c.Dir * (maxSpeed * 0.75f / r) * v.Pulse;
+                    // Strike on a big ship: each craft has its own lane around it (radius across the strike zone,
+                    // height, direction) and keeps making attack runs: dive in over the hull, pull back out.
+                    int k = System.Array.IndexOf(v.Crafts, c);
+                    float zone = StrikeZoneRadius(target);
+                    float lane = Mathf.Lerp(target.Length * 0.55f + 140f, zone * 0.95f, Mathf.Repeat(c.Phase * 0.618f + k * 0.29f, 1f));
+                    float th = c.Phase + c.Dir * (maxSpeed * 0.8f / lane) * v.Pulse;
                     float ahead = th + c.Dir * 0.4f;
-                    goal = Centre(target) + new Vector3(Mathf.Cos(ahead) * r, 70f + Mathf.Sin(th * 2f + c.Phase) * 90f, Mathf.Sin(ahead) * r);
+                    var tc = Centre(target);
+                    var lanePoint = tc + new Vector3(Mathf.Cos(ahead) * lane, 90f + Mathf.Sin(th * 1.6f + c.Phase) * 150f, Mathf.Sin(ahead) * lane);
+                    var runPoint = tc + new Vector3(Mathf.Cos(th + Mathf.PI) * target.Length * 0.25f, 40f, Mathf.Sin(th + Mathf.PI) * target.Length * 0.25f);
+                    float run = Mathf.Pow(Mathf.Max(0f, Mathf.Sin(v.Pulse * 0.45f + c.Phase * 1.7f)), 3f); // short dives
+                    goal = Vector3.Lerp(lanePoint, runPoint, run * 0.75f);
                     lead = Vector3.zero;
                 }
                 else if (dogfight && s.Dogfighting && target.Crafts != null)
@@ -275,11 +339,23 @@ namespace Saga.Game
                     int k = System.Array.IndexOf(v.Crafts, c);
                     var live = target.Crafts.Where(x => x.R.enabled).ToArray();
                     var prey = live.Length > 0 ? live[(k + s.Id) % live.Length] : target.Crafts[0];
-                    var side = Vector3.Cross(prey.Facing, Vector3.up) * (c.Dir * 60f);
-                    goal = prey.Pos - prey.Facing * 110f + side;
+                    // Each craft has its own lane in the fight (a radius across the whole area and a height),
+                    // and drifts between flying its lane and chasing an enemy's tail, so the fight fills the area
+                    // instead of collapsing into one ball.
+                    float R = (float)s.Furball.Radius * 0.9f;
+                    float lane = Mathf.Lerp(0.3f, 1f, Mathf.Repeat(c.Phase * 0.618f + k * 0.37f, 1f)) * R;
+                    float th = c.Phase + c.Dir * (maxSpeed * 0.8f / lane) * v.Pulse;
+                    var lanePoint = centreOfFight + new Vector3(
+                        Mathf.Cos(th + 0.4f * c.Dir) * lane,
+                        Mathf.Sin(th * 1.7f + c.Phase) * 170f,
+                        Mathf.Sin(th + 0.4f * c.Dir) * lane);
+                    var side = Vector3.Cross(prey.Facing, Vector3.up) * (c.Dir * 80f);
+                    var tail = prey.Pos - prey.Facing * 140f + side;
+                    float chase = 0.5f + 0.5f * Mathf.Sin(v.Pulse * 0.35f + c.Phase * 2f); // 0 = own lane, 1 = on a tail
+                    goal = Vector3.Lerp(lanePoint, tail, chase * 0.65f);
                     var fromCentre = goal - centreOfFight;
-                    if (fromCentre.magnitude > 480f) goal = centreOfFight + fromCentre.normalized * 480f;
-                    lead = prey.Vel * 0.6f;
+                    if (fromCentre.magnitude > R) goal = centreOfFight + fromCentre.normalized * R;
+                    lead = Vector3.Lerp(Vector3.zero, prey.Vel * 0.5f, chase);
                 }
                 else if (dogfight)
                 {

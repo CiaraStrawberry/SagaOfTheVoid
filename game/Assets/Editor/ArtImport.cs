@@ -6,6 +6,19 @@ using UnityEditor;
 //   Imported/        textures recovered from the 2017 build, capped at 2048 (8K is wasted on an RTS camera)
 public class ArtImport : AssetPostprocessor
 {
+    void OnPreprocessAudio()
+    {
+        if (!assetPath.StartsWith("Assets/Art/Audio/")) return;
+        var ai = (AudioImporter)assetImporter;
+        bool music = assetPath.Contains("/Music/");
+        var s = ai.defaultSampleSettings;
+        s.loadType = music ? UnityEngine.AudioClipLoadType.Streaming : UnityEngine.AudioClipLoadType.DecompressOnLoad;
+        s.compressionFormat = UnityEngine.AudioCompressionFormat.Vorbis;
+        s.quality = music ? 0.45f : 0.7f;
+        ai.defaultSampleSettings = s;
+        ai.forceToMono = !music;
+    }
+
     void OnPreprocessTexture()
     {
         var ti = (TextureImporter)assetImporter;
