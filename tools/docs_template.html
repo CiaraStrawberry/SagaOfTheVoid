@@ -38,6 +38,20 @@ p { margin: 0; max-width: 72ch; }
 code, kbd { font: 13px var(--f-mono); background: var(--plate); padding: 1px 6px; border-radius: 3px; }
 kbd { border: 1px solid var(--line); border-bottom-width: 2px; }
 pre { font: 13px/1.5 var(--f-mono); background: var(--hull); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; overflow-x: auto; margin: 0; }
+.cast { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.cast .card { flex-direction: row; align-items: flex-end; gap: 12px; }
+.cast img { width: 76px; height: 114px; object-fit: contain; object-position: bottom; flex: none; }
+.who { font-family: var(--f-display); font-size: 16px; }
+.who.blue { color: #73b8ff; } .who.gold { color: #ffc759; } .who.red { color: #ff7a6b; } .who.unknown { color: #bf7373; }
+.objectives { margin: 0; padding-left: 18px; color: var(--text); }
+.objectives li { margin: 3px 0; } .objectives b { color: var(--muted); font-weight: 600; margin-right: 6px; }
+.call { border: 1px solid var(--line); border-radius: 6px; background: var(--hull); }
+.call .when { font: 12px/1.4 var(--f-mono); color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.line { display: grid; grid-template-columns: 40px minmax(0,1fr); gap: 10px; padding: 8px 12px; align-items: start; }
+.line + .line { border-top: 1px dashed var(--line); }
+.line img { width: 40px; height: 40px; object-fit: cover; object-position: 50% 10%; border-radius: 4px; background: var(--plate); }
+.line img.hidden { filter: brightness(0); }
+.line p { margin: 2px 0 0; }
 .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
 .card { background: var(--hull); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .card .k { font: 500 11px/1.3 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
@@ -161,9 +175,15 @@ python tools/make_docs.py        # this page</pre>
 <section id="campaign">
   <div class="eyebrow">From the data file</div>
   <h1>Campaign</h1>
-  <p>The eight 2017 missions, recovered from code. Each plays on one of three scenery maps. Choose a mission.</p>
+  <p>The eight 2017 missions, recovered from code, with the remake's story: <span id="story-title"></span>. Each mission plays on one of three scenery maps. The story text comes from the game's own <code>narrative.json</code>, so it matches what plays in game.</p>
+  <h2>Cast</h2>
+  <div class="cast" id="cast"></div>
+  <h2>Missions</h2>
   <div class="controls" id="mission-tabs"></div>
   <div id="mission"></div>
+  <h2>Endings</h2>
+  <p>After the last mission's victory the player makes one choice.</p>
+  <div class="grid" id="endings"></div>
   <h2>Maps</h2>
   <div class="grid" id="maps"></div>
 </section>
@@ -344,6 +364,42 @@ drawShips();
 
 // ---------- campaign ----------
 let mission = 0;
+const story = DATA.story, character = id => story.characters.find(c => c.id === id);
+// Commander Sen is an unnamed signal until mission 6 (StoryDirector.Hidden).
+const hiddenSpeaker = (id, idx) => id === "sen" && idx < 5;
+const MEASURE = { enemy_kills: "enemy ships destroyed", remaining_enemies: "enemy ships left", target_hull: "target's hull", enemy_destroyer_hull: "enemy destroyer's hull", time_remaining: "time left" };
+const OPS = { "<=": "at or below", ">=": "at or above", "<": "below", ">": "above" };
+function when(t) {
+  if (t === "mission_start") return "Briefing, as the mission starts";
+  if (t === "mission_victory") return "Aftermath, on victory";
+  if (t === "first_enemy_destroyed") return "When the first enemy ship is destroyed";
+  const p = t.split(" ");
+  if (p.length === 3 && MEASURE[p[0]]) {
+    const v = p[0].endsWith("hull") ? Math.round(p[2] * 100) + "%" : p[0] === "time_remaining" ? `${Math.floor(p[2] / 60)}:${String(p[2] % 60).padStart(2, "0")}` : p[2];
+    return `When the ${MEASURE[p[0]]} is ${OPS[p[1]]} ${v}`;
+  }
+  return t;
+}
+function storyFor(index) {
+  const sm = story.missions.find(x => x.index === index);
+  if (!sm) return [];
+  return [
+    el("div", { class: "eyebrow", style: "margin:0" }, sm.act),
+    el("p", { class: "story", style: "margin:0" }, sm.premise),
+    el("ul", { class: "objectives" }, ...[["Objective", sm.primary], ["Secondary", sm.secondary], ["Bonus", sm.bonus]].filter(x => x[1]).map(([k, v]) => el("li", {}, el("b", {}, k), v))),
+    el("h3", {}, "Transmissions"),
+    ...sm.beats.map(b => el("div", { class: "call" }, el("div", { class: "when" }, when(b.trigger)),
+      ...b.lines.map(l => {
+        const c = character(l.speaker), hid = hiddenSpeaker(l.speaker, index);
+        return el("div", { class: "line" }, el("img", { src: `img/portraits/${l.speaker}.png`, alt: "", class: hid ? "hidden" : "" }),
+          el("div", {}, el("span", { class: "who " + (hid ? "unknown" : c ? c.color : "") }, hid ? "Unidentified signal" : c ? c.name : l.speaker), el("p", {}, l.text)));
+      }))),
+  ];
+}
+document.getElementById("story-title").textContent = "“" + story.title + "”";
+for (const c of story.characters) document.getElementById("cast").append(el("div", { class: "card" }, el("img", { src: `img/portraits/${c.id}.png`, alt: "" }),
+  el("div", {}, el("div", { class: "who " + c.color }, c.name), el("p", { style: "margin:2px 0;color:var(--muted);font-size:13px" }, c.role), el("p", { class: "m", style: "margin:0;font-size:11px;color:var(--muted)" }, c.faction))));
+for (const e of story.endings) document.getElementById("endings").append(el("div", { class: "card" }, el("div", { class: "k" }, "“" + e.choice + "”"), el("div", { class: "v", style: "font-size:18px" }, e.title), el("p", {}, e.text)));
 function drawMission() {
   const m = DATA.campaign.missions[mission];
   const counts = {}; m.enemy_fleet.forEach(id => counts[id] = (counts[id] || 0) + 1);
@@ -354,6 +410,8 @@ function drawMission() {
       el("div", { class: "controls" }, el("span", { class: "pill" }, title(m.objective)), el("span", { class: "pill" }, title(m.map)),
         el("span", { class: "pill" }, fmt(m.start_money) + " start money"), el("span", { class: "pill" }, Math.round(m.time_limit / 60) + " min"),
         el("span", { class: "pill" }, "build: " + title(m.ships_allowed))),
+      ...storyFor(m.index),
+      el("h3", {}, "2017 mission"),
       el("p", { class: "story" }, m.story),
       el("h3", {}, "Enemy fleet"),
       el("div", { class: "fleet" }, ...Object.entries(counts).map(([id, n]) => el("figure", {}, el("img", { class: "icon", src: icon(id), alt: "" }), el("figcaption", {}, (n > 1 ? n + " × " : "") + shipById[id].name))))),

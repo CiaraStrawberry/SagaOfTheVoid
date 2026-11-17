@@ -239,7 +239,17 @@ def main():
             item["poster"] = "media/poster_3d.jpg"
         media.append(item)
 
-    data = dict(CONTENT, ships=ships, weapons=weapons, campaign=campaign, media=media)
+    # The campaign story as the game has it (edited in tools/narrative_editor.py), with small comms portraits.
+    story = json.load(open(os.path.join(DATA, "narrative.json"), encoding="utf-8"))
+    os.makedirs(os.path.join(DOCS, "img", "portraits"), exist_ok=True)
+    for c in story["characters"]:
+        src = os.path.join(ROOT, "game", "Assets", "Art", "Portraits", c["id"] + ".png")
+        if os.path.exists(src):
+            im = Image.open(src).convert("RGBA")
+            im.thumbnail((240, 360))
+            im.save(os.path.join(DOCS, "img", "portraits", c["id"] + ".png"))
+
+    data = dict(CONTENT, ships=ships, weapons=weapons, campaign=campaign, media=media, story=story)
     html = open(os.path.join(ROOT, "tools", "docs_template.html"), encoding="utf-8").read()
     html = html.replace("/*DATA*/null", json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))
     html = html.replace("__BUILT__", datetime.date.today().isoformat())

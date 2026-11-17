@@ -20,7 +20,7 @@ public static class StackBaker
     static readonly string[] Squadrons = { "Scout", "Fighter", "Bomber", "AttackCraft" };
     static readonly string[] Colours = { "Blue", "Red" };
     const int Super = 4;
-    const float Scale = 2f;          // game resolution: twice the look-test pixels, so ships stay crisp up close
+    const float Scale = 1.5f;        // game resolution: 1.5x the look-test pixels (2x read too smooth, 1x too coarse up close)
     const int LayersPerPixel = 2;   // two slices per pixel of hull height: smoother sides when drawn closer together
 
     public static void Run()

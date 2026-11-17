@@ -17,9 +17,9 @@ using UnityEngine;
 public static class StackScenery
 {
     static readonly string[] Maps = { "asteroid_field", "space_station", "ship_graveyard" };
-    const float MinUnit = 14f;          // world units per pixel at the finest (ship pixels are about 5-6)
-    const long PartBudget = 3_000_000;  // most slice pixels per piece (one byte each in game)
-    const long MapBudget = 16_000_000;  // and per map; past it every piece's pixels grow together
+    const float MinUnit = 20f;          // world units per pixel at the finest (ship pixels are about 4-5)
+    const long PartBudget = 1_100_000;  // most slice pixels per piece (one byte each in game)
+    const long MapBudget = 6_000_000;   // and per map; past it every piece's pixels grow together
     const int LayersPerPixel = 2;
     static readonly Vector3 Sun = Quaternion.Euler(55f, -30f, 0f) * Vector3.forward; // direction the light travels
 
