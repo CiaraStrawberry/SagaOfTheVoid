@@ -40,6 +40,8 @@ namespace Saga.Game
             public Craft LastHitCraft; public float LastHitAt = -9f; // squadrons: the craft a hull hit last struck
             // Squadrons after a warp: fly straight ahead in formation until StraightUntil (Pulse time).
             public float StraightUntil = -1f, StraightFrom;
+            public int OrdersAtJump;            // the ship's order count when it jumped in
+            public bool Released;               // ordered during the jump-in run: go and do it, no push forward
             public Vector3 StraightAnchor, StraightDir;
             public Turret[] Turrets; // big ships: gun turrets that swing to face what they shoot at
         }

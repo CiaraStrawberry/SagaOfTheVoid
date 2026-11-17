@@ -84,6 +84,8 @@ namespace Saga.Game
                 v.StraightUntil = v.StraightFrom + 2f + 0.07f * v.Crafts.Length;
                 v.StraightAnchor = v.Go.transform.position + Vector3.up * v.Height;
                 v.StraightDir = w.Dir;
+                v.OrdersAtJump = v.Ship.Orders;
+                v.Released = false;
             }
             if (v.Ship.Arrived >= 0) SoundBoard.Current?.Warp(Centre(v));
             ApplyWarp(v, 0f);
@@ -326,6 +328,16 @@ namespace Saga.Game
                          && Vector3.Distance(v.Go.transform.position, target.Go.transform.position) < 2400f;
             bool dogfight = target != null && Hulls.IsSmall(s.Target.Hull);
 
+            // An order during the jump-in run ends it there: the craft turn off and go do it, in an arc, without
+            // first carrying on ahead (which is what made them circle back).
+            // A squadron that already had an order when it jumped skips the push forward too, once its run ends.
+            bool hasOrder = s.HasMoveOrder || s.OrderedTarget != null;
+            if (!v.Released && v.StraightUntil > 0f && v.Pulse >= v.StraightFrom && v.Pulse < v.StraightUntil + 3.3f
+                && (s.Orders != v.OrdersAtJump || (hasOrder && v.Pulse >= v.StraightUntil)))
+            {
+                v.Released = true;
+                v.StraightUntil = Mathf.Min(v.StraightUntil, v.Pulse);
+            }
             bool straight = v.Pulse < v.StraightUntil;
             float cruise = maxSpeed * 0.8f;
             var straightYaw = straight ? Quaternion.LookRotation(v.StraightDir) : Quaternion.identity;
@@ -408,10 +420,13 @@ namespace Saga.Game
                 // Just after the straight run: keep pushing forward along the jump line and only ease into the
                 // fight over a few seconds (each craft peels off at its own moment), with gentle acceleration,
                 // so they swing round in wide arcs instead of spinning on the spot.
+                // Ordered craft skip the push forward and turn onto the order straight away (still not spinning).
                 float peel = Mathf.Clamp01((v.Pulse - v.StraightUntil - Mathf.Repeat(c.Phase, 1f) * 0.8f) / 2.5f);
-                if (v.StraightUntil > 0f && peel < 1f)
+                if (v.StraightUntil > 0f && peel < 1f && !v.Released)
                     goal = Vector3.Lerp(c.Pos + v.StraightDir * 900f, goal, peel * peel);
-                float agility = v.StraightUntil > 0f ? Mathf.Lerp(0.3f, 1f, peel) : 1f;
+                float agility = v.StraightUntil <= 0f ? 1f
+                    : v.Released ? Mathf.Lerp(0.55f, 1f, Mathf.Clamp01((v.Pulse - v.StraightUntil) / 1.5f))
+                    : Mathf.Lerp(0.3f, 1f, peel);
 
                 if (c.Placed && dt <= 0f)
                 {

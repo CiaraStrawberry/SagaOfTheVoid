@@ -37,6 +37,7 @@ namespace Saga.Sim
         public bool Dead;
         public double NearestEnemy = double.MaxValue;
         public Ship OrderedTarget;                           // player/AI attack order (2017: shiptarget)
+        public int Orders;                                   // move/attack/stop orders given so far (for the view; no rule reads it)
         public readonly Queue<Vec2> Waypoints = new Queue<Vec2>(); // queued move points (2017: StoredOrders)
         public bool Holds = true;                            // HoldAtRange applies; off for plain move orders
         public Vec2? AttackMoveTo;                           // attack-move destination, resumed after a dogfight
@@ -185,6 +186,7 @@ namespace Saga.Sim
                 var offset = x.Pos - centre;
                 if (offset.Length > 900) offset = offset.Normalized * 900;
                 var p = point + offset;
+                x.Orders++;
                 if (queue && x.HasMoveOrder) { x.Waypoints.Enqueue(p); x.Holds = x.Holds && attack; continue; }
                 x.Waypoints.Clear();
                 x.OrderedTarget = null;
@@ -203,6 +205,7 @@ namespace Saga.Sim
             if (target == null || target.Dead) return;
             foreach (var x in ships.Where(x => !x.Dead && x.Team != target.Team))
             {
+                x.Orders++;
                 x.Waypoints.Clear();
                 x.AttackMoveTo = null;
                 x.OrderedTarget = target;
@@ -217,6 +220,7 @@ namespace Saga.Sim
         {
             foreach (var x in ships)
             {
+                x.Orders++;
                 x.Waypoints.Clear();
                 x.OrderedTarget = null;
                 x.AttackMoveTo = null;
