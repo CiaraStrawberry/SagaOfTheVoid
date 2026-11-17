@@ -82,27 +82,49 @@ namespace Saga.Game
             Refresh();
         }
 
-        // Under the skirmish column: unlock every mission, reset campaign progress. The menu reloads to show it.
+        // Top-right corner, small and out of the way at any screen shape: checkboxes for dev switches, plus a reset.
+        // The menu reloads after a change so the mission list shows it.
         void BuildDevPanel(Transform root)
         {
-            var dev = UiKit.Box(root, "dev", new Vector2(0, 1), new Vector2(80, -856), new Vector2(520, 176), UiKit.Panel).transform;
-            UiKit.Label(dev, "h", 22, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(24, -14), new Vector2(470, 30),
-                "<b>Dev</b>   <color=#8d98ab>development tools, not in the release</color>");
-            UiKit.Button(dev, UnlockAll ? "Every mission unlocked  <color=#58c98f>(on)</color>" : "Unlock every mission  <color=#8d98ab>(off)</color>",
-                new Vector2(0, 1), new Vector2(24, -52), new Vector2(472, 50), () =>
-                {
-                    PlayerPrefs.SetInt(UnlockAllKey, UnlockAll ? 0 : 1);
-                    PlayerPrefs.Save();
-                    SkirmishController.BackToMenu();
-                }, 20);
-            UiKit.Button(dev, "Reset campaign progress", new Vector2(0, 1), new Vector2(24, -112), new Vector2(472, 50), () =>
-                {
-                    PlayerPrefs.DeleteKey(ProgressKey);
-                    PlayerPrefs.DeleteKey(SkirmishController.EndingKey);
-                    PlayerPrefs.DeleteKey(UnlockAllKey);
-                    PlayerPrefs.Save();
-                    SkirmishController.BackToMenu();
-                }, 20);
+            var corner = UiKit.Rect(root, "dev", new Vector2(1, 1), new Vector2(-28, -24), new Vector2(340, 110));
+            var tag = UiKit.Label(corner, "tag", 15, TextAnchor.UpperRight, new Vector2(1, 1), Vector2.zero, new Vector2(340, 20), "DEV");
+            tag.color = UiKit.Muted;
+            Checkbox(corner, "Unlock every mission", UnlockAll, -24, () =>
+            {
+                PlayerPrefs.SetInt(UnlockAllKey, UnlockAll ? 0 : 1);
+                PlayerPrefs.Save();
+                SkirmishController.BackToMenu();
+            });
+            var reset = Clickable(corner, "reset", -58, () =>
+            {
+                PlayerPrefs.DeleteKey(ProgressKey);
+                PlayerPrefs.DeleteKey(SkirmishController.EndingKey);
+                PlayerPrefs.DeleteKey(UnlockAllKey);
+                PlayerPrefs.Save();
+                SkirmishController.BackToMenu();
+            });
+            var rl = UiKit.Label(reset, "label", 18, TextAnchor.MiddleRight, new Vector2(1, 0.5f), Vector2.zero, new Vector2(340, 30), "Reset campaign progress");
+            rl.color = UiKit.Muted;
+        }
+
+        // A label with a small box to its right, ticked when on; the whole row clicks.
+        static void Checkbox(Transform parent, string label, bool on, float y, System.Action toggle)
+        {
+            var row = Clickable(parent, label, y, toggle);
+            var box = UiKit.Box(row, "box", new Vector2(1, 0.5f), Vector2.zero, new Vector2(22, 22), UiKit.Muted);
+            UiKit.Box(box.transform, "inside", new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(18, 18), new Color(0.05f, 0.07f, 0.11f, 1f));
+            if (on) UiKit.Box(box.transform, "tick", new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(12, 12), UiKit.Accent);
+            UiKit.Label(row, "label", 18, TextAnchor.MiddleRight, new Vector2(1, 0.5f), new Vector2(-32, 0), new Vector2(300, 30), label);
+        }
+
+        // An invisible clickable row across the corner (right-aligned content goes inside it).
+        static RectTransform Clickable(Transform parent, string name, float y, System.Action onClick)
+        {
+            var hit = UiKit.Box(parent, name, new Vector2(1, 1), new Vector2(0, y), new Vector2(340, 30), new Color(0, 0, 0, 0));
+            var b = hit.gameObject.AddComponent<Button>();
+            b.targetGraphic = hit;
+            b.onClick.AddListener(() => { SoundBoard.Current?.Click(); onClick(); });
+            return hit.rectTransform;
         }
 
         void Refresh()
