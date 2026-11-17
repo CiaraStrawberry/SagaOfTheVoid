@@ -64,7 +64,7 @@ def main():
             sheet = palette(sheet)
             Image.fromarray(sheet).save(os.path.join(OUT, f"{name}_{colour}.png"))
             print(f"{name} {colour}: {side}px, {n} slices + lid, {filled} slice pixels")
-        listing[name] = {"side": side, "slices": n + 1}
+        listing[name] = {"side": side, "slices": n + 1, "per_pixel": m.get("per_pixel", 1)}
     json.dump(listing, open(os.path.join(OUT, "stack.json"), "w"), indent=1)
 
 

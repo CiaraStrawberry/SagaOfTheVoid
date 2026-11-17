@@ -18,6 +18,7 @@ public static class StackBaker
         ("LazerFrigate", 60), ("RepairFrigate", 58), ("Destroyer", 92), ("Capital", 132), ("Super-Capital", 170) };
     static readonly string[] Colours = { "Blue", "Red" };
     const int Super = 4;
+    const int LayersPerPixel = 2;   // two slices per pixel of hull height: smoother sides when drawn closer together
 
     public static void Run()
     {
@@ -59,7 +60,7 @@ public static class StackBaker
             var live = go.GetComponentsInChildren<Renderer>().Where(r => r.enabled).ToList();
             // Squadrons (fighters, bombers, scouts) hold several craft, each under a child called "Ship": keep one.
             var craft = go.GetComponentsInChildren<Transform>().FirstOrDefault(t => t.name == "Ship" && t.GetComponentsInChildren<Renderer>().Any(r => r.enabled));
-            if (craft != null && go.GetComponentsInChildren<Transform>().Count(t => t.name == "Ship") > 1)
+            if (craft != null && (name == "Scout" || name == "Fighter" || name == "Bomber"))
             {
                 foreach (var r in live) if (!r.transform.IsChildOf(craft)) r.enabled = false;
                 live = live.Where(r => r.enabled).ToList();
@@ -73,7 +74,7 @@ public static class StackBaker
             float length = Mathf.Max(b.size.x, b.size.z);
             float unit = length / px;
             int side = Mathf.CeilToInt(length / unit) + 4;
-            int slices = Mathf.Max(3, Mathf.CeilToInt(b.size.y / unit));
+            int slices = Mathf.Max(6, Mathf.CeilToInt(b.size.y / unit * LayersPerPixel));
             cam.orthographicSize = side * unit * 0.5f;
             float camY = b.max.y + 50f;
             cam.transform.position = new Vector3(b.center.x, camY, b.center.z);
@@ -96,7 +97,7 @@ public static class StackBaker
             }
             Log(string.Format("{0}: {1}x{1} px, {2} slices", name, side, slices));
             manifest.Append(first ? "" : ",\n").AppendFormat(CultureInfo.InvariantCulture,
-                "  \"{0}\": {{\"side\": {1}, \"slices\": {2}, \"super\": {3}}}", name, side, slices, Super);
+                "  \"{0}\": {{\"side\": {1}, \"slices\": {2}, \"super\": {3}, \"per_pixel\": {4}}}", name, side, slices, Super, LayersPerPixel);
             first = false;
             Object.DestroyImmediate(go);
         }
