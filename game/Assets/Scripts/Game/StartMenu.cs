@@ -27,7 +27,13 @@ namespace Saga.Game
         static readonly string[] MapSkies = { "skybox5", "Skybox1", "skybox4" };
 
         public static int Completed => PlayerPrefs.GetInt(ProgressKey, -1);
-        public static bool Unlocked(int mission) => mission <= Completed + 2; // 2017: up to two beyond the last win
+        public static bool Unlocked(int mission) => UnlockAll || mission <= Completed + 2; // 2017: up to two beyond the last win
+
+        // Development tools on the start menu (the Dev panel). Turn off for a release build.
+        public const bool DevPanel = true;
+        const string UnlockAllKey = "saga.dev.unlock_all";
+        // Dev switch: every mission open, without counting any as won (progress and ticks stay as they are).
+        public static bool UnlockAll => DevPanel && PlayerPrefs.GetInt(UnlockAllKey, 0) == 1;
 
         public StartMenu(SkirmishController game, ShipLibrary lib, Camera cam, CampaignDef campaign)
         {
@@ -47,6 +53,8 @@ namespace Saga.Game
             UiKit.Button(sk, "Full battle  ·  18 v 18", new Vector2(0, 1), new Vector2(24, -366), new Vector2(472, 64), () => StartSkirmish(false), 26);
             UiKit.Button(sk, "Quick battle  ·  8 v 8", new Vector2(0, 1), new Vector2(24, -442), new Vector2(472, 64), () => StartSkirmish(true), 26);
             UiKit.Button(sk, "Small battle  ·  4 v 4", new Vector2(0, 1), new Vector2(24, -518), new Vector2(472, 64), () => StartSkirmish(true, small: true), 26);
+
+            if (DevPanel) BuildDevPanel(root);
 
             // Campaign column
             var cp = UiKit.Box(root, "campaign", new Vector2(0, 1), new Vector2(640, -220), new Vector2(1200, 640), UiKit.Panel).transform;
@@ -72,6 +80,29 @@ namespace Saga.Game
             launch = launchLabel.transform.parent.gameObject;
             launch.SetActive(false);
             Refresh();
+        }
+
+        // Under the skirmish column: unlock every mission, reset campaign progress. The menu reloads to show it.
+        void BuildDevPanel(Transform root)
+        {
+            var dev = UiKit.Box(root, "dev", new Vector2(0, 1), new Vector2(80, -856), new Vector2(520, 176), UiKit.Panel).transform;
+            UiKit.Label(dev, "h", 22, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(24, -14), new Vector2(470, 30),
+                "<b>Dev</b>   <color=#8d98ab>development tools, not in the release</color>");
+            UiKit.Button(dev, UnlockAll ? "Every mission unlocked  <color=#58c98f>(on)</color>" : "Unlock every mission  <color=#8d98ab>(off)</color>",
+                new Vector2(0, 1), new Vector2(24, -52), new Vector2(472, 50), () =>
+                {
+                    PlayerPrefs.SetInt(UnlockAllKey, UnlockAll ? 0 : 1);
+                    PlayerPrefs.Save();
+                    SkirmishController.BackToMenu();
+                }, 20);
+            UiKit.Button(dev, "Reset campaign progress", new Vector2(0, 1), new Vector2(24, -112), new Vector2(472, 50), () =>
+                {
+                    PlayerPrefs.DeleteKey(ProgressKey);
+                    PlayerPrefs.DeleteKey(SkirmishController.EndingKey);
+                    PlayerPrefs.DeleteKey(UnlockAllKey);
+                    PlayerPrefs.Save();
+                    SkirmishController.BackToMenu();
+                }, 20);
         }
 
         void Refresh()
