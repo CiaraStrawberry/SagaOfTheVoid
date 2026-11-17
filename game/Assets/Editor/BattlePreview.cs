@@ -100,6 +100,7 @@ public static class BattlePreview
                 world.Count(0), world.Count(1), world.Time,
                 world.Winner < 0 ? "" : world.Winner == 0 ? "     BLUE WINS" : "     RED WINS");
 
+            Saga.Game.StackFollow.SyncAll();
             cam.Render();
             RenderTexture.active = rt;
             grab.ReadPixels(new Rect(0, 0, Width, Height), 0, 0);

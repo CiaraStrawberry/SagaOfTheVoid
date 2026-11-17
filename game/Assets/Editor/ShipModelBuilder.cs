@@ -182,6 +182,13 @@ public static class ShipModelBuilder
         lib.shipsJson = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/ships.json");
         lib.weaponsJson = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/weapons.json");
         lib.fxShader = Shader.Find("Saga/Fx");
+        lib.stackShader = Shader.Find("Saga/Stack");
+        lib.stacksJson = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/stacks.json");
+        lib.sceneryStacksJson = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/scenery_stacks.json");
+        lib.stackAtlases = AssetDatabase.FindAssets("t:Texture2D", new[] { "Assets/Art/Stacks" })
+            .Select(AssetDatabase.GUIDToAssetPath)
+            .Select(p => new ShipLibrary.StackAtlasEntry { name = System.IO.Path.GetFileNameWithoutExtension(p), atlas = AssetDatabase.LoadAssetAtPath<Texture2D>(p) })
+            .OrderBy(e => e.name).ToList();
         lib.warpTunnel = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Art/Fx/warpjump_tunnel.png");
         lib.warpRing = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Art/Fx/warpjump_ring.png");
         lib.warpAura = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Art/Fx/warpjump_aura.png");
@@ -228,6 +235,7 @@ public static class ShipModelBuilder
         Log(string.Format("library: {0} ships, {1} with prefab, {2} with icon, {3} maps, {4} skies, data {5}, campaign {6}, shader {7}, narrative {8}, portraits {9}",
             lib.ships.Count, lib.ships.Count(e => e.prefab != null), lib.ships.Count(e => e.icon != null), lib.maps.Count, lib.skies.Count,
             lib.shipsJson != null && lib.weaponsJson != null, lib.campaignJson != null, lib.fxShader != null, lib.narrativeJson != null, lib.portraits.Count));
+        Log(string.Format("stacks: shader {0}, ships {1}, scenery {2}, atlases {3}", lib.stackShader != null, lib.stacksJson != null, lib.sceneryStacksJson != null, lib.stackAtlases.Count));
     }
 
     // Splits one submesh out so each part has exactly one material slot.

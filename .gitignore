@@ -66,3 +66,5 @@ recovery/audio/
 tools/narrative_backups/
 tools/bake/out_stack/
 tools/bake/stack.log
+tools/scenery_out/
+tools/scenery.log

@@ -90,6 +90,258 @@ MonoBehaviour:
   - id: sen
     sprite: {fileID: 21300000, guid: fd4df7c668e46e44bb261de4feba5a71, type: 3}
   fxShader: {fileID: 4800000, guid: 897beb3a6a88af1488b117f147670858, type: 3}
+  stackShader: {fileID: 4800000, guid: 305c66b19d17900468b0c9fecba859e3, type: 3}
+  stacksJson: {fileID: 4900000, guid: 5f210b097458c1a4e9c89d55cf72b9dd, type: 3}
+  sceneryStacksJson: {fileID: 4900000, guid: 4a1157ad8b4b1d3429a75b55262d181d, type: 3}
+  stackAtlases:
+  - name: asteroid_field_0
+    atlas: {fileID: 2800000, guid: 7154ba59707c4fc40bb04b4f16ea285d, type: 3}
+  - name: asteroid_field_1
+    atlas: {fileID: 2800000, guid: 8ff1212364514d440a047c5c0e2023ee, type: 3}
+  - name: asteroid_field_10
+    atlas: {fileID: 2800000, guid: 67c059cd03a1e2d4191f23436923e84f, type: 3}
+  - name: asteroid_field_11
+    atlas: {fileID: 2800000, guid: 0d5a388f689fa4e46a1e2cb45ff593c8, type: 3}
+  - name: asteroid_field_12
+    atlas: {fileID: 2800000, guid: ea30704ea46720a4e817d7debe82135b, type: 3}
+  - name: asteroid_field_13
+    atlas: {fileID: 2800000, guid: 0f28e2e977b7de849ad69f161439bbbf, type: 3}
+  - name: asteroid_field_14
+    atlas: {fileID: 2800000, guid: 3e08f453269694f438941646a29242fa, type: 3}
+  - name: asteroid_field_15
+    atlas: {fileID: 2800000, guid: 84cdd9b8ea67e024392fe2bddbc88f1c, type: 3}
+  - name: asteroid_field_2
+    atlas: {fileID: 2800000, guid: 49a16f1b7e6f693478f69748e67e3842, type: 3}
+  - name: asteroid_field_3
+    atlas: {fileID: 2800000, guid: d5c911e88f5632b4fa067d474d065d0d, type: 3}
+  - name: asteroid_field_4
+    atlas: {fileID: 2800000, guid: 535433a8e425fc1429bedc756f6f1d53, type: 3}
+  - name: asteroid_field_5
+    atlas: {fileID: 2800000, guid: ac66a57b2a8b6a147b3b64d46931d687, type: 3}
+  - name: asteroid_field_6
+    atlas: {fileID: 2800000, guid: 4406eb3150e04284884aa537c6ba14db, type: 3}
+  - name: asteroid_field_7
+    atlas: {fileID: 2800000, guid: 3d1aba98a5ad52c42b970e21dcc6fb39, type: 3}
+  - name: asteroid_field_8
+    atlas: {fileID: 2800000, guid: 318afc6eaed6e1f4cb592a40d533220e, type: 3}
+  - name: asteroid_field_9
+    atlas: {fileID: 2800000, guid: 273d51cf25d56e04d91ae391ee794360, type: 3}
+  - name: AttackCraft
+    atlas: {fileID: 2800000, guid: 1d68bc66e4e5c7445805c192bcfc849c, type: 3}
+  - name: Bomber
+    atlas: {fileID: 2800000, guid: 878a3dd7d437b584fbbab4f81ac690b6, type: 3}
+  - name: CannonFrigate
+    atlas: {fileID: 2800000, guid: 5bb44982529b59847945bf5db6e24751, type: 3}
+  - name: Capital
+    atlas: {fileID: 2800000, guid: 9ab0eb9cf8b58c14ca94b20c614ff155, type: 3}
+  - name: Destroyer
+    atlas: {fileID: 2800000, guid: 3bd949987799f8d4d855c0b7635f2d4f, type: 3}
+  - name: Fighter
+    atlas: {fileID: 2800000, guid: df81f74d63bb68a448f1ed67641cad37, type: 3}
+  - name: FlackFrigate
+    atlas: {fileID: 2800000, guid: fe9c84987a16d324780b664c86f7147d, type: 3}
+  - name: LazerFrigate
+    atlas: {fileID: 2800000, guid: 0d875ecd371f471448fd62f05d3976e8, type: 3}
+  - name: MissileFrigate
+    atlas: {fileID: 2800000, guid: 6505c72bd9ce4cc41873c7cda9cb5ea8, type: 3}
+  - name: RepairFrigate
+    atlas: {fileID: 2800000, guid: 38b4033680262bd47a74e8f5cd50c5a8, type: 3}
+  - name: Scout
+    atlas: {fileID: 2800000, guid: e12ec44349c5ceb488736e7bb5b60a7f, type: 3}
+  - name: ship_graveyard_0
+    atlas: {fileID: 2800000, guid: 458769c702f0e704593f477aad36f529, type: 3}
+  - name: ship_graveyard_1
+    atlas: {fileID: 2800000, guid: 78e722a30b5a2a045a1ab640553beea4, type: 3}
+  - name: ship_graveyard_10
+    atlas: {fileID: 2800000, guid: 2acf043196b35f44a834117482de5548, type: 3}
+  - name: ship_graveyard_11
+    atlas: {fileID: 2800000, guid: f4d73c72c46868d4e801ae3dee1f4bcd, type: 3}
+  - name: ship_graveyard_12
+    atlas: {fileID: 2800000, guid: f8c3c615789738e4eb1336e7f3149dc8, type: 3}
+  - name: ship_graveyard_13
+    atlas: {fileID: 2800000, guid: 3a2d0759fda7aaa4b84fb8347c3b6874, type: 3}
+  - name: ship_graveyard_14
+    atlas: {fileID: 2800000, guid: a6231a138b950ac469c95e77dc9b6ac8, type: 3}
+  - name: ship_graveyard_15
+    atlas: {fileID: 2800000, guid: 60ba8028fa2ea0d408a2b6249336bdad, type: 3}
+  - name: ship_graveyard_16
+    atlas: {fileID: 2800000, guid: ba97bfca61b6a5343bcbe2fc6876ab9f, type: 3}
+  - name: ship_graveyard_17
+    atlas: {fileID: 2800000, guid: 695210f07c21f07499b39100e463f2a6, type: 3}
+  - name: ship_graveyard_18
+    atlas: {fileID: 2800000, guid: 76340372a6f5e4a45889942ba48dfed0, type: 3}
+  - name: ship_graveyard_19
+    atlas: {fileID: 2800000, guid: 2d8d64fae9e729d49b6c9926249e1760, type: 3}
+  - name: ship_graveyard_2
+    atlas: {fileID: 2800000, guid: 10e2345a827008a448dca9a41ffcf5ba, type: 3}
+  - name: ship_graveyard_20
+    atlas: {fileID: 2800000, guid: 584fc70e275cc4947ad698e8d4ef2078, type: 3}
+  - name: ship_graveyard_21
+    atlas: {fileID: 2800000, guid: b8e49ac8b3595994db0b3a54513dfcb8, type: 3}
+  - name: ship_graveyard_22
+    atlas: {fileID: 2800000, guid: 8c62e1f340530014f84f0bbd68736d20, type: 3}
+  - name: ship_graveyard_23
+    atlas: {fileID: 2800000, guid: 03f4085eabbc94546be4d8cdb375a28f, type: 3}
+  - name: ship_graveyard_24
+    atlas: {fileID: 2800000, guid: 8d96c9bc5c2b8fe42a8482ccb2b4b2f0, type: 3}
+  - name: ship_graveyard_25
+    atlas: {fileID: 2800000, guid: a084135b19118d8428737313b5334346, type: 3}
+  - name: ship_graveyard_26
+    atlas: {fileID: 2800000, guid: 9542bf2381002914e91210df8d897b96, type: 3}
+  - name: ship_graveyard_27
+    atlas: {fileID: 2800000, guid: 289bba6bb1bb53043a85b9a90f266457, type: 3}
+  - name: ship_graveyard_28
+    atlas: {fileID: 2800000, guid: a7cec5e57218ceb4b81d8ea4261cabbc, type: 3}
+  - name: ship_graveyard_29
+    atlas: {fileID: 2800000, guid: 707f3a9c43cd5d6489de05e9f0a16b08, type: 3}
+  - name: ship_graveyard_3
+    atlas: {fileID: 2800000, guid: c9548250d86b21b469181174f5df0e8d, type: 3}
+  - name: ship_graveyard_30
+    atlas: {fileID: 2800000, guid: 057b4c5b84c43714396bf7d0dcc6c6e0, type: 3}
+  - name: ship_graveyard_31
+    atlas: {fileID: 2800000, guid: d2d6757f8f4732d4cb8e66e334b54c97, type: 3}
+  - name: ship_graveyard_32
+    atlas: {fileID: 2800000, guid: 5f758598eff4e1945a9a1ff036be0bbd, type: 3}
+  - name: ship_graveyard_33
+    atlas: {fileID: 2800000, guid: bd4a8ec9267985547b6b403ba5f04465, type: 3}
+  - name: ship_graveyard_34
+    atlas: {fileID: 2800000, guid: 2dd83290849cb1b489a0701d34cf1ccf, type: 3}
+  - name: ship_graveyard_35
+    atlas: {fileID: 2800000, guid: 0a792e5f8eec2b646976da7d7dae7b9d, type: 3}
+  - name: ship_graveyard_36
+    atlas: {fileID: 2800000, guid: ccc6e7eac3a6e0842a11c507f36dad36, type: 3}
+  - name: ship_graveyard_37
+    atlas: {fileID: 2800000, guid: 71a5415b01a91b046951e1ca5967486f, type: 3}
+  - name: ship_graveyard_38
+    atlas: {fileID: 2800000, guid: 0d9623563be39fd44953f87442368175, type: 3}
+  - name: ship_graveyard_39
+    atlas: {fileID: 2800000, guid: 7527a9efc5a631145b62a8f87ea976eb, type: 3}
+  - name: ship_graveyard_4
+    atlas: {fileID: 2800000, guid: 9b6d48ddef4ff4546a4cc9ac473b3b5e, type: 3}
+  - name: ship_graveyard_40
+    atlas: {fileID: 2800000, guid: 463356f81967e8544a21eb8ee5353456, type: 3}
+  - name: ship_graveyard_41
+    atlas: {fileID: 2800000, guid: bdb24e4d80a0bcf4c8652ac371a1da2a, type: 3}
+  - name: ship_graveyard_42
+    atlas: {fileID: 2800000, guid: 5b373e4f4522fc34893b023ae951964a, type: 3}
+  - name: ship_graveyard_43
+    atlas: {fileID: 2800000, guid: ad0fe76ad6a611f478328369ddba195d, type: 3}
+  - name: ship_graveyard_44
+    atlas: {fileID: 2800000, guid: 009a78e1520646244a1f3f274bd71400, type: 3}
+  - name: ship_graveyard_45
+    atlas: {fileID: 2800000, guid: 44d541cd1e9a277429d456a9a9082f09, type: 3}
+  - name: ship_graveyard_46
+    atlas: {fileID: 2800000, guid: 12b322049503d0940a20118160be56e2, type: 3}
+  - name: ship_graveyard_47
+    atlas: {fileID: 2800000, guid: 546b6c27844f6624a91bafd2938a4682, type: 3}
+  - name: ship_graveyard_48
+    atlas: {fileID: 2800000, guid: 1336d1a095355484a9c6304d5359e489, type: 3}
+  - name: ship_graveyard_49
+    atlas: {fileID: 2800000, guid: add91a068013846499a61a7653c7dc5e, type: 3}
+  - name: ship_graveyard_5
+    atlas: {fileID: 2800000, guid: 386bbc3e39936e940bb4dfa3926df3b0, type: 3}
+  - name: ship_graveyard_50
+    atlas: {fileID: 2800000, guid: 9569693a7b78f1a46bdee27369259ace, type: 3}
+  - name: ship_graveyard_51
+    atlas: {fileID: 2800000, guid: 437a6e88d2f00514d987826156e6807b, type: 3}
+  - name: ship_graveyard_52
+    atlas: {fileID: 2800000, guid: aaedc99bb830c0a44a6de73353b31cf0, type: 3}
+  - name: ship_graveyard_53
+    atlas: {fileID: 2800000, guid: 6b32c506d706ea443ab0010eb868e24c, type: 3}
+  - name: ship_graveyard_54
+    atlas: {fileID: 2800000, guid: eb7df1c4e62fcdf449537cba8911ab68, type: 3}
+  - name: ship_graveyard_55
+    atlas: {fileID: 2800000, guid: 003f80cc2e8db9c49b6d35c7451f98d9, type: 3}
+  - name: ship_graveyard_56
+    atlas: {fileID: 2800000, guid: 5982a8ccc1c0c6a49ae2f72912cdb6aa, type: 3}
+  - name: ship_graveyard_57
+    atlas: {fileID: 2800000, guid: 3b83164bf322ad14b8e2d7ab9d37f537, type: 3}
+  - name: ship_graveyard_58
+    atlas: {fileID: 2800000, guid: 0a0dbd0591828af4e86ec89d642f399b, type: 3}
+  - name: ship_graveyard_59
+    atlas: {fileID: 2800000, guid: 4558aef751fd9bf4eb819c6855f46444, type: 3}
+  - name: ship_graveyard_6
+    atlas: {fileID: 2800000, guid: cd8e230baaa28474db286c0d70ab15de, type: 3}
+  - name: ship_graveyard_60
+    atlas: {fileID: 2800000, guid: bfa27e98b58498347bb5ab03480cc065, type: 3}
+  - name: ship_graveyard_61
+    atlas: {fileID: 2800000, guid: fd3ffe78e1ed47b45b4d6689f2f95948, type: 3}
+  - name: ship_graveyard_62
+    atlas: {fileID: 2800000, guid: df0fb93469017ba43b9ae034d490ffbd, type: 3}
+  - name: ship_graveyard_63
+    atlas: {fileID: 2800000, guid: f1ed3682bb8ab42458867bfec82bfbe1, type: 3}
+  - name: ship_graveyard_64
+    atlas: {fileID: 2800000, guid: 5bfcb015238cc9f4d8d72bd6a350a1e4, type: 3}
+  - name: ship_graveyard_65
+    atlas: {fileID: 2800000, guid: c69d0cc459cf3e04690272ee4e9f779d, type: 3}
+  - name: ship_graveyard_66
+    atlas: {fileID: 2800000, guid: 9abadeb17629ce14589619f13c3c1354, type: 3}
+  - name: ship_graveyard_67
+    atlas: {fileID: 2800000, guid: befe70e3f5618e9488ebf9776b1729cf, type: 3}
+  - name: ship_graveyard_68
+    atlas: {fileID: 2800000, guid: b5357a0b4749e444585ba84fd3febc72, type: 3}
+  - name: ship_graveyard_69
+    atlas: {fileID: 2800000, guid: 5a74d8df289286b4c9fcc0f445cce3b6, type: 3}
+  - name: ship_graveyard_7
+    atlas: {fileID: 2800000, guid: ba25aab05c1f507468d8d9a6a691e559, type: 3}
+  - name: ship_graveyard_70
+    atlas: {fileID: 2800000, guid: f144ee35610fc39468b87cfc6787d08f, type: 3}
+  - name: ship_graveyard_71
+    atlas: {fileID: 2800000, guid: 2e4543a019179584ea6106d54de22901, type: 3}
+  - name: ship_graveyard_72
+    atlas: {fileID: 2800000, guid: efec44d4092bd554d88ba86340b4e8aa, type: 3}
+  - name: ship_graveyard_73
+    atlas: {fileID: 2800000, guid: 8497db2f819709c45b5672e3c757ee5d, type: 3}
+  - name: ship_graveyard_74
+    atlas: {fileID: 2800000, guid: 4f0be69adedc55347802ecc5153cb496, type: 3}
+  - name: ship_graveyard_75
+    atlas: {fileID: 2800000, guid: 32a04a0221f04194995fb99b0306e10f, type: 3}
+  - name: ship_graveyard_76
+    atlas: {fileID: 2800000, guid: c923d84c9518beb4a8f071494a4dee0c, type: 3}
+  - name: ship_graveyard_77
+    atlas: {fileID: 2800000, guid: a1e946bd9b749b544b2b0d3420038899, type: 3}
+  - name: ship_graveyard_78
+    atlas: {fileID: 2800000, guid: 545eb2e9333415846b3601e89580c169, type: 3}
+  - name: ship_graveyard_79
+    atlas: {fileID: 2800000, guid: 9089e0f4b2b2c0b4d9efef0a1bb2265a, type: 3}
+  - name: ship_graveyard_8
+    atlas: {fileID: 2800000, guid: 2f1a617a8723f8d428ceb033182ad8b7, type: 3}
+  - name: ship_graveyard_80
+    atlas: {fileID: 2800000, guid: c45cf03ad481dfa4c9fdd57805f26dd0, type: 3}
+  - name: ship_graveyard_81
+    atlas: {fileID: 2800000, guid: 3d3d7bb3f96d4eb4ebb42911fbf58579, type: 3}
+  - name: ship_graveyard_82
+    atlas: {fileID: 2800000, guid: 64d8f84af6ad76e4683cd5c4b0fe1963, type: 3}
+  - name: ship_graveyard_83
+    atlas: {fileID: 2800000, guid: 905854dc0ad2b194d9572960f7688da7, type: 3}
+  - name: ship_graveyard_84
+    atlas: {fileID: 2800000, guid: 67b2f528274d15e41b66fe151e69ed64, type: 3}
+  - name: ship_graveyard_85
+    atlas: {fileID: 2800000, guid: 290351afe30b4c345b87cac90a60cb4f, type: 3}
+  - name: ship_graveyard_9
+    atlas: {fileID: 2800000, guid: 4b5963ef7638fa34ab85163fb8811d5d, type: 3}
+  - name: space_station_0
+    atlas: {fileID: 2800000, guid: 552fa6d610af13c4b967a81ecdc5b90b, type: 3}
+  - name: space_station_1
+    atlas: {fileID: 2800000, guid: 6a6055d19a38cd6469336dbe08c0200d, type: 3}
+  - name: space_station_2
+    atlas: {fileID: 2800000, guid: e9cc5ff7cd4c2da4c851a77ae441e059, type: 3}
+  - name: space_station_3
+    atlas: {fileID: 2800000, guid: 883fea8c4ecc38a47abde5bc8ea5c8b7, type: 3}
+  - name: space_station_4
+    atlas: {fileID: 2800000, guid: 92fffc9af6f08fe4eb89739881520c01, type: 3}
+  - name: space_station_5
+    atlas: {fileID: 2800000, guid: ec9710da31214a145a0ecae7c0454710, type: 3}
+  - name: space_station_6
+    atlas: {fileID: 2800000, guid: ead6ba6ff725bc7499604c2c87d05932, type: 3}
+  - name: space_station_7
+    atlas: {fileID: 2800000, guid: 86568d26c808d3648a187a7455a5799d, type: 3}
+  - name: Super-Capital
+    atlas: {fileID: 2800000, guid: 4fc5c25dad5237d43ba7ff52b8b50c11, type: 3}
+  - name: SupportFrigate
+    atlas: {fileID: 2800000, guid: ff0c79201b7fabe4ea71466811d4175e, type: 3}
+  - name: turrets_CapitalMainGunInGame
+    atlas: {fileID: 2800000, guid: d30277d91f4358b4ab64dd74f1d9b990, type: 3}
   skybox: {fileID: 2100000, guid: cf32db390983d614a8c26a8036f44b26, type: 2}
   skyBackdrop: {fileID: 2100000, guid: f91b57bd38573d84f99b9fdbd7a70670, type: 2}
   warpTunnel: {fileID: 2800000, guid: 1e2f9c47c36a83f4bba47da8abd53dfd, type: 3}

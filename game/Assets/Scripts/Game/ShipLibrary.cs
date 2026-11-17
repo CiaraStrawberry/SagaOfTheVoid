@@ -40,6 +40,12 @@ namespace Saga.Game
         public TextAsset narrativeJson;          // campaign story beats (tools/make_narrative.py)
         public List<PortraitEntry> portraits = new List<PortraitEntry>(); // comms portraits by character id
         public Shader fxShader;
+        // Sprite-stacked ships and scenery (SpriteStacks.cs, tools/sprite_stack.py and StackScenery.cs).
+        public Shader stackShader;
+        public TextAsset stacksJson, sceneryStacksJson;
+        [Serializable] public class StackAtlasEntry { public string name; public Texture2D atlas; }
+        public List<StackAtlasEntry> stackAtlases = new List<StackAtlasEntry>();
+        public Texture2D StackAtlas(string name) => stackAtlases.Find(a => a.name == name)?.atlas;
         public Material skybox;
         public Material skyBackdrop; // flat sky behind the battle (SkyBackdrop), URP Unlit
         [Header("Warp-in (2017 Forge3D WarpJump textures)")]

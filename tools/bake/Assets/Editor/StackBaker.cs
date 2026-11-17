@@ -14,8 +14,10 @@ public static class StackBaker
 {
     // Ship, and its length in final pixels (sets the pixel-art scale).
     static readonly (string name, int px)[] Ships = {
-        ("Scout", 22), ("Fighter", 26), ("Bomber", 30), ("MissileFrigate", 58), ("FlackFrigate", 58), ("CannonFrigate", 58),
-        ("LazerFrigate", 60), ("RepairFrigate", 58), ("Destroyer", 92), ("Capital", 132), ("Super-Capital", 170) };
+        ("Scout", 22), ("Fighter", 26), ("Bomber", 30), ("AttackCraft", 30), ("MissileFrigate", 58), ("FlackFrigate", 58),
+        ("CannonFrigate", 58), ("LazerFrigate", 60), ("SupportFrigate", 58), ("RepairFrigate", 58), ("Destroyer", 92),
+        ("Capital", 132), ("Super-Capital", 170), ("SpaceStation", 170), ("turrets/CapitalMainGunInGame", 40) };
+    static readonly string[] Squadrons = { "Scout", "Fighter", "Bomber", "AttackCraft" };
     static readonly string[] Colours = { "Blue", "Red" };
     const int Super = 4;
     const int LayersPerPixel = 2;   // two slices per pixel of hull height: smoother sides when drawn closer together
@@ -47,9 +49,10 @@ public static class StackBaker
 
         var manifest = new StringBuilder("{\n");
         bool first = true;
-        foreach (var (name, px) in Ships)
+        foreach (var (prefabName, px) in Ships)
         {
-            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/" + name + ".prefab");
+            var name = prefabName.Replace('/', '_');
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/" + prefabName + ".prefab");
             if (prefab == null) { Log("MISSING " + name); continue; }
             var go = Object.Instantiate(prefab);
             go.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
@@ -61,7 +64,7 @@ public static class StackBaker
             var live = go.GetComponentsInChildren<Renderer>().Where(r => r.enabled).ToList();
             // Squadrons (fighters, bombers, scouts) hold several craft, each under a child called "Ship": keep one.
             var craft = go.GetComponentsInChildren<Transform>().FirstOrDefault(t => t.name == "Ship" && t.GetComponentsInChildren<Renderer>().Any(r => r.enabled));
-            if (craft != null && (name == "Scout" || name == "Fighter" || name == "Bomber"))
+            if (craft != null && Squadrons.Contains(name))
             {
                 foreach (var r in live) if (!r.transform.IsChildOf(craft)) r.enabled = false;
                 live = live.Where(r => r.enabled).ToList();
@@ -103,7 +106,8 @@ public static class StackBaker
             }
             Log(string.Format("{0}: {1}x{1} px, {2} slices", name, side, slices));
             manifest.Append(first ? "" : ",\n").AppendFormat(CultureInfo.InvariantCulture,
-                "  \"{0}\": {{\"side\": {1}, \"slices\": {2}, \"super\": {3}, \"per_pixel\": {4}}}", name, side, slices, Super, LayersPerPixel);
+                "  \"{0}\": {{\"side\": {1}, \"slices\": {2}, \"super\": {3}, \"per_pixel\": {4}, \"unit\": {5:R}, \"cx\": {6:R}, \"cz\": {7:R}, \"miny\": {8:R}, \"sizey\": {9:R} }}",
+                name, side, slices, Super, LayersPerPixel, unit, b.center.x, b.center.z, b.min.y, b.size.y);
             first = false;
             Object.DestroyImmediate(go);
         }

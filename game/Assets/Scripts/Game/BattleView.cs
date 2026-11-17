@@ -128,7 +128,12 @@ namespace Saga.Game
             var backdropTex = skyTex != null ? skyTex : lib.skybox.GetTexture("_MainTex") as Texture2D;
             if (backdropTex != null) Backdrop = SkyBackdrop.Create(cam, lib.skyBackdrop, backdropTex, lib.skybox.GetFloat("_Exposure"));
             var mapPrefab = mapId != null ? lib.Map(mapId) : null;
-            if (mapPrefab != null) UnityEngine.Object.Instantiate(mapPrefab).name = "Map: " + mapId;
+            if (mapPrefab != null)
+            {
+                var map = UnityEngine.Object.Instantiate(mapPrefab);
+                map.name = "Map: " + mapId;
+                SpriteStacks.AttachScenery(lib, map, mapId);
+            }
             RenderSettings.ambientMode = AmbientMode.Trilight;
             RenderSettings.ambientSkyColor = new Color(0.5f, 0.55f, 0.65f);
             RenderSettings.ambientEquatorColor = new Color(0.35f, 0.36f, 0.4f);
@@ -258,6 +263,7 @@ namespace Saga.Game
             bool small = Hulls.IsSmall(s.Hull);
             v.Length = SizeK * Mathf.Pow(v.Paint.length, SizePow) * (small ? SquadronBoost : 1f);
             model.transform.localScale = Vector3.one * (v.Length / v.Paint.length);
+            SpriteStacks.AttachShip(lib, v.Paint, s.Def.sprite, TeamColour[s.Team % TeamColour.Length], small);
             // Gameplay is flat; heights only separate the layers visually. Fighters fly above the big ships.
             v.Height = small ? 220f : s.Hull == Hull.Frigate ? 40f : 0f;
             var tint = TeamTint[s.Team % TeamTint.Length];

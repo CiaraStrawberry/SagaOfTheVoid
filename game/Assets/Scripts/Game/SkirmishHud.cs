@@ -178,7 +178,7 @@ namespace Saga.Game
             var r = c.transform;
             var dim = UiKit.Box(r, "dim", new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(4000, 3000), new Color(0f, 0.01f, 0.03f, 0.6f));
             dim.raycastTarget = true;
-            var panel = UiKit.Box(r, "panel", new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(440, 520), UiKit.Panel).transform;
+            var panel = UiKit.Box(r, "panel", new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(440, 600), UiKit.Panel).transform;
             var title = UiKit.Label(panel, "title", 44, TextAnchor.UpperCenter, new Vector2(0.5f, 1f), new Vector2(0, -28), new Vector2(400, 60), "Paused");
             title.fontStyle = FontStyle.Bold;
             float y = -110;
@@ -186,6 +186,10 @@ namespace Saga.Game
             Add("Resume", game.CloseMenu);
             Add("Restart battle", () => SkirmishController.Begin(game.Config));
             Add("Controls", () => { game.CloseMenu(); helpUntil = Time.unscaledTime + 30f; });
+            Text style = null;
+            string StyleLabel() => SpriteStacks.On ? "Look: pixel ships" : "Look: 3D models";
+            Add(StyleLabel(), () => { SpriteStacks.On = !SpriteStacks.On; style.text = StyleLabel(); });
+            style = panel.GetChild(panel.childCount - 1).GetComponentInChildren<Text>();
             Add("Main menu", SkirmishController.BackToMenu);
             if (Application.platform != RuntimePlatform.WebGLPlayer) Add("Quit game", Application.Quit);
             var hintText = UiKit.Label(panel, "hint", 18, TextAnchor.LowerCenter, new Vector2(0.5f, 0f), new Vector2(0, 16), new Vector2(400, 26), "Escape to resume");

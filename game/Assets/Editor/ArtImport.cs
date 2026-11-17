@@ -46,6 +46,26 @@ public class ArtImport : AssetPostprocessor
             ti.mipmapEnabled = false;
             ti.maxTextureSize = 1024;
         }
+        else if (assetPath.StartsWith("Assets/Art/Stacks/"))
+        {
+            // Sprite-stack atlases (tools/sprite_stack.py): one palette index per pixel, so exact bytes matter:
+            // single channel, no filtering, no compression, readable for SpriteStacks to colour at load.
+            ti.textureType = TextureImporterType.Default;
+            ti.npotScale = TextureImporterNPOTScale.None; // atlases are any size; scaling would mix indices
+            ti.alphaSource = TextureImporterAlphaSource.None;
+            ti.sRGBTexture = false;
+            ti.isReadable = true;
+            ti.mipmapEnabled = false;
+            ti.filterMode = UnityEngine.FilterMode.Point;
+            ti.wrapMode = UnityEngine.TextureWrapMode.Clamp;
+            ti.maxTextureSize = 4096;
+            ti.textureCompression = TextureImporterCompression.Uncompressed;
+            var ps = ti.GetDefaultPlatformTextureSettings();
+            ps.format = TextureImporterFormat.R8;
+            ti.SetPlatformTextureSettings(ps);
+            foreach (var platform in new[] { "Standalone", "WebGL" })
+                ti.SetPlatformTextureSettings(new TextureImporterPlatformSettings { name = platform, overridden = true, maxTextureSize = 4096, format = TextureImporterFormat.R8 });
+        }
         else if (assetPath.StartsWith("Assets/Art/Backgrounds/"))
         {
             ti.textureType = TextureImporterType.Default;
