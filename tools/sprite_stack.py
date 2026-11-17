@@ -5,8 +5,8 @@
 
 Each ship becomes one strip of slices, bottom slice first, in docs/img/stack/<ship>_<colour>.png, listed in
 docs/img/stack/stack.json. A slice pixel is filled where the hull is at that height; its colour comes from the lit
-top view where there is one (so the top slice looks like the ship from above), else from the hull texture, and
-lower slices are darker.
+top view where there is one, else from the hull texture, and lower slices are darker. The top view itself goes into the
+slice at the height of the top surface (from the baked height map), so it sits on the hull with no gap.
 """
 import json
 import os
@@ -45,26 +45,34 @@ def main():
         side, n, s = m["side"], m["slices"], m["super"]
         for colour in ("Blue", "Red"):
             top_cover, top_rgb = down(Image.open(os.path.join(IN, f"{name}_{colour}_top.png")), s)
+            top = top_cover > 0.5
+            # Height of the top surface at each pixel (highest point among its sub-pixels), as a slice index.
+            hm = np.asarray(Image.open(os.path.join(IN, f"{name}_height.png")).convert("RGBA"), dtype=np.float32)
+            hv = (hm[..., 0] + hm[..., 1] / 255.0) / 255.0
+            hv = np.where(hm[..., 3] > 0, hv, -1.0)
+            hh, ww = hv.shape[0] // s, hv.shape[1] // s
+            hv = hv[:hh * s, :ww * s].reshape(hh, s, ww, s).max(axis=(1, 3))
+            top_k = np.clip((hv * n).astype(int), 0, n - 1)
             sheet = np.zeros((side, side * n, 4), dtype=np.uint8)
             filled = 0
             for k in range(n):
                 cover, rgb = down(Image.open(os.path.join(IN, f"{name}_{colour}_s{k:02d}.png")), s)
-                mask = cover > 0.4
+                # Hull cross-section, but nothing above the top surface (stray bits would float),
+                # plus the top surface itself at its own height, so the top view sits on the hull with no gap.
+                mask = (cover > 0.4) & ~(top & (k > top_k + 1))
+                mask |= top & (top_k == k)
                 col = np.where((top_cover > 0.3)[..., None], top_rgb, rgb * 0.85)
                 shade = 0.55 + 0.45 * (k / max(1, n - 1))
+                # The top surface keeps nearly full brightness wherever it is, so markings stay readable.
+                shade = np.where(top & (top_k == k), max(shade, 0.9), shade)[..., None]
                 col = np.clip(col * shade, 0, 1)
                 sheet[:, k * side:(k + 1) * side, :3] = (col * 255).astype(np.uint8)
                 sheet[:, k * side:(k + 1) * side, 3] = np.where(mask, 255, 0)
                 filled += int(mask.sum())
-            # The top view as an extra lid slice, so the stack always ends on the ship as seen from above.
-            lid = np.zeros((side, side, 4), dtype=np.uint8)
-            lid[..., :3] = (np.clip(top_rgb, 0, 1) * 255).astype(np.uint8)
-            lid[..., 3] = np.where(top_cover > 0.5, 255, 0)
-            sheet = np.concatenate([sheet, lid], axis=1)
             sheet = palette(sheet)
             Image.fromarray(sheet).save(os.path.join(OUT, f"{name}_{colour}.png"))
-            print(f"{name} {colour}: {side}px, {n} slices + lid, {filled} slice pixels")
-        listing[name] = {"side": side, "slices": n + 1, "per_pixel": m.get("per_pixel", 1)}
+            print(f"{name} {colour}: {side}px, {n} slices, {filled} slice pixels")
+        listing[name] = {"side": side, "slices": n, "per_pixel": m.get("per_pixel", 1)}
     json.dump(listing, open(os.path.join(OUT, "stack.json"), "w"), indent=1)
 
 

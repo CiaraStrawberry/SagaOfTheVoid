@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 
 // Sprite-stacking prototype: cuts each ship into horizontal slices (one per pixel of height) for the demo page
-// docs/sprite-stack.html. Writes, per ship and team colour, the lit top view and the slice cross-sections at 4x the
+// docs/sprite-stack.html. Writes, per ship and team colour, the lit top view, its height map and the slice cross-sections at 4x the
 // final pixel size; tools/sprite_stack.py turns them into pixel-art slice sheets.
 // Run: Unity -batchmode -quit -projectPath tools/bake -executeMethod StackBaker.Run
 public static class StackBaker
@@ -32,7 +32,8 @@ public static class StackBaker
         }
         var standard = Shader.Find("Standard");
         var slicer = AssetDatabase.LoadAssetAtPath<Shader>("Assets/Editor/StackSlice.shader");
-        if (slicer == null) { Log("no slice shader"); return; }
+        var heights = AssetDatabase.LoadAssetAtPath<Shader>("Assets/Editor/StackHeight.shader");
+        if (slicer == null || heights == null) { Log("no slice or height shader"); return; }
 
         RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
         RenderSettings.ambientLight = new Color(0.42f, 0.44f, 0.5f);
@@ -87,6 +88,11 @@ public static class StackBaker
                     r.sharedMaterials = originals[r].Select(m => ShipBakerAccess.Rebuild(m, standard, colour, texByName)).ToArray();
                 cam.nearClipPlane = 0.1f; cam.farClipPlane = b.size.y + 100f;
                 Save(Shoot(cam, res, null), Path.Combine(outDir, name + "_" + colour + "_top.png"));
+                if (colour == Colours[0])
+                {
+                    Shader.SetGlobalFloat("_StackMinY", b.min.y); Shader.SetGlobalFloat("_StackSizeY", Mathf.Max(0.001f, b.size.y));
+                    Save(Shoot(cam, res, heights), Path.Combine(outDir, name + "_height.png"));
+                }
                 for (int k = 0; k < slices; k++)
                 {
                     // Slice k (0 = bottom) is cut through its middle height.

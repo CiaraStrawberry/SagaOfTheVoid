@@ -1,57 +1,57 @@
 {
  "Scout": {
   "side": 26,
-  "slices": 14,
+  "slices": 13,
   "per_pixel": 2
  },
  "Fighter": {
   "side": 30,
-  "slices": 14,
+  "slices": 13,
   "per_pixel": 2
  },
  "Bomber": {
   "side": 35,
-  "slices": 22,
+  "slices": 21,
   "per_pixel": 2
  },
  "MissileFrigate": {
   "side": 62,
-  "slices": 39,
+  "slices": 38,
   "per_pixel": 2
  },
  "FlackFrigate": {
   "side": 62,
-  "slices": 35,
+  "slices": 34,
   "per_pixel": 2
  },
  "CannonFrigate": {
   "side": 62,
-  "slices": 33,
+  "slices": 32,
   "per_pixel": 2
  },
  "LazerFrigate": {
   "side": 64,
-  "slices": 32,
+  "slices": 31,
   "per_pixel": 2
  },
  "RepairFrigate": {
   "side": 62,
-  "slices": 29,
+  "slices": 28,
   "per_pixel": 2
  },
  "Destroyer": {
   "side": 96,
-  "slices": 61,
+  "slices": 60,
   "per_pixel": 2
  },
  "Capital": {
   "side": 136,
-  "slices": 48,
+  "slices": 47,
   "per_pixel": 2
  },
  "Super-Capital": {
   "side": 174,
-  "slices": 90,
+  "slices": 89,
   "per_pixel": 2
  }
 }
