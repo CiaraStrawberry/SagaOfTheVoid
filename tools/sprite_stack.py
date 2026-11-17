@@ -16,6 +16,7 @@ The game (SpriteStacks.cs) turns the atlas into colour per team and shades the l
 """
 import json
 import os
+import sys
 import numpy as np
 from PIL import Image
 
@@ -66,6 +67,12 @@ def slices(name, m):
             mk[k] = ((cover > 0.4) & ~(top & (k > top_k + 1))) | (top & (top_k == k))
             tp[k] = top & (top_k == k)
             cols[k] = np.where((top_cover > 0.3)[..., None], top_rgb, rgb * 0.85)
+        # Thin parts (fins, antennae) the slicing misses exist only as top-surface pixels: give them a pixel of
+        # thickness (two slices) so they don't float as a lone layer.
+        for k in range(n - 1, 0, -1):
+            for d in (1, 2):
+                if k - d >= 0:
+                    mk[k - d] |= tp[k]
         colours[colour] = np.clip(cols, 0, 1)
         if masks is None:
             masks, tops = mk, tp  # the same hull for every paint
@@ -171,14 +178,15 @@ def main():
     listing, game = {}, []
     for name, m in manifest.items():
         colours, masks, tops = slices(name, m)
-        if name in DEMO_SHIPS:
+        if name in DEMO_SHIPS and "--demo" in sys.argv:  # the look-test page keeps its first-cut sheets unless asked
             for colour in COLOURS:
                 Image.fromarray(demo_sheet(colours[colour], masks, tops)).save(os.path.join(DEMO, f"{name}_{colour}.png"))
             listing[name] = {"side": m["side"], "slices": m["slices"], "per_pixel": m.get("per_pixel", 1)}
         g = game_atlas(name, m, colours, masks, tops)
         game.append(g)
         print(f"{name}: {m['slices']} slices, atlas {g['cols'] * g['w']}x{g['rows'] * g['h']}")
-    json.dump(listing, open(os.path.join(DEMO, "stack.json"), "w"), indent=1)
+    if listing:
+        json.dump(listing, open(os.path.join(DEMO, "stack.json"), "w"), indent=1)
     json.dump({"ships": game}, open(GAME_DATA, "w"), separators=(",", ":"))
     scenery()
 

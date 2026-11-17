@@ -1,12 +1,14 @@
-// Sprite-stacked ships and scenery (SpriteStacks.cs): a pile of flat, point-sampled pixel-art slices. Unlit (light and
-// shading are baked into the slices), cut out where a slice is empty, and drawing into depth like a solid model.
+// Sprite-stacked ships and scenery (SpriteStacks.cs): a pile of flat pixel-art slices at their real heights.
+// _MainTex holds one palette index per pixel (tools/sprite_stack.py; 0 = empty, bit 7 = top surface), _Palette the
+// colours for this team, the vertex colour each slice's shade (lower = darker). Unlit: light is baked into the
+// palette. Point-sampled with no mipmaps, so pixels stay crisp; cut out where a slice is empty; writes depth.
 Shader "Saga/Stack"
 {
     Properties
     {
-        _MainTex ("Slices", 2D) = "white" {}
+        _MainTex ("Slice indices", 2D) = "black" {}
+        _Palette ("Palette", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
-        _Cutoff ("Cutoff", Range(0,1)) = 0.5
     }
     SubShader
     {
@@ -24,28 +26,34 @@ Shader "Saga/Stack"
 
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
+            TEXTURE2D(_Palette);
             CBUFFER_START(UnityPerMaterial)
                 float4 _MainTex_ST;
                 half4 _Color;
-                half _Cutoff;
             CBUFFER_END
 
-            struct Attributes { float4 positionOS : POSITION; float2 uv : TEXCOORD0; };
-            struct Varyings { float4 positionCS : SV_POSITION; float2 uv : TEXCOORD0; };
+            struct Attributes { float4 positionOS : POSITION; float2 uv : TEXCOORD0; half4 color : COLOR; };
+            struct Varyings { float4 positionCS : SV_POSITION; float2 uv : TEXCOORD0; half shade : TEXCOORD1; };
 
             Varyings vert (Attributes i)
             {
                 Varyings o;
                 o.positionCS = TransformObjectToHClip(i.positionOS.xyz);
-                o.uv = TRANSFORM_TEX(i.uv, _MainTex);
+                o.uv = i.uv;
+                o.shade = i.color.r;
                 return o;
             }
 
             half4 frag (Varyings i) : SV_Target
             {
-                half4 c = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
-                clip(c.a - _Cutoff);
-                return half4(c.rgb * _Color.rgb, 1);
+                int idx = (int)(SAMPLE_TEXTURE2D_LOD(_MainTex, sampler_MainTex, i.uv, 0).r * 255.0 + 0.5);
+                bool top = idx >= 128;
+                idx = idx & 127;
+                if (idx == 0) discard;
+                half3 col = LOAD_TEXTURE2D(_Palette, int2(idx - 1, 0)).rgb;
+                half shade = top ? max(i.shade, 0.9h) : i.shade;
+                shade = round(shade * 12.0h) / 12.0h;
+                return half4(col * shade * _Color.rgb, 1);
             }
             ENDHLSL
         }

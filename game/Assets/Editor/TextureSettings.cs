@@ -20,6 +20,7 @@ public static class TextureSettings
             foreach (var g in guids)
             {
                 var path = AssetDatabase.GUIDToAssetPath(g);
+                if (path.StartsWith("Assets/Art/Stacks/")) continue; // sprite-stack indices must stay exact (ArtImport)
                 if (!(AssetImporter.GetAtPath(path) is TextureImporter ti)) continue;
                 if (Configure(ti, path)) { ti.SaveAndReimport(); changed++; }
             }

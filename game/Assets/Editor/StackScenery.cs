@@ -18,7 +18,8 @@ public static class StackScenery
 {
     static readonly string[] Maps = { "asteroid_field", "space_station", "ship_graveyard" };
     const float MinUnit = 14f;          // world units per pixel at the finest (ship pixels are about 5-6)
-    const long Budget = 5_000_000;      // most slice pixels per map
+    const long PartBudget = 3_000_000;  // most slice pixels per piece (one byte each in game)
+    const long MapBudget = 16_000_000;  // and per map; past it every piece's pixels grow together
     const int LayersPerPixel = 2;
     static readonly Vector3 Sun = Quaternion.Euler(55f, -30f, 0f) * Vector3.forward; // direction the light travels
 
@@ -37,9 +38,11 @@ public static class StackScenery
             map.transform.localScale = Vector3.one;
             var parts = map.GetComponentsInChildren<MeshRenderer>(true);
 
-            // One pixel size for the whole map, as fine as the budget allows.
-            double volume = parts.Sum(r => (double)r.bounds.size.x * r.bounds.size.z * r.bounds.size.y * LayersPerPixel);
-            float unit = Mathf.Max(MinUnit, (float)System.Math.Pow(volume / Budget, 1.0 / 3.0));
+            // Pixel size per piece, as fine as its own budget allows (one huge piece doesn't coarsen the rest),
+            // then all grown together if the map as a whole is over budget.
+            float PartUnit(Vector3 bs) => Mathf.Max(MinUnit, (float)System.Math.Pow((double)bs.x * bs.z * bs.y * LayersPerPixel / PartBudget, 1.0 / 3.0));
+            double estimate = parts.Sum(r => { var bs = r.bounds.size; float u = PartUnit(bs); return (double)bs.x / u * bs.z / u * bs.y / u * LayersPerPixel; });
+            float grow = estimate > MapBudget ? (float)System.Math.Pow(estimate / MapBudget, 1.0 / 3.0) : 1f;
             json.Append(mi == 0 ? "" : ",").Append("{\"id\":\"").Append(Maps[mi]).Append("\",\"parts\":[");
             bool firstPart = true;
             long total = 0;
@@ -48,6 +51,7 @@ public static class StackScenery
                 var r = parts[pi];
                 var mf = r.GetComponent<MeshFilter>();
                 if (mf == null || mf.sharedMesh == null) continue;
+                float unit = PartUnit(r.bounds.size) * grow;
                 var made = Cut(r, mf.sharedMesh, unit, readable, out var info);
                 if (made == null) continue;
                 var name = Maps[mi] + "_" + pi;
@@ -60,7 +64,7 @@ public static class StackScenery
                 firstPart = false;
             }
             json.Append("]}");
-            Log(string.Format("{0}: {1} parts, pixel {2:F1} units, {3:N0} slice pixels", Maps[mi], parts.Length, unit, total));
+            Log(string.Format("{0}: {1} parts, pixels grown x{2:F2} for the map budget, {3:N0} slice pixels", Maps[mi], parts.Length, grow, total));
             Object.DestroyImmediate(map);
         }
         File.WriteAllText(Path.Combine(outDir, "scenery.json"), json.Append("]}").ToString());
@@ -168,7 +172,8 @@ public static class StackScenery
     {
         if (t == null) return null;
         if (cache.TryGetValue(t, out var have)) return have;
-        int w = Mathf.Min(512, t.width), h = Mathf.Min(512, t.height);
+        // Small copy: a scenery pixel covers many texels, so this averages them (no speckle from fine detail).
+        int w = Mathf.Min(128, t.width), h = Mathf.Min(128, t.height);
         var rt = RenderTexture.GetTemporary(w, h, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
         Graphics.Blit(t, rt);
         var prev = RenderTexture.active;

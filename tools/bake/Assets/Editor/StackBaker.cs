@@ -20,6 +20,7 @@ public static class StackBaker
     static readonly string[] Squadrons = { "Scout", "Fighter", "Bomber", "AttackCraft" };
     static readonly string[] Colours = { "Blue", "Red" };
     const int Super = 4;
+    const float Scale = 2f;          // game resolution: twice the look-test pixels, so ships stay crisp up close
     const int LayersPerPixel = 2;   // two slices per pixel of hull height: smoother sides when drawn closer together
 
     public static void Run()
@@ -76,7 +77,7 @@ public static class StackBaker
             foreach (var r in live) b.Encapsulate(r.bounds);
             // Square frame around the ship; one final pixel = unit world units.
             float length = Mathf.Max(b.size.x, b.size.z);
-            float unit = length / px;
+            float unit = length / (px * Scale);
             int side = Mathf.CeilToInt(length / unit) + 4;
             int slices = Mathf.Max(6, Mathf.CeilToInt(b.size.y / unit * LayersPerPixel));
             cam.orthographicSize = side * unit * 0.5f;

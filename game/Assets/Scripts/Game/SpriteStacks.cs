@@ -9,9 +9,9 @@ namespace Saga.Game
     // so the tilted battle camera sees a chunky, voxel-like ship (look test: docs/sprite-stack.html).
     //
     // Data (tools/sprite_stack.py): per model an 8-bit atlas of the slices (Art/Stacks/<name>.png, palette index per
-    // pixel, bit 7 = top surface) and placement plus palettes in stacks.json / scenery_stacks.json. Here the atlas is
-    // coloured for the team (Blue or Red), lower slices are shaded darker, and one mesh of stacked quads is built.
-    // Both are cached, so every ship of a kind and colour shares them.
+    // pixel, bit 7 = top surface) and placement plus palettes in stacks.json / scenery_stacks.json. One mesh of stacked
+    // quads per model; the Saga/Stack shader looks each pixel up in the team's palette and shades lower slices darker.
+    // Meshes and materials are cached, so every ship of a kind and colour shares them.
     //
     // The 3D model stays in place, hidden, so turrets, muzzles, hit colliders and engine glows keep working; a
     // StackFollow on each stack copies the model's visibility (warp-in, lost craft) every frame. The setting is
@@ -122,48 +122,33 @@ namespace Saga.Game
             return go;
         }
 
+        static readonly Dictionary<string, Mesh> meshes = new Dictionary<string, Mesh>();
+
+        // The mesh is shared by every paint of a model; the material carries the paint's palette.
         static (Mesh, Material) Get(ShipLibrary lib, Info info, int[] palette, string key)
         {
             if (cache.TryGetValue(key, out var have) && have.mesh != null) return have;
             var atlas = lib.StackAtlas(info.sprite);
             if (atlas == null || palette == null || palette.Length < 3) return (null, null);
-            var tex = Colour(atlas, info, palette);
-            var mat = new Material(lib.stackShader) { mainTexture = tex, name = "stack " + key };
-            var made = (BuildMesh(info, atlas.width, atlas.height), mat);
+            if (!meshes.TryGetValue(info.sprite, out var mesh) || mesh == null)
+                meshes[info.sprite] = mesh = BuildMesh(info, atlas.width, atlas.height);
+            var mat = new Material(lib.stackShader) { mainTexture = atlas, name = "stack " + key };
+            mat.SetTexture("_Palette", Palette(palette, key));
+            var made = (mesh, mat);
             cache[key] = made;
             return made;
         }
 
-        // Atlas of palette indices -> colour texture: palette colour, darker for lower slices (the top surface stays
-        // bright so markings read), clear where the index is 0.
-        static Texture2D Colour(Texture2D atlas, Info info, int[] pal)
+        // Palette colours (sRGB, as baked) in a one-row texture the shader reads by index.
+        static Texture2D Palette(int[] pal, string key)
         {
-            int W = atlas.width, H = atlas.height, n = info.slices;
-            var raw = atlas.GetPixels32(); // the index is in red, whatever format the importer chose
-            var px = new Color32[W * H];
-            int colours = pal.Length / 3;
-            for (int y = 0; y < H; y++)
-            {
-                int row = (H - 1 - y) / info.h;          // cell row, counted from the top as in the PNG
-                for (int x = 0; x < W; x++)
-                {
-                    int i = y * W + x;
-                    int idx = raw[i].r;
-                    int c = (idx & 127) - 1;
-                    if (c < 0 || c >= colours) continue;
-                    int k = row * info.cols + x / info.w;
-                    if (k >= n) continue;
-                    float shade = 0.55f + 0.45f * k / Mathf.Max(1, n - 1);
-                    if ((idx & 128) != 0) shade = Mathf.Max(shade, 0.9f);
-                    shade = Mathf.Round(shade * 12f) / 12f; // a few shade steps, for the pixel-art look
-                    px[i] = new Color32((byte)Mathf.Min(255, pal[c * 3] * shade), (byte)Mathf.Min(255, pal[c * 3 + 1] * shade),
-                        (byte)Mathf.Min(255, pal[c * 3 + 2] * shade), 255);
-                }
-            }
-            var tex = new Texture2D(W, H, TextureFormat.RGBA32, true) { filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp, name = "stack " + info.sprite };
-            tex.SetPixels32(px);
-            tex.Apply(true, true);
-            return tex;
+            int n = pal.Length / 3;
+            var t = new Texture2D(n, 1, TextureFormat.RGBA32, false, false) { filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp, name = "palette " + key };
+            var px = new Color32[n];
+            for (int i = 0; i < n; i++) px[i] = new Color32((byte)pal[i * 3], (byte)pal[i * 3 + 1], (byte)pal[i * 3 + 2], 255);
+            t.SetPixels32(px);
+            t.Apply(false, true);
+            return t;
         }
 
         // One horizontal quad per slice, bottom to top, each showing its cell of the atlas.
@@ -173,6 +158,7 @@ namespace Saga.Game
             var v = new Vector3[n * 4];
             var uv = new Vector2[n * 4];
             var tris = new int[n * 6];
+            var col = new Color32[n * 4];
             float x0 = info.left, x1 = info.left + info.w * info.unit, z1 = info.top, z0 = info.top - info.h * info.unit;
             for (int k = 0; k < n; k++)
             {
@@ -185,12 +171,15 @@ namespace Saga.Game
                 v[b + 1] = new Vector3(x0, y, z1); uv[b + 1] = new Vector2(u0, vt);
                 v[b + 2] = new Vector3(x1, y, z1); uv[b + 2] = new Vector2(u1, vt);
                 v[b + 3] = new Vector3(x1, y, z0); uv[b + 3] = new Vector2(u1, vb);
+                // Lower slices darker; the shader keeps the top surface bright and rounds to a few steps.
+                byte shade = (byte)(255f * (0.55f + 0.45f * k / Mathf.Max(1, n - 1)));
+                col[b] = col[b + 1] = col[b + 2] = col[b + 3] = new Color32(shade, shade, shade, 255);
                 int t = k * 6;
                 tris[t] = b; tris[t + 1] = b + 1; tris[t + 2] = b + 2; tris[t + 3] = b; tris[t + 4] = b + 2; tris[t + 5] = b + 3;
             }
             var m = new Mesh { name = "stack " + info.sprite };
             if (v.Length > 65000) m.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
-            m.vertices = v; m.uv = uv; m.triangles = tris;
+            m.vertices = v; m.uv = uv; m.colors32 = col; m.triangles = tris;
             m.RecalculateBounds();
             return m;
         }

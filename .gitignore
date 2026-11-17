@@ -68,3 +68,4 @@ tools/bake/out_stack/
 tools/bake/stack.log
 tools/scenery_out/
 tools/scenery.log
+tools/preview/stacks_*.png
