@@ -9,6 +9,9 @@ Shader "Saga/Stack"
         _MainTex ("Slice indices", 2D) = "black" {}
         _Palette ("Palette", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
+        // Wreck chunks (BattleView.Wrecks): keep only model-space z between x and y, with the break edge stepped
+        // up and down per pixel column by up to z, in pixel steps of w. z = 0: no clipping.
+        _Clip ("Clip (zmin, zmax, jag, pixel)", Vector) = (-100000, 100000, 0, 1)
     }
     SubShader
     {
@@ -30,10 +33,14 @@ Shader "Saga/Stack"
             CBUFFER_START(UnityPerMaterial)
                 float4 _MainTex_ST;
                 half4 _Color;
+                float4 _Clip;
             CBUFFER_END
 
             struct Attributes { float4 positionOS : POSITION; float2 uv : TEXCOORD0; half4 color : COLOR; };
-            struct Varyings { float4 positionCS : SV_POSITION; float2 uv : TEXCOORD0; half shade : TEXCOORD1; };
+            struct Varyings { float4 positionCS : SV_POSITION; float2 uv : TEXCOORD0; half shade : TEXCOORD1; float3 posOS : TEXCOORD2; };
+
+            // Where a break crosses this pixel column: the same for both chunks on either side of it.
+            float Edge(float at, float column) { return at + (frac(sin(column * 12.9898 + at * 0.731) * 43758.5453) - 0.5) * _Clip.z; }
 
             Varyings vert (Attributes i)
             {
@@ -41,11 +48,17 @@ Shader "Saga/Stack"
                 o.positionCS = TransformObjectToHClip(i.positionOS.xyz);
                 o.uv = i.uv;
                 o.shade = i.color.r;
+                o.posOS = i.positionOS.xyz;
                 return o;
             }
 
             half4 frag (Varyings i) : SV_Target
             {
+                if (_Clip.z > 0)
+                {
+                    float column = floor(i.posOS.x / _Clip.w) + floor(i.posOS.y / _Clip.w) * 7.0;
+                    if (i.posOS.z < Edge(_Clip.x, column) || i.posOS.z > Edge(_Clip.y, column)) discard;
+                }
                 int idx = (int)(SAMPLE_TEXTURE2D_LOD(_MainTex, sampler_MainTex, i.uv, 0).r * 255.0 + 0.5);
                 bool top = idx >= 128;
                 idx = idx & 127;
@@ -53,7 +66,7 @@ Shader "Saga/Stack"
                 half3 col = LOAD_TEXTURE2D(_Palette, int2(idx - 1, 0)).rgb;
                 half shade = top ? max(i.shade, 0.9h) : i.shade;
                 shade = round(shade * 12.0h) / 12.0h;
-                return half4(col * shade * _Color.rgb, 1);
+                return half4(saturate(col * shade * _Color.rgb), 1); // brightened scenery tops out at white, never blooms
             }
             ENDHLSL
         }

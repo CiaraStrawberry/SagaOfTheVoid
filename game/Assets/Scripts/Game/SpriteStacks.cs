@@ -35,12 +35,16 @@ namespace Saga.Game
             public int[] blue, red, pal;       // palettes, RGB triples (ships: blue and red; scenery: pal)
         }
         [Serializable] class ShipList { public List<Info> ships = new List<Info>(); }
-        [Serializable] class SceneryMap { public string id; public List<Info> parts = new List<Info>(); }
+        [Serializable] class SceneryMap { public string id; public float gain = 1f; public List<Info> parts = new List<Info>(); }
         [Serializable] class SceneryList { public List<SceneryMap> maps = new List<SceneryMap>(); }
 
         static ShipLibrary loaded;
         static Dictionary<string, Info> ships;
         static Dictionary<string, List<Info>> maps;
+        static Dictionary<string, float> gains;
+
+        // Brightness the scenery is drawn at, matched to how the lit 3D scenery looked (StackShots -calibrate).
+        public static float SceneryGain(ShipLibrary lib, string id) { Load(lib); return gains.TryGetValue(id ?? "", out var g) ? g : 1f; }
         static readonly Dictionary<string, (Mesh mesh, Material mat)> cache = new Dictionary<string, (Mesh, Material)>();
 
         static void Load(ShipLibrary lib)
@@ -49,10 +53,11 @@ namespace Saga.Game
             loaded = lib;
             ships = new Dictionary<string, Info>();
             maps = new Dictionary<string, List<Info>>();
+            gains = new Dictionary<string, float>();
             if (lib.stacksJson != null)
                 foreach (var i in JsonUtility.FromJson<ShipList>(lib.stacksJson.text).ships) ships[i.sprite] = i;
             if (lib.sceneryStacksJson != null)
-                foreach (var m in JsonUtility.FromJson<SceneryList>(lib.sceneryStacksJson.text).maps) maps[m.id] = m.parts;
+                foreach (var m in JsonUtility.FromJson<SceneryList>(lib.sceneryStacksJson.text).maps) { maps[m.id] = m.parts; gains[m.id] = m.gain > 0 ? m.gain : 1f; }
         }
 
         public static bool HasShip(ShipLibrary lib, string sprite)
@@ -103,6 +108,8 @@ namespace Saga.Game
                 if (info.part < 0 || info.part >= renderers.Length) continue;
                 var (mesh, mat) = Get(lib, info, info.pal, info.sprite);
                 if (mesh == null) continue;
+                float g = gains[id];
+                mat.SetColor("_Color", new Color(g, g, g, 1f));
                 var go = Make(map.transform, mesh, mat);
                 StackFollow.Add(go, new Renderer[] { renderers[info.part] });
             }
@@ -123,6 +130,10 @@ namespace Saga.Game
         }
 
         static readonly Dictionary<string, Mesh> meshes = new Dictionary<string, Mesh>();
+        static readonly Dictionary<Mesh, float> pixels = new Dictionary<Mesh, float>();
+
+        // Size of one stack pixel in the mesh's own units (wreck cracks are stepped by it).
+        public static float Pixel(Mesh m) => m != null && pixels.TryGetValue(m, out var p) ? p : 1f;
 
         // The mesh is shared by every paint of a model; the material carries the paint's palette.
         static (Mesh, Material) Get(ShipLibrary lib, Info info, int[] palette, string key)
@@ -131,7 +142,10 @@ namespace Saga.Game
             var atlas = lib.StackAtlas(info.sprite);
             if (atlas == null || palette == null || palette.Length < 3) return (null, null);
             if (!meshes.TryGetValue(info.sprite, out var mesh) || mesh == null)
+            {
                 meshes[info.sprite] = mesh = BuildMesh(info, atlas.width, atlas.height);
+                pixels[mesh] = info.unit;
+            }
             var mat = new Material(lib.stackShader) { mainTexture = atlas, name = "stack " + key };
             mat.SetTexture("_Palette", Palette(palette, key));
             var made = (mesh, mat);

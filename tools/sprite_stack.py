@@ -168,6 +168,12 @@ def scenery():
             part["pal"] = [int(round(v * 255)) for row in centres for v in row]
             pixels += int(mask.sum())
         print(f"{m['id']}: {len(m['parts'])} parts, {pixels:,} filled pixels")
+    # Brightness to draw each map's scenery at, measured against the lit 3D scenery (StackShots -calibrate).
+    gains_file = os.path.join(SCENERY_IN, "gains.json")
+    gains = json.load(open(gains_file)) if os.path.exists(gains_file) else {}
+    for m in data["maps"]:
+        m["gain"] = round(float(gains.get(m["id"], 1.0)), 3)
+    print("scenery brightness:", {m["id"]: m["gain"] for m in data["maps"]})
     json.dump(data, open(SCENERY_DATA, "w"), separators=(",", ":"))
 
 

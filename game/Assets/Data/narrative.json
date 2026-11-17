@@ -35,10 +35,10 @@
    "index": 0,
    "name": "Basic Training",
    "act": "I · ORDERS",
-   "premise": "Four target drone flights in the asteroid belt. Standard fleet checkout—until a civilian freighter starts screaming on the guard band.",
-   "primary": "Clear all four training drone flights.",
-   "secondary": "Bring at least one starting fighter squadron through intact.",
-   "bonus": "Finish before range control calls the second time check.",
+   "premise": "Four target drones in the outer belt. Range control wants your gunnery sign-off before the fleet moves.",
+   "primary": "Destroy all four target drone flights.",
+   "secondary": "Finish with both starting fighter squadrons intact.",
+   "bonus": "Clear the range before the second time call.",
    "beats": [
     {
      "id": "briefing",
@@ -47,11 +47,11 @@
      "lines": [
       {
        "speaker": "vey",
-       "text": "Four drone flights. Dummies on their racks, live rounds on yours. Don't make a meal of it."
+       "text": "Four drone flights on the range. No live warheads on their side. Clear them and we can sign your ticket."
       },
       {
        "speaker": "kest",
-       "text": "They told me the drones were harmless on my checkout too. Clipped a thruster on number three. Buying the deck crew drinks for a month."
+       "text": "Take them one pair at a time, Commander. My first checkout, I let number four drift behind an asteroid and spent twenty minutes chasing it."
       }
      ]
     },
@@ -62,15 +62,15 @@
      "lines": [
       {
        "speaker": "kest",
-       "text": "Hold on—getting a mayday on civilian guard. Ore hauler out of Morrow Gate. Says she's taking torpedo fire."
+       "text": "Hang on. I'm picking up a distress call on the merchant channel. Ore carrier out of Morrow Gate says someone's shooting at her."
       },
       {
        "speaker": "vey",
-       "text": "Finish your range table, Lieutenant. Picket ships have Morrow Gate."
+       "text": "Finish the exercise, Lieutenant. The sector picket can handle Morrow Gate."
       },
       {
        "speaker": "kest",
-       "text": "Sir, that's the picket ship relaying the mayday."
+       "text": "That is the sector picket, sir. They're the ones calling."
       }
      ]
     },
@@ -81,11 +81,11 @@
      "lines": [
       {
        "speaker": "vey",
-       "text": "Checkout's logged. Plot for Core Outskirts—you jump in ten."
+       "text": "That'll do. Gunnery's signed off. Form up on the jump buoy for Core Outskirts, ten minutes."
       },
       {
        "speaker": "kest",
-       "text": "And here I ironed my dress whites."
+       "text": "Short graduation. I'll tell the pilots to top off their tanks."
       }
      ]
     }
@@ -95,10 +95,10 @@
    "index": 1,
    "name": "Core Outskirts",
    "act": "I · ORDERS",
-   "premise": "Rebel torpedo bombers are making a run on the Core Outskirts freight ring—and one of them is squawking an Imperial Navy transponder.",
-   "primary": "Splash all three bomber squadrons.",
-   "secondary": "Keep the bombers off the station registry hub.",
-   "bonus": "Log the bomber's Imperial transponder serial.",
+   "premise": "Three rebel bomber flights are making a run on the Core Outskirts freight station.",
+   "primary": "Destroy all three bomber squadrons.",
+   "secondary": "Keep the bombers off the station docking ring.",
+   "bonus": "Log the lead bomber's transponder serial.",
    "beats": [
     {
      "id": "briefing",
@@ -107,11 +107,11 @@
      "lines": [
       {
        "speaker": "vey",
-       "text": "Three rebel bomber flights on an attack vector for the transfer ring. Bulk freight's already backed up to the jump buoy. Clear the lane."
+       "text": "Three bomber groups are coming in on the freight ring. They've already backed traffic up to the buoy. Clear them out."
       },
       {
        "speaker": "kest",
-       "text": "I've got station control on the secondary. Yard crews haven't cleared the outer gantry yet, Commander—get our fighters in front of those bombers."
+       "text": "Station control says they still have loading crews on the outer ring. Let's get out in front of those bombers before they drop."
       }
      ]
     },
@@ -122,15 +122,15 @@
      "lines": [
       {
        "speaker": "kest",
-       "text": "Wait a second. That lead bomber's squawking a Navy transit cipher. Six-series, eighteen months old, still green in the table."
+       "text": "Hold on. That bomber we just splashed was squawking a Navy yard transponder. Why would rebels be flying with fleet registry tags?"
       },
       {
        "speaker": "vey",
-       "text": "Salvage yards leak transponders every week. Flag the serial for Fleet Intel and stay on the bombers."
+       "text": "Transponders get stripped from salvage every week. Send the serial to intelligence and keep your eyes on the rest of them."
       },
       {
        "speaker": "kest",
-       "text": "I tried. Intel's server bounced the packet before the upload even finished."
+       "text": "I did. Their system kicked the report back as restricted before it even finished sending."
       }
      ]
     },
@@ -141,11 +141,11 @@
      "lines": [
       {
        "speaker": "kest",
-       "text": "Station's back on comms. Venting atmosphere on B-deck, but the harbourmaster got his clerks into the shelter."
+       "text": "Station's answering again. They lost a cargo shed on the lower ring, but the dock crews made it inside."
       },
       {
        "speaker": "vey",
-       "text": "Leave the station to the tugs. We've pinned down Garric Holt's flagship in the boneyard."
+       "text": "Good. Leave the cleanup to the station tugs. We've got a location on Garric Holt."
       }
      ]
     }
@@ -155,10 +155,10 @@
    "index": 2,
    "name": "System Patrol",
    "act": "I · ORDERS",
-   "premise": "Pirate boss Garric Holt is hiding a salvaged battlecruiser among the hulks of the old fleet boneyard.",
-   "primary": "Destroy Garric Holt's super-capital.",
-   "secondary": "Capture the tight-beam burst from Holt's bridge before his hull breaks.",
-   "bonus": "Bring at least one fighter squadron back.",
+   "premise": "Salvage boss Garric Holt is refitting a heavy cruiser inside an old fleet wreck field.",
+   "primary": "Destroy Garric Holt's flagship.",
+   "secondary": "Record the signal burst from Holt's bridge.",
+   "bonus": "Lose no more than one fighter squadron.",
    "beats": [
     {
      "id": "briefing",
@@ -167,11 +167,11 @@
      "lines": [
       {
        "speaker": "vey",
-       "text": "Garric Holt has been stripping Navy hulks in this sector for three years. That dreadnought in the debris field is his. Sink it."
+       "text": "Garric Holt has been running raids out of this wreck field for six months. His ship is the big hull in the middle. Put it down."
       },
       {
        "speaker": "kest",
-       "text": "Three cannon frigates parked on his bow. I'll swing the fighters wide around the scrap—no sense feeding them into his main battery."
+       "text": "He's got three cannon frigates parked out front. Take the fighters wide around the debris so we don't eat their broadsides."
       }
      ]
     },
@@ -182,15 +182,15 @@
      "lines": [
       {
        "speaker": "sen",
-       "text": "Ninth Fleet, hold your fire! This is Holt's relay—he's carrying harbour logs from the Thessa evacuation. Check what your Admiral paid him to scrap!"
+       "text": "Imperial ships, hold your fire. This is Holt's relay. He's carrying the harbour manifests from the Thessa convoy. Ask your admiral why he's trying to sink them."
       },
       {
        "speaker": "vey",
-       "text": "Jamming spoofs. Keep your guns on the dreadnought."
+       "text": "Don't answer that channel. Keep firing."
       },
       {
        "speaker": "kest",
-       "text": "They just dumped a forty-kilobyte text file into our buffer. Funny kind of jamming."
+       "text": "They just sent a text file over the open band. Forty kilobytes. That's not a jamming script."
       }
      ]
     },
@@ -201,11 +201,11 @@
      "lines": [
       {
        "speaker": "kest",
-       "text": "Reactor's gone—Holt's breaking up. His tight-beam finished writing to my recorder right before the core went."
+       "text": "Holt's ship is breaking up. That file finished coming through right before his bridge went dark. I saved it to the log."
       },
       {
        "speaker": "vey",
-       "text": "Purge the recorder buffer. You're hitting Holt's asteroid anchorage before his crews can torch the vaults."
+       "text": "Wipe it from the log, Lieutenant. We're moving on Holt's rock base before the rest of his crew scatters."
       }
      ]
     }
@@ -215,10 +215,10 @@
    "index": 3,
    "name": "Pirate Base",
    "act": "II · DOUBT",
-   "premise": "Holt's rock-cut anchorage holds salvage manifests from the Thessa run—and Navy payment vouchers for every hull he broke up.",
-   "primary": "Wipe out the anchorage defence ships.",
-   "secondary": "Pull the harbour manifests from the rock vault.",
-   "bonus": "Keep a frigate intact to haul the vault drives.",
+   "premise": "Holt's crews have a rock anchorage in the belt where they strip salvaged hulls and store their cargo manifests.",
+   "primary": "Destroy the anchorage defence fleet.",
+   "secondary": "Pull the shipping logs from the rock dock.",
+   "bonus": "Keep a frigate alive to tow the dock drives.",
    "beats": [
     {
      "id": "briefing",
@@ -227,11 +227,11 @@
      "lines": [
       {
        "speaker": "vey",
-       "text": "Holt's anchorage is cut into the big rock dead ahead. One flak frigate on the door, four fighter flights on patrol. Go in fast."
+       "text": "Holt's anchorage is inside the large asteroid ahead. One flak frigate and four fighter flights on guard. Go in before they can pull their drives."
       },
       {
        "speaker": "kest",
-       "text": "Lot of flak for a gang of scrap-haulers. Somebody didn't want visitors reading the ledger."
+       "text": "We've finally got frigates of our own for this one. Let them soak the flak before you send the fighters in."
       }
      ]
     },
@@ -242,15 +242,15 @@
      "lines": [
       {
        "speaker": "kest",
-       "text": "I'm inside their dock ledger. These aren't pirate prizes—they're civilian hulls from the Thessa corridor, tagged with that same six-series Navy cipher."
+       "text": "I'm reading the dock's yard list. These aren't raided merchantmen. They're civilian transports from the Thessa evacuation, logged under Navy salvage contracts."
       },
       {
        "speaker": "vey",
-       "text": "Leave the harbour drives for the intelligence detail, Lieutenant."
+       "text": "Leave the yard files for the intelligence team, Lieutenant."
       },
       {
        "speaker": "kest",
-       "text": "Hull 44-Meridian's on this sheet, sir. My brother was third mate on the Meridian."
+       "text": "The transport Meridian is on this list, sir. My brother was on her crew."
       }
      ]
     },
@@ -261,11 +261,11 @@
      "lines": [
       {
        "speaker": "kest",
-       "text": "Look at the timestamps. Naval Command declared the Thessa lane hostile twelve minutes before the refugee ships reached the buoy."
+       "text": "The departure stamps are all here. Command closed the Thessa lane twelve minutes before the convoy reached the checkpoint."
       },
       {
        "speaker": "vey",
-       "text": "Shut that channel down, Kest. You can put it on my desk when we're back in port."
+       "text": "Off the net, Kest. You can bring it to my office when this deployment is over."
       }
      ]
     }
@@ -275,10 +275,10 @@
    "index": 4,
    "name": "Military Excursion",
    "act": "II · DOUBT",
-   "premise": "Command sends you two jumps into rebel space to rescue former transit director Dr. Leena Sar—who insists she wasn't kidnapped.",
+   "premise": "Naval Command orders a deep run into rebel territory to recover former transit records director Dr. Leena Sar.",
    "primary": "Hold the pickup point for five minutes.",
-   "secondary": "Bring the courier shuttle out alive.",
-   "bonus": "Get Dr. Sar's ledger drives aboard your flagship.",
+   "secondary": "Keep the extraction shuttle intact.",
+   "bonus": "Bring Dr. Sar's archive drives aboard.",
    "beats": [
     {
      "id": "briefing",
@@ -287,11 +287,11 @@
      "lines": [
       {
        "speaker": "vey",
-       "text": "Rebel raiders took Dr. Leena Sar out of Transit Records last week. Boarding team's cutting her out of that courier now—hold the jump point for five minutes."
+       "text": "Dr. Leena Sar, formerly of Transit Records, is aboard a rebel courier in this sector. Our boarding shuttle is going in to fetch her. Hold the jump point for five minutes."
       },
       {
        "speaker": "kest",
-       "text": "Two jumps inside rebel space with one tide window out. Keep the frigates tight on that shuttle."
+       "text": "Two jumps inside their border and only two cannon frigates on screen. Expect company before the timer's up."
       }
      ]
     },
@@ -302,19 +302,19 @@
      "lines": [
       {
        "speaker": "sar",
-       "text": "Ninth Fleet, this is Leena Sar. Stop firing on my escorts—nobody kidnapped me. I walked out of Records when Vey's office told me to burn the Thessa tapes."
+       "text": "Ninth Fleet, this is Dr. Sar. Call off your boarding team. Nobody kidnapped me. I left the capital when Admiral Vey's office told me to shred the Thessa transit files."
       },
       {
        "speaker": "kest",
-       "text": "Hell of a time to mention it, Doctor."
+       "text": "Wait. We were briefed this was a hostage pickup."
       },
       {
        "speaker": "sar",
-       "text": "I filed three safe-conduct requests with the Inspectorate. Admiral Vey sent a shore patrol with sidearms."
+       "text": "I asked the Inspectorate for a hearing three times. The third time, Vey sent naval police to my apartment."
       },
       {
        "speaker": "vey",
-       "text": "Put the boarding shuttle in your hangar and cut her transmitter, Commander."
+       "text": "Get her aboard the shuttle and shut that transmitter off. Now."
       }
      ]
     },
@@ -325,15 +325,15 @@
      "lines": [
       {
        "speaker": "sar",
-       "text": "Those transports had green clearance from my own dispatchers. The fleet closed the lane without warning and opened up on everything in the chute."
+       "text": "Those ships had signed lane clearances from my office. The Navy closed the corridor while they were already in transit and fired on the lead hulls."
       },
       {
        "speaker": "kest",
-       "text": "The Meridian was in that column."
+       "text": "The Meridian was in that group."
       },
       {
        "speaker": "sar",
-       "text": "Fourth ship hit. I still have the fire-control order, Lieutenant—with your Admiral's seal at the bottom."
+       "text": "Third hull in line. I brought the fire-control docket with me, Lieutenant. Admiral Vey's signature is on the cover sheet."
       }
      ]
     }
@@ -343,10 +343,10 @@
    "index": 5,
    "name": "All out war",
    "act": "II · DOUBT",
-   "premise": "Commander Nara Sen's strike group pushes for the capital's Crown Relay, intent on broadcasting the Thessa gun-camera tape to every ship in the sector.",
-   "primary": "Break the rebel vanguard off the capital station.",
-   "secondary": "Intercept the bombers before they hit the civilian berths.",
-   "bonus": "Keep a clean copy of Sen's open-band broadcast.",
+   "premise": "Rebel commander Nara Sen leads a strike force toward the capital's Crown Relay to broadcast the Thessa fleet recordings.",
+   "primary": "Destroy the rebel advance force.",
+   "secondary": "Keep the bombers off the station berths.",
+   "bonus": "Log Commander Sen's transmission.",
    "beats": [
     {
      "id": "briefing",
@@ -355,11 +355,11 @@
      "lines": [
       {
        "speaker": "vey",
-       "text": "Rebel vanguard's inside the outer marker. Their command staff is on that destroyer—kill it before they get within line-of-sight of the Crown Relay."
+       "text": "A rebel strike group has reached the outer capital station. Their command staff is on that destroyer. Stop them here."
       },
       {
        "speaker": "kest",
-       "text": "Harbour control still has civilian hulls tied up on the ring! I'm telling the dockmaster to blow the moorings."
+       "text": "There are still merchant ships tied up at the passenger ring. I'm calling the harbourmaster to get them undocked."
       }
      ]
     },
@@ -370,19 +370,19 @@
      "lines": [
       {
        "speaker": "sen",
-       "text": "Ninth Fleet, this is Commander Nara Sen. We're only here for the Crown Relay. Let our signal through and every ship in the Navy hears what happened at Thessa."
+       "text": "Ninth Fleet, this is Commander Nara Sen. Our target is the Crown Relay. We have the gun-camera recordings from Thessa. Stand aside and let the capital hear them."
       },
       {
        "speaker": "vey",
-       "text": "She's putting torpedoes into a commercial berth while she lectures you. Kill the destroyer."
+       "text": "She has three bomber squadrons running on a civilian station. Look at your scopes before you listen to her."
       },
       {
        "speaker": "sen",
-       "text": "We broadcast evacuation warnings an hour ago! Vey locked the berth gates to keep your fleet between us and the dish!"
+       "text": "We sent two evacuation notices in the clear. Your port authority locked the berth clamps to keep our bombers off the relay."
       },
       {
        "speaker": "kest",
-       "text": "Check the port log, Commander—she did call it in. Twice. Port authority overrode the undock."
+       "text": "She's telling the truth about the notices, Commander. Both of them are sitting in the harbour log, marked hold by Fleet Command."
       }
      ]
     },
@@ -393,11 +393,11 @@
      "lines": [
       {
        "speaker": "kest",
-       "text": "Vanguard destroyer's dead in the water. Wait—long-range scopes just lit up. That wasn't the main body. Sen's heavy hulls already slipped past us."
+       "text": "The destroyer's down, and that's the last of the bombers. Wait. Long-range sensors show a larger group already past the outer marker. This was just a diversion."
       },
       {
        "speaker": "vey",
-       "text": "Come about for the palace approach. Full burn."
+       "text": "All ships, come about for the palace approach."
       }
      ]
     }
@@ -407,10 +407,10 @@
    "index": 6,
    "name": "Final Assault",
    "act": "III · RECKONING",
-   "premise": "Two rebel destroyers push through the palace wreck field while civilian and cabinet transports scramble for the same narrow exit lane.",
-   "primary": "Hold the wreck-field approach for five minutes.",
-   "secondary": "Keep the outbound transport lane clear.",
-   "bonus": "Cover Transport Three until its crew clears the buoy.",
+   "premise": "Two rebel destroyers push through the wreck field outside the capital while outbound transports crowd the evacuation lane.",
+   "primary": "Hold the palace approach for five minutes.",
+   "secondary": "Keep the transport lane open.",
+   "bonus": "Screen Transport Three until it clears the buoy.",
    "beats": [
     {
      "id": "briefing",
@@ -419,11 +419,11 @@
      "lines": [
       {
        "speaker": "vey",
-       "text": "Inner picket's gone. Two rebel destroyers are coming straight through the hulk field—hold the throat for five minutes."
+       "text": "The outer line has folded. Two rebel destroyers are pushing through the scrap field toward the palace lane. Hold them off for five minutes."
       },
       {
        "speaker": "kest",
-       "text": "Outbound transports are bottlenecked behind us. Dock workers, families, ministry aides—all trying to squeeze down one buoy line."
+       "text": "Evacuation transports are still climbing out behind us. Yard workers, civilian families, ministry staff, all sharing one outbound lane."
       }
      ]
     },
@@ -434,23 +434,23 @@
      "lines": [
       {
        "speaker": "vey",
-       "text": "Pull your frigates onto Transport One. The defence committee is aboard."
+       "text": "Move your cover to Transport One. The cabinet ministers are on board."
       },
       {
        "speaker": "kest",
-       "text": "Transport Three's trailing plasma from her port main—she's got four hundred yard hands aboard and she's falling behind!"
+       "text": "Transport Three has a damaged drive and four hundred dock workers in the hold. If we pull off, those destroyers will range her."
       },
       {
        "speaker": "sar",
-       "text": "My clerks are on Three with the physical dispatch books, Commander. If that hull goes, the paper trail goes with it."
+       "text": "My clerks are on Transport Three with the original Thessa ledger books, Commander."
       },
       {
        "speaker": "vey",
-       "text": "You have your orders, Commander."
+       "text": "You have a direct order."
       },
       {
        "speaker": "kest",
-       "text": "We can't screen both lanes! Tell me where to put the guns."
+       "text": "We don't have enough ships to cover both tracks. Tell me which lane we're holding."
       }
      ]
     },
@@ -461,15 +461,15 @@
      "lines": [
       {
        "speaker": "sar",
-       "text": "Transports are clear of the buoy, but Sen's flagship is already lining up on the Crown Relay dish."
+       "text": "Both transports are past the marker, but Sen's command ship has reached the Crown Relay perimeter."
       },
       {
        "speaker": "vey",
-       "text": "She's outrun her escorts. One push and we finish this before she keys the array."
+       "text": "She outran her own screen to get there. Hit her before she can link to the dish."
       },
       {
        "speaker": "kest",
-       "text": "Guns are hot, Commander. Point us where you want us."
+       "text": "Fleet's formed up, Commander. Give the word."
       }
      ]
     }
@@ -479,10 +479,10 @@
    "index": 7,
    "name": "Last Hope",
    "act": "III · RECKONING",
-   "premise": "Sen's dreadnought is on final approach to the Crown Relay. Take down her flagship—then decide what happens to the tape in your buffer.",
+   "premise": "Commander Sen's flagship is in range of the Crown Relay. Stop her battle group, then decide what to do with the Thessa files.",
    "primary": "Destroy Commander Sen's flagship.",
-   "secondary": "Hold the tight-beam transfer from Sen's bridge.",
-   "bonus": "Bring at least one capital ship through the fight.",
+   "secondary": "Receive the archive transfer from Sen's bridge.",
+   "bonus": "Keep at least one capital ship alive.",
    "beats": [
     {
      "id": "briefing",
@@ -491,15 +491,15 @@
      "lines": [
       {
        "speaker": "vey",
-       "text": "Sen's dreadnought is two thousand metres off the relay dish. Break her hull and this rebellion dies right here."
+       "text": "Sen's flagship is closing on the relay dish. Break her here and the rebellion is finished."
       },
       {
        "speaker": "sen",
-       "text": "Ninth Fleet, you've got Sar's ledger in your cabin. Check the seal on the closure order before you die for the man who wrote it."
+       "text": "Ninth Fleet, you have Dr. Sar's files on your bridge. Look at the name on the Thessa order before you open fire."
       },
       {
        "speaker": "kest",
-       "text": "I ran the key against Fleet Registry five minutes ago. It's his seal."
+       "text": "I checked the registry stamp before we jumped. It's genuine."
       }
      ]
     },
@@ -510,15 +510,15 @@
      "lines": [
       {
        "speaker": "sen",
-       "text": "Main bus is dead—we won't reach the dish. Dumping the raw gun-camera tape straight to your flagship's array. Don't let him bury us twice."
+       "text": "Our main engines are out. We won't make the dish. I'm sending the full Thessa recording to your flagship now."
       },
       {
        "speaker": "vey",
-       "text": "Cut your receiving array! Direct order!"
+       "text": "Shut down your comms array. That is an order."
       },
       {
        "speaker": "sar",
-       "text": "Transfer's complete. That's the last unedited copy in the sector, Commander."
+       "text": "The file is already in your buffer, Commander. Once her ship goes down, it's the last copy left."
       }
      ]
     },
@@ -529,15 +529,15 @@
      "lines": [
       {
        "speaker": "kest",
-       "text": "Flagship's gone. The Crown Relay is locked onto our transponder, waiting for a command key."
+       "text": "Sen's flagship is down. The Crown Relay is still online, waiting for a command login."
       },
       {
        "speaker": "sar",
-       "text": "Key the dish and the whole sector hears the tape before the Admiralty can pull the breakers. Or lock the drive, and it never leaves this bridge."
+       "text": "Your command key can put the recording on the relay right now. Or you can lock the file for an internal board, and the public hears nothing."
       },
       {
        "speaker": "vey",
-       "text": "Put the drive under seal, Commander. Don't make me ask twice."
+       "text": "Lock the archive, Commander. Now."
       }
      ]
     }
@@ -547,15 +547,15 @@
  "endings": [
   {
    "id": "publish",
-   "choice": "Put the Thessa tape on the Crown Relay.",
-   "title": "Open Channel",
-   "text": "The gun-camera tape hits the outer beacons twelve minutes before Naval Command cuts power to the dish. Two border squadrons refuse orders before noon; a third comes about for the capital. Vey is relieved of his flag by nightfall. The shooting along the rim doesn't stop, but nobody pretends not to know how it started."
+   "choice": "Broadcast the Thessa record on the relay.",
+   "title": "Open Broadcast",
+   "text": "The recording goes out over the Crown Relay twelve minutes before Naval Command cuts power to the dish. By morning, four border squadrons have refused orders and the ministry has recalled Admiral Vey for questioning. Fighting continues in the outer sectors, with the Thessa logs open on every fleet channel."
   },
   {
    "id": "seal",
-   "choice": "Lock the drive for an Admiralty board.",
-   "title": "Closed Inquiry",
-   "text": "Fleet dispatches credit the Ninth with breaking the siege. The Crown Relay stays on routine traffic, and Vey chairs the board of inquiry himself. By winter the border patrols are back on their old stations. Kest turns in her flight wings the morning the medals are pinned, leaving the Meridian's hull tag on the briefing table."
+   "choice": "Lock the archive for a naval inquiry.",
+   "title": "Closed File",
+   "text": "The Admiralty announces a decisive victory at the capital. The Crown Relay returns to normal traffic, and the Thessa files are handed to a closed naval board that meets twice and adjourns without a report. By the next quarter, the Ninth is back on border patrol. Kest requests a transfer to a cargo depot on the rim."
   }
  ]
 }

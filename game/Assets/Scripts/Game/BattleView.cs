@@ -180,7 +180,17 @@ namespace Saga.Game
             {
                 var dv = ViewOf(d);
                 if (dv == null) continue;
-                SpawnExplosion(dv);
+                // Squadrons: every craft still flying is shot down and crashes. Big ships break up. Before hiding.
+                if (dv.Crafts != null)
+                {
+                    float delay = 0f;
+                    foreach (var c in dv.Crafts.Where(c => !c.Lost)) { ShootDown(c, delay); delay += UnityEngine.Random.Range(0.05f, 0.25f); }
+                }
+                else
+                {
+                    SpawnExplosion(dv);
+                    BreakUp(dv);
+                }
                 dv.Go.SetActive(false);
                 foreach (var b in new[] { dv.BarBack, dv.BarArmor, dv.BarShield }) if (b != null) b.gameObject.SetActive(false);
                 if (dv.Link != null) { Kill(dv.Link.gameObject); dv.Link = null; }
@@ -195,6 +205,8 @@ namespace Saga.Game
             UpdateFurballRings();
             UpdateStrikeRings();
             UpdateFx(dt);
+            UpdateWrecks(dt);
+            UpdateFallers(dt);
             if (Backdrop != null) Backdrop.Refresh();
             // Hits whose target died before they landed never get an impact: drop them once their line is gone.
             if (shotFx.Count > 400)
@@ -814,23 +826,10 @@ namespace Saga.Game
                     : v.Crafts.Where(c => !c.Lost).OrderBy(c => (c.T.position - near).sqrMagnitude).First();
                 victim.Lost = true; alive--;
                 v.LastHitCraft = null;
-                if (left > 0) CraftExplosion(victim);
+                ShootDown(victim, Mathf.Max(0, alive) * 0.12f); // the last few go down a moment apart
             }
         }
 
-        void CraftExplosion(Craft c)
-        {
-            var p = c.T.position;
-            AddSprite("flash", glow, p, Hdr(new Color(1f, 0.95f, 0.8f), 3f), 50f, 0.1f, Vector3.zero, false);
-            AddSprite("flash", glow, p, Hdr(new Color(1f, 0.6f, 0.25f), 2.2f), 110f, 0.55f, c.Vel * 0.3f, false);
-            AddSprite("ring", warpRing, p, Hdr(new Color(1f, 0.7f, 0.4f), 1.3f), 160f, 0.3f, Vector3.zero, false);
-            for (int i = 0; i < 10; i++)
-            {
-                var d = (c.Vel.normalized * 0.6f + UnityEngine.Random.insideUnitSphere).normalized;
-                AddSprite("debris", dot, p, Hdr(new Color(1f, 0.6f, 0.25f), 1.8f), UnityEngine.Random.Range(5f, 11f), UnityEngine.Random.Range(0.5f, 1f), d * UnityEngine.Random.Range(80f, 220f), false);
-            }
-            SoundBoard.Current?.Explosion(p, false);
-        }
 
         // ---------- impacts and explosions ----------
 
