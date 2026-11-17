@@ -64,3 +64,5 @@ recovery/audio/
 
 # Narrative editor save history
 tools/narrative_backups/
+tools/bake/out_stack/
+tools/bake/stack.log

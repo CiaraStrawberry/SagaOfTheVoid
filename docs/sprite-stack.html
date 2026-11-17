@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprite Stacking Demo</title>
+<style>
+:root { --bg: #070b12; --panel: #0d1420; --line: #22304a; --text: #dde6f0; --muted: #8d98ab; --accent: #73b8ff; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.5 "Segoe UI", system-ui, sans-serif; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 24px 16px 60px; }
+h1 { margin: 0 0 4px; font-size: 26px; }
+h2 { font-size: 18px; margin: 34px 0 6px; }
+p { color: var(--muted); margin: 6px 0 12px; max-width: 760px; }
+a { color: var(--accent); }
+canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; background: #03060c; border: 1px solid var(--line); border-radius: 8px; width: 100%; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; margin: 10px 0; }
+.controls label { display: flex; gap: 8px; align-items: center; color: var(--muted); font-size: 14px; }
+select, button { background: #0a101a; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 5px 9px; font: inherit; }
+button { cursor: pointer; } button:hover { border-color: var(--accent); }
+input[type=range] { width: 120px; accent-color: var(--accent); }
+.row { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px; }
+.sheet { overflow-x: auto; background: #03060c; border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+.sheet canvas { width: auto; border: none; background: none; }
+.note { font-size: 13px; color: var(--muted); }
+@media (max-width: 800px) { .row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p style="margin:0 0 8px"><a href="index.html">← Project docs</a></p>
+  <h1>Sprite stacking: a look test</h1>
+  <p>Each ship below is a pile of flat pixel-art slices, cut from the game's real 3D models one pixel of height apart.
+    Drawing the slices bottom to top, each nudged up a pixel and all turned to the same angle, fakes a 3D model.
+    Only a prototype: nothing in the game uses it yet. The method follows
+    <a href="https://www.spritecook.ai/blog/sprite-stacking-pixel-art">this sprite-stacking write-up</a>.</p>
+
+  <h2>Fleet in motion</h2>
+  <p>A low-resolution scene (640 × 360, scaled up with no smoothing; every ship at its true pixel size), roughly how a sprite version of a battle might look. Drag sideways to turn the camera.</p>
+  <canvas id="fleet" width="640" height="360"></canvas>
+  <div class="controls">
+    <label><input type="checkbox" id="fleetSpin" checked> Camera slowly turns</label>
+    <label><input type="checkbox" id="fleetShadow" checked> Shadows</label>
+    <button id="fleetReset">New fleets</button>
+  </div>
+
+  <h2>One ship up close</h2>
+  <div class="row">
+    <div>
+      <canvas id="solo" width="240" height="180"></canvas>
+      <div class="controls">
+        <label>Ship <select id="ship"></select></label>
+        <label>Team <select id="team"><option>Blue</option><option>Red</option></select></label>
+        <label>Turn <input type="range" id="turn" min="0" max="360" value="30"></label>
+        <label><input type="checkbox" id="spin" checked> Spin</label>
+        <label>Slice gap <input type="range" id="gap" min="0" max="2" step="0.25" value="1"></label>
+        <label><input type="checkbox" id="smooth"> Smooth (draw at screen size)</label>
+      </div>
+      <p class="note">Slice gap 1 is the usual look. 0 flattens the ship into a plain top-down sprite; above 1 pulls the layers apart so you can see them. "Smooth" draws each slice at full screen size instead of on the pixel grid, which looks less like pixel art but keeps fine detail.</p>
+    </div>
+    <div>
+      <p style="margin-top:0">The slices for this ship, bottom first, read left to right. The last one is a "lid": the ship as seen from above, so the top of the stack shows the hull's markings.</p>
+      <div class="sheet"><canvas id="sheet"></canvas></div>
+      <p class="note" id="facts"></p>
+    </div>
+  </div>
+
+  <h2>How the slices were made</h2>
+  <p>A Unity script (<code>tools/bake/Assets/Editor/StackBaker.cs</code>) points a straight-down camera at each ship and moves the near clipping plane down one pixel at a time. Where the first surface the camera sees is the inside of the hull, that pixel is inside the ship at that height, so it goes in the slice. <code>tools/sprite_stack.py</code> shrinks the 4× renders to the pixel size, colours each slice from the lit top view, darkens the lower slices and cuts the colours to 14 per ship. Fighters are 26 pixels long and the Super-Capital 170.</p>
+  <p>Known rough edges: the slicing relies on closed hulls, so thin open parts (antennae, fins) can drop out; the team colour is weak after the palette cut; small craft have only 7 to 11 slices.</p>
+</div>
+
+<script>
+"use strict";
+const SHIPS = ["Scout", "Fighter", "Bomber", "MissileFrigate", "FlackFrigate", "CannonFrigate", "LazerFrigate", "RepairFrigate", "Destroyer", "Capital", "Super-Capital"];
+const NAMES = { MissileFrigate: "Missile Frigate", FlackFrigate: "Flak Frigate", CannonFrigate: "Cannon Frigate", LazerFrigate: "Laser Frigate", RepairFrigate: "Repair Frigate", "Super-Capital": "Super-Capital" };
+let info = {}, sprites = {};   // sprites["Fighter_Blue"] = { side, slices: [canvas...] }
+
+async function loadAll() {
+  // Sizes from tools/sprite_stack.py (img/stack/stack.json), inline so the page also works opened from disk.
+  info = {"Scout":{"side":26,"slices":8},"Fighter":{"side":30,"slices":8},"Bomber":{"side":35,"slices":12},"MissileFrigate":{"side":62,"slices":20},"FlackFrigate":{"side":62,"slices":18},"CannonFrigate":{"side":62,"slices":17},"LazerFrigate":{"side":64,"slices":17},"RepairFrigate":{"side":62,"slices":15},"Destroyer":{"side":96,"slices":31},"Capital":{"side":136,"slices":25},"Super-Capital":{"side":174,"slices":171}};
+  await Promise.all(SHIPS.flatMap(s => ["Blue", "Red"].map(team => new Promise(res => {
+    const img = new Image();
+    img.onload = () => {
+      const { side, slices } = info[s];
+      const list = [];
+      for (let k = 0; k < slices; k++) {
+        const c = document.createElement("canvas"); c.width = c.height = side;
+        c.getContext("2d").drawImage(img, k * side, 0, side, side, 0, 0, side, side);
+        list.push(c);
+      }
+      sprites[s + "_" + team] = { side, slices: list, img };
+      res();
+    };
+    img.onerror = res;
+    img.src = `img/stack/${s}_${team}.png`;
+  }))));
+}
+
+// Draw a stack at (x, y), turned by angle (radians, 0 = nose up), slices `gap` pixels apart.
+function drawStack(ctx, spr, x, y, angle, gap = 1, scale = 1) {
+  const h = spr.side * scale / 2;
+  for (let k = 0; k < spr.slices.length; k++) {
+    ctx.save();
+    ctx.translate(Math.round(x), Math.round(y - k * gap * scale));
+    ctx.rotate(angle);
+    ctx.drawImage(spr.slices[k], -h, -h, spr.side * scale, spr.side * scale);
+    ctx.restore();
+  }
+}
+function drawShadow(ctx, spr, x, y, angle, scale = 1) {
+  ctx.save();
+  ctx.globalAlpha = 0.35; ctx.filter = "brightness(0)";
+  ctx.translate(Math.round(x + 6 * scale), Math.round(y + 10 * scale)); ctx.rotate(angle);
+  const h = spr.side * scale / 2;
+  ctx.drawImage(spr.slices[Math.floor(spr.slices.length / 2)], -h, -h, spr.side * scale, spr.side * scale);
+  ctx.restore();
+}
+
+// ---------- solo viewer ----------
+const solo = document.getElementById("solo"), sctx = solo.getContext("2d");
+const shipSel = document.getElementById("ship");
+SHIPS.forEach(s => shipSel.append(new Option(NAMES[s] || s, s)));
+shipSel.value = "Destroyer";
+let soloAngle = 30 * Math.PI / 180;
+function soloFrame(dt) {
+  const spr = sprites[shipSel.value + "_" + document.getElementById("team").value];
+  if (!spr) return;
+  if (document.getElementById("spin").checked) { soloAngle += dt * 0.6; document.getElementById("turn").value = Math.round((soloAngle * 180 / Math.PI) % 360); }
+  const gap = Number(document.getElementById("gap").value);
+  const smooth = document.getElementById("smooth").checked;
+  // Pixel mode: a canvas just big enough for the ship, scaled up by CSS. Smooth mode: a big canvas, drawn at size.
+  const scale = smooth ? Math.max(1, Math.floor(720 / (spr.side * 1.6))) : 1;
+  const w = Math.ceil(spr.side * 1.6) * scale, hgt = Math.ceil(spr.side * 1.2 + spr.slices.length * gap) * scale;
+  if (solo.width !== w || solo.height !== hgt) { solo.width = w; solo.height = hgt; }
+  sctx.imageSmoothingEnabled = smooth;
+  sctx.clearRect(0, 0, w, hgt);
+  sctx.fillStyle = "#03060c"; sctx.fillRect(0, 0, w, hgt);
+  drawStack(sctx, spr, w / 2, hgt / 2 + spr.slices.length * gap * scale / 2, soloAngle, gap, scale);
+}
+function showSheet() {
+  const spr = sprites[shipSel.value + "_" + document.getElementById("team").value];
+  if (!spr) return;
+  const c = document.getElementById("sheet"), n = spr.slices.length, pad = 2;
+  const box = c.parentElement.clientWidth - 24;
+  const z = Math.max(1, Math.floor(Math.min(3, (box / 6) / (spr.side + pad))));
+  const cols = Math.max(1, Math.floor(box / ((spr.side + pad) * z)));
+  c.width = cols * (spr.side + pad); c.height = Math.ceil(n / cols) * (spr.side + pad);
+  c.style.width = c.width * z + "px"; c.style.height = c.height * z + "px";
+  const x = c.getContext("2d"); x.clearRect(0, 0, c.width, c.height);
+  spr.slices.forEach((sl, k) => x.drawImage(sl, (k % cols) * (spr.side + pad), Math.floor(k / cols) * (spr.side + pad)));
+  document.getElementById("facts").textContent = `${NAMES[shipSel.value] || shipSel.value}: ${spr.side} × ${spr.side} pixels, ${spr.slices.length - 1} slices plus the lid.`;
+}
+document.getElementById("turn").addEventListener("input", e => { soloAngle = e.target.value * Math.PI / 180; document.getElementById("spin").checked = false; });
+shipSel.addEventListener("change", showSheet);
+document.getElementById("team").addEventListener("change", showSheet);
+
+// ---------- fleet scene ----------
+const fleet = document.getElementById("fleet"), fctx = fleet.getContext("2d");
+let ships = [], stars = [], camAngle = 0, dragging = null;
+function newFleets() {
+  ships = [];
+  const plan = [["Capital", 1], ["Destroyer", 1], ["CannonFrigate", 2], ["MissileFrigate", 1], ["FlackFrigate", 1], ["Fighter", 5], ["Bomber", 3]];
+  ["Blue", "Red"].forEach((team, t) => plan.forEach(([kind, n]) => {
+    for (let i = 0; i < n; i++) {
+      const small = ["Fighter", "Bomber", "Scout"].includes(kind);
+      const side = t ? 1 : -1;
+      ships.push({ kind, team, small,
+        x: side * (small ? 120 + Math.random() * 200 : 160 + Math.random() * 120), y: (Math.random() - 0.5) * (small ? 360 : 260),
+        heading: t ? Math.PI : 0, speed: small ? 42 + Math.random() * 14 : 6 + Math.random() * 5,
+        turn: (Math.random() - 0.5) * (small ? 1.4 : 0.08), phase: Math.random() * 10 });
+    }
+  }));
+  stars = Array.from({ length: 260 }, () => ({ x: Math.random() * 2000 - 1000, y: Math.random() * 2000 - 1000, b: Math.random() }));
+}
+function fleetFrame(dt) {
+  const S = 1;
+  const W = fleet.width, H = fleet.height;
+  if (document.getElementById("fleetSpin").checked && !dragging) camAngle += dt * 0.05;
+  fctx.imageSmoothingEnabled = false;
+  fctx.fillStyle = "#03060c"; fctx.fillRect(0, 0, W, H);
+  const cos = Math.cos(camAngle), sin = Math.sin(camAngle);
+  const view = (x, y) => [W / 2 + (x * cos - y * sin) * 0.75, H / 2 + (x * sin + y * cos) * 0.6];
+  for (const s of stars) {
+    const [sx, sy] = [W / 2 + ((s.x * cos - s.y * sin) * 0.15) % W, H / 2 + ((s.x * sin + s.y * cos) * 0.12) % H];
+    fctx.fillStyle = `rgba(200,215,255,${0.25 + s.b * 0.6})`; fctx.fillRect(Math.round(sx), Math.round(sy), 1, 1);
+  }
+  for (const s of ships) {
+    // Capital ships drift towards the middle; craft loop around the fight.
+    s.phase += dt;
+    if (s.small) { s.heading += Math.sin(s.phase * 0.9) * dt * 1.4 + s.turn * dt; }
+    else { const want = Math.atan2(-s.y, -s.x) + Math.PI / 2; let d = ((want - s.heading + Math.PI * 3) % (Math.PI * 2)) - Math.PI; if (Math.hypot(s.x, s.y) > 120) s.heading += Math.max(-0.08, Math.min(0.08, d)) * dt; }
+    s.x += Math.sin(s.heading) * s.speed * dt; s.y -= Math.cos(s.heading) * s.speed * dt;
+    if (s.small && Math.hypot(s.x, s.y) > 300) s.heading += dt * 2;
+  }
+  const order = ships.map(s => ({ s, v: view(s.x, s.y) })).sort((a, b) => a.v[1] - b.v[1]);
+  if (document.getElementById("fleetShadow").checked)
+    for (const { s, v } of order) { const spr = sprites[s.kind + "_" + s.team]; if (spr) drawShadow(fctx, spr, v[0], v[1], s.heading + camAngle, 1); }
+  for (const { s, v } of order) {
+    const spr = sprites[s.kind + "_" + s.team]; if (!spr) continue;
+    drawStack(fctx, spr, v[0], v[1], s.heading + camAngle, 1, 1);
+  }
+}
+fleet.addEventListener("pointerdown", e => { dragging = { x: e.clientX, a: camAngle }; fleet.setPointerCapture(e.pointerId); });
+fleet.addEventListener("pointermove", e => { if (dragging) camAngle = dragging.a + (e.clientX - dragging.x) * 0.01; });
+fleet.addEventListener("pointerup", () => dragging = null);
+document.getElementById("fleetReset").onclick = newFleets;
+
+let last = performance.now();
+function loop(now) { const dt = Math.min(0.05, (now - last) / 1000); last = now; soloFrame(dt); fleetFrame(dt); requestAnimationFrame(loop); }
+loadAll().then(() => { newFleets(); showSheet(); requestAnimationFrame(loop); });
+window.addEventListener("resize", showSheet);
+</script>
+</body>
+</html>
