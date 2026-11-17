@@ -1,6 +1,10 @@
 """Campaign story data for the game: dialogue beats, characters and endings.
 
-  python tools/make_narrative.py
+  python tools/make_narrative.py           (first import only)
+  python tools/make_narrative.py --force   (start again from the package, losing edits)
+
+Since 2026-11-17 the dialogue is edited in tools/narrative_editor.py, so game/Assets/Data/narrative.json is the
+real copy and this script refuses to overwrite it unless given --force.
 
 Reads art_pack/Saga_Campaign_Package/campaign_narrative.json (the owner's narrative package, draft 2) and writes
 game/Assets/Data/narrative.json in a shape Unity's JsonUtility can read (lists, not dictionaries). Also copies the
@@ -10,6 +14,7 @@ game/Assets/Art/Portraits/<id>.png.
 import json
 import os
 import shutil
+import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "art_pack", "Saga_Campaign_Package", "campaign_narrative.json")
@@ -38,8 +43,11 @@ def main():
     endings = [{"id": eid, "choice": CHOICE_TEXT.get(eid, e["title"]), "title": e["title"], "text": e["text"]}
                for eid, e in src["ending_choices"].items()]
     out = {"title": src["working_story_title"], "characters": characters, "missions": missions, "endings": endings}
-    with open(OUT, "w", encoding="utf-8") as f:
-        json.dump(out, f, ensure_ascii=False, indent=1)
+    if os.path.exists(OUT) and "--force" not in sys.argv:
+        print("Not overwriting " + OUT + ": it may hold edits from the narrative editor. Use --force to replace it.")
+    else:
+        with open(OUT, "w", encoding="utf-8") as f:
+            json.dump(out, f, ensure_ascii=False, indent=1)
 
     os.makedirs(PORTRAITS_OUT, exist_ok=True)
     copied = 0
@@ -49,7 +57,7 @@ def main():
             shutil.copyfile(p, os.path.join(PORTRAITS_OUT, c["id"] + ".png"))
             copied += 1
     beats = sum(len(m["beats"]) for m in missions)
-    print(f"{len(missions)} missions, {beats} beats, {len(characters)} characters, {len(endings)} endings -> {OUT}; "
+    print(f"{len(missions)} missions, {beats} beats, {len(characters)} characters, {len(endings)} endings; "
           f"{copied} portraits -> {PORTRAITS_OUT}")
 
 

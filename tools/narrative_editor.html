@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Narrative Editor</title>
+<style>
+:root {
+  --bg: #070b12; --panel: #0d1420; --panel2: #121b2a; --line: #22304a; --text: #dde6f0; --muted: #8d98ab;
+  --accent: #73b8ff; --gold: #ffc759; --red: #ff614d; --unknown: #bf7373; --ok: #6fd39a; --warn: #ffb648;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font: 14px/1.45 "Segoe UI", system-ui, sans-serif; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px; cursor: pointer; }
+button:hover { border-color: var(--accent); }
+button.primary { background: #1b3b63; border-color: #2f69a8; }
+button.ghost { background: none; border-color: transparent; color: var(--muted); padding: 3px 6px; }
+button.ghost:hover { color: var(--text); border-color: var(--line); }
+button:disabled { opacity: .45; cursor: default; }
+input, select, textarea { background: #0a101a; border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+textarea { width: 100%; resize: vertical; min-height: 54px; }
+
+.app { display: grid; grid-template-columns: 220px minmax(420px, 1fr) minmax(380px, 46%); grid-template-rows: 48px 1fr; height: 100vh; }
+header { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; padding: 0 14px; border-bottom: 1px solid var(--line); background: var(--panel); }
+header h1 { font-size: 15px; margin: 0 12px 0 0; font-weight: 600; letter-spacing: .02em; }
+header .spacer { flex: 1; }
+#status { color: var(--muted); font-size: 13px; }
+#status.dirty { color: var(--warn); }
+#status.bad { color: var(--red); }
+
+nav { border-right: 1px solid var(--line); background: var(--panel); overflow: auto; padding: 10px 8px; }
+nav .group { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin: 12px 6px 4px; }
+nav a { display: flex; gap: 8px; align-items: baseline; padding: 5px 8px; border-radius: 6px; color: var(--text); text-decoration: none; cursor: pointer; }
+nav a:hover { background: var(--panel2); }
+nav a.on { background: #16263d; }
+nav a .num { color: var(--muted); width: 16px; text-align: right; flex: none; }
+nav a .count { margin-left: auto; color: var(--muted); font-size: 12px; }
+nav a .count.bad { color: var(--warn); }
+
+main { overflow: auto; padding: 16px 18px 80px; }
+main h2 { margin: 0 0 4px; font-size: 20px; }
+.sub { color: var(--muted); margin-bottom: 14px; }
+.fields { display: grid; grid-template-columns: 110px 1fr; gap: 8px 10px; align-items: start; margin-bottom: 18px; }
+.fields label { color: var(--muted); padding-top: 6px; }
+.fields input, .fields textarea { width: 100%; }
+
+.beat { border: 1px solid var(--line); border-radius: 10px; background: var(--panel); margin: 14px 0; }
+.beat-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.beat-head .id { width: 130px; font-weight: 600; }
+.beat-head .when { color: var(--muted); font-size: 13px; flex-basis: 100%; }
+.beat-head .trigrow { flex-basis: 100%; display: flex; gap: 8px; align-items: center; }
+.trig { display: flex; gap: 6px; align-items: center; }
+.trig input { width: 70px; }
+.lines { padding: 8px 12px 12px; }
+.ln { display: grid; grid-template-columns: 48px 150px 1fr auto; gap: 8px; align-items: start; padding: 6px 0; border-bottom: 1px dashed #1a2538; }
+.ln:last-of-type { border-bottom: none; }
+.ln .face { width: 48px; height: 48px; border-radius: 6px; background: #0a101a center 12% / 160% no-repeat; border: 1px solid var(--line); }
+.ln .face.hidden { filter: brightness(0); }
+.ln .meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.ln .meta .warn { color: var(--warn); }
+.ln .tools { display: grid; grid-template-columns: auto auto; gap: 0 2px; }
+.ln textarea { overflow: hidden; resize: none; }
+.ln.focus textarea { border-color: var(--accent); }
+.add { margin-top: 8px; }
+
+.card { border: 1px solid var(--line); border-radius: 10px; background: var(--panel); padding: 12px; margin: 12px 0; display: grid; grid-template-columns: 130px 1fr auto; gap: 14px; }
+.card .portrait { width: 130px; height: 195px; border-radius: 8px; background: #0a101a center bottom / contain no-repeat; border: 1px solid var(--line); }
+.card .fields { margin: 0; }
+
+.problems li { margin: 6px 0; cursor: pointer; }
+.problems li:hover { color: var(--accent); }
+.problems .where { color: var(--muted); }
+
+aside { border-left: 1px solid var(--line); background: #05080d; display: flex; flex-direction: column; overflow: hidden; }
+.pv-bar { display: flex; gap: 8px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--panel); flex-wrap: wrap; }
+.pv-bar .spacer { flex: 1; }
+.pv-label { color: var(--muted); font-size: 12px; padding: 8px 12px 0; min-height: 26px; }
+.stage-wrap { position: relative; margin: 8px 12px; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 6px; border: 1px solid var(--line); cursor: pointer; }
+.stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; font-family: Arial, "Liberation Sans", sans-serif; color: #e6edf5; overflow: hidden;
+  background: radial-gradient(ellipse at 70% 30%, #1d2c48 0%, #0b1220 45%, #03050a 100%); }
+.stage .stars { position: absolute; inset: 0; background-image: radial-gradient(1.5px 1.5px at 20% 30%, #fff8, transparent), radial-gradient(1px 1px at 60% 70%, #fff6, transparent), radial-gradient(1.5px 1.5px at 80% 20%, #fff7, transparent), radial-gradient(1px 1px at 35% 85%, #fff5, transparent), radial-gradient(1px 1px at 90% 60%, #fff6, transparent); background-size: 420px 300px; }
+.stage .dim { position: absolute; inset: 0; background: rgba(0, 3, 8, .62); }
+.stage .titlecard { position: absolute; left: 310px; top: 90px; width: 1300px; text-align: center; }
+.stage .titlecard .act { font-size: 22px; color: #8d98ab; letter-spacing: .1em; }
+.stage .titlecard .mname { font-size: 64px; font-weight: bold; margin-top: 4px; }
+.stage .titlecard .premise { font-size: 26px; width: 1100px; margin: 18px auto 0; line-height: 1.25; }
+.stage .plate { position: absolute; left: 30px; bottom: 0; width: 520px; height: 780px; }
+.stage .plate img { position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom center; transition: transform .25s ease-out, opacity .25s ease-out; }
+.stage .plate img.enter { transform: translateX(-36px); opacity: 0; transition: none; }
+.stage .plate img.hidden { filter: brightness(0) sepia(1) hue-rotate(-30deg) saturate(3) brightness(.08); animation: flicker .11s infinite alternate; }
+@keyframes flicker { from { opacity: .82; } to { opacity: 1; } }
+.stage .box { position: absolute; left: 560px; bottom: 60px; width: 1180px; height: 270px; background: rgba(10, 15, 26, .82); }
+.stage .box .name { position: absolute; left: 32px; top: 22px; font-size: 34px; white-space: nowrap; }
+.stage .box .name small { font-size: 20px; color: #8d98ab; margin-left: 14px; }
+.stage .box .channel { position: absolute; right: 32px; top: 32px; font-size: 18px; color: #8d98ab; }
+.stage .box .body { position: absolute; left: 32px; top: 78px; width: 1116px; height: 150px; font-size: 30px; line-height: 1.15; white-space: pre-wrap; }
+.stage .box .body.over { outline: 2px dashed var(--warn); outline-offset: 2px; }
+.stage .box .hint { position: absolute; right: 24px; bottom: 14px; font-size: 18px; color: #7f8a9c; }
+.stage .choices { position: absolute; left: 560px; bottom: 350px; display: flex; gap: 30px; }
+.stage .choices div { width: 570px; height: 72px; display: flex; align-items: center; justify-content: center; font-size: 24px; background: #182338; border: 1px solid #2f4466; }
+.stage .endcard { position: absolute; left: 310px; top: 230px; width: 1300px; text-align: center; }
+.stage .endcard .t { font-size: 54px; font-weight: bold; }
+.stage .endcard .x { font-size: 30px; width: 1150px; margin: 30px auto 0; line-height: 1.3; }
+.stage .empty { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #56627a; }
+.pv-help { color: var(--muted); font-size: 12px; padding: 0 12px 12px; }
+.build { padding: 10px 12px; border-top: 1px solid var(--line); margin-top: auto; font-size: 13px; }
+.build pre { white-space: pre-wrap; color: var(--muted); font-size: 11px; max-height: 120px; overflow: auto; margin: 6px 0 0; }
+.measure { position: absolute; visibility: hidden; left: -9999px; top: 0; width: 1116px; font: 30px/1.15 Arial, "Liberation Sans", sans-serif; white-space: pre-wrap; }
+
+@media (max-width: 1100px) {
+  .app { grid-template-columns: 180px 1fr; grid-template-rows: 48px 1fr auto; }
+  aside { grid-column: 1 / -1; border-left: none; border-top: 1px solid var(--line); }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Narrative Editor</h1>
+    <button id="undo" title="Undo (Ctrl+Z)">↶ Undo</button>
+    <button id="redo" title="Redo (Ctrl+Y)">↷ Redo</button>
+    <span class="spacer"></span>
+    <span id="status">Loading…</span>
+    <button id="save" class="primary" title="Save (Ctrl+S)">Save</button>
+  </header>
+  <nav id="nav"></nav>
+  <main id="main"></main>
+  <aside>
+    <div class="pv-bar">
+      <strong>Preview</strong>
+      <span class="spacer"></span>
+      <button id="pvBeat" title="Play the selected beat">▶ Beat</button>
+      <button id="pvMission" title="Play every beat in this mission, in order">▶ Whole mission</button>
+      <button id="pvStop" class="ghost">■ Stop</button>
+    </div>
+    <div class="pv-label" id="pvLabel"></div>
+    <div class="stage-wrap" id="stageWrap" tabindex="0"><div class="stage" id="stage"></div></div>
+    <div class="pv-help">Shows the line you're editing as it looks in game. While playing: click or Space for the next line, Escape skips the talking (same as in game). A dashed outline means the text runs past the box.</div>
+    <div class="build">
+      <div style="display:flex;gap:8px;align-items:center">
+        <button id="buildBtn" title="Saves, then rebuilds the web build so the change shows up at localhost:8765">Rebuild web game</button>
+        <span id="buildState" style="color:var(--muted)"></span>
+      </div>
+      <pre id="buildLog"></pre>
+    </div>
+  </aside>
+</div>
+<div class="measure" id="measure"></div>
+
+<script>
+"use strict";
+// ---------- constants mirrored from the game (CommsPanel.cs, Story.cs) ----------
+const TYPE_SPEED = 70;                       // characters per second
+const COLOURS = { blue: "#73b8ff", gold: "#ffc759", red: "#ff614d" };
+const UNKNOWN = "#bf7373";
+const MEASURES = {
+  enemy_kills: { label: "enemy ships destroyed", unit: "" },
+  remaining_enemies: { label: "enemy ships left", unit: "" },
+  target_hull: { label: "mission target's hull left", unit: "frac" },
+  enemy_destroyer_hull: { label: "weakest enemy destroyer's hull left", unit: "frac" },
+  time_remaining: { label: "time left", unit: "s" },
+};
+const FIXED = {
+  mission_start: "When the mission starts (the briefing; shows the title card)",
+  first_enemy_destroyed: "When the first enemy ship is destroyed",
+  mission_victory: "On victory",
+};
+const OPS = { "<=": "at or below", ">=": "at or above", "<": "below", ">": "above" };
+const hiddenSpeaker = (speaker, idx) => speaker === "sen" && idx < 5;   // StoryDirector.Hidden
+
+// ---------- state ----------
+let doc = null, savedJson = "", view = { kind: "mission", i: 0 }, focus = null; // focus: {m, b, l}
+let undoStack = [], redoStack = [], lastSnap = "", snapTimer = null;
+const $ = (s, r = document) => r.querySelector(s);
+const el = (tag, attrs = {}, ...kids) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k.startsWith("on")) e.addEventListener(k.slice(2), v);
+    else if (k === "class") e.className = v;
+    else if (k === "style") e.style.cssText = v;
+    else if (v !== undefined && v !== null && v !== false) e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const k of kids.flat()) if (k !== null && k !== undefined && k !== false) e.append(k.nodeType ? k : document.createTextNode(k));
+  return e;
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const portraitUrl = id => `/portraits/${encodeURIComponent(id)}.png`;
+const missingPortraits = new Set();
+const character = id => doc.characters.find(c => c.id === id);
+
+// ---------- load / save / undo ----------
+async function load() {
+  const r = await fetch("/api/narrative");
+  doc = await r.json();
+  savedJson = lastSnap = JSON.stringify(doc);
+  doc.characters.forEach(c => { const img = new Image(); img.onerror = () => { missingPortraits.add(c.id); renderAll(); }; img.src = portraitUrl(c.id); });
+  renderAll();
+}
+function changed(structural) {
+  clearTimeout(snapTimer);
+  if (structural) snapshot(); else snapTimer = setTimeout(snapshot, 600);
+  updateStatus();
+  if (structural) renderAll(); else { renderNav(); refreshPreview(); }
+}
+function snapshot() {
+  const now = JSON.stringify(doc);
+  if (now === lastSnap) return;
+  undoStack.push(lastSnap); if (undoStack.length > 300) undoStack.shift();
+  redoStack = []; lastSnap = now; updateStatus();
+}
+function undo() { snapshot(); if (!undoStack.length) return; redoStack.push(lastSnap); lastSnap = undoStack.pop(); doc = JSON.parse(lastSnap); renderAll(); }
+function redo() { if (!redoStack.length) return; undoStack.push(lastSnap); lastSnap = redoStack.pop(); doc = JSON.parse(lastSnap); renderAll(); }
+const dirty = () => JSON.stringify(doc) !== savedJson;
+function updateStatus(msg, cls) {
+  const s = $("#status");
+  const n = problems().length;
+  s.className = cls || (dirty() ? "dirty" : "");
+  s.textContent = msg || ((dirty() ? "Unsaved changes" : "Saved") + (n ? ` · ${n} problem${n > 1 ? "s" : ""}` : ""));
+  $("#undo").disabled = !undoStack.length && JSON.stringify(doc) === lastSnap;
+  $("#redo").disabled = !redoStack.length;
+}
+async function save() {
+  snapshot();
+  const body = JSON.stringify(doc);
+  const r = await fetch("/api/narrative", { method: "PUT", headers: { "Content-Type": "application/json" }, body });
+  const j = await r.json();
+  if (!r.ok) { updateStatus("Not saved: " + j.error, "bad"); return false; }
+  savedJson = body; updateStatus(); return true;
+}
+
+// ---------- triggers ----------
+function parseTrigger(t) {
+  if (FIXED[t]) return { kind: t };
+  const p = (t || "").trim().split(/\s+/);
+  if (p.length === 3 && MEASURES[p[0]] && OPS[p[1]] && p[2] !== "" && !isNaN(Number(p[2]))) return { kind: "measure", measure: p[0], op: p[1], value: Number(p[2]) };
+  return { kind: "bad" };
+}
+function describeTrigger(t) {
+  const p = parseTrigger(t);
+  if (p.kind === "bad") return `⚠ Not a trigger the game understands: “${t}”. It will never play.`;
+  if (p.kind !== "measure") return FIXED[p.kind];
+  const m = MEASURES[p.measure];
+  let v = p.value;
+  if (m.unit === "frac") v = Math.round(p.value * 100) + "%";
+  else if (m.unit === "s") v = `${Math.floor(p.value / 60)}:${String(Math.round(p.value % 60)).padStart(2, "0")}`;
+  return `When the ${m.label} is ${OPS[p.op]} ${v}. If the battle is won first, it plays at victory, before the victory beat.`;
+}
+function triggerEditor(beat) {
+  const p = parseTrigger(beat.trigger);
+  const kind = el("select", { onchange: e => {
+    const k = e.target.value;
+    beat.trigger = k === "measure" ? "enemy_kills >= 2" : k === "bad" ? beat.trigger : k;
+    changed(true);
+  } },
+    ...Object.keys(FIXED).map(k => el("option", { value: k, selected: p.kind === k }, k.replace(/_/g, " "))),
+    el("option", { value: "measure", selected: p.kind === "measure" }, "when a number crosses…"),
+    p.kind === "bad" ? el("option", { value: "bad", selected: true }, "custom (invalid)") : null);
+  const wrap = el("span", { class: "trig" }, kind);
+  if (p.kind === "measure") {
+    const set = (k, v) => { const q = parseTrigger(beat.trigger); q[k] = v; beat.trigger = `${q.measure} ${q.op} ${q.value}`; changed(true); };
+    wrap.append(
+      el("select", { onchange: e => set("measure", e.target.value) }, ...Object.keys(MEASURES).map(k => el("option", { value: k, selected: p.measure === k }, k.replace(/_/g, " ")))),
+      el("select", { onchange: e => set("op", e.target.value) }, ...Object.keys(OPS).map(k => el("option", { value: k, selected: p.op === k }, k))),
+      el("input", { type: "number", step: MEASURES[p.measure].unit === "frac" ? "0.05" : "1", value: p.value, onchange: e => set("value", Number(e.target.value) || 0) }));
+  }
+  if (p.kind === "bad") wrap.append(el("input", { value: beat.trigger, style: "width:220px", onchange: e => { beat.trigger = e.target.value.trim(); changed(true); } }));
+  return wrap;
+}
+
+// ---------- checks ----------
+function fits(text) {
+  const m = $("#measure"); m.innerHTML = richText(text); return m.scrollHeight <= 152;
+}
+function problems() {
+  if (!doc) return [];
+  const out = [], ids = new Set(doc.characters.map(c => c.id));
+  const seenChar = new Set();
+  doc.characters.forEach((c, i) => {
+    if (!c.id) out.push({ where: "Characters", what: `character ${i + 1} has no id`, go: { kind: "characters" } });
+    else if (seenChar.has(c.id)) out.push({ where: "Characters", what: `two characters use the id “${c.id}”`, go: { kind: "characters" } });
+    seenChar.add(c.id);
+    if (missingPortraits.has(c.id)) out.push({ where: "Characters", what: `no portrait for ${c.id} (game/Assets/Art/Portraits/${c.id}.png)`, go: { kind: "characters" } });
+  });
+  doc.missions.forEach((m, mi) => {
+    const where = `${m.index + 1}. ${m.name}`;
+    const seen = new Set();
+    if (!m.beats.some(b => b.trigger === "mission_start")) out.push({ where, what: "no briefing (mission_start beat)", go: { kind: "mission", i: mi } });
+    m.beats.forEach((b, bi) => {
+      if (seen.has(b.id)) out.push({ where, what: `two beats are called “${b.id}”`, go: { kind: "mission", i: mi } });
+      seen.add(b.id);
+      if (parseTrigger(b.trigger).kind === "bad") out.push({ where, what: `beat “${b.id}” has a trigger the game can't read`, go: { kind: "mission", i: mi } });
+      if (!b.lines.length) out.push({ where, what: `beat “${b.id}” has no lines`, go: { kind: "mission", i: mi } });
+      b.lines.forEach((l, li) => {
+        const at = { kind: "mission", i: mi, focus: { m: mi, b: bi, l: li } };
+        if (!ids.has(l.speaker)) out.push({ where, what: `“${b.id}” line ${li + 1}: unknown speaker “${l.speaker}”`, go: at });
+        if (!l.text.trim()) out.push({ where, what: `“${b.id}” line ${li + 1} is empty`, go: at });
+        else if (!fits(l.text)) out.push({ where, what: `“${b.id}” line ${li + 1} is too long for the text box`, go: at });
+      });
+    });
+  });
+  doc.endings.forEach((e, i) => { if (!e.text.trim() || !e.choice.trim()) out.push({ where: "Endings", what: `ending “${e.id || i + 1}” is missing text`, go: { kind: "endings" } }); });
+  return out;
+}
+
+// ---------- nav ----------
+function renderNav() {
+  const nav = $("#nav"); nav.innerHTML = "";
+  const link = (label, v, extra, num) => el("a", { class: view.kind === v.kind && (v.i === undefined || view.i === v.i) ? "on" : "", onclick: () => go(v) },
+    num !== undefined ? el("span", { class: "num" }, num) : null, el("span", {}, label), extra || null);
+  const probs = problems();
+  nav.append(el("div", { class: "group" }, "Story"),
+    link("Story & characters", { kind: "characters" }),
+    link("Endings", { kind: "endings" }),
+    link("Problems", { kind: "problems" }, el("span", { class: "count" + (probs.length ? " bad" : "") }, probs.length || "none")),
+    el("div", { class: "group" }, "Missions"));
+  doc.missions.forEach((m, i) => {
+    const lines = m.beats.reduce((n, b) => n + b.lines.length, 0);
+    nav.append(link(m.name || "(untitled)", { kind: "mission", i }, el("span", { class: "count" }, lines), m.index + 1));
+  });
+}
+function go(v) {
+  view = { kind: v.kind, i: v.i };
+  if (v.focus) focus = v.focus; else if (v.kind !== "mission" || (focus && focus.m !== v.i)) focus = null;
+  renderAll();
+  if (v.focus) setTimeout(() => { const t = document.querySelector(`[data-line="${v.focus.b}-${v.focus.l}"] textarea`); if (t) { t.focus(); t.scrollIntoView({ block: "center" }); } }, 0);
+}
+
+// ---------- main panels ----------
+function field(obj, key, label, opts = {}) {
+  const input = opts.area
+    ? el("textarea", { rows: opts.rows || 2, oninput: e => { obj[key] = e.target.value; changed(false); } }, obj[key] || "")
+    : el("input", { value: obj[key] || "", oninput: e => { obj[key] = e.target.value; changed(false); }, onchange: opts.structural ? () => changed(true) : null });
+  return [el("label", {}, label), input];
+}
+function renderMission() {
+  const mi = view.i, m = doc.missions[mi], main = $("#main");
+  main.append(el("h2", {}, `${m.index + 1}. ${m.name}`), el("div", { class: "sub" }, m.act),
+    el("div", { class: "fields" },
+      ...field(m, "name", "Name"), ...field(m, "act", "Act"),
+      ...field(m, "premise", "Premise", { area: true, rows: 3 }),
+      ...field(m, "primary", "Objective"), ...field(m, "secondary", "Secondary"), ...field(m, "bonus", "Bonus")));
+  m.beats.forEach((b, bi) => main.append(renderBeat(m, mi, b, bi)));
+  main.append(el("button", { class: "add", onclick: () => {
+    let n = 1; while (m.beats.some(b => b.id === "beat" + n)) n++;
+    const victory = m.beats.findIndex(b => b.trigger === "mission_victory");
+    const beat = { id: "beat" + n, trigger: "first_enemy_destroyed", type: "mid", lines: [{ speaker: doc.characters[0]?.id || "", text: "" }] };
+    m.beats.splice(victory < 0 ? m.beats.length : victory, 0, beat);
+    changed(true);
+  } }, "+ Add beat"));
+}
+function renderBeat(m, mi, b, bi) {
+  const move = d => { const j = bi + d; if (j < 0 || j >= m.beats.length) return; [m.beats[bi], m.beats[j]] = [m.beats[j], m.beats[bi]]; changed(true); };
+  const head = el("div", { class: "beat-head" },
+    el("input", { class: "id", value: b.id, title: "Beat id", onchange: e => { b.id = e.target.value.trim(); changed(true); } }),
+    el("select", { title: "Type", onchange: e => { b.type = e.target.value; changed(true); } },
+      ...["intro", "mid", "outro"].map(t => el("option", { value: t, selected: b.type === t }, t))),
+    el("span", { style: "flex:1" }),
+    el("button", { class: "ghost", title: "Play this beat", onclick: () => playBeat(mi, bi) }, "▶"),
+    el("button", { class: "ghost", title: "Move up", onclick: () => move(-1), disabled: bi === 0 }, "↑"),
+    el("button", { class: "ghost", title: "Move down", onclick: () => move(1), disabled: bi === m.beats.length - 1 }, "↓"),
+    el("button", { class: "ghost", title: "Delete beat", onclick: () => { if (confirm(`Delete beat “${b.id}” and its ${b.lines.length} lines?`)) { m.beats.splice(bi, 1); changed(true); } } }, "✕"),
+    el("div", { class: "trigrow" }, el("span", { style: "color:var(--muted)" }, "Plays"), triggerEditor(b)),
+    el("div", { class: "when" }, describeTrigger(b.trigger)));
+  const lines = el("div", { class: "lines" });
+  b.lines.forEach((l, li) => lines.append(renderLine(m, mi, b, bi, l, li)));
+  lines.append(el("button", { class: "add", onclick: () => {
+    const prev = b.lines[b.lines.length - 1];
+    const other = prev && b.lines.length > 1 ? b.lines[b.lines.length - 2].speaker : doc.characters.find(c => c.id !== prev?.speaker)?.id;
+    b.lines.push({ speaker: other || prev?.speaker || doc.characters[0]?.id || "", text: "" });
+    focus = { m: mi, b: bi, l: b.lines.length - 1 };
+    changed(true);
+    go({ kind: "mission", i: mi, focus });
+  } }, "+ Add line"));
+  return el("div", { class: "beat" }, head, lines);
+}
+function lineMeta(l) {
+  const secs = (l.text.length / TYPE_SPEED).toFixed(1);
+  const over = l.text.trim() && !fits(l.text);
+  return el("div", { class: "meta" }, `${l.text.length} characters · types out in ${secs}s`, over ? el("span", { class: "warn" }, " · too long for the box") : null);
+}
+function renderLine(m, mi, b, bi, l, li) {
+  const hidden = hiddenSpeaker(l.speaker, m.index);
+  const face = el("div", { class: "face" + (hidden ? " hidden" : ""), style: missingPortraits.has(l.speaker) ? "" : `background-image:url('${portraitUrl(l.speaker)}')`, title: hidden ? "Shown as a dark silhouette until mission 6" : "" });
+  let meta = lineMeta(l);
+  const speaker = el("select", { onchange: e => { l.speaker = e.target.value; changed(true); } },
+    ...doc.characters.map(c => el("option", { value: c.id, selected: c.id === l.speaker }, c.name || c.id)),
+    character(l.speaker) ? null : el("option", { value: l.speaker, selected: true }, `⚠ ${l.speaker}`));
+  const text = el("textarea", { rows: 2, oninput: e => { grow(e.target); l.text = e.target.value; const m2 = lineMeta(l); meta.replaceWith(m2); meta = m2; changed(false); },
+    onfocus: () => { focus = { m: mi, b: bi, l: li }; document.querySelectorAll(".ln.focus").forEach(x => x.classList.remove("focus")); row.classList.add("focus"); stopPlay(); refreshPreview(); } }, l.text);
+  const move = d => { const j = li + d; if (j < 0 || j >= b.lines.length) return; [b.lines[li], b.lines[j]] = [b.lines[j], b.lines[li]]; focus = { m: mi, b: bi, l: j }; changed(true); };
+  const row = el("div", { class: "ln" + (focus && focus.m === mi && focus.b === bi && focus.l === li ? " focus" : ""), "data-line": `${bi}-${li}` },
+    face,
+    el("div", {}, speaker, hidden ? el("div", { class: "meta" }, "shown as “Unidentified signal”") : null),
+    el("div", {}, text, meta),
+    el("div", { class: "tools" },
+      el("button", { class: "ghost", title: "Play from this line", onclick: () => playBeat(mi, bi, li) }, "▶"),
+      el("button", { class: "ghost", title: "Move up", disabled: li === 0, onclick: () => move(-1) }, "↑"),
+      el("button", { class: "ghost", title: "Move down", disabled: li === b.lines.length - 1, onclick: () => move(1) }, "↓"),
+      el("button", { class: "ghost", title: "Delete line", onclick: () => { b.lines.splice(li, 1); focus = null; changed(true); } }, "✕")));
+  return row;
+}
+function renderCharacters() {
+  const main = $("#main");
+  main.append(el("h2", {}, "Story & characters"), el("div", { class: "sub" }, "Changing an id also changes every line that character speaks."),
+    el("div", { class: "fields" }, ...field(doc, "title", "Story title")));
+  doc.characters.forEach((c, ci) => {
+    const uses = doc.missions.reduce((n, m) => n + m.beats.reduce((k, b) => k + b.lines.filter(l => l.speaker === c.id).length, 0), 0);
+    const rename = e => {
+      const old = c.id, now = e.target.value.trim();
+      if (!now || now === old) return;
+      if (doc.characters.some(x => x !== c && x.id === now)) { alert(`“${now}” is already used.`); e.target.value = old; return; }
+      c.id = now;
+      doc.missions.forEach(m => m.beats.forEach(b => b.lines.forEach(l => { if (l.speaker === old) l.speaker = now; })));
+      missingPortraits.delete(now); const img = new Image(); img.onerror = () => { missingPortraits.add(now); renderAll(); }; img.src = portraitUrl(now);
+      changed(true);
+    };
+    main.append(el("div", { class: "card" },
+      el("div", { class: "portrait", style: missingPortraits.has(c.id) ? "" : `background-image:url('${portraitUrl(c.id)}')` }),
+      el("div", { class: "fields" },
+        el("label", {}, "Id"), el("input", { value: c.id, onchange: rename }),
+        ...field(c, "name", "Name", { structural: true }), ...field(c, "role", "Role"), ...field(c, "faction", "Channel"),
+        el("label", {}, "Colour"), el("select", { onchange: e => { c.color = e.target.value; changed(true); } },
+          ...Object.keys(COLOURS).map(k => el("option", { value: k, selected: c.color === k }, k))),
+        el("label", {}, "Lines"), el("div", { style: "padding-top:6px" }, `${uses} line${uses === 1 ? "" : "s"}`,
+          missingPortraits.has(c.id) ? el("div", { class: "meta", style: "color:var(--warn)" }, `No portrait yet: add game/Assets/Art/Portraits/${c.id}.png, then rebuild the ship library.`) : null)),
+      el("div", {}, el("button", { class: "ghost", title: "Delete character", onclick: () => {
+        if (uses && !confirm(`${c.name} speaks ${uses} lines. Delete anyway? Those lines will show a warning.`)) return;
+        doc.characters.splice(ci, 1); changed(true);
+      } }, "✕"))));
+  });
+  main.append(el("button", { class: "add", onclick: () => {
+    let n = 1; while (doc.characters.some(c => c.id === "new" + n)) n++;
+    doc.characters.push({ id: "new" + n, name: "New character", role: "", faction: "", color: "blue" });
+    missingPortraits.add("new" + n); changed(true);
+  } }, "+ Add character"));
+}
+function renderEndings() {
+  const main = $("#main");
+  main.append(el("h2", {}, "Endings"), el("div", { class: "sub" }, "After the last mission's victory, the player picks one of these. The choice text is the button."));
+  doc.endings.forEach((e, ei) => main.append(el("div", { class: "card", style: "grid-template-columns:1fr auto" },
+    el("div", { class: "fields" }, ...field(e, "id", "Id"), ...field(e, "choice", "Button text"), ...field(e, "title", "Title"), ...field(e, "text", "Epilogue", { area: true, rows: 5 })),
+    el("div", { class: "tools", style: "display:flex;flex-direction:column;gap:4px" },
+      el("button", { class: "ghost", title: "Play this ending", onclick: () => playEnding(ei) }, "▶"),
+      el("button", { class: "ghost", title: "Delete", onclick: () => { if (confirm(`Delete ending “${e.title}”?`)) { doc.endings.splice(ei, 1); changed(true); } } }, "✕")))));
+  main.append(el("button", { class: "add", onclick: () => { doc.endings.push({ id: "ending" + (doc.endings.length + 1), choice: "", title: "", text: "" }); changed(true); } }, "+ Add ending"));
+}
+function renderProblems() {
+  const main = $("#main"), list = problems();
+  main.append(el("h2", {}, "Problems"), el("div", { class: "sub" }, list.length ? "Click one to go to it." : "Nothing to fix. (￣▽￣)ノ"));
+  main.append(el("ul", { class: "problems" }, ...list.map(p => el("li", { onclick: () => go(p.go) }, el("span", { class: "where" }, p.where + ": "), p.what))));
+}
+function grow(t) { t.style.height = "auto"; t.style.height = (t.scrollHeight + 2) + "px"; }
+function renderAll() {
+  if (!doc) return;
+  const main = $("#main"), scroll = main.scrollTop;
+  main.innerHTML = "";
+  if (view.kind === "mission" && !doc.missions[view.i]) view = { kind: "characters" };
+  ({ mission: renderMission, characters: renderCharacters, endings: renderEndings, problems: renderProblems })[view.kind]();
+  main.querySelectorAll(".ln textarea").forEach(grow);
+  main.scrollTop = scroll;
+  renderNav(); updateStatus(); refreshPreview();
+}
+
+// ---------- preview ----------
+function richText(s) {
+  // Unity rich text: <color=#hex>, <b>, <i>, <size=n>. Everything else is shown as typed.
+  return esc(s)
+    .replace(/&lt;color=(#[0-9a-fA-F]{3,8}|[a-z]+)&gt;/g, '<span style="color:$1">').replace(/&lt;\/color&gt;/g, "</span>")
+    .replace(/&lt;size=(\d+)&gt;/g, '<span style="font-size:$1px">').replace(/&lt;\/size&gt;/g, "</span>")
+    .replace(/&lt;(\/?)(b|i)&gt;/g, "<$1$2>");
+}
+function cutRich(s, n) {
+  // The first n visible characters, with tags kept whole (the game types tags as text, but ours are rare).
+  return s.slice(0, n);
+}
+let play = null, playTimer = null, lastSpeaker = null;
+function stageScale() {
+  const w = $("#stageWrap").clientWidth;
+  $("#stage").style.transform = `scale(${w / 1920})`;
+}
+function drawLine(mission, beat, li, shown, titled) {
+  const l = beat.lines[li], c = character(l.speaker), hidden = hiddenSpeaker(l.speaker, mission.index);
+  const colour = hidden ? UNKNOWN : c ? (COLOURS[c.color] || COLOURS.blue) : COLOURS.blue;
+  const text = shown === undefined ? l.text : cutRich(l.text, Math.floor(shown));
+  const stage = $("#stage");
+  const img = missingPortraits.has(l.speaker) ? null : el("img", { src: portraitUrl(l.speaker), class: hidden ? "hidden" : "" });
+  const newSpeaker = lastSpeaker !== l.speaker; lastSpeaker = l.speaker;
+  stage.innerHTML = "";
+  stage.append(el("div", { class: "stars" }), el("div", { class: "dim" }));
+  if (titled) {
+    const card = el("div", { class: "titlecard" }, el("div", { class: "act" }, mission.act), el("div", { class: "mname" }, `${mission.index + 1}.  ${mission.name}`));
+    const p = el("div", { class: "premise" }); p.innerHTML = esc(mission.premise) + `<br><br><span style="color:#a8d4ff">Objective</span>&nbsp;&nbsp; ${esc(mission.primary)}`;
+    card.append(p); stage.append(card);
+  }
+  stage.append(el("div", { class: "plate" }, img));
+  if (img && newSpeaker && play) { img.classList.add("enter"); requestAnimationFrame(() => requestAnimationFrame(() => img.classList.remove("enter"))); }
+  const name = el("div", { class: "name", style: `color:${colour}` }, hidden ? "Unidentified signal" : c ? c.name : l.speaker);
+  if (!hidden && c) name.append(el("small", {}, c.role));
+  const body = el("div", { class: "body" + (fits(l.text) ? "" : " over") }); body.innerHTML = richText(text);
+  stage.append(el("div", { class: "box" }, name, el("div", { class: "channel" }, hidden ? "UNKNOWN RELAY" : c ? c.faction : ""), body,
+    el("div", { class: "hint" }, "Click or Space to continue  ·  Escape to skip")));
+}
+function drawEmpty(msg) { const s = $("#stage"); s.innerHTML = ""; s.append(el("div", { class: "stars" }), el("div", { class: "empty" }, msg)); }
+function drawChoice() {
+  const s = $("#stage"); s.innerHTML = "";
+  s.append(el("div", { class: "stars" }), el("div", { class: "dim" }),
+    el("div", { class: "choices" }, ...doc.endings.map(e => el("div", {}, e.choice))),
+    el("div", { class: "box" }, el("div", { class: "body", style: "color:#a8b3c4" }, "Your decision.")));
+}
+function drawCard(e) {
+  const s = $("#stage"); s.innerHTML = "";
+  s.append(el("div", { class: "stars" }), el("div", { class: "dim" }), el("div", { class: "endcard" }, el("div", { class: "t" }, e.title), el("div", { class: "x" }, e.text)));
+}
+function refreshPreview() {
+  if (play) return;
+  stageScale();
+  if (view.kind === "endings") { doc.endings.length ? drawChoice() : drawEmpty("No endings"); $("#pvLabel").textContent = "The final decision"; return; }
+  const mi = focus ? focus.m : view.kind === "mission" ? view.i : -1;
+  const m = doc.missions[mi];
+  if (!m) { drawEmpty("Pick a line to preview it"); $("#pvLabel").textContent = ""; return; }
+  let bi = focus && focus.m === mi ? focus.b : 0, li = focus && focus.m === mi ? focus.l : 0;
+  const b = m.beats[bi];
+  if (!b || !b.lines[li]) { drawEmpty("This beat has no lines"); $("#pvLabel").textContent = ""; return; }
+  lastSpeaker = null;
+  drawLine(m, b, li, undefined, b.trigger === "mission_start" && li === 0);
+  $("#pvLabel").textContent = `${m.name} · ${b.id} · line ${li + 1} of ${b.lines.length}`;
+}
+function playSteps(steps) {
+  stopPlay();
+  if (!steps.length) return;
+  play = { steps, i: 0, shown: 0 }; lastSpeaker = null;
+  $("#stageWrap").focus();
+  showStep();
+  let last = performance.now();
+  playTimer = setInterval(() => {
+    const now = performance.now(), dt = (now - last) / 1000; last = now;
+    const st = play && play.steps[play.i];
+    if (!st || st.kind !== "line") return;
+    const full = st.beat.lines[st.li].text.length;
+    if (play.shown < full) { play.shown = Math.min(full, play.shown + dt * TYPE_SPEED); drawLine(st.mission, st.beat, st.li, play.shown, st.titled); }
+  }, 30);
+}
+function showStep() {
+  const st = play.steps[play.i];
+  if (!st) { stopPlay(); return; }
+  play.shown = 0;
+  if (st.kind === "line") { drawLine(st.mission, st.beat, st.li, 0, st.titled); $("#pvLabel").textContent = `${st.mission.name} · ${st.beat.id} — ${describeTrigger(st.beat.trigger)}`; }
+  else if (st.kind === "choice") { drawChoice(); $("#pvLabel").textContent = "The final decision (click to go on)"; }
+  else { drawCard(st.ending); $("#pvLabel").textContent = "Epilogue"; }
+}
+function advance(skip) {
+  if (!play) return;
+  const st = play.steps[play.i];
+  if (!skip && st.kind === "line" && play.shown < st.beat.lines[st.li].text.length) { play.shown = 1e9; drawLine(st.mission, st.beat, st.li, undefined, st.titled); return; }
+  play.i++;
+  if (skip) while (play.steps[play.i] && play.steps[play.i].kind === "line") play.i++;
+  showStep();
+}
+function stopPlay() { clearInterval(playTimer); playTimer = null; if (play) { play = null; refreshPreview(); } }
+function beatSteps(mi, bi, from = 0) {
+  const m = doc.missions[mi], b = m.beats[bi];
+  return b.lines.slice(from).map((_, k) => ({ kind: "line", mission: m, beat: b, li: from + k, titled: b.trigger === "mission_start" && from + k === 0 }));
+}
+function playBeat(mi, bi, from = 0) { playSteps(beatSteps(mi, bi, from)); }
+function playMission() {
+  const mi = focus ? focus.m : view.kind === "mission" ? view.i : 0, m = doc.missions[mi];
+  if (!m) return;
+  // Same order as the game when every trigger fires in turn: briefing, battle beats, victory.
+  const order = [...m.beats.keys()].sort((a, b) => rank(m.beats[a]) - rank(m.beats[b]) || a - b);
+  let steps = order.flatMap(bi => beatSteps(mi, bi));
+  if (mi === doc.missions.length - 1 && doc.endings.length) steps = steps.concat([{ kind: "choice" }, { kind: "card", ending: doc.endings[0] }]);
+  playSteps(steps);
+}
+const rank = b => b.trigger === "mission_start" ? 0 : b.trigger === "mission_victory" ? 2 : 1;
+function playEnding(ei) { playSteps([{ kind: "choice" }, { kind: "card", ending: doc.endings[ei] }]); }
+
+// ---------- rebuild ----------
+async function pollBuild() {
+  const j = await (await fetch("/api/build")).json();
+  const label = { idle: "", running: `Building… (started ${j.started?.slice(11)}; takes a few minutes)`, done: `Built at ${j.finished?.slice(11)}. Reload the game page.`, failed: `Build failed (code ${j.code}). Is the Unity editor open on this project?` }[j.state];
+  $("#buildState").textContent = label;
+  $("#buildState").style.color = j.state === "failed" ? "var(--red)" : j.state === "done" ? "var(--ok)" : "var(--muted)";
+  $("#buildLog").textContent = j.state === "failed" ? j.log : "";
+  $("#buildBtn").disabled = j.state === "running";
+  if (j.state === "running") setTimeout(pollBuild, 3000);
+}
+async function rebuild() {
+  if (dirty() && !(await save())) return;
+  const r = await fetch("/api/build", { method: "POST" });
+  if (!r.ok) { $("#buildState").textContent = (await r.json()).error; return; }
+  pollBuild();
+}
+
+// ---------- wiring ----------
+$("#save").onclick = save; $("#undo").onclick = undo; $("#redo").onclick = redo;
+$("#pvBeat").onclick = () => { const mi = focus ? focus.m : view.i; if (view.kind === "mission" || focus) playBeat(mi, focus && focus.m === mi ? focus.b : 0); };
+$("#pvMission").onclick = playMission; $("#pvStop").onclick = stopPlay; $("#buildBtn").onclick = rebuild;
+$("#stageWrap").addEventListener("click", () => advance(false));
+document.addEventListener("keydown", e => {
+  const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName);
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") { e.preventDefault(); save(); return; }
+  if (play && !typing && (e.key === " " || e.key === "Enter")) { e.preventDefault(); advance(false); return; }
+  if (play && e.key === "Escape") { e.preventDefault(); advance(true); return; }
+  if (typing) return;
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z" && !e.shiftKey) { e.preventDefault(); undo(); }
+  if ((e.ctrlKey || e.metaKey) && (e.key.toLowerCase() === "y" || (e.key.toLowerCase() === "z" && e.shiftKey))) { e.preventDefault(); redo(); }
+});
+window.addEventListener("resize", () => { stageScale(); document.querySelectorAll(".ln textarea").forEach(grow); });
+window.addEventListener("beforeunload", e => { if (doc && dirty()) { e.preventDefault(); e.returnValue = ""; } });
+new ResizeObserver(stageScale).observe($("#stageWrap"));
+load().then(pollBuild);
+</script>
+</body>
+</html>

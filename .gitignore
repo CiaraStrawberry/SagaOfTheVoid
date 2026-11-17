@@ -61,3 +61,6 @@ recovery/audio/
 # API keys (never commit)
 .env
 .env.*
+
+# Narrative editor save history
+tools/narrative_backups/
