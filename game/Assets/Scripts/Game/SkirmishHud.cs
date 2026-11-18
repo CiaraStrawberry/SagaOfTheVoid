@@ -199,6 +199,8 @@ namespace Saga.Game
 
         public void ShowPauseMenu(bool show) => pauseMenu.SetActive(show);
 
+        public void HideHelp() => helpUntil = 0f;
+
         public void ToggleHelp() => helpUntil = helpPanel.gameObject.activeSelf ? 0f : float.MaxValue;
 
         public bool PointerOverPanel()

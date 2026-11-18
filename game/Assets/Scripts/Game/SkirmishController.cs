@@ -75,6 +75,15 @@ namespace Saga.Game
         public MissionDef MissionDef { get; private set; }
         StartMenu menu;
         bool resultSaved;
+        // The guided practice battle, when Config.Tutorial.
+        public Tutorial Tutorial { get; private set; }
+
+        // Read-outs for the tutorial (and tests): where the camera looks, how far out, which way it faces.
+        public Vector3 CameraPivot => pivot;
+        public float CameraDistance => distance;
+        public float CameraYaw => yaw;
+        public bool HasGroup(int n) => groups.TryGetValue(n, out var g) && g.Count > 0;
+        public int GroupRecalls { get; private set; }
 
         // Campaign story (CommsPanel): beats play as their triggers fire; the battle waits while one is open.
         StoryDef storyDef;
@@ -125,7 +134,13 @@ namespace Saga.Game
 
             World = new World(lib.Rules(), seed);
             string map = config.Map, sky = config.Sky;
-            if (config.Mission >= 0)
+            if (config.Tutorial)
+            {
+                map = null; sky = "skybox5"; // open space: nothing in the way of the camera while learning it
+                Tutorial = new Tutorial(this);
+                Tutorial.SetUpWorld(World);
+            }
+            else if (config.Mission >= 0)
             {
                 MissionDef = campaign.missions[config.Mission];
                 World.SetUpMission(MissionDef, PlayerTeam, 1);
@@ -157,6 +172,7 @@ namespace Saga.Game
 
             var mine = World.Alive.Where(s => s.Team == PlayerTeam).ToList();
             pivot = Centre(mine) + new Vector3(2000f, 0, 0);
+            if (Tutorial != null) { pivot = Centre(mine) + new Vector3(1200f, 0, 0); distance = 6000f; hud.HideHelp(); Tutorial.Show(cam); }
             PlaceCamera();
         }
 
@@ -214,6 +230,7 @@ namespace Saga.Game
             View.Sync(shots, impacts, deaths, Paused ? 0f : dt * GameSpeed, World.Time);
             shots.Clear(); impacts.Clear(); deaths.Clear();
             hud.Refresh();
+            Tutorial?.Update(dt);
         }
 
         // Starts any story beat that is due; while a transmission is open the battle stays frozen beneath it and
@@ -414,6 +431,7 @@ namespace Saga.Game
                 if (ctrl) { groups[n] = Selected.ToList(); continue; }
                 if (!groups.TryGetValue(n, out var g) || g.Count == 0) continue;
                 Select(g);
+                GroupRecalls++;
                 if (lastGroupKey == n && Time.unscaledTime - lastGroupTime < 0.35f) Focus(g);
                 lastGroupKey = n; lastGroupTime = Time.unscaledTime;
             }

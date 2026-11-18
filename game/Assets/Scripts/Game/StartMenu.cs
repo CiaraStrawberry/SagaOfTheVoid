@@ -54,6 +54,11 @@ namespace Saga.Game
             UiKit.Button(sk, "Quick battle  ·  8 v 8", new Vector2(0, 1), new Vector2(24, -442), new Vector2(472, 64), () => StartSkirmish(true), 26);
             UiKit.Button(sk, "Small battle  ·  4 v 4", new Vector2(0, 1), new Vector2(24, -518), new Vector2(472, 64), () => StartSkirmish(true, small: true), 26);
 
+            // Tutorial, under the skirmish column: a guided practice battle.
+            bool tutorialDone = PlayerPrefs.GetInt(Tutorial.DoneKey, 0) == 1;
+            UiKit.Button(root, tutorialDone ? "Tutorial  <color=#58c98f>✓</color>" : "New here?  <b>Tutorial</b>  ·  learn the controls",
+                new Vector2(0, 1), new Vector2(80, -852), new Vector2(520, 64), () => SkirmishController.Begin(new BattleConfig { Tutorial = true }), 24);
+
             if (DevPanel) BuildDevPanel(root);
 
             // Campaign column
@@ -100,6 +105,7 @@ namespace Saga.Game
                 PlayerPrefs.DeleteKey(ProgressKey);
                 PlayerPrefs.DeleteKey(SkirmishController.EndingKey);
                 PlayerPrefs.DeleteKey(UnlockAllKey);
+                PlayerPrefs.DeleteKey(Tutorial.DoneKey);
                 PlayerPrefs.Save();
                 SkirmishController.BackToMenu();
             });

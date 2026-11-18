@@ -230,6 +230,19 @@ namespace Saga.Game
             AddSprite("ring", ring, new Vector3(at.x, 5f, at.z), c, size, 0.45f, Vector3.zero, true);
         }
 
+        // The tutorial's goal ring: a slow amber pulse where it wants the fleet to go (null hides it).
+        SpriteRenderer beacon;
+        public void ShowBeacon(Vector3? at, float size = 1600f)
+        {
+            if (beacon == null) beacon = FlatSprite("beacon", ring, root, 1f, 0f);
+            beacon.gameObject.SetActive(at.HasValue);
+            if (!at.HasValue) return;
+            beacon.transform.position = new Vector3(at.Value.x, 6f, at.Value.z);
+            float pulse = 1f + 0.05f * Mathf.Sin(Time.unscaledTime * 3f);
+            beacon.transform.localScale = Vector3.one * size * pulse;
+            Tint(beacon, new Color(1f, 0.78f, 0.35f, 0.55f + 0.2f * Mathf.Sin(Time.unscaledTime * 3f)));
+        }
+
         // Ring under the cursor while placing reserve ships: green where they can warp in, red where they can't.
         SpriteRenderer deployMarker;
         public void ShowDeployMarker(Vector3? at, bool ok, float size)

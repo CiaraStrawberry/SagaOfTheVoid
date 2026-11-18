@@ -179,6 +179,83 @@ namespace Saga.Tests
         }
 
         // Each test starts from an empty scene (earlier tests leave lights, maps and canvases behind).
+        // Plays the tutorial through the same calls the mouse and keys make, one step after another, and
+        // saves a picture of the coach panel at a few steps (tools/preview/tutorial_*.png).
+        [UnityTest]
+        public IEnumerator Tutorial_PlaysThrough()
+        {
+            var (go, cam, rt) = MakeCamera();
+            SkirmishController.Pending = new BattleConfig { Tutorial = true };
+            var game = go.AddComponent<SkirmishController>();
+            yield return null; yield return null;
+            var tut = game.Tutorial;
+            Assert.NotNull(tut, "tutorial running");
+            Assert.AreEqual(0, tut.StepIndex);
+            Assert.AreEqual(0, game.World.Count(1), "no enemies yet");
+            Shot(cam, rt, "tutorial_1_welcome");
+
+            tut.Go(1);                                     // camera: needs real keys, skip it
+            yield return null;
+            Shot(cam, rt, "tutorial_2_camera");
+            tut.Skip();
+            Assert.AreEqual("Select ships", tut.StepTitle);
+            game.Select(new[] { game.Own.First() });
+            yield return null;
+            game.SelectAllOwn();
+            yield return WaitStep(tut, 3, 5f);
+            Assert.AreEqual("Move", tut.StepTitle, "selecting moved it on");
+            Shot(cam, rt, "tutorial_3_move");
+
+            game.CommandMove(tut.BeaconAt, false);
+            game.GameSpeed = 4f;
+            yield return WaitStep(tut, 4, 60f);
+            Assert.AreEqual("Groups", tut.StepTitle, "reaching the ring moved it on");
+            tut.Skip();                                    // Ctrl+1 / 1 are keys
+
+            Assert.AreEqual("Attack", tut.StepTitle);
+            var frigate = game.World.Alive.Single(s => s.Team == 1);
+            game.SelectAllOwn();
+            game.CommandAttack(frigate);
+            yield return WaitStep(tut, 6, 90f);
+            Assert.IsTrue(frigate.Dead, "frigate destroyed");
+            Assert.AreEqual("Fighters", tut.StepTitle);
+
+            game.Select(game.Own.Where(s => Hulls.IsSmall(s.Hull)));
+            foreach (var e in game.World.Alive.Where(s => s.Team == 1).ToList()) game.CommandAttack(e);
+            yield return WaitStep(tut, 7, 90f);
+            Assert.AreEqual("Build a ship", tut.StepTitle);
+            Assert.GreaterOrEqual(game.World.TeamOf(0).Money, 950, "credits handed out to buy with");
+
+            Assert.IsTrue(game.Buy("fighter"), "buys a fighter");
+            yield return WaitStep(tut, 8, 60f);
+            Assert.AreEqual("Warp it in", tut.StepTitle);
+            Shot(cam, rt, "tutorial_4_reserve");
+            var near = BattleView.ToWorld(game.Own.First().Pos) + new Vector3(-800, 0, 0);
+            Assert.IsNotEmpty(game.DeployAt(near, "*"), "warped in");
+            yield return WaitStep(tut, 9, 10f);
+            Assert.AreEqual("Your first battle", tut.StepTitle);
+            Assert.AreEqual(4, game.World.Count(1), "the patrol jumped in");
+
+            float guard = Time.realtimeSinceStartup + 150f;
+            while (game.World.Winner < 0 && Time.realtimeSinceStartup < guard)
+            {
+                var red = game.World.Alive.Where(s => s.Team == 1).ToList();
+                if (red.Count > 0 && game.Own.Any(s => s.OrderedTarget == null || s.OrderedTarget.Dead)) { game.SelectAllOwn(); game.CommandAttack(red[0]); }
+                yield return null;
+            }
+            Assert.AreEqual(0, game.World.Winner, "won the tutorial");
+            Assert.AreEqual(1, PlayerPrefs.GetInt(Tutorial.DoneKey, 0), "remembered as done");
+            yield return null;
+            Shot(cam, rt, "tutorial_5_complete");
+            PlayerPrefs.DeleteKey(Tutorial.DoneKey);
+        }
+
+        static IEnumerator WaitStep(Tutorial tut, int step, float realSeconds)
+        {
+            float guard = Time.realtimeSinceStartup + realSeconds;
+            while (tut.StepIndex < step && Time.realtimeSinceStartup < guard) yield return null;
+        }
+
         static void Clean()
         {
             foreach (var g in UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects())

@@ -131,6 +131,10 @@ namespace Saga.Sim
 
         // Teams a person controls. The computer gives orders to every other team.
         public readonly HashSet<int> PlayerTeams = new HashSet<int>();
+        // Teams a script gives orders to (the tutorial's Red): the computer leaves them alone.
+        public readonly HashSet<int> ScriptedTeams = new HashSet<int>();
+        // The script decides when the battle ends (the tutorial), not "one team left".
+        public bool ScriptedEnd;
 
         // Capital ship / base defence modes: each team's flagship or home base. Lose it and you lose the battle.
         public readonly Dictionary<int, Ship> KeyShips = new Dictionary<int, Ship>();
@@ -238,7 +242,7 @@ namespace Saga.Sim
             {
                 secondTimer -= 1.0;
                 foreach (var team in Alive.Select(s => s.Team).Distinct().ToList())
-                    if (!PlayerTeams.Contains(team)) { ComputerBuys(team); ComputerOrders(team); }
+                    if (!PlayerTeams.Contains(team) && !ScriptedTeams.Contains(team)) { ComputerBuys(team); ComputerOrders(team); }
                 foreach (var s in Alive)
                 {
                     if (s.OrderedTarget != null && s.OrderedTarget.Dead) { s.OrderedTarget = null; s.HasMoveOrder = false; }
@@ -273,7 +277,7 @@ namespace Saga.Sim
                 var others = KeyShips.Keys.Where(t => t != lost && !KeyShips[t].Dead).ToList();
                 Winner = others.Count > 0 ? others[0] : Alive.Select(x => x.Team).FirstOrDefault(t => t != lost);
             }
-            else if (Winner < 0)
+            else if (Winner < 0 && !ScriptedEnd)
             {
                 var teams = Alive.Select(s => s.Team).Distinct().ToList();
                 if (teams.Count == 1 && Time > 1) Winner = teams[0];
