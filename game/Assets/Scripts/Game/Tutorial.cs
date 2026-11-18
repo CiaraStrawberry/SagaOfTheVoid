@@ -44,7 +44,8 @@ namespace Saga.Game
         Vector3 camStart; float zoomStart, yawStart;
         int recallsStart;
         Vector3 beaconAt;
-        Ship frigate;
+        Ship frigate, capital;
+        static readonly HashSet<string> AntiShip = new HashSet<string> { "laser_frigate", "cannon_frigate" };
         readonly List<Ship> enemyFighters = new List<Ship>();
         double stepTime;
 
@@ -147,6 +148,7 @@ namespace Saga.Game
                 {
                     var c = Centre(game.Own);
                     frigate = WarpIn("cannon_frigate", new Vec2(c.X + 4800, c.Y + 500));
+                    LookBetween(frigate);
                 },
             }
             .Do("Order an attack on the frigate", () => frigate.Dead || game.Own.Any(s => s.OrderedTarget == frigate))
@@ -174,12 +176,15 @@ namespace Saga.Game
             steps.Add(new Step
             {
                 Title = "Build a ship",
-                Body = "Credits (top left) buy new ships from the build bar, bottom right. You've been given 1,200 credits.\n" +
+                Body = "Credits (top left) buy new ships from the build bar, bottom right. You've been given 1,200, and more keep coming in.\n" +
                        "<b>Left-click</b> a ship there to buy it. Right-click cancels. Hover over one to see what it is.",
                 Enter = () =>
                 {
                     var me = world.TeamOf(SkirmishController.PlayerTeam);
                     me.Money = Math.Max(me.Money, 1200);
+                    // From here on credits keep coming in, as in a skirmish, so a lost ship or a wrong buy can't
+                    // leave you stuck with nothing to build.
+                    me.IncomePerSecond = World.Income;
                     stepTime = world.Time;
                 },
             }
@@ -197,6 +202,30 @@ namespace Saga.Game
                        "<color=#8d98ab>Tip: R warps in everything in the reserve at once.</color>",
             }
             .Do("<b>Click</b> the ship in the Reserve, then <b>click</b> near your fleet", () => game.Own.Any(s => s.Arrived >= 0)));
+
+            steps.Add(new Step
+            {
+                Title = "Big guns for big ships",
+                Body = "An enemy <color=#ffb0a8>capital ship</color> has jumped in: huge armour and shields. Two <b>Laser Frigates</b> have joined you to deal with it.\n" +
+                       "Laser and Cannon Frigates are <b>anti-ship</b>: they hit big ships very hard but almost never hit fighters. " +
+                       "Point them at the biggest target. <color=#8d98ab>(Missile Frigates go after other frigates; fighters and Flak Frigates deal with small craft.)</color>",
+                Enter = () =>
+                {
+                    var c = Centre(game.Own);
+                    capital = WarpIn("capital", new Vec2(c.X + 5500, c.Y));
+                    foreach (var dy in new[] { -500.0, 500.0 })
+                    {
+                        var s = world.Spawn("laser_frigate", SkirmishController.PlayerTeam, new Vec2(c.X - 900, c.Y + dy), -Math.PI / 2);
+                        s.Arrived = world.Time;
+                    }
+                    LookBetween(capital);
+                },
+            }
+            .Do("Select your <b>Laser Frigates</b> (double-click one), adding any Cannon Frigates with Shift-click",
+                () => !game.Inspecting && game.Selected.Count > 0 && game.Selected.All(s => AntiShip.Contains(s.Def.id))
+                      && game.Selected.Any(s => s.Def.id == "laser_frigate"))
+            .Do("<b>Right-click</b> the capital ship to attack it", () => capital.Dead || game.Own.Any(s => AntiShip.Contains(s.Def.id) && s.OrderedTarget == capital))
+            .Do("Destroy the capital ship", () => capital.Dead));
 
             steps.Add(new Step
             {
@@ -223,6 +252,14 @@ namespace Saga.Game
             return s;
         }
 
+        // Swings the camera to halfway between the fleet and a new arrival, far enough out to see both.
+        void LookBetween(Ship target)
+        {
+            var fleet = BattleView.ToWorld(Centre(game.Own));
+            var there = BattleView.ToWorld(target.Pos);
+            game.LookAt((fleet + there) * 0.5f, Vector3.Distance(fleet, there) * 1.3f);
+        }
+
         bool Bought()
         {
             var me = world.TeamOf(SkirmishController.PlayerTeam);
@@ -236,9 +273,11 @@ namespace Saga.Game
             if (world == null || panel == null) return;
             if (index < 0) Go(0);
             DriveRed(dt);
-            if (index == 3 && world.Winner < 0) game.View.ShowBeacon(beaconAt);
-            if (index == 5 && frigate != null && !frigate.Dead) game.View.ShowBeacon(BattleView.ToWorld(frigate.Pos), 900f);
-            else if (index == 5) game.View.ShowBeacon(null);
+            // The amber ring: the move goal, then the ship a step wants attacked.
+            var marked = StepTitle == "Attack" ? frigate : StepTitle == "Big guns for big ships" ? capital : null;
+            if (StepTitle == "Move" && world.Winner < 0) game.View.ShowBeacon(beaconAt);
+            else if (marked != null && !marked.Dead) game.View.ShowBeacon(BattleView.ToWorld(marked.Pos), marked == capital ? 1500f : 900f);
+            else game.View.ShowBeacon(null);
 
             // Lost the whole fleet with nothing left to bring in: that's a defeat (Play again restarts).
             var me = world.TeamOf(SkirmishController.PlayerTeam);

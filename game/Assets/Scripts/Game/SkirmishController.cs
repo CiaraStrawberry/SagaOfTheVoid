@@ -394,6 +394,13 @@ namespace Saga.Game
         public bool Buy(string shipId) => World.TryBuy(PlayerTeam, shipId);
         public bool CancelBuy(string shipId) => World.CancelBuy(PlayerTeam, shipId);
 
+        // Points the camera at a spot on the play plane, zoomed out to at least the given distance.
+        public void LookAt(Vector3 point, float atLeast = 0f)
+        {
+            pivot = new Vector3(point.x, 0, point.z);
+            distance = Mathf.Clamp(Mathf.Max(distance, atLeast), MinDist, MaxDist);
+        }
+
         public void Focus(IEnumerable<Ship> ships)
         {
             var list = ships.Where(s => !s.Dead).ToList();

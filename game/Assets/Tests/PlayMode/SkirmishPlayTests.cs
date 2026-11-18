@@ -222,9 +222,10 @@ namespace Saga.Tests
 
             game.Select(game.Own.Where(s => Hulls.IsSmall(s.Hull)));
             foreach (var e in game.World.Alive.Where(s => s.Team == 1).ToList()) game.CommandAttack(e);
-            yield return WaitStep(tut, 7, 90f);
+            yield return WaitStep(tut, 7, 180f);
             Assert.AreEqual("Build a ship", tut.StepTitle);
             Assert.GreaterOrEqual(game.World.TeamOf(0).Money, 950, "credits handed out to buy with");
+            Assert.Greater(game.World.TeamOf(0).IncomePerSecond, 0, "credits keep coming in from the build step on");
 
             Assert.IsTrue(game.Buy("fighter"), "buys a fighter");
             yield return WaitStep(tut, 8, 60f);
@@ -233,6 +234,19 @@ namespace Saga.Tests
             var near = BattleView.ToWorld(game.Own.First().Pos) + new Vector3(-800, 0, 0);
             Assert.IsNotEmpty(game.DeployAt(near, "*"), "warped in");
             yield return WaitStep(tut, 9, 10f);
+            Assert.AreEqual("Big guns for big ships", tut.StepTitle);
+            var capital = game.World.Alive.Single(s => s.Team == 1 && s.Def.id == "capital");
+            var lasers = game.Own.Where(s => s.Def.id == "laser_frigate").ToList();
+            Assert.AreEqual(2, lasers.Count, "two laser frigates joined");
+            yield return null;
+            Shot(cam, rt, "tutorial_5_capital");
+            game.Select(game.Own.Where(s => s.Def.id == "laser_frigate" || s.Def.id == "cannon_frigate"));
+            game.CommandAttack(capital);
+            yield return null;
+            game.SelectAllOwn();                       // the rest help too
+            game.CommandAttack(capital);
+            yield return WaitStep(tut, 10, 150f);
+            Assert.IsTrue(capital.Dead, "capital destroyed");
             Assert.AreEqual("Your first battle", tut.StepTitle);
             Assert.AreEqual(4, game.World.Count(1), "the patrol jumped in");
 
@@ -246,7 +260,7 @@ namespace Saga.Tests
             Assert.AreEqual(0, game.World.Winner, "won the tutorial");
             Assert.AreEqual(1, PlayerPrefs.GetInt(Tutorial.DoneKey, 0), "remembered as done");
             yield return null;
-            Shot(cam, rt, "tutorial_5_complete");
+            Shot(cam, rt, "tutorial_6_complete");
             PlayerPrefs.DeleteKey(Tutorial.DoneKey);
         }
 
@@ -254,6 +268,7 @@ namespace Saga.Tests
         {
             float guard = Time.realtimeSinceStartup + realSeconds;
             while (tut.StepIndex < step && Time.realtimeSinceStartup < guard) yield return null;
+            Debug.Log($"TUTORIAL reached step {tut.StepIndex} ({tut.StepTitle}) wanting {step}, game time {Object.FindFirstObjectByType<SkirmishController>().World.Time:0}s");
         }
 
         static void Clean()
@@ -294,7 +309,13 @@ namespace Saga.Tests
             RenderTexture.active = prev;
             var dir = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Application.dataPath)), "tools", "preview");
             Directory.CreateDirectory(dir);
-            File.WriteAllBytes(Path.Combine(dir, name + ".png"), t.EncodeToPNG());
+            // Another program (a virus scanner, a preview) can hold the old file for a moment: try again briefly.
+            var bytes = t.EncodeToPNG();
+            for (int tries = 0; ; tries++)
+            {
+                try { File.WriteAllBytes(Path.Combine(dir, name + ".png"), bytes); break; }
+                catch (IOException) when (tries < 10) { System.Threading.Thread.Sleep(300); }
+            }
         }
     }
 }
