@@ -82,6 +82,11 @@ h1 { margin: 0; font: 600 clamp(34px, 6vw, 72px)/1.05 var(--f-display); letter-s
   window.addEventListener("keydown", function (e) {
     if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].indexOf(e.key) >= 0 && e.target === document.body) e.preventDefault();
   });
+  // Game shortcuts the browser would otherwise take: Ctrl+1..9 (save a control group; the browser switches tabs)
+  // and Ctrl+A (select every ship; the browser selects the page's text). Runs first, and the game still gets the key.
+  window.addEventListener("keydown", function (e) {
+    if ((e.ctrlKey || e.metaKey) && !e.altKey && /^(Digit[1-9]|Numpad[1-9]|KeyA)$/.test(e.code)) e.preventDefault();
+  }, true);
 
   function unityShowBanner(msg, type) {
     var div = document.createElement("div");
